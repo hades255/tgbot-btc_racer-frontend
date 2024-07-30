@@ -1,11 +1,26 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useLocation } from "react-router-dom";
+import { useDispatch } from "react-redux";
+
 import HomeIcon from "../../assets/icons/Home";
 import TaskIcon from "../../assets/icons/Task";
 import UsersIcon from "../../assets/icons/Users";
 import SurpriseIcon from "../../assets/icons/Surprise";
 import LeaderboardIcon from "../../assets/icons/Leaderboard";
+import { login } from "../../redux/authSlice";
 
 const Navbar = () => {
+  const location = useLocation();
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    const queryParams = new URLSearchParams(location.search);
+    const userId = queryParams.get("userId");
+    if (userId) {
+      dispatch(login(userId));
+    }
+  }, [location, dispatch]);
+
   return (
     <>
       <div className="w-full flex justify-center align-middle fixed bottom-[20px] mx-auto">
