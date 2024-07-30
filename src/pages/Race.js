@@ -42,7 +42,7 @@ const Race = () => {
           (bet === "moon" && betAmount <= btcPrice) ||
           (bet === "doom" && betAmount > btcPrice);
 
-        await axios.post("http://172.86.113.74:5000/race", {
+        await axios.post("https://d6bf-172-86-113-74.ngrok-free.app/race", {
           guess: bet,
           pointAmount: 10,
           result,
