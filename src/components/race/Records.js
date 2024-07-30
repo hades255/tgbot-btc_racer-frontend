@@ -15,7 +15,7 @@ const Records = ({ show, onClose }) => {
     (async () => {
       try {
         const response = await axios.get(
-          "http://127.0.0.1:5000/race?userId=" + userId
+          "http://172.86.113.74:5000/race?userId=" + userId
         );
         setRecords(response.data.data);
       } catch (error) {
