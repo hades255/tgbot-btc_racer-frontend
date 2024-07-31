@@ -8,9 +8,9 @@ const Modal = ({ show, onClose, title, children }) => {
   if (!show) return null;
 
   return (
-    <div className="fixed inset-0 flex items-center justify-center bg-neutral-800 bg-opacity-50 z-10">
-      <div className="bg-neutral-800 rounded-lg shadow-xl w-full">
-        <div className="flex justify-center items-center bg-neutral-800 p-4 rounded-t-lg relative">
+    <div className="fixed inset-0 flex items-center justify-center bg-[#090909] bg-opacity-50 z-10">
+      <div className="bg-[#191919] rounded-lg shadow-xl w-full">
+        <div className="flex justify-center items-center bg-[#191919] p-4 rounded-t-lg relative">
           <h3 className="text-lg font-medium text-white">{title}</h3>
           <button
             onClick={handleClickClose}

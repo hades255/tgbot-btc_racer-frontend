@@ -165,7 +165,7 @@ const Race = () => {
             </button>
           </div>
         </div>
-        {count && (
+        {count !== 0 && (
           <div className="w-full flex justify-center">
             <span className="text-white text-lg">{count}</span>
           </div>
