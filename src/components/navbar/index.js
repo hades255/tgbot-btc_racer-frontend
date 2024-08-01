@@ -50,18 +50,22 @@ const Navbar = () => {
     setActive(location.pathname);
     const queryParams = new URLSearchParams(location.search);
     //  todo
-    const userId = "user one"; //queryParams.get("userId");
-    const name = "smart guy"; //queryParams.get("userId");
+    // const userId = "7086461598"; //queryParams.get("userId");
+    const userId = queryParams.get("userId");
+    // const username = "smart guy"; //queryParams.get("username");
+    const username = queryParams.get("username");
+    // const name = "smart guy"; //queryParams.get("name");
+    const name = queryParams.get("name");
     if (userId) {
       (async () => {
         try {
           //  todo
-          //  https://d6bf-172-86-113-74.ngrok-free.app
           const response = await axios.get(
-            `http://127.0.0.1:5000/user?userId=${userId}&name=${name}`
+            `https://d6bf-172-86-113-74.ngrok-free.app/user?userId=${userId}&name=${name}&username=${username}`
+            // `http://127.0.0.1:5000/user?userId=${userId}&name=${name}&username=${username}`
           );
           const point = response.data.data;
-          dispatch(login({ userId, point, name }));
+          dispatch(login({ userId, point, name, username }));
         } catch (error) {
           console.log(error);
         }

@@ -7,7 +7,7 @@ import CupIcon from "../assets/icons/Cup";
 import { setScore } from "../redux/authSlice";
 import UpIcon from "../assets/icons/Up";
 import DownIcon from "../assets/icons/Down";
-import BetButton from "../components/race/BetButton";
+import FireIcon from "../assets/icons/Fire";
 
 const Race = () => {
   const dispatch = useDispatch();
@@ -18,11 +18,11 @@ const Race = () => {
 
   const [bet, setBet] = useState(null);
   const [betAmount, setBetAmount] = useState(0);
+  const [betCompareAmount, setBetCompareAmount] = useState(0);
   const [betResult, setBetResult] = useState(null);
 
   const [showResults, setShowResults] = useState(false);
 
-  //  todo
   const getBTC = useCallback(() => {
     (async () => {
       try {
@@ -42,37 +42,38 @@ const Race = () => {
   const compareBTC = useCallback(() => {
     (async () => {
       try {
-        //  todo
         const response = await axios.get(
           "https://api.coindesk.com/v1/bpi/currentprice/BTC.json"
         );
         const btcPrice = response.data.bpi.USD.rate_float;
+        setBetCompareAmount(btcPrice);
         const result =
           (bet === "moon" && betAmount <= btcPrice) ||
           (bet === "doom" && betAmount > btcPrice);
+        setBetResult(result);
         //  todo
-        //  https://d6bf-172-86-113-74.ngrok-free.app
-        const res = await axios.post("http://127.0.0.1:5000/race", {
-          guess: bet,
-          pointAmount: 10,
-          result,
-          userId: userId,
-        });
+        // const res = await axios.post("http://127.0.0.1:5000/race", {
+        const res = await axios.post(
+          "https://d6bf-172-86-113-74.ngrok-free.app/race",
+          {
+            guess: bet,
+            pointAmount: 10,
+            result,
+            userId: userId,
+          }
+        );
 
         dispatch(setScore(res.data.data));
-
-        setBetResult(result);
       } catch (error) {
         console.log(error);
       }
     })();
   }, [bet, betAmount, userId, dispatch]);
 
-  //  todo
   useEffect(() => {
     const timer = setInterval(() => {
       getBTC();
-    }, 5000);
+    }, 1000);
     return () => clearInterval(timer);
   }, [getBTC]);
 
@@ -128,7 +129,9 @@ const Race = () => {
       <div className="mt-16 mb-24 w-full flex-col">
         {bet ? (
           <div className="h-20 w-full flex justify-center items-center">
-            <span className="text-white text-lg">{count}</span>
+            <span className="text-white text-5xl text-shadow-xl font-digital">
+              00:0{count}
+            </span>
           </div>
         ) : (
           <div className="h-20">
@@ -168,26 +171,58 @@ const Race = () => {
           </div>
           <div className="my-4 w-full flex justify-center">
             <div className="w-1/3 mx-2">
-              <BetButton
-                title={"MOON"}
-                color={"green"}
-                active={bet === null}
-                onClick={handleClickMoon}
-                icon={<UpIcon width={16} height={16} color={"white"} />}
-              />
+              <div className="w-full relative">
+                <div
+                  className={`w-full h-12 bg-green-800 border-4 border-white absolute rounded-2xl top-3`}
+                ></div>
+                <div className="w-full px-1">
+                  <button
+                    className={`w-full h-12 bg-green-400 rounded-xl hover:bg-green-500 transform active:translate-y-1 active:shadow-none transition-transform duration-150`}
+                    onClick={handleClickMoon}
+                    disabled={bet !== null}
+                  >
+                    <div
+                      className={`flex justify-center text-xl font-bold ${
+                        bet === null ? "text-white" : "text-stone-500"
+                      }`}
+                    >
+                      MOON
+                      <div className="ml-1 mt-2">
+                        <UpIcon width={16} height={16} color={"white"} />
+                      </div>
+                    </div>
+                  </button>
+                </div>
+              </div>
             </div>
             <div className="w-1/3 mx-2">
-              <BetButton
-                title={"DOOM"}
-                color={"red"}
-                active={bet === null}
-                onClick={handleClickDoom}
-                icon={<DownIcon width={16} height={16} color={"white"} />}
-              />
+              <div className="w-full relative">
+                <div
+                  className={`w-full h-12 bg-red-800 border-4 border-white absolute rounded-2xl top-3`}
+                ></div>
+                <div className="w-full px-1">
+                  <button
+                    className={`w-full h-12 bg-red-400 rounded-xl hover:bg-red-500 transform active:translate-y-1 active:shadow-none transition-transform duration-150`}
+                    onClick={handleClickDoom}
+                    disabled={bet !== null}
+                  >
+                    <div
+                      className={`flex justify-center text-xl font-bold ${
+                        bet === null ? "text-white" : "text-stone-500"
+                      }`}
+                    >
+                      DOOM
+                      <div className="ml-1 mt-2">
+                        <DownIcon width={16} height={16} color={"white"} />
+                      </div>
+                    </div>
+                  </button>
+                </div>
+              </div>
             </div>
           </div>
         </div>
-        <div className="flex justify-center my-4">
+        <div className="flex justify-center my-4 py-4">
           <span className="text-stone-300 text-xs underline">
             Terms and conditions
           </span>
@@ -199,13 +234,33 @@ const Race = () => {
         </div>
       </div>
       {showResults && <Records show={showResults} onClose={hideRecordsModal} />}
-      {/* {betResult !== null && ( */}
-      <div className="absolute h-full w-full flex justify-center items-center top-0 left-0 bg-[#101010a4]">
-        <span className="text-white text-8xl font-bold text-shadow-2xl">
-          {betResult ? "WIN" : "LOSE"}
-        </span>
-      </div>
-      {/* )} */}
+      {betResult !== null && (
+        <div className="absolute h-full w-full flex justify-center items-center top-0 left-0 bg-[#101010a4]">
+          <div className="flex flex-col">
+            {betResult && (
+              <div className="flex justify-center">
+                <FireIcon width={48} height={48} color={"yellow"} />
+              </div>
+            )}
+            <div className="text-white text-8xl font-bold text-shadow-2xl flex justify-center">
+              {betResult ? "WIN" : "MISS"}
+            </div>
+            <div className="text-white text-lg font-bold text-shadow-xl flex justify-center">
+              BTC Price {betCompareAmount - betAmount > 0 && "+"}
+              {betAmount
+                ? ((betCompareAmount - betAmount) / betAmount) * 100
+                : 0}
+              %
+            </div>
+            <div className="text-md font-bold text-shadow-xl flex justify-center">
+              <span className="text-stone-400 mr-1">From</span>
+              <span className="text-white">${betAmount}</span>
+              <span className="text-stone-400 mx-1">to</span>
+              <span className="text-white">${betCompareAmount}</span>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

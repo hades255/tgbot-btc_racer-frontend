@@ -12,12 +12,12 @@ const Records = ({ show, onClose }) => {
   const [records, setRecords] = useState([]);
 
   //  todo
-  //  https://d6bf-172-86-113-74.ngrok-free.app
   useEffect(() => {
     (async () => {
       try {
         const response = await axios.get(
-          "http://127.0.0.1:5000/race?userId=" + userId
+          // "http://127.0.0.1:5000/race?userId=" + userId
+          "https://d6bf-172-86-113-74.ngrok-free.app/race?userId=" + userId
         );
         setRecords(response.data.data);
       } catch (error) {

@@ -6,15 +6,15 @@ module.exports = {
       backgroundImage: () => ({
         "race-gradient": `linear-gradient(to right, #a8a29e, #030303, #030303, #030303, #030303, #a8a29e)`,
       }),
-      boxShadow: () => ({
-        "bet-result": `0 1px 50px white`,
-      }),
       textShadow: {
         sm: "0px 1px 2px rgba(255,255,255, 0.25)",
         md: "0px 2px 4px rgba(255,255,255, 0.25)",
         lg: "0px 3px 8px rgba(255,255,255, 0.33)",
         xl: "0px 4px 16px rgba(255,255,255, 0.33)",
         "2xl": "0px 4px 32px rgba(255,255,255, 1)",
+      },
+      fontFamily: {
+        digital: ["Digital7", "sans-serif"],
       },
     },
   },
