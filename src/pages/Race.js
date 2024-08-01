@@ -253,7 +253,7 @@ const Race = () => {
       </div>
       {showResults && <Records show={showResults} onClose={hideRecordsModal} />}
       {betResult !== null && (
-        <div className="absolute h-full w-full flex justify-center items-center top-0 left-0 bg-[#101010a4]">
+        <div className="z-20 absolute h-full w-full flex justify-center items-center top-0 left-0 bg-[#101010a4]">
           <div className="flex flex-col">
             {betResult && (
               <div className="flex justify-center">

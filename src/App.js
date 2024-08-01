@@ -18,11 +18,15 @@ const App = () => {
       if (window.Telegram && window.Telegram.WebApp) {
         window.Telegram.WebApp.setHeaderColor("#131313");
         window.Telegram.WebApp.MainButton.setText(title);
+        window.Telegram.WebApp.MainButton.setParams({
+          text_color: "#ffffff",
+          color: "#131313",
+        });
+
         window.Telegram.WebApp.MainButton.show();
       }
     };
 
-    // Call the setTitle function when the component mounts
     setTitle();
   }, []);
 
