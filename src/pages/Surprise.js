@@ -1,9 +1,8 @@
 import React from "react";
-import CheckIcon from "../assets/icons/Check";
 import DotIcon from "../assets/icons/Dot";
 import InfoIcon from "../assets/icons/Info";
-import RightIcon from "../assets/icons/Right";
 import ArrowIcon from "../assets/icons/Arrow";
+import AstronautIcon from "../assets/icons/Astronaut";
 
 const Surprise = () => {
   return (
@@ -19,7 +18,9 @@ const Surprise = () => {
         surprises.
       </div>
       <div className="mx-4 mt-4 p-3 rounded-lg bg-[#0F1F39] flex">
-        <div className="w-[50px] min-w-[50px] h-[50px] rounded-md bg-[#1A2B47] mr-3"></div>
+        <div className="w-[50px] min-w-[50px] h-[50px] rounded-md bg-[#1A2B47] mr-3">
+          <AstronautIcon width={48} height={48} color={"random"}/>
+        </div>
         <div className="flex flex-col">
           <div>
             <span className="text-white text-sm">Auto-Cap</span>
@@ -35,7 +36,7 @@ const Surprise = () => {
       <div className="mx-4 mt-3 px-4 py-2 rounded-xl flex flex-col border border-[#173560]">
         <div className="flex my-2">
           <div className="mr-1 pt-1">
-            <CheckIcon width={14} height={16} color={"white"} />
+            <DotIcon width={14} height={16} color={"#04C3FF"} />
           </div>
           <div className="flex flex-col">
             <div className="text-white text-md font-medium flex">
@@ -43,7 +44,6 @@ const Surprise = () => {
                 Sign up for an Alphanomics account
               </span>
               <div className="ml-1 flex items-center">
-                <RightIcon height={18} width={18} color={"white"} />
               </div>
             </div>
             <span className="text-slate-400 text-xs">
@@ -53,7 +53,7 @@ const Surprise = () => {
         </div>
         <div className="flex my-2">
           <div className="mr-1 pt-1">
-            <CheckIcon width={14} height={16} color={"white"} />
+            <DotIcon width={14} height={16} color={"#04C3FF"} />
           </div>
           <div className="flex flex-col">
             <div className="text-white text-md font-medium flex">
@@ -61,7 +61,6 @@ const Surprise = () => {
                 Install the OKX app
               </span>
               <div className="ml-1 flex items-center">
-                <RightIcon height={18} width={18} color={"white"} />
               </div>
             </div>
           </div>
@@ -76,7 +75,6 @@ const Surprise = () => {
                 Connect to Telegram
               </span>
               <div className="ml-1 flex items-center">
-                <RightIcon height={18} width={18} color={"white"} />
               </div>
             </div>
             <span className="text-slate-400 text-xs">
@@ -95,7 +93,6 @@ const Surprise = () => {
                 Verify your identity
               </span>
               <div className="ml-1 flex items-center">
-                <RightIcon height={18} width={18} color={"white"} />
               </div>
             </div>
             <span className="text-slate-400 text-xs">
