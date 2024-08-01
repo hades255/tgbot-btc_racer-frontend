@@ -17,7 +17,7 @@ const TaskModal = ({ selected, onClose, show }) => {
               </div>
             </div>
             <div className="flex justify-center my-2">
-              <span className="ml-1 px-1 text-xs bg-lime-400 rounded text-black">
+              <span className="ml-1 px-1 text-xs bg-blue-400 rounded text-black">
                 New
               </span>
             </div>

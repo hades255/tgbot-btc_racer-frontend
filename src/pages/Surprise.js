@@ -3,13 +3,18 @@ import CheckIcon from "../assets/icons/Check";
 import DotIcon from "../assets/icons/Dot";
 import InfoIcon from "../assets/icons/Info";
 import RightIcon from "../assets/icons/Right";
+import BackgroundIcon from "../assets/icons/Background";
+import ButtonIcon from "../assets/icons/CreateButton";
 
 const Surprise = () => {
   return (
     <div className="w-full flex flex-col mb-24">
       <div className="mx-4 my-8">
+        <div className="absolute">
+          <BackgroundIcon />
+        </div>
         <span className="text-4xl font-bold text-white">Ready for more</span>
-        <span className="text-4xl font-bold text-lime-400 ml-2">
+        <span className="text-4xl font-bold text-blue-400 ml-2">
           surprises?
         </span>
       </div>
@@ -17,12 +22,14 @@ const Surprise = () => {
         Complete these steps to unlock Auto-driving and be eligible for
         surprises.
       </div>
-      <div className="mx-4 my-4 p-4 rounded-xl bg-[#222] flex">
-        <div className="w-[60px] min-w-[60px] h-[60px] rounded-lg bg-[#333] mr-3"></div>
+      <div className="mx-4 my-4 p-4 rounded-xl bg-custom-0F1F39 flex">
+        <div className="w-[60px] min-w-[60px] h-[60px] rounded-lg bg-custom-1A2B47 mr-3">
+
+        </div>
         <div className="flex flex-col">
           <div>
             <span className="text-white text-lg">Auto-driving</span>
-            <span className="ml-1 px-1 text-xs bg-lime-400 rounded">New</span>
+            <span className="ml-1 px-1 text-xs bg-blue-400 rounded">New</span>
           </div>
           <div className="text-sm text-stone-400">
             Play while you're away, so you're always earning points.
@@ -36,7 +43,7 @@ const Surprise = () => {
           </div>
           <div className="flex flex-col">
             <div className="text-white text-md font-medium flex">
-              <span>Sign up for an OKX account</span>
+              <span className="text-blue-300">Sign up for an OKX account</span>
               <div className="ml-1 flex items-center">
                 <RightIcon height={18} width={18} color={"white"} />
               </div>
@@ -52,7 +59,7 @@ const Surprise = () => {
           </div>
           <div className="flex flex-col">
             <div className="text-white text-md font-medium flex">
-              <span>Install the OKX app</span>
+              <span className="text-blue-300">Install the OKX app</span>
               <div className="ml-1 flex items-center">
                 <RightIcon height={18} width={18} color={"white"} />
               </div>
@@ -61,11 +68,11 @@ const Surprise = () => {
         </div>
         <div className="flex my-2">
           <div className="mr-1 pt-1">
-            <DotIcon width={14} height={16} color={"#a3e635"} />
+            <DotIcon width={14} height={16} color={"#04C3FF"} />
           </div>
           <div className="flex flex-col">
             <div className="text-white text-md font-medium flex">
-              <span>Connect to Telegram</span>
+              <span className="text-blue-300">Connect to Telegram</span>
               <div className="ml-1 flex items-center">
                 <RightIcon height={18} width={18} color={"white"} />
               </div>
@@ -78,11 +85,11 @@ const Surprise = () => {
         </div>
         <div className="flex my-2">
           <div className="mr-1 pt-1">
-            <DotIcon width={14} height={16} color={"#a3e635"} />
+            <DotIcon width={14} height={16} color={"#04C3FF"} />
           </div>
           <div className="flex flex-col">
             <div className="text-white text-md font-medium flex">
-              <span>Verify your identity</span>
+              <span className="text-blue-300">Verify your identity</span>
               <div className="ml-1 flex items-center">
                 <RightIcon height={18} width={18} color={"white"} />
               </div>
@@ -100,9 +107,10 @@ const Surprise = () => {
         <span>Check your eligibility after completing the steps.</span>
       </div>
       <div className="flex justify-center my-4">
-        <button className="mx-4 w-full bg-white text-black text-lg font-medium h-[50px] rounded-[25px]">
+        {/* <button className="mx-4 w-full bg-white text-black text-lg font-medium h-[50px] rounded-[25px]">
           Check eligibility
-        </button>
+        </button> */}
+         <ButtonIcon />
       </div>
       <div className="flex justify-center my-4">
         <span className="text-white text-xs underline">

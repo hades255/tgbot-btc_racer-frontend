@@ -10,6 +10,7 @@ import DownIcon from "../assets/icons/Down";
 import FireIcon from "../assets/icons/Fire";
 import FuelIcon from "../assets/icons/Fuel";
 import RightIcon from "../assets/icons/Right";
+import MyRecordIcon from "../assets/icons/MyRecord";
 
 const Race = () => {
   const dispatch = useDispatch();
@@ -123,13 +124,14 @@ const Race = () => {
   return (
     <div className="relative">
       <div
-        className="fixed top-4 right-0 bg-zinc-700 p-1 px-2 rounded-s-[40px] hover:cursor-pointer"
+        className="fixed top-4 right-0 p-1 px-2 rounded-s-[40px] hover:cursor-pointer"
         onClick={handleShowRaces}
       >
-        <div className="flex items-center">
+        {/* <div className="flex items-center">
           <span className="text-white text-sm mr-1">My records</span>
           <RightIcon width={12} height={12} color={"white"} />
-        </div>
+        </div> */}
+        <MyRecordIcon />
       </div>
       <div className="mt-16 mb-24 w-full flex-col">
         {bet ? (
@@ -266,7 +268,7 @@ const Race = () => {
               </div>
             )}
             <div className="text-white text-8xl font-bold text-shadow-2xl flex justify-center">
-              {betResult ? "WIN" : "MISS"}
+              {betResult ? "MOON" : "REKT"}
             </div>
             <div className="text-white text-lg font-bold text-shadow-xl flex justify-center">
               BTC Price {betCompareAmount - betAmount > 0 && "+"}

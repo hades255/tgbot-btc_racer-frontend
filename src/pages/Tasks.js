@@ -8,6 +8,7 @@ import JoystickIcon from "../assets/icons/Joystick";
 import RightIcon from "../assets/icons/Right";
 import TaskModal from "../components/task/TaskModal";
 import LockIcon from "../assets/icons/Lock";
+import BackgroundIcon from "../assets/icons/Background";
 
 const Tasks = () => {
   const { point } = useAuth();
@@ -23,6 +24,9 @@ const Tasks = () => {
 
   return (
     <div className="w-full flex flex-col mt-8 mb-24">
+      <div className="absolute">
+        <BackgroundIcon />
+      </div>
       <div className="mt-18 flex justify-center">
         <div className="mr-1 pt-1">
           <CupIcon width={14} height={14} color={"yellow"} />
@@ -38,21 +42,21 @@ const Tasks = () => {
           onClick={() => {
             handleClickTaskItem(1);
           }}
-          className="bg-[#333] rounded-xl h-[170px] min-w-[170px] w-[170px] p-4 flex flex-col relative mr-4"
+          className="rounded-xl h-[170px] min-w-[170px] w-[170px] p-4 flex flex-col relative mr-4"
         >
           <div className="bg-[#555] rounded-lg h-[50px] w-[50px] flex justify-center items-center">
             <JoystickIcon width={40} height={40} color={"random"} />
           </div>
-          <div className="my-2">
+          <div className="my-2  blur-sm">
             <span className="text-white">Auto-driving</span>
             <span className="ml-1 px-1 text-xs bg-lime-400 rounded">New</span>
           </div>
-          <div className="text-stone-400 text-xs">
+          <div className=" blur-sm text-stone-400 text-xs">
             Play while you're away, so you're always earning...
           </div>
-          <div className="text-stone-400 absolute bottom-2 text-sm">Locked</div>
+          <div className=" blur-sm text-stone-400 absolute bottom-2 text-sm">Locked</div>
           {true && (
-            <div className="absolute top-0 left-0 bg-[#22212579] rounded-xl h-[170px] w-[170px] flex justify-center items-center">
+            <div className="absolute top-0 left-0 bg-[#0a0a0a79] rounded-xl h-[170px] w-[170px] flex justify-center items-center">
               <div className="flex flex-col">
                 <div className="flex justify-center">
                   <LockIcon width={32} height={32} color={"white"} />
@@ -69,7 +73,7 @@ const Tasks = () => {
           onClick={() => {
             handleClickTaskItem(2);
           }}
-          className="bg-[#333] rounded-xl h-[170px] min-w-[170px] w-[170px] p-4 flex flex-col relative"
+          className="bg-blue-900 bg-opacity-20 rounded-xl h-[170px] min-w-[170px] w-[170px] p-4 flex flex-col relative"
         >
           <div className="bg-[#555] rounded-lg h-[50px] w-[50px] flex justify-center items-center">
             <FuelIcon width={36} height={36} color={"random"} />
