@@ -7,6 +7,10 @@ import { useAuth } from "../contexts/AuthContext";
 import { setScore } from "../redux/authSlice";
 import FuelIcon from "../assets/icons/Fuel";
 import RightIcon from "../assets/icons/Right";
+import MoonBtnIcon from "../assets/icons/MoonBtn";
+import DoomBtnIcon from "../assets/icons/DoomBtn";
+import EthChart from "../components/race/EthChart";
+import FuelSlider from "../components/race/FuelSlider";
 import MusicIcon from "../assets/icons/Music";
 import TrendingUp from "../assets/icons/TrendingUP";
 import TrendingDown from "../assets/icons/TrendingDown";
@@ -19,6 +23,7 @@ const Race = () => {
   const [btc_, setBtc_] = useState(0);
   const [count, setCount] = useState(0);
 
+  const [fuelCount, setFuelCount] = useState(10);
   const [bet, setBet] = useState(null);
   const [betAmount, setBetAmount] = useState(0);
   const [betCompareAmount, setBetCompareAmount] = useState(0);
@@ -107,16 +112,20 @@ const Race = () => {
   }, [betResult]);
 
   const handleClickMoon = useCallback(() => {
+    if (bet) return;
     setBet("moon");
     setBetAmount(btc_);
     setCount(5);
-  }, [btc_]);
+    setFuelCount(fuelCount - 1);
+  }, [bet, btc_, fuelCount]);
 
   const handleClickDoom = useCallback(() => {
+    if (bet) return;
     setBet("doom");
     setBetAmount(btc_);
     setCount(5);
-  }, [btc_]);
+    setFuelCount(fuelCount - 1);
+  }, [bet, btc_, fuelCount]);
 
   const handleShowRaces = useCallback(() => setShowResults(true), []);
   const hideRecordsModal = useCallback((value) => setShowResults(value), []);
@@ -148,9 +157,6 @@ const Race = () => {
           <div className="h-20">
             <div className="flex justify-center">
               <div className="flex">
-                {/* <div className="mr-1 flex items-center">
-                  <CupIcon width={15} height={15} color={"yellow"} />
-                </div> */}
                 <span className="text-sm px-1">🔥</span>
                 <div className="text-slate-400 text-sm">Available points</div>
               </div>
@@ -160,112 +166,95 @@ const Race = () => {
             </div>
           </div>
         )}
-        <div className="my-12">
-          <div className="flex justify-center">
-            <div className="w-[330px] h-[160px] bg-[#030303] rounded-[80px] border-4 border-stone-400 relative z-10 shadow-black shadow-lg">
-              <div className="w-[280px] h-[120px] bg-race-gradient rounded-[80px] absolute top-[16px] left-5"></div>
-              <div className="w-[276px] h-[116px] bg-[#030303] rounded-[80px] absolute top-[18px] left-[22px]"></div>
-              <div className="w-full flex justify-center absolute top-3">
-                <span className="text-slate-400 font-medium text-lg">
-                  BTC Price
-                </span>
-              </div>
-              <div className="absolute w-full h-full flex justify-center items-center">
-                <span className="text-white text-4xl font-bold">${btc}</span>
-              </div>
-              <div className="absolute w-full flex justify-center items-center bottom-3">
-                <FuelIcon width={14} height={14} color={"random"} />
-                <div className="mx-1 w-20 h-1 rounded bg-stone-600 relative">
-                  <div className="w-16 h-1 rounded bg-white absolute top-0 left-0"></div>
+        <div className="w-full flex-col">
+          <div className="h-48 w-full flex justify-center overflow-hidden relative">
+            <div className="absolute -bottom-8">
+              <EthChart />
+            </div>
+          </div>
+          <div className="flex justify-center items-center">
+            <FuelIcon width={14} height={14} color={"random"} />
+            <FuelSlider fuel={`w-${fuelCount * 4}`} />
+            <span className="text-white text-xs">{fuelCount} /</span>
+            <span className="text-slate-400 text-xs">10</span>
+          </div>
+          <div className="flex justify-center my-4">
+            <span className="text-white text-md font-bold">${btc}</span>
+          </div>
+          {fuelCount !== 10 && (
+            <div className="flex justify-center">
+              <div className="bg-fuel-gradient w-[200px] h-[36px] rounded-3xl flex justify-center">
+                <div className="bg-fuel-sub-gradient w-[196px] h-[34px] rounded-3xl flex justify-center items-center">
+                  <span className="text-xs text-slate-400 mr-1">
+                    Next refill in
+                  </span>
+                  <span className="text-xs text-white">00:13</span>
                 </div>
-                <span className="text-white text-sm">8 /</span>
-                <span className="mx-1 text-slate-400 text-sm">10</span>
-                <RightIcon width={14} height={14} color={"#a8a29e"} />
               </div>
-              <div className="z-0 absolute top-[calc(100%+4px)] w-full flex justify-center">
-                <div className="bg-fuel-gradient w-40 h-9 rounded-3xl flex justify-center">
-                  <div className="bg-fuel-sub-gradient w-36 h-8 rounded-3xl flex justify-center items-center">
-                    <span className="text-xs text-slate-400 mr-1">
-                      Next refill in
-                    </span>
-                    <span className="text-xs text-white">00:13</span>
+            </div>
+          )}
+        </div>
+        <div className="my-4">
+          <div className="flex justify-center text-sm text-slate-300">
+            Guess the BTC price in the next 5 secs
+          </div>
+          <div className="mt-4 flex justify-center">
+            <div className="relative">
+              <MoonBtnIcon color={"#094200"} />
+              <div className="absolute bottom-1 right-1 transform transition-transform duration-150 active:translate-y-1 hover:cursor-pointer">
+                <MoonBtnIcon color={"#52C609"} />
+                <div
+                  onClick={handleClickMoon}
+                  className="absolute top-0 flex w-full h-full justify-center items-center"
+                >
+                  <span
+                    className={`${
+                      bet === null ? "text-white" : "text-slate-500"
+                    } font-medium text-lg`}
+                  >
+                    PUMP IT
+                  </span>
+                  <div className="ml-1 mt-2">
+                    <TrendingUp width={20} height={20} color={"white"} />
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="-ml-4 relative">
+              <DoomBtnIcon color={"#870000"} />
+              <div
+                onClick={handleClickDoom}
+                className="absolute bottom-1 right-1 transform transition-transform duration-150 active:translate-y-1 hover:cursor-pointer"
+              >
+                <DoomBtnIcon color={"#FF3F35"} />
+                <div className="absolute top-0 flex w-full h-full justify-center items-center">
+                  <span
+                    className={`${
+                      bet === null ? "text-white" : "text-slate-500"
+                    } font-medium text-lg`}
+                  >
+                    DUMP IT
+                  </span>
+                  <div className="ml-1 mt-2">
+                    <TrendingDown width={20} height={20} color={"white"} />
                   </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
-        <div className="my-4">
-          <div className="flex justify-center text-md text-slate-300">
-            Guess the BTC price in the next 5 secs
-          </div>
-          <div className="my-4 w-full flex justify-center">
-            <div className="w-1/3 mx-2">
-              <div className="w-full relative">
-                <div
-                  className={`w-full h-12 bg-green-800 border-4 border-white absolute rounded-2xl top-3`}
-                ></div>
-                <div className="w-full px-1">
-                  <button
-                    className={`w-full h-12 bg-green-400 rounded-xl hover:bg-green-500 transform active:translate-y-1 active:shadow-none transition-transform duration-150`}
-                    onClick={handleClickMoon}
-                    disabled={bet !== null}
-                  >
-                    <div
-                      className={`flex justify-center text-xl font-bold ${
-                        bet === null ? "text-white" : "text-slate-500"
-                      }`}
-                    >
-                      PUMP IT
-                      <div className="ml-1 mt-2">
-                        <TrendingUp width={20} height={20} color={"white"} />
-                      </div>
-                    </div>
-                  </button>
-                </div>
-              </div>
-            </div>
-            <div className="w-1/3 mx-2">
-              <div className="w-full relative">
-                <div
-                  className={`w-full h-12 bg-red-800 border-4 border-white absolute rounded-2xl top-3`}
-                ></div>
-                <div className="w-full px-1">
-                  <button
-                    className={`w-full h-12 bg-red-400 rounded-xl hover:bg-red-500 transform active:translate-y-1 active:shadow-none transition-transform duration-150`}
-                    onClick={handleClickDoom}
-                    disabled={bet !== null}
-                  >
-                    <div
-                      className={`flex justify-center text-xl font-bold ${
-                        bet === null ? "text-white" : "text-slate-500"
-                      }`}
-                    >
-                      DUMP IT
-                      <div className="ml-1 mt-2">
-                        <TrendingDown width={20} height={20} color={"white"} />
-                      </div>
-                    </div>
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
+        <div className="flex justify-center mt-9">
+          <span className="text-slate-300 text-xs">Terms and conditions</span>
         </div>
-        <div className="flex justify-center my-4 py-4">
-          <span className="text-slate-300 text-xs underline">
-            Terms and conditions
-          </span>
-        </div>
-        <div className="flex justify-center my-4">
+        <div className="flex justify-center mt-3">
           <span className="text-slate-300 text-xs">
-            Complete OKX KYC verification for surprises
+            Complete Tasks for bonuses
           </span>
         </div>
       </div>
       {showResults && <Records show={showResults} onClose={hideRecordsModal} />}
       {betResult !== null && (
-        <div className="z-20 absolute h-full w-full flex justify-center items-center top-0 left-0 bg-[#101010a4]">
+        <div className="z-20 fixed h-full w-full flex justify-center items-center top-0 left-0 bg-[#101010a4]">
           <div className="flex flex-col">
             {betResult && (
               <div className="flex justify-center">

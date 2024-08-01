@@ -1,12 +1,14 @@
 /** @type {import('tailwindcss').Config} */
+const plugin = require("tailwindcss/plugin");
+
 module.exports = {
   content: ["./src/**/*.{js,jsx,ts,tsx}"],
   theme: {
     extend: {
       backgroundImage: () => ({
         "race-gradient": `linear-gradient(to right, #a8a29e, #030303, #030303, #030303, #030303, #a8a29e)`,
-        "fuel-gradient": `linear-gradient(to bottom, #030303, #a8a29e)`,
-        "fuel-sub-gradient": `linear-gradient(to bottom, #030303, #131313)`,
+        "fuel-gradient": `linear-gradient(to bottom, transparent, #79DEFF30)`,
+        "fuel-sub-gradient": `linear-gradient(to bottom, #0B1423, #0B1423)`,
         emphasize:
           "linear-gradient(to top, #04C3FF 0%, #79DEFE 80%, #79DEFF 100%)",
         "emphasize-sm":
@@ -18,6 +20,9 @@ module.exports = {
           "radial-gradient(ellipse at top right, #0047FF 0%, #000000 69%)",
         "button-1-bg": "linear-gradient(to bottom, #1EF7DD, #6553FB)",
       }),
+      boxShadow: {
+        "3d-moon": "4px 8px #094200",
+      },
       textShadow: {
         sm: "0px 1px 2px rgba(255,255,255, 0.25)",
         md: "0px 2px 4px rgba(255,255,255, 0.25)",
@@ -32,6 +37,17 @@ module.exports = {
     },
   },
   plugins: [
+    plugin(function ({ addUtilities }) {
+      const newUtilities = {
+        ".clip-moon": {
+          "clip-path": "polygon(0 0,167px 0,129px 56px,0 56px,0 0)",
+        },
+        ".clip-doom": {
+          "clip-path": "polygon(38px 0,167px 0,167px 56px,0 56px)",
+        },
+      };
+      addUtilities(newUtilities, ["responsive", "hover"]);
+    }),
     function ({ addUtilities }) {
       addUtilities({
         ".text-shadow-sm": {
