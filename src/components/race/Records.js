@@ -28,8 +28,8 @@ const Records = ({ show, onClose }) => {
 
   return (
     <>
-      <Modal show={show} onClose={onClose} title={"Racing records"}>
-        <div className="min-h-[350px] flex flex-col">
+      <Modal show={show} onClose={onClose} title={"Racing records"} className={"items-end"}>
+        <div className="min-h-[450px] flex flex-col pt-4">
           {records?.map(
             (item, index) =>
               index < 5 && (
@@ -56,7 +56,7 @@ const Records = ({ show, onClose }) => {
                     <div className="w-[120px] flex flex-col">
                       <span className="text-xs text-zinc-500">Result</span>
                       <span className="font-bold text-white">
-                        {item.result ? "Win" : "Lose"}
+                        {item.result ? "Win" : "Miss"}
                       </span>
                     </div>
                     <div className="flex flex-col">

@@ -1,6 +1,6 @@
 import React, { useCallback } from "react";
 
-const Modal = ({ show, onClose, title, children }) => {
+const Modal = ({ show, onClose, title, children, className }) => {
   const handleClickClose = useCallback(() => onClose(false), [onClose]);
 
   const handleClickBlur = useCallback(() => onClose(false), [onClose]);
@@ -10,7 +10,7 @@ const Modal = ({ show, onClose, title, children }) => {
   return (
     show && (
       <div
-        className="fixed inset-0 flex items-center justify-center bg-[#040404] bg-opacity-50 z-10"
+        className={`fixed inset-0 flex justify-center bg-[#040404] bg-opacity-50 z-10 ${className}`}
         onClick={handleClickBlur}
       >
         <div
@@ -18,15 +18,15 @@ const Modal = ({ show, onClose, title, children }) => {
           onClick={handleClickBody}
         >
           <div className="flex justify-center items-center bg-[#262626] p-4 rounded-t-lg relative">
-            <h3 className="text-lg font-medium text-white">{title}</h3>
+            <div className="text-lg font-medium text-white text-center">{title}</div>
             <button
               onClick={handleClickClose}
-              className="text-gray-500 hover:text-gray-700 absolute right-4 text-3xl"
+              className="absolute text-gray-500 hover:text-gray-700 right-4 top-2 text-3xl"
             >
               &times;
             </button>
           </div>
-          <div className="p-4">{children}</div>
+          <div className="px-4">{children}</div>
         </div>
       </div>
     )

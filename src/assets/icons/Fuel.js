@@ -9,7 +9,7 @@ const FuelIcon = ({ width, height, color }) => {
       xmlns="http://www.w3.org/2000/svg"
       aria-hidden="true"
       role="img"
-      class="iconify iconify--twemoji"
+      className="iconify iconify--twemoji"
       preserveAspectRatio="xMidYMid meet"
     >
       <path

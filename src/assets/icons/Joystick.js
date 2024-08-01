@@ -9,7 +9,7 @@ const JoystickIcon = ({ width, height, color }) => {
       xmlns="http://www.w3.org/2000/svg"
       aria-hidden="true"
       role="img"
-      class="iconify iconify--noto"
+      className="iconify iconify--noto"
       preserveAspectRatio="xMidYMid meet"
     >
       <path
