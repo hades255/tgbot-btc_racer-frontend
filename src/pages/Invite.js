@@ -26,7 +26,7 @@ const Invite = () => {
           </div>
           <div className="flex flex-col">
             <span className="text-blue-400 font-bold">Refer your friends</span>
-            <span className="text-stone-400">
+            <span className="text-slate-400">
               Earn 5,000 points each for the first 5 friends that start racing.
             </span>
           </div>
@@ -37,14 +37,14 @@ const Invite = () => {
           </div>
           <div className="flex flex-col">
             <span className="text-white font-bold">Bonus poits</span>
-            <span className="text-stone-400">
+            <span className="text-slate-400">
               You'll get 10 % of each friend's total points, up to 10,000 bonus
               points per friend.
             </span>
           </div>
         </div>
       </div>
-      <div className="mx-4 my-2 text-stone-400">
+      <div className="mx-4 my-2 text-slate-400">
         You'll earned <span className="text-white">0 pts</span> from your
         friends.
       </div>
