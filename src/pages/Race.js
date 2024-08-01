@@ -126,7 +126,10 @@ const Race = () => {
         className="fixed top-4 right-0 bg-zinc-700 p-1 px-2 rounded-s-[40px] hover:cursor-pointer"
         onClick={handleShowRaces}
       >
-        <span className="text-white text-sm">My records {">"}</span>
+        <div className="flex items-center">
+          <span className="text-white text-sm mr-1">My records</span>
+          <RightIcon width={12} height={12} color={"white"} />
+        </div>
       </div>
       <div className="mt-16 mb-24 w-full flex-col">
         {bet ? (
@@ -161,7 +164,7 @@ const Race = () => {
                 </span>
               </div>
               <div className="absolute w-full h-full flex justify-center items-center">
-                <span className="text-white text-4xl">${btc}</span>
+                <span className="text-white text-4xl font-bold">${btc}</span>
               </div>
               <div className="absolute w-full flex justify-center items-center bottom-3">
                 <FuelIcon width={14} height={14} color={"random"} />
@@ -175,7 +178,9 @@ const Race = () => {
               <div className="z-0 absolute top-[calc(100%+4px)] w-full flex justify-center">
                 <div className="bg-fuel-gradient w-40 h-9 rounded-3xl flex justify-center">
                   <div className="bg-fuel-sub-gradient w-36 h-8 rounded-3xl flex justify-center items-center">
-                    <span className="text-xs text-stone-400 mr-1">Next refill in</span>
+                    <span className="text-xs text-stone-400 mr-1">
+                      Next refill in
+                    </span>
                     <span className="text-xs text-white">00:13</span>
                   </div>
                 </div>

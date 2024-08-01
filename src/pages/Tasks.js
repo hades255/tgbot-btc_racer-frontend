@@ -7,6 +7,7 @@ import FuelIcon from "../assets/icons/Fuel";
 import JoystickIcon from "../assets/icons/Joystick";
 import RightIcon from "../assets/icons/Right";
 import TaskModal from "../components/task/TaskModal";
+import LockIcon from "../assets/icons/Lock";
 
 const Tasks = () => {
   const { point } = useAuth();
@@ -54,9 +55,12 @@ const Tasks = () => {
             <div className="absolute top-0 left-0 bg-[#22212579] rounded-xl h-[170px] w-[170px] flex justify-center items-center">
               <div className="flex flex-col">
                 <div className="flex justify-center">
-                  <CupIcon width={32} height={32} color={"white"} />
+                  <LockIcon width={32} height={32} color={"white"} />
                 </div>
-                <span className="text-white">Unlock {">"}</span>
+                <div className="flex items-center">
+                  <span className="text-white mr-1">Unlock</span>
+                  <RightIcon width={14} height={14} color={"white"} />
+                </div>
               </div>
             </div>
           )}
