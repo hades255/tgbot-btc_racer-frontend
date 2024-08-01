@@ -18,7 +18,7 @@ const Modal = ({ show, onClose, title, children, className }) => {
           onClick={handleClickBody}
         >
           <div className="flex justify-center items-center bg-[#08101F] p-4 rounded-t-lg relative">
-            <div className="text-lg font-medium text-white text-center">{title}</div>
+            <div className="text-md font-medium text-white text-center">{title}</div>
             <button
               onClick={handleClickClose}
               className="absolute text-gray-500 hover:text-gray-700 right-4 top-2 text-3xl"

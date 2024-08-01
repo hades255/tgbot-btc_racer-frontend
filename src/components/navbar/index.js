@@ -76,7 +76,7 @@ const Navbar = () => {
   return (
     <>
       <div className="w-full flex justify-center align-middle fixed bottom-[0px] mx-auto">
-        <div className="flex justify-center h-[90px] w-full gap-10 bg-custom-000713 bg-opacity-50 px-8">
+        <div className="flex justify-center h-[80px] w-full bg-[#000713] px-3">
           {navbar.map((item, index) => (
             <NavbarItem {...item} key={index} active={active === item.url} />
           ))}

@@ -25,8 +25,8 @@ const Global = () => {
   return (
     <div className="flex flex-col">
       <div className="flex justify-between">
-        <span className="text-stone-500 text-sm">1 racers</span>
-        <span className="text-stone-500 text-sm">Total pts earned</span>
+        <span className="text-slate-500 text-xs">1 racers</span>
+        <span className="text-slate-500 text-xs">Total pts earned</span>
       </div>
       <div className="flex flex-col">
         <div className="my-2 flex justify-between">
@@ -38,7 +38,7 @@ const Global = () => {
             <div className="flex pt-1 mr-2">
               <FlagIcon width={16} height={16} color={"#a8a29e"} />
             </div>
-            <span className="text-sm backdrop-blur-lg text-stone-400">
+            <span className="text-sm backdrop-blur-lg text-slate-400">
               {point} pts
             </span>
           </div>
@@ -57,14 +57,14 @@ const Global = () => {
               <div className="flex pt-1 mr-2">
                 <FlagIcon width={16} height={16} color={"#a8a29e"} />
               </div>
-              <span className="text-sm backdrop-blur-lg text-stone-400">
+              <span className="text-sm backdrop-blur-lg text-slate-400">
                 {item.point} pts
               </span>
             </div>
           </div>
         ))}
       </div>
-      <div className="text-stone-500 text-sm my-4">1-100 players</div>
+      <div className="text-slate-500 text-sm my-4">1-100 players</div>
     </div>
   );
 };

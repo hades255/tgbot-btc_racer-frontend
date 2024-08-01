@@ -147,7 +147,7 @@ const Race = () => {
                 <div className="mr-1 flex items-center">
                   <CupIcon width={15} height={15} color={"yellow"} />
                 </div>
-                <div className="text-stone-400 text-lg">Available points</div>
+                <div className="text-slate-400 text-lg">Available points</div>
               </div>
             </div>
             <div className="flex justify-center text-4xl text-white font-bold">
@@ -161,7 +161,7 @@ const Race = () => {
               <div className="w-[280px] h-[120px] bg-race-gradient rounded-[80px] absolute top-[16px] left-5"></div>
               <div className="w-[276px] h-[116px] bg-[#030303] rounded-[80px] absolute top-[18px] left-[22px]"></div>
               <div className="w-full flex justify-center absolute top-3">
-                <span className="text-stone-400 font-medium text-lg">
+                <span className="text-slate-400 font-medium text-lg">
                   BTC Price
                 </span>
               </div>
@@ -174,13 +174,13 @@ const Race = () => {
                   <div className="w-16 h-1 rounded bg-white absolute top-0 left-0"></div>
                 </div>
                 <span className="text-white text-sm">8 /</span>
-                <span className="mx-1 text-stone-400 text-sm">10</span>
+                <span className="mx-1 text-slate-400 text-sm">10</span>
                 <RightIcon width={14} height={14} color={"#a8a29e"} />
               </div>
               <div className="z-0 absolute top-[calc(100%+4px)] w-full flex justify-center">
                 <div className="bg-fuel-gradient w-40 h-9 rounded-3xl flex justify-center">
                   <div className="bg-fuel-sub-gradient w-36 h-8 rounded-3xl flex justify-center items-center">
-                    <span className="text-xs text-stone-400 mr-1">
+                    <span className="text-xs text-slate-400 mr-1">
                       Next refill in
                     </span>
                     <span className="text-xs text-white">00:13</span>
@@ -191,7 +191,7 @@ const Race = () => {
           </div>
         </div>
         <div className="my-4">
-          <div className="flex justify-center text-md text-stone-300">
+          <div className="flex justify-center text-md text-slate-300">
             Guess the BTC price in the next 5 secs
           </div>
           <div className="my-4 w-full flex justify-center">
@@ -208,7 +208,7 @@ const Race = () => {
                   >
                     <div
                       className={`flex justify-center text-xl font-bold ${
-                        bet === null ? "text-white" : "text-stone-500"
+                        bet === null ? "text-white" : "text-slate-500"
                       }`}
                     >
                       MOON
@@ -233,7 +233,7 @@ const Race = () => {
                   >
                     <div
                       className={`flex justify-center text-xl font-bold ${
-                        bet === null ? "text-white" : "text-stone-500"
+                        bet === null ? "text-white" : "text-slate-500"
                       }`}
                     >
                       DOOM
@@ -248,12 +248,12 @@ const Race = () => {
           </div>
         </div>
         <div className="flex justify-center my-4 py-4">
-          <span className="text-stone-300 text-xs underline">
+          <span className="text-slate-300 text-xs underline">
             Terms and conditions
           </span>
         </div>
         <div className="flex justify-center my-4">
-          <span className="text-stone-300 text-xs">
+          <span className="text-slate-300 text-xs">
             Complete OKX KYC verification for surprises
           </span>
         </div>
@@ -278,9 +278,9 @@ const Race = () => {
               %
             </div>
             <div className="text-md font-bold text-shadow-xl flex justify-center">
-              <span className="text-stone-400 mr-1">From</span>
+              <span className="text-slate-400 mr-1">From</span>
               <span className="text-white">${betAmount}</span>
-              <span className="text-stone-400 mx-1">to</span>
+              <span className="text-slate-400 mx-1">to</span>
               <span className="text-white">${betCompareAmount}</span>
             </div>
           </div>
