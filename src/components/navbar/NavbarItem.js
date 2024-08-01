@@ -1,7 +1,7 @@
 import React, { useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 
-const NavbarItem = ({ title, icon, url }) => {
+const NavbarItem = ({ title, icon, url, active }) => {
   const navigate = useNavigate();
 
   const handleClick = useCallback(() => navigate(url), [navigate, url]);
@@ -13,7 +13,13 @@ const NavbarItem = ({ title, icon, url }) => {
     >
       <div className="flex justify-center">{icon}</div>
       <div className="flex justify-center">
-        <span className="text-zinc-400 text-[11px]">{title}</span>
+        <span
+          className={`text-[11px] ${
+            active ? "text-white font-bold" : "text-zinc-400"
+          }`}
+        >
+          {title}
+        </span>
       </div>
     </div>
   );

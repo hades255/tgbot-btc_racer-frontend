@@ -4,10 +4,10 @@ import { useSelector } from "react-redux";
 const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
-  const { isAuthenticated, userId } = useSelector((state) => state.auth);
+  const auth = useSelector((state) => state.auth);
 
   return (
-    <AuthContext.Provider value={{ isAuthenticated, userId }}>
+    <AuthContext.Provider value={auth}>
       {children}
     </AuthContext.Provider>
   );

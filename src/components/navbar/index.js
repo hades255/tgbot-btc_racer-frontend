@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { useLocation } from "react-router-dom";
 import { useDispatch } from "react-redux";
 
@@ -9,9 +9,11 @@ import SurpriseIcon from "../../assets/icons/Surprise";
 import LeaderboardIcon from "../../assets/icons/Leaderboard";
 import { login } from "../../redux/authSlice";
 import NavbarItem from "./NavbarItem";
+import axios from "axios";
 
 const Navbar = () => {
   const location = useLocation();
+  const [active, setActive] = useState("/");
   const dispatch = useDispatch();
 
   const navbar = useMemo(() => {
@@ -45,10 +47,25 @@ const Navbar = () => {
   }, []);
 
   useEffect(() => {
+    setActive(location.pathname);
     const queryParams = new URLSearchParams(location.search);
-    const userId = queryParams.get("userId");
+    //  todo
+    const userId = "user one"; //queryParams.get("userId");
+    const name = "smart guy"; //queryParams.get("userId");
     if (userId) {
-      dispatch(login(userId));
+      (async () => {
+        try {
+          //  todo
+          //  https://d6bf-172-86-113-74.ngrok-free.app
+          const response = await axios.get(
+            `http://127.0.0.1:5000/user?userId=${userId}&name=${name}`
+          );
+          const point = response.data.data;
+          dispatch(login({ userId, point, name }));
+        } catch (error) {
+          console.log(error);
+        }
+      })();
     }
   }, [location, dispatch]);
 
@@ -57,7 +74,7 @@ const Navbar = () => {
       <div className="w-full flex justify-center align-middle fixed bottom-[20px] mx-auto">
         <div className="flex justify-center align-middle h-[70px] rounded-[50px] bg-zinc-700 px-8">
           {navbar.map((item, index) => (
-            <NavbarItem {...item} key={index} />
+            <NavbarItem {...item} key={index} active={active === item.url} />
           ))}
         </div>
       </div>

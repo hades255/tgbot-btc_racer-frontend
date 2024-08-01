@@ -92,7 +92,7 @@ const Surprise = () => {
         </button>
       </div>
       <div className="flex justify-center my-4">
-        <span className="text-white text-mx underline">
+        <span className="text-white text-xs underline">
           Terms and conditions
         </span>
       </div>
