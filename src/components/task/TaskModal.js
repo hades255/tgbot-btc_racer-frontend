@@ -3,7 +3,7 @@ import Modal from "../common/Modal";
 import JoystickIcon from "../../assets/icons/Joystick";
 import FlagIcon from "../../assets/icons/Flag";
 import DotIcon from "../../assets/icons/Dot";
-import FuelIcon from "../../assets/icons/Fuel";
+import RocketIcon from "../../assets/icons/Rocket";
 
 const TaskModal = ({ selected, onClose, show }) => {
   const tasks = useMemo(() => {
@@ -42,7 +42,7 @@ const TaskModal = ({ selected, onClose, show }) => {
           <div className="flex flex-col">
             <div className="my-2 flex justify-center">
               <div className="w-[70px] h-[70px] flex justify-center items-center bg-[#1A2B47] rounded-xl">
-                <FuelIcon width={60} height={60} color={"random"} />
+                <RocketIcon width={60} height={60} color={"random"} />
               </div>
             </div>
           </div>

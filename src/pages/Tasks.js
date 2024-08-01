@@ -1,13 +1,12 @@
 import React, { useCallback, useState } from "react";
-import CupIcon from "../assets/icons/Cup";
 import DotIcon from "../assets/icons/Dot";
 import FlagIcon from "../assets/icons/Flag";
 import { useAuth } from "../contexts/AuthContext";
-import FuelIcon from "../assets/icons/Fuel";
 import JoystickIcon from "../assets/icons/Joystick";
 import RightIcon from "../assets/icons/Right";
 import TaskModal from "../components/task/TaskModal";
 import LockIcon from "../assets/icons/Lock";
+import SaturnIcon from "../assets/icons/Saturn";
 
 const Tasks = () => {
   const { point } = useAuth();
@@ -25,8 +24,8 @@ const Tasks = () => {
     <div className="w-full flex flex-col mt-4 mb-24">
       <div className="mt-18 flex justify-center">
         <div className="mr-1 pt-1">
-          <CupIcon width={14} height={14} color={"yellow"} />
         </div>
+        <span className="text-sm">🔥</span>
         <span className="text-slate-400 text-sm">Available points</span>
       </div>
       <div className="flex justify-center">
@@ -78,7 +77,7 @@ const Tasks = () => {
           className="bg-blue-900 bg-opacity-10 rounded-lg h-[150px] min-w-[170px] w-[170px] px-4 py-2 flex flex-col relative"
         >
           <div className="bg-[#1A2B47] rounded-md h-[50px] w-[50px] flex justify-center items-center">
-            <FuelIcon width={36} height={36} color={"random"} />
+            <SaturnIcon width={36} height={36} color={"random"} />
           </div>
           <div className="mt-2">
             <span className="text-white text-sm">Reload Fuel Tank</span>
