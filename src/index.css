@@ -10,6 +10,10 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background-color: #131313;
+  width: 386px;
+  height: 591px;
+  border-right: solid white 1px;
+  border-bottom: solid white 1px;
 }
 
 code {

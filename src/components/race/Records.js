@@ -29,7 +29,7 @@ const Records = ({ show, onClose }) => {
   return (
     <>
       <Modal show={show} onClose={onClose} title={"Racing records"}>
-        <div className="flex flex-col">
+        <div className="min-h-[350px] flex flex-col">
           {records?.map(
             (item, index) =>
               index < 5 && (

@@ -2,6 +2,7 @@ import React from "react";
 import CheckIcon from "../assets/icons/Check";
 import DotIcon from "../assets/icons/Dot";
 import InfoIcon from "../assets/icons/Info";
+import RightIcon from "../assets/icons/Right";
 
 const Surprise = () => {
   return (
@@ -17,7 +18,7 @@ const Surprise = () => {
         surprises.
       </div>
       <div className="mx-4 my-4 p-4 rounded-xl bg-[#222] flex">
-        <div className="w-[60px] h-[60px] rounded-lg bg-[#333] mr-3"></div>
+        <div className="w-[60px] min-w-[60px] h-[60px] rounded-lg bg-[#333] mr-3"></div>
         <div className="flex flex-col">
           <div>
             <span className="text-white text-lg">Auto-driving</span>
@@ -34,9 +35,12 @@ const Surprise = () => {
             <CheckIcon width={14} height={16} color={"white"} />
           </div>
           <div className="flex flex-col">
-            <span className="text-white text-md font-medium">
-              Sign up for an OKX account {">"}
-            </span>
+            <div className="text-white text-md font-medium flex">
+              <span>Sign up for an OKX account</span>
+              <div className="ml-1 flex items-center">
+                <RightIcon height={18} width={18} color={"white"} />
+              </div>
+            </div>
             <span className="text-stone-400 text-sm">
               Skip this step if you already have an account.
             </span>
@@ -47,9 +51,12 @@ const Surprise = () => {
             <CheckIcon width={14} height={16} color={"white"} />
           </div>
           <div className="flex flex-col">
-            <span className="text-white text-md font-medium">
-              Install the OKX app {">"}
-            </span>
+            <div className="text-white text-md font-medium flex">
+              <span>Install the OKX app</span>
+              <div className="ml-1 flex items-center">
+                <RightIcon height={18} width={18} color={"white"} />
+              </div>
+            </div>
           </div>
         </div>
         <div className="flex my-2">
@@ -57,9 +64,12 @@ const Surprise = () => {
             <DotIcon width={14} height={16} color={"#a3e635"} />
           </div>
           <div className="flex flex-col">
-            <span className="text-white text-md font-medium">
-              Connect to Telegram {">"}
-            </span>
+            <div className="text-white text-md font-medium flex">
+              <span>Connect to Telegram</span>
+              <div className="ml-1 flex items-center">
+                <RightIcon height={18} width={18} color={"white"} />
+              </div>
+            </div>
             <span className="text-stone-400 text-sm">
               Go to your Profile on the OKX app, select Connected accounts, and
               link your Telegram account.
@@ -71,9 +81,12 @@ const Surprise = () => {
             <DotIcon width={14} height={16} color={"#a3e635"} />
           </div>
           <div className="flex flex-col">
-            <span className="text-white text-md font-medium">
-              Verify your identity {">"}
-            </span>
+            <div className="text-white text-md font-medium flex">
+              <span>Verify your identity</span>
+              <div className="ml-1 flex items-center">
+                <RightIcon height={18} width={18} color={"white"} />
+              </div>
+            </div>
             <span className="text-stone-400 text-sm">
               Pass identity verification on OKX.
             </span>

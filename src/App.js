@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { Provider } from "react-redux";
 import store from "./redux/store";
@@ -11,6 +11,21 @@ import Surprise from "./pages/Surprise";
 import Navbar from "./components/navbar";
 
 const App = () => {
+  useEffect(() => {
+    const setTitle = () => {
+      const title = "OKX Racer";
+
+      if (window.Telegram && window.Telegram.WebApp) {
+        window.Telegram.WebApp.setHeaderColor("#131313");
+        window.Telegram.WebApp.MainButton.setText(title);
+        window.Telegram.WebApp.MainButton.show();
+      }
+    };
+
+    // Call the setTitle function when the component mounts
+    setTitle();
+  }, []);
+
   return (
     <Provider store={store}>
       <AuthProvider>

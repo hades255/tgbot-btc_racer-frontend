@@ -14,7 +14,7 @@ module.exports = {
         "2xl": "0px 4px 32px rgba(255,255,255, 1)",
       },
       fontFamily: {
-        digital: ["Digital7", "sans-serif"],
+        digital: ["Digital7"],
       },
     },
   },
