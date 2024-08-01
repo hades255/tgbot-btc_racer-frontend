@@ -1,15 +1,21 @@
 import React from "react";
 import DotIcon from "../assets/icons/Dot";
 import CopyIcon from "../assets/icons/Copy";
+import BackgroundIcon from "../assets/icons/Background";
+// import ButtonIcon from "../assets/icons/InviteButton";
+import ArrowIcon from "../assets/icons/Arrow";
 
 const Invite = () => {
   return (
     <div className="w-full flex flex-col mb-24">
       <div className="mx-4 my-8">
+        <div className="absolute">
+          <BackgroundIcon />
+        </div>
         <span className="text-4xl font-bold text-white">
           Invite friends and get
         </span>
-        <span className="text-4xl font-bold text-lime-400 ml-2">
+        <span className="text-4xl font-bold text-blue-400 ml-2">
           earn points
         </span>
       </div>
@@ -19,7 +25,7 @@ const Invite = () => {
             <DotIcon width={12} height={12} color={"#a3e635"} />
           </div>
           <div className="flex flex-col">
-            <span className="text-white font-bold">Refer your friends</span>
+            <span className="text-blue-400 font-bold">Refer your friends</span>
             <span className="text-stone-400">
               Earn 5,000 points each for the first 5 friends that start racing.
             </span>
@@ -43,9 +49,10 @@ const Invite = () => {
         friends.
       </div>
       <div className="flex justify-center">
-        <button className="bg-white text-black text-lg font-medium w-2/3 h-[50px] rounded-[25px]">
+        <button className="bg-gradient-to-b from-blue-700 via-#04C1FF to-#0062FF text-black text-lg font-medium w-2/3 h-[50px] rounded-[25px]">
           Invite friends
         </button>
+        <ArrowIcon />
         <button className="bg-white text-black text-lg font-medium h-[50px] w-[50px] rounded-[25px] ml-4 flex justify-center items-center">
           <CopyIcon width={18} height={18} color={"#000"} />
         </button>

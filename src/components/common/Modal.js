@@ -10,14 +10,14 @@ const Modal = ({ show, onClose, title, children, className }) => {
   return (
     show && (
       <div
-        className={`fixed inset-0 flex justify-center bg-[#040404] bg-opacity-50 z-10 ${className}`}
+        className={`fixed inset-0 flex justify-center bg-[#000000] bg-opacity-80 z-10 ${className}`}
         onClick={handleClickBlur}
       >
         <div
-          className="bg-[#262626] rounded-lg shadow-xl w-full"
+          className="bg-[#08101F] rounded-lg shadow-xl w-full"
           onClick={handleClickBody}
         >
-          <div className="flex justify-center items-center bg-[#262626] p-4 rounded-t-lg relative">
+          <div className="flex justify-center items-center bg-[#08101F] p-4 rounded-t-lg relative">
             <div className="text-lg font-medium text-white text-center">{title}</div>
             <button
               onClick={handleClickClose}

@@ -8,7 +8,7 @@ const NavbarItem = ({ title, icon, url, active }) => {
 
   return (
     <div
-      className="flex flex-col w-[60px] h-full justify-center align-middle hover:cursor-pointer"
+      className="flex flex-col w-[60px] h-full justify-start pt-3 align-middle hover:cursor-pointer"
       onClick={handleClick}
     >
       <div className="flex justify-center">{icon}</div>
