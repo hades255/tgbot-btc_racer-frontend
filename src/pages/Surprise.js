@@ -3,8 +3,7 @@ import CheckIcon from "../assets/icons/Check";
 import DotIcon from "../assets/icons/Dot";
 import InfoIcon from "../assets/icons/Info";
 import RightIcon from "../assets/icons/Right";
-import BackgroundIcon from "../assets/icons/Background";
-import ButtonIcon from "../assets/icons/CreateButton";
+import ArrowIcon from "../assets/icons/Arrow";
 
 const Surprise = () => {
   return (
@@ -40,7 +39,7 @@ const Surprise = () => {
           </div>
           <div className="flex flex-col">
             <div className="text-white text-md font-medium flex">
-              <span className="bg-clip-text text-transparent bg-emphasize-sm text-sm">
+              <span className="text-[#69d3fd] text-sm">
                 Sign up for an Alphanomics account
               </span>
               <div className="ml-1 flex items-center">
@@ -58,7 +57,7 @@ const Surprise = () => {
           </div>
           <div className="flex flex-col">
             <div className="text-white text-md font-medium flex">
-              <span className="bg-clip-text text-transparent bg-emphasize-sm text-sm">
+              <span className="text-[#69d3fd] text-sm">
                 Install the OKX app
               </span>
               <div className="ml-1 flex items-center">
@@ -73,7 +72,7 @@ const Surprise = () => {
           </div>
           <div className="flex flex-col">
             <div className="text-white text-md font-medium flex">
-              <span className="bg-clip-text text-transparent bg-emphasize-sm text-sm">
+              <span className="text-[#69d3fd] text-sm">
                 Connect to Telegram
               </span>
               <div className="ml-1 flex items-center">
@@ -92,7 +91,7 @@ const Surprise = () => {
           </div>
           <div className="flex flex-col">
             <div className="text-white text-md font-medium flex">
-              <span className="bg-clip-text text-transparent bg-emphasize-sm text-sm">
+              <span className="text-[#69d3fd] text-sm">
                 Verify your identity
               </span>
               <div className="ml-1 flex items-center">
@@ -117,7 +116,7 @@ const Surprise = () => {
             <span className="ml-2 text-white text-md font-medium">
               Check eligibility
             </span>
-            <RightIcon width={16} height={16} color={"white"} />
+            <ArrowIcon />
           </button>
         </div>
       </div>

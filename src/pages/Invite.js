@@ -1,7 +1,6 @@
 import React from "react";
 import DotIcon from "../assets/icons/Dot";
 import CopyIcon from "../assets/icons/Copy";
-// import ButtonIcon from "../assets/icons/InviteButton";
 import ArrowIcon from "../assets/icons/Arrow";
 
 const Invite = () => {
@@ -12,7 +11,7 @@ const Invite = () => {
           <span className="text-3xl font-bold text-white">
             Invite friends and
           </span>
-          <span className="text-3xl font-bold justify-start  text-[#69d3fd] ">
+          <span className="text-3xl font-bold justify-start bg-clip-text text-transparent bg-emphasize">
             earn points
           </span>
         </div>
@@ -36,7 +35,9 @@ const Invite = () => {
             <DotIcon width={12} height={12} color={"#69d3fd"} />
           </div>
           <div className="flex flex-col">
-            <span className="text-[#69d3fd] text-sm font-semibold">Bonus points</span>
+            <span className="text-[#69d3fd] text-sm font-semibold">
+              Bonus points
+            </span>
             <span className="text-[#9E9E9E] text-xs">
               You'll get 10 % of each friend's total points, up to 10,000 bonus
               points per friend.
@@ -48,14 +49,16 @@ const Invite = () => {
         You've earned <span className="text-white">0 pts</span> from your
         friends.
       </div>
-      <div className="flex justify-start ml-4">
-        <div className="flex flex-row justify-between p-2 bg-gradient-to-r from-[#15b0ee] to-[#4a5bee] text-white text-lg font-medium h-[50px] w-[284px] rounded-[25px]">
-          <span className="ml-4">Invite friends</span>
-          <div className="mt-1 mr-2">
+      <div className="mt-28 flex justify-start px-4">
+        <div className="w-full bg-button-1-bg h-[50px] rounded-[25px] flex justify-between items-center relative">
+          <button className="w-[calc(100%-2px)] p-4 bg-button-1 h-[48px] rounded-[25px] flex justify-between items-center">
+            <span className="ml-2 text-white text-md font-medium">
+              Invite friends
+            </span>
             <ArrowIcon />
-          </div>
+          </button>
         </div>
-        <button className="bg-white text-black text-lg font-medium h-[50px] w-[50px] rounded-[25px] ml-4 flex justify-center items-center">
+        <button className="bg-white text-black text-lg font-medium h-[50px] min-w-[50px] w-[50px] rounded-[25px] ml-4 flex justify-center items-center">
           <CopyIcon width={18} height={18} color={"#000"} />
         </button>
       </div>

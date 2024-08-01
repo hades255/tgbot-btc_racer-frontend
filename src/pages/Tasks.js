@@ -8,7 +8,6 @@ import JoystickIcon from "../assets/icons/Joystick";
 import RightIcon from "../assets/icons/Right";
 import TaskModal from "../components/task/TaskModal";
 import LockIcon from "../assets/icons/Lock";
-import BackgroundIcon from "../assets/icons/Background";
 
 const Tasks = () => {
   const { point } = useAuth();

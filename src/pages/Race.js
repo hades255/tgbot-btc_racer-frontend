@@ -10,7 +10,6 @@ import DownIcon from "../assets/icons/Down";
 import FireIcon from "../assets/icons/Fire";
 import FuelIcon from "../assets/icons/Fuel";
 import RightIcon from "../assets/icons/Right";
-import MyRecordIcon from "../assets/icons/MyRecord";
 
 const Race = () => {
   const dispatch = useDispatch();
@@ -127,11 +126,10 @@ const Race = () => {
         className="fixed top-4 right-0 p-1 px-2 rounded-s-[40px] hover:cursor-pointer"
         onClick={handleShowRaces}
       >
-        {/* <div className="flex items-center">
-          <span className="text-white text-sm mr-1">My records</span>
+        <div className="flex items-center rounded-s-2xl bg-button-1 pl-4 pr-6 py-1">
+          <span className="text-white text-xs mr-1">My records</span>
           <RightIcon width={12} height={12} color={"white"} />
-        </div> */}
-        <MyRecordIcon />
+        </div>
       </div>
       <div className="mt-16 mb-24 w-full flex-col">
         {bet ? (
