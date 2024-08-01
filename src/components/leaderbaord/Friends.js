@@ -2,7 +2,6 @@ import React from "react";
 import { useAuth } from "../../contexts/AuthContext";
 import CopyIcon from "../../assets/icons/Copy";
 import FlagIcon from "../../assets/icons/Flag";
-import MedalIcon from "../../assets/icons/Medal";
 import ArrowIcon from "../../assets/icons/Arrow";
 
 const Friends = () => {
@@ -18,7 +17,7 @@ const Friends = () => {
         <div className="my-2 flex justify-between">
           <div className="flex">
             <div className="w-14">
-              <MedalIcon width={16} height={16} />
+            🥇
             </div>
             <div className="text-sm backdrop-blur-lg text-white">{name}</div>
           </div>

@@ -3,13 +3,14 @@ import { useDispatch } from "react-redux";
 import axios from "axios";
 import Records from "../components/race/Records";
 import { useAuth } from "../contexts/AuthContext";
-import CupIcon from "../assets/icons/Cup";
+// import CupIcon from "../assets/icons/Cup";
 import { setScore } from "../redux/authSlice";
-import UpIcon from "../assets/icons/Up";
-import DownIcon from "../assets/icons/Down";
-import FireIcon from "../assets/icons/Fire";
 import FuelIcon from "../assets/icons/Fuel";
 import RightIcon from "../assets/icons/Right";
+import MusicIcon from "../assets/icons/Music";
+import TrendingUp from "../assets/icons/TrendingUP";
+import TrendingDown from "../assets/icons/TrendingDown";
+import EmojiIcon from "../assets/icons/Emoji";
 
 const Race = () => {
   const dispatch = useDispatch();
@@ -122,13 +123,18 @@ const Race = () => {
 
   return (
     <div className="relative">
-      <div
-        className="fixed top-4 right-0 p-1 px-2 rounded-s-[40px] hover:cursor-pointer"
-        onClick={handleShowRaces}
-      >
-        <div className="flex items-center rounded-s-2xl bg-button-1 pl-4 pr-6 py-1">
-          <span className="text-white text-xs mr-1">My records</span>
-          <RightIcon width={12} height={12} color={"white"} />
+      <div className="flex flex-row justify-between">
+        <div className="fixed p-6">
+          <MusicIcon width={16} height={16} color={"white"} />
+        </div>
+        <div
+          className="fixed top-4 right-0 p-1 px-2 rounded-s-[40px] hover:cursor-pointer"
+          onClick={handleShowRaces}
+        >
+          <div className="flex items-center rounded-s-2xl bg-button-1 pl-4 pr-6 py-1">
+            <span className="text-white text-xs mr-1">My records</span>
+            <RightIcon width={12} height={12} color={"white"} />
+          </div>
         </div>
       </div>
       <div className="mt-16 mb-24 w-full flex-col">
@@ -142,10 +148,11 @@ const Race = () => {
           <div className="h-20">
             <div className="flex justify-center">
               <div className="flex">
-                <div className="mr-1 flex items-center">
+                {/* <div className="mr-1 flex items-center">
                   <CupIcon width={15} height={15} color={"yellow"} />
-                </div>
-                <div className="text-slate-400 text-lg">Available points</div>
+                </div> */}
+                <span className="text-sm px-1">🔥</span>
+                <div className="text-slate-400 text-sm">Available points</div>
               </div>
             </div>
             <div className="flex justify-center text-4xl text-white font-bold">
@@ -209,9 +216,9 @@ const Race = () => {
                         bet === null ? "text-white" : "text-slate-500"
                       }`}
                     >
-                      MOON
+                      PUMP IT
                       <div className="ml-1 mt-2">
-                        <UpIcon width={16} height={16} color={"white"} />
+                        <TrendingUp width={20} height={20} color={"white"} />
                       </div>
                     </div>
                   </button>
@@ -234,9 +241,9 @@ const Race = () => {
                         bet === null ? "text-white" : "text-slate-500"
                       }`}
                     >
-                      DOOM
+                      DUMP IT
                       <div className="ml-1 mt-2">
-                        <DownIcon width={16} height={16} color={"white"} />
+                        <TrendingDown width={20} height={20} color={"white"} />
                       </div>
                     </div>
                   </button>
@@ -262,14 +269,20 @@ const Race = () => {
           <div className="flex flex-col">
             {betResult && (
               <div className="flex justify-center">
-                <FireIcon width={48} height={48} color={"yellow"} />
+                <span className="text-4xl text-center">
+                  {bet === "moon" ? (
+                    <EmojiIcon width={37} height={37} color={"random"} />
+                  ) : (
+                    <span>🔥</span>
+                  )}
+                </span>
               </div>
             )}
-            <div className="text-white text-8xl font-bold text-shadow-2xl flex justify-center">
-              {betResult ? "MOON" : "REKT"}
+            <div className="flex flex-col text-white text-8xl font-bold text-shadow-2xl justify-center">
+              <span>{betResult ? "REKT" : "MOON"}</span>
             </div>
             <div className="text-white text-lg font-bold text-shadow-xl flex justify-center">
-              BTC Price {betCompareAmount - betAmount > 0 && "+"}
+              ETH Price {betCompareAmount - betAmount > 0 && "+"}
               {betAmount
                 ? ((betCompareAmount - betAmount) / betAmount) * 100
                 : 0}
