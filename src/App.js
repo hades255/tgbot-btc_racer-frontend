@@ -14,7 +14,7 @@ import BackgroundIcon from "./assets/icons/Background";
 const App = () => {
   useEffect(() => {
     const setTitle = () => {
-      const title = "OKX Racer";
+      const title = "Alphanomics";
 
       if (window.Telegram && window.Telegram.WebApp) {
         window.Telegram.WebApp.setHeaderColor("#0B1423");
