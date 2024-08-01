@@ -1,7 +1,6 @@
 import React, { useCallback, useState } from "react";
 import Friends from "../components/leaderbaord/Friends";
 import Global from "../components/leaderbaord/Global";
-import BackgroundIcon from "../assets/icons/Background";
 
 const Leaderboard = () => {
   const [activeTab, setActiveTab] = useState(0);
