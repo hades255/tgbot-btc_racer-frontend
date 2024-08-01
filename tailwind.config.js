@@ -5,6 +5,8 @@ module.exports = {
     extend: {
       backgroundImage: () => ({
         "race-gradient": `linear-gradient(to right, #a8a29e, #030303, #030303, #030303, #030303, #a8a29e)`,
+        "fuel-gradient": `linear-gradient(to bottom, #030303, #a8a29e)`,
+        "fuel-sub-gradient": `linear-gradient(to bottom, #030303, #131313)`,
       }),
       textShadow: {
         sm: "0px 1px 2px rgba(255,255,255, 0.25)",

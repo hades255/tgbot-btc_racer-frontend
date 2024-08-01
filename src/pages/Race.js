@@ -8,6 +8,8 @@ import { setScore } from "../redux/authSlice";
 import UpIcon from "../assets/icons/Up";
 import DownIcon from "../assets/icons/Down";
 import FireIcon from "../assets/icons/Fire";
+import FuelIcon from "../assets/icons/Fuel";
+import RightIcon from "../assets/icons/Right";
 
 const Race = () => {
   const dispatch = useDispatch();
@@ -148,10 +150,9 @@ const Race = () => {
             </div>
           </div>
         )}
-
         <div className="my-12">
           <div className="flex justify-center">
-            <div className="w-[330px] h-[160px] bg-[#030303] rounded-[80px] border-4 border-stone-400 relative">
+            <div className="w-[330px] h-[160px] bg-[#030303] rounded-[80px] border-4 border-stone-400 relative z-10 shadow-black shadow-lg">
               <div className="w-[280px] h-[120px] bg-race-gradient rounded-[80px] absolute top-[16px] left-5"></div>
               <div className="w-[276px] h-[116px] bg-[#030303] rounded-[80px] absolute top-[18px] left-[22px]"></div>
               <div className="w-full flex justify-center absolute top-3">
@@ -161,6 +162,23 @@ const Race = () => {
               </div>
               <div className="absolute w-full h-full flex justify-center items-center">
                 <span className="text-white text-4xl">${btc}</span>
+              </div>
+              <div className="absolute w-full flex justify-center items-center bottom-3">
+                <FuelIcon width={14} height={14} color={"random"} />
+                <div className="mx-1 w-20 h-1 rounded bg-stone-600 relative">
+                  <div className="w-16 h-1 rounded bg-white absolute top-0 left-0"></div>
+                </div>
+                <span className="text-white text-sm">8 /</span>
+                <span className="mx-1 text-stone-400 text-sm">10</span>
+                <RightIcon width={14} height={14} color={"#a8a29e"} />
+              </div>
+              <div className="z-0 absolute top-[calc(100%+4px)] w-full flex justify-center">
+                <div className="bg-fuel-gradient w-40 h-9 rounded-3xl flex justify-center">
+                  <div className="bg-fuel-sub-gradient w-36 h-8 rounded-3xl flex justify-center items-center">
+                    <span className="text-xs text-stone-400 mr-1">Next refill in</span>
+                    <span className="text-xs text-white">00:13</span>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
