@@ -9,6 +9,7 @@ import Tasks from "./pages/Tasks";
 import Invite from "./pages/Invite";
 import Surprise from "./pages/Surprise";
 import Navbar from "./components/navbar";
+import BackgroundIcon from "./assets/icons/Background";
 
 const App = () => {
   useEffect(() => {
@@ -32,6 +33,9 @@ const App = () => {
 
   return (
     <Provider store={store}>
+      <div className="absolute top-1 -z-10">
+        <BackgroundIcon />
+      </div>
       <AuthProvider>
         <Router>
           <Routes>
