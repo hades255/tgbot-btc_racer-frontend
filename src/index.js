@@ -13,10 +13,10 @@ root.render(
       <BackgroundIcon />
     </div>
     <div className="absolute top-0 -z-10">
-      <StarsIcon width={384} height={400} color={"white"} />
+      <StarsIcon width={380} height={400} color={"white"} />
     </div>
     <div className="absolute top-60 -z-10">
-      <StarsIcon width={384} height={400} color={"white"} />
+      <StarsIcon width={380} height={400} color={"white"} />
     </div>
     <App />
   </React.StrictMode>
