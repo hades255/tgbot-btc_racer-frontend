@@ -2,11 +2,11 @@ import React, { useMemo } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Modal from "../common/Modal";
 import { boost } from "../../redux/fuelSlice";
-import JoystickIcon from "../../assets/icons/Joystick";
 import DotIcon from "../../assets/icons/Dot";
 import RocketIcon from "../../assets/icons/Rocket";
 import axios from "axios";
 import { useAuth } from "../../contexts/AuthContext";
+import Saturn1Icon from "../../assets/icons/Saturn1";
 
 const TaskModal = ({ selected, onClose, show }) => {
   const dispatch = useDispatch();
@@ -14,13 +14,13 @@ const TaskModal = ({ selected, onClose, show }) => {
   const { freeBoost } = useSelector((state) => state.fuel);
 
   const tasks = useMemo(() => {
-    return [
-      {
+    return {
+      "auto-driving": {
         icon: (
           <div className="flex flex-col">
             <div className="my-2 flex justify-center">
               <div className="w-[70px] h-[70px] flex justify-center items-center bg-[#1A2B47] rounded-xl">
-                <JoystickIcon width={60} height={60} color={"random"} />
+                <Saturn1Icon width={60} height={60} color={"random"} />
               </div>
             </div>
             <div className="flex justify-center my-2">
@@ -43,7 +43,7 @@ const TaskModal = ({ selected, onClose, show }) => {
         button: "Learn More",
         action: () => {},
       },
-      {
+      "reload-fuel": {
         icon: (
           <div className="flex flex-col">
             <div className="my-2 flex justify-center">
@@ -83,36 +83,88 @@ const TaskModal = ({ selected, onClose, show }) => {
           })();
         },
       },
-      {
+      "upgrade-fuel": {
+        icon: (
+          <div className="flex flex-col">
+            <div className="my-2 flex justify-center">
+              <div className="w-[70px] h-[70px] flex justify-center items-center bg-[#1A2B47] rounded-xl">
+                <RocketIcon width={60} height={60} color={"random"} />
+              </div>
+            </div>
+          </div>
+        ),
+        title: "Fuel Tank",
+        content: "Increase your maximun fuel tank by 2!",
+        subcontent: (
+          <div className="text-sm text-slate-400 flex">
+            <span className="text-white">🚀 -500pts</span>
+            <div className="px-2 pt-3">
+              <DotIcon width={4} height={4} color={"#a8a29e"} />
+            </div>
+            <div className="flex items-center text-slate-400">
+              <span className="text-md">Lvl 0</span>
+            </div>
+          </div>
+        ),
+        button: "Boost Now",
+        action: () => {},
+      },
+      "turbo-charger": {
+        icon: (
+          <div className="flex flex-col">
+            <div className="my-2 flex justify-center">
+              <div className="w-[70px] h-[70px] flex justify-center items-center bg-[#1A2B47] rounded-xl">
+                <RocketIcon width={60} height={60} color={"random"} />
+              </div>
+            </div>
+          </div>
+        ),
+        title: "Turbo Charger",
+        content: "Each level up increases the base score earned by 10 points",
+        subcontent: (
+          <div className="text-sm text-slate-400 flex">
+            <span className="text-white">🚀 -100pts</span>
+            <div className="px-2 pt-3">
+              <DotIcon width={4} height={4} color={"#a8a29e"} />
+            </div>
+            <div className="flex items-center text-slate-400">
+              <span className="text-md">Lvl 0</span>
+            </div>
+          </div>
+        ),
+        button: "Boost Now",
+        action: () => {},
+      },
+      "complete-identity": {
         title: "Connect Telegram and complete identity verification",
         content:
           "Link your Telegram account using the 'Connected accounts' option in the User Center on the Alphanomics website. Then, complete the KYC verification with your ID. More details on the 'Surprises' page.",
         button: "I have completed the verification",
         action: () => {},
       },
-      {
+      "follow-twitter": {
         title: "Follow Alphanomics official Twitter",
         content: "Follow Alphanomics official twitter for extra points!",
         button: "Go now",
         action: () => {},
       },
-      {
+      "daily-reward": {
         title: "Daily Rewards",
         content: "Follow Alphanomics official twitter for extra points!",
         button: "Go now",
         action: () => {},
       },
-      {
+      "announcement-channel": {
         title: "Join announcement channel",
         content: "Follow Alphanomics official twitter for extra points!",
         button: "Go now",
         action: () => {},
       },
-    ];
+    };
   }, [dispatch, freeBoost, userId]);
 
   return (
-    selected >= 0 && (
+    show && (
       <>
         <Modal
           show={show}

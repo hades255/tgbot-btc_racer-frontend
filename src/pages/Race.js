@@ -270,7 +270,7 @@ const Race = () => {
               )}
             </div>
             <div className="flex text-white text-8xl font-bold text-shadow-2xl justify-center">
-              <span>{betResult ? "MOON" : "REKT"}</span>
+              <span>{bet === "moon" ? "MOON" : "REKT"}</span>
             </div>
             <div className="text-white text-lg font-bold text-shadow-xl flex justify-center">
               ETH Price {betCompareAmount - betAmount > 0 && "+"}

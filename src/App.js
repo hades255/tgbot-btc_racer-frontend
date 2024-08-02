@@ -20,7 +20,7 @@ const App = () => {
         window.Telegram.WebApp.setHeaderColor("#0B1423");
         window.Telegram.WebApp.MainButton.setText(title);
         window.Telegram.WebApp.MainButton.setParams({
-          text_color: "#ffffff",
+          text_color: "#000713",
           color: "#0B1423",
         });
 

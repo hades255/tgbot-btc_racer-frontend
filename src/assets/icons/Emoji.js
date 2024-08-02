@@ -9,7 +9,7 @@ const EmojiIcon = ({ width, height, color }) => {
       xmlns="http://www.w3.org/2000/svg"
       ariaHidden="true"
       role="img"
-      class="iconify iconify--noto"
+      className="iconify iconify--noto"
       preserveAspectRatio="xMidYMid meet"
     >
       <radialGradient
@@ -20,9 +20,9 @@ const EmojiIcon = ({ width, height, color }) => {
         gradientTransform="translate(0 124.96)"
         gradientUnits="userSpaceOnUse"
       >
-        <stop offset=".5" stop-color="#fde030"></stop>
-        <stop offset=".92" stop-color="#f7c02b"></stop>
-        <stop offset="1" stop-color="#f4a223"></stop>
+        <stop offset=".5" stopColor="#fde030"></stop>
+        <stop offset=".92" stopColor="#f7c02b"></stop>
+        <stop offset="1" stopColor="#f4a223"></stop>
       </radialGradient>
       <path
         d="M63.6 118.8c-27.9 0-58-17.5-58-55.9S35.7 7 63.6 7c15.5 0 29.8 5.1 40.4 14.4c11.5 10.2 17.6 24.6 17.6 41.5s-6.1 31.2-17.6 41.4c-10.6 9.3-25 14.5-40.4 14.5z"
@@ -56,8 +56,8 @@ const EmojiIcon = ({ width, height, color }) => {
         gradientTransform="matrix(1 0 0 -1.54 0 -1115.13)"
         gradientUnits="userSpaceOnUse"
       >
-        <stop offset=".46" stop-color="#29b6f6"></stop>
-        <stop offset="1" stop-color="#1e88e5"></stop>
+        <stop offset=".46" stopColor="#29b6f6"></stop>
+        <stop offset="1" stopColor="#1e88e5"></stop>
       </radialGradient>
       <path
         d="M37 104.5c-6.5 0-11.5-6.3-11.5-11.7c0-3.8 1.7-8.2 4.1-14.3c.3-.9.7-1.8 1.1-2.8c1.4-3.62 3-7.16 4.8-10.6c.36-.69 1.18-.99 1.9-.7c.3.15.55.4.7.7c1.5 3.1 3.2 6.9 4.9 10.8c4.2 9.4 5.4 13.2 5.4 17c.1 5.3-5 11.6-11.4 11.6z"
