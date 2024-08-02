@@ -1,11 +1,9 @@
 import React, { useCallback, useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
 import Records from "../components/race/Records";
 import { useAuth } from "../contexts/AuthContext";
-// import CupIcon from "../assets/icons/Cup";
 import { setScore } from "../redux/authSlice";
-import FuelIcon from "../assets/icons/Fuel";
 import RightIcon from "../assets/icons/Right";
 import MoonBtnIcon from "../assets/icons/MoonBtn";
 import DoomBtnIcon from "../assets/icons/DoomBtn";
@@ -15,15 +13,18 @@ import MusicIcon from "../assets/icons/Music";
 import TrendingUp from "../assets/icons/TrendingUP";
 import TrendingDown from "../assets/icons/TrendingDown";
 import EmojiIcon from "../assets/icons/Emoji";
+import { decrease } from "../redux/fuelSlice";
+import FireIcon from "../assets/icons/Fire";
 
 const Race = () => {
-  const dispatch = useDispatch();
   const { userId, point } = useAuth();
+  const dispatch = useDispatch();
+  const { fuelcount, cooldown } = useSelector((state) => state.fuel);
+
   const [btc, setBtc] = useState(0);
   const [btc_, setBtc_] = useState(0);
   const [count, setCount] = useState(0);
 
-  const [fuelCount, setFuelCount] = useState(10);
   const [bet, setBet] = useState(null);
   const [betAmount, setBetAmount] = useState(0);
   const [betCompareAmount, setBetCompareAmount] = useState(0);
@@ -60,8 +61,8 @@ const Race = () => {
           (bet === "doom" && betAmount > btcPrice);
         setBetResult(result);
         //  todo
-        // const res = await axios.post("http://127.0.0.1:5000/race", {
         const res = await axios.post(
+          // "http://127.0.0.1:5000/race",
           "https://d6bf-172-86-113-74.ngrok-free.app/race",
           {
             guess: bet,
@@ -116,16 +117,16 @@ const Race = () => {
     setBet("moon");
     setBetAmount(btc_);
     setCount(5);
-    setFuelCount(fuelCount - 1);
-  }, [bet, btc_, fuelCount]);
+    dispatch(decrease());
+  }, [bet, btc_, dispatch]);
 
   const handleClickDoom = useCallback(() => {
     if (bet) return;
     setBet("doom");
     setBetAmount(btc_);
     setCount(5);
-    setFuelCount(fuelCount - 1);
-  }, [bet, btc_, fuelCount]);
+    dispatch(decrease());
+  }, [bet, btc_, dispatch]);
 
   const handleShowRaces = useCallback(() => setShowResults(true), []);
   const hideRecordsModal = useCallback((value) => setShowResults(value), []);
@@ -148,13 +149,13 @@ const Race = () => {
       </div>
       <div className="mt-16 mb-24 w-full flex-col">
         {bet ? (
-          <div className="h-20 w-full flex justify-center items-center">
+          <div className="h-14 w-full flex justify-center items-center">
             <span className="text-white text-5xl text-shadow-xl font-digital">
               00:0{count}
             </span>
           </div>
         ) : (
-          <div className="h-20">
+          <div className="h-14">
             <div className="flex justify-center">
               <div className="flex">
                 <span className="text-sm px-1">🔥</span>
@@ -167,32 +168,37 @@ const Race = () => {
           </div>
         )}
         <div className="w-full flex-col">
-          <div className="h-48 w-full flex justify-center overflow-hidden relative">
+          <div className="h-52 w-full flex justify-center overflow-hidden relative">
             <div className="absolute -bottom-8">
               <EthChart />
             </div>
           </div>
           <div className="flex justify-center items-center">
-            <FuelIcon width={14} height={14} color={"random"} />
-            <FuelSlider fuel={`w-${fuelCount * 4}`} />
-            <span className="text-white text-xs">{fuelCount} /</span>
+            🚀
+            <FuelSlider fuel={fuelcount} />
+            <span className="text-white text-xs">{fuelcount} /</span>
             <span className="text-slate-400 text-xs">10</span>
           </div>
           <div className="flex justify-center my-4">
             <span className="text-white text-md font-bold">${btc}</span>
           </div>
-          {fuelCount !== 10 && (
-            <div className="flex justify-center">
-              <div className="bg-fuel-gradient w-[200px] h-[36px] rounded-3xl flex justify-center">
-                <div className="bg-fuel-sub-gradient w-[196px] h-[34px] rounded-3xl flex justify-center items-center">
-                  <span className="text-xs text-slate-400 mr-1">
-                    Next refill in
-                  </span>
-                  <span className="text-xs text-white">00:13</span>
+          <div className="relative h-8 w-full">
+            {fuelcount !== 10 && (
+              <div className="flex justify-center">
+                <div className="bg-fuel-gradient w-[200px] h-[36px] rounded-3xl flex justify-center">
+                  <div className="bg-fuel-sub-gradient w-[196px] h-[34px] rounded-3xl flex justify-center items-center">
+                    <span className="text-xs text-slate-400 mr-1">
+                      Next refill in
+                    </span>
+                    <span className="text-xs text-white">
+                      0{cooldown >= 60 ? 1 : 0}:{cooldown % 60 < 10 ? 0 : ""}
+                      {cooldown % 60}
+                    </span>
+                  </div>
                 </div>
               </div>
-            </div>
-          )}
+            )}
+          </div>
         </div>
         <div className="my-4">
           <div className="flex justify-center text-sm text-slate-300">
@@ -256,19 +262,15 @@ const Race = () => {
       {betResult !== null && (
         <div className="z-20 fixed h-full w-full flex justify-center items-center top-0 left-0 bg-[#101010a4]">
           <div className="flex flex-col">
-            {betResult && (
-              <div className="flex justify-center">
-                <span className="text-4xl text-center">
-                  {bet === "moon" ? (
-                    <EmojiIcon width={37} height={37} color={"random"} />
-                  ) : (
-                    <span>🔥</span>
-                  )}
-                </span>
-              </div>
-            )}
-            <div className="flex flex-col text-white text-8xl font-bold text-shadow-2xl justify-center">
-              <span>{betResult ? "REKT" : "MOON"}</span>
+            <div className="flex justify-center">
+              {betResult ? (
+                <FireIcon width={37} height={37} />
+              ) : (
+                <EmojiIcon width={37} height={37} color={"random"} />
+              )}
+            </div>
+            <div className="flex text-white text-8xl font-bold text-shadow-2xl justify-center">
+              <span>{betResult ? "MOON" : "REKT"}</span>
             </div>
             <div className="text-white text-lg font-bold text-shadow-xl flex justify-center">
               ETH Price {betCompareAmount - betAmount > 0 && "+"}

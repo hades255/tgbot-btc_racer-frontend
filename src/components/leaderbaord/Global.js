@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { useAuth } from "../../contexts/AuthContext";
-import FlagIcon from "../../assets/icons/Flag";
 import axios from "axios";
 
 const Global = () => {
@@ -35,11 +34,8 @@ const Global = () => {
             <div className="text-sm backdrop-blur-lg text-white">{name}</div>
           </div>
           <div className="flex">
-            <div className="flex pt-1 mr-2">
-              <FlagIcon width={16} height={16} color={"#a8a29e"} />
-            </div>
             <span className="text-sm backdrop-blur-lg text-slate-400">
-              {point} pts
+              🚀 {point} pts
             </span>
           </div>
         </div>
@@ -47,18 +43,21 @@ const Global = () => {
           <div key={index} className="my-2 flex justify-between">
             <div className="flex">
               <div className="w-14 text-sm backdrop-blur-lg text-white">
-                #{index + 1}
+                {index === 0
+                  ? "🥇"
+                  : index === 1
+                  ? "🥈"
+                  : index === 2
+                  ? "🥉"
+                  : `#${index + 1}`}
               </div>
               <div className="text-sm backdrop-blur-lg text-white">
                 {item.name}
               </div>
             </div>
             <div className="flex">
-              <div className="flex pt-1 mr-2">
-                <FlagIcon width={16} height={16} color={"#a8a29e"} />
-              </div>
               <span className="text-sm backdrop-blur-lg text-slate-400">
-                {item.point} pts
+                🚀 {item.point} pts
               </span>
             </div>
           </div>

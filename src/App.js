@@ -9,7 +9,7 @@ import Tasks from "./pages/Tasks";
 import Invite from "./pages/Invite";
 import Surprise from "./pages/Surprise";
 import Navbar from "./components/navbar";
-import BackgroundIcon from "./assets/icons/Background";
+import FuelCounter from "./helper/FuelCounter";
 
 const App = () => {
   useEffect(() => {
@@ -33,10 +33,8 @@ const App = () => {
 
   return (
     <Provider store={store}>
-      <div className="absolute top-1 -z-10">
-        <BackgroundIcon />
-      </div>
       <AuthProvider>
+        <FuelCounter />
         <Router>
           <Routes>
             <Route path="/" element={<Race />} />

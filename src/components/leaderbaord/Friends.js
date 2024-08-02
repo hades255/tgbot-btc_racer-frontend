@@ -1,7 +1,6 @@
 import React from "react";
 import { useAuth } from "../../contexts/AuthContext";
 import CopyIcon from "../../assets/icons/Copy";
-import FlagIcon from "../../assets/icons/Flag";
 import ArrowIcon from "../../assets/icons/Arrow";
 
 const Friends = () => {
@@ -16,17 +15,12 @@ const Friends = () => {
       <div className="flex flex-col">
         <div className="my-2 flex justify-between">
           <div className="flex">
-            <div className="w-14">
-            🥇
-            </div>
+            <div className="w-14">🥇</div>
             <div className="text-sm backdrop-blur-lg text-white">{name}</div>
           </div>
           <div className="flex">
-            <div className="flex pt-1 mr-2">
-              <FlagIcon width={16} height={16} color={"#a8a29e"} />
-            </div>
             <span className="text-sm backdrop-blur-lg text-slate-400">
-              {point} pts
+              🚀 {point} pts
             </span>
           </div>
         </div>

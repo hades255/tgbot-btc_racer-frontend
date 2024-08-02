@@ -10,6 +10,7 @@ import LeaderboardIcon from "../../assets/icons/Leaderboard";
 import { login } from "../../redux/authSlice";
 import NavbarItem from "./NavbarItem";
 import axios from "axios";
+import { init } from "../../redux/fuelSlice";
 
 const Navbar = () => {
   const location = useLocation();
@@ -64,8 +65,9 @@ const Navbar = () => {
             `https://d6bf-172-86-113-74.ngrok-free.app/user?userId=${userId}&name=${name}&username=${username}`
             // `http://127.0.0.1:5000/user?userId=${userId}&name=${name}&username=${username}`
           );
-          const point = response.data.data;
+          const point = response.data.data.point;
           dispatch(login({ userId, point, name, username }));
+          dispatch(init(response.data.data.fuel));
         } catch (error) {
           console.log(error);
         }

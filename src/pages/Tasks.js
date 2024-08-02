@@ -1,15 +1,17 @@
 import React, { useCallback, useState } from "react";
 import DotIcon from "../assets/icons/Dot";
-import FlagIcon from "../assets/icons/Flag";
 import { useAuth } from "../contexts/AuthContext";
 import JoystickIcon from "../assets/icons/Joystick";
 import RightIcon from "../assets/icons/Right";
 import TaskModal from "../components/task/TaskModal";
 import LockIcon from "../assets/icons/Lock";
 import SaturnIcon from "../assets/icons/Saturn";
+import { useSelector } from "react-redux";
 
 const Tasks = () => {
   const { point } = useAuth();
+  const { freeBoost } = useSelector((state) => state.fuel);
+
   const [selectedTaskItem, setSelectedTaskItem] = useState(null);
 
   const handleClickTaskItem = useCallback((value) => {
@@ -23,8 +25,7 @@ const Tasks = () => {
   return (
     <div className="w-full flex flex-col mt-4 mb-24">
       <div className="mt-18 flex justify-center">
-        <div className="mr-1 pt-1">
-        </div>
+        <div className="mr-1 pt-1"></div>
         <span className="text-sm">🔥</span>
         <span className="text-slate-400 text-sm">Available points</span>
       </div>
@@ -51,7 +52,7 @@ const Tasks = () => {
               Play while you're away, so you're always earning...
             </div>
             <div className="text-slate-400 absolute bottom-1 text-sm">
-              Locked
+            🚀 Locked
             </div>
           </div>
           {true && (
@@ -86,14 +87,11 @@ const Tasks = () => {
             Enjoy 3 free fuel tank reward everyday!
           </div>
           <div className="text-slate-400 absolute bottom-1 flex text-sm">
-            <div className="mr-1 flex items-center">
-              <FlagIcon width={16} height={16} color={"white"} />
-            </div>
-            Free
+            🚀 Free
             <div className="px-2 pt-3">
               <DotIcon width={4} height={4} color={"#a8a29e"} />
             </div>
-            3/3
+            {freeBoost}/3
           </div>
         </div>
       </div>
@@ -109,8 +107,7 @@ const Tasks = () => {
             Connect Telegram and complete identity verification
           </span>
           <div className="mt-2 flex items-center">
-            <FlagIcon width={16} height={16} color={"#a8a29e"} />
-            <span className="text-slate-400 text-xs">+ 10,000 pts</span>
+            <span className="text-slate-400 text-xs">🚀 + 10,000 pts</span>
           </div>
         </div>
         <div className="text-white text-2xl font-bold flex items-center">
@@ -128,8 +125,7 @@ const Tasks = () => {
             Follow Alphanomics official Twitter
           </span>
           <div className="mt-2 flex items-center">
-            <FlagIcon width={18} height={18} color={"#a8a29e"} />
-            <span className="text-slate-400 text-xs">+ 750 pts</span>
+            <span className="text-slate-400 text-xs">🚀 + 750 pts</span>
           </div>
         </div>
         <div className="text-white text-2xl font-bold flex items-center">
@@ -145,8 +141,7 @@ const Tasks = () => {
         <div className="w-4/5 flex flex-col">
           <span className="text-white text-sm font-medium">Daily Rewards</span>
           <div className="mt-2 flex items-center">
-            <FlagIcon width={18} height={18} color={"#a8a29e"} />
-            <span className="text-slate-400 text-xs">+ 2,000 pts</span>
+            <span className="text-slate-400 text-xs">🚀 + 2,000 pts</span>
           </div>
         </div>
         <div className="text-white text-2xl font-bold flex items-center">
@@ -164,8 +159,7 @@ const Tasks = () => {
             Join announcement channel
           </span>
           <div className="mt-2 flex items-center">
-            <FlagIcon width={18} height={18} color={"#a8a29e"} />
-            <span className="text-slate-400 text-xs">+ 750 pts</span>
+            <span className="text-slate-400 text-xs">🚀 + 750 pts</span>
           </div>
         </div>
         <div className="text-white text-2xl font-bold flex items-center">
