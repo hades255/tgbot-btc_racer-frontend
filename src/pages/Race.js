@@ -134,11 +134,11 @@ const Race = () => {
   return (
     <div className="relative">
       <div className="flex flex-row justify-between">
-        <div className="fixed p-6">
+        <div className="absolute p-6">
           <MusicIcon width={16} height={16} color={"white"} />
         </div>
         <div
-          className="fixed top-4 right-0 p-1 px-2 rounded-s-[40px] hover:cursor-pointer"
+          className="absolute top-4 right-0 p-1 px-2 rounded-s-[40px] hover:cursor-pointer"
           onClick={handleShowRaces}
         >
           <div className="flex items-center rounded-s-2xl bg-button-1 pl-4 pr-6 py-1">

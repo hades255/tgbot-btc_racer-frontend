@@ -9,9 +9,16 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: #0B1423;
+  background-color: #0b1423;
   /* width: 386px; */
   /* border-right: solid white 1px; */
+  overflow: auto;
+  scrollbar-width: none; /* For Firefox */
+  -ms-overflow-style: none; /* For Internet Explorer and Edge */
+}
+
+body::-webkit-scrollbar {
+  display: none; /* For Chrome, Safari, and Opera */
 }
 
 code {
