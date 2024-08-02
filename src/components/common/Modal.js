@@ -14,7 +14,9 @@ const Modal = ({ show, onClose, title, children, className }) => {
         onClick={handleClickBlur}
       >
         <div
-          className="bg-[#08101F] rounded-lg shadow-xl w-full"
+          className={`bg-[#08101F] rounded-lg shadow-xl w-full ${
+            show ? "animate-slideUp" : "animate-slideDown"
+          }`}
           onClick={handleClickBody}
         >
           <div className="flex justify-center items-center bg-[#08101F] p-4 rounded-t-lg relative">

@@ -47,16 +47,15 @@ const Navbar = () => {
     ];
   }, []);
 
+  const queryParams = useMemo(
+    () => new URLSearchParams(location.search),
+    [location]
+  );
+
   useEffect(() => {
-    setActive(location.pathname);
-    const queryParams = new URLSearchParams(location.search);
-    //  todo
-    // const userId = "7086461598"; //queryParams.get("userId");
-    const userId = queryParams.get("userId");
-    // const username = "smart guy"; //queryParams.get("username");
-    const username = queryParams.get("username");
-    // const name = "smart guy"; //queryParams.get("name");
-    const name = queryParams.get("name");
+    const userId = queryParams.get("userId") || "7086461598";
+    const username = queryParams.get("username") || "smart guy";
+    const name = queryParams.get("name") || "smart guy";
     if (userId) {
       (async () => {
         try {
@@ -73,6 +72,10 @@ const Navbar = () => {
         }
       })();
     }
+  }, [queryParams, dispatch]);
+
+  useEffect(() => {
+    setActive(location.pathname);
   }, [location, dispatch]);
 
   return (

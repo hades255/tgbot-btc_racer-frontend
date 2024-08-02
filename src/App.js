@@ -10,6 +10,7 @@ import Invite from "./pages/Invite";
 import Surprise from "./pages/Surprise";
 import Navbar from "./components/navbar";
 import FuelCounter from "./helper/FuelCounter";
+import ToastContainer from "./components/common/toast";
 
 const App = () => {
   useEffect(() => {
@@ -45,6 +46,7 @@ const App = () => {
             <Route path="/surprise" element={<Surprise />} />
           </Routes>
           <Navbar />
+          <ToastContainer />
         </Router>
       </AuthProvider>
     </Provider>

@@ -1,17 +1,89 @@
-import React, { useMemo } from "react";
+import React, { useCallback, useMemo } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Modal from "../common/Modal";
-import { boost } from "../../redux/fuelSlice";
+import { boost, upgrade } from "../../redux/fuelSlice";
 import DotIcon from "../../assets/icons/Dot";
 import RocketIcon from "../../assets/icons/Rocket";
 import axios from "axios";
 import { useAuth } from "../../contexts/AuthContext";
 import Saturn1Icon from "../../assets/icons/Saturn1";
+import { addToast } from "../../redux/toastSlice";
+import { setScore } from "../../redux/authSlice";
+
+export const fuelTankPoints = (lvl) => {
+  switch (lvl) {
+    case 0:
+      return 500;
+    case 1:
+      return 1500;
+    case 2:
+      return 3000;
+    case 3:
+      return 6000;
+    default:
+      return 9000;
+  }
+};
 
 const TaskModal = ({ selected, onClose, show }) => {
   const dispatch = useDispatch();
-  const { userId } = useAuth();
-  const { freeBoost } = useSelector((state) => state.fuel);
+  const { userId, point } = useAuth();
+  const { freeBoost, fueltank } = useSelector((state) => state.fuel);
+  const fueltankpoint = useMemo(() => fuelTankPoints(fueltank), [fueltank]);
+
+  const handleClickReloadFuel = useCallback(() => {
+    if (freeBoost < 0) {
+      dispatch(
+        addToast({
+          message:
+            "You've reached the maximum level and cannot upgrade further.",
+          type: "info",
+        })
+      );
+      return;
+    }
+    (async () => {
+      try {
+        //  todo
+        await axios.get(
+          `https://d6bf-172-86-113-74.ngrok-free.app/race/boost?userId=${userId}`
+          // "http://127.0.0.1:5000/race/boost?userId=" + userId
+        );
+        dispatch(addToast({ message: "Boost success", type: "success" }));
+        dispatch(boost());
+      } catch (error) {
+        console.log(error);
+        dispatch(addToast({ message: error.message, type: "error" }));
+      }
+    })();
+  }, [freeBoost, dispatch, userId]);
+
+  const handleClickUpgradeFuel = useCallback(() => {
+    if (fueltankpoint > point) {
+      dispatch(
+        addToast({
+          message: "You have insufficient points for the upgrade.",
+          type: "info",
+        })
+      );
+      return;
+    }
+    (async () => {
+      try {
+        //  todo
+        await axios.get(
+          `https://d6bf-172-86-113-74.ngrok-free.app/race/boost?userId=${userId}`
+          // "http://127.0.0.1:5000/race/upgrade-fuel?userId=" + userId
+        );
+        dispatch(addToast({ message: "success", type: "success" }));
+        dispatch(upgrade());
+        dispatch(setScore(point - fueltankpoint));
+      } catch (error) {
+        console.log(error);
+        dispatch(addToast({ message: error.message, type: "error" }));
+      }
+    })();
+  }, [dispatch, userId, point, fueltankpoint]);
 
   const tasks = useMemo(() => {
     return {
@@ -67,21 +139,7 @@ const TaskModal = ({ selected, onClose, show }) => {
           </div>
         ),
         button: "Boost Now",
-        action: () => {
-          if (freeBoost < 0) return;
-          (async () => {
-            try {
-              //  todo
-              await axios.get(
-                `https://d6bf-172-86-113-74.ngrok-free.app/race/boost?userId=${userId}`
-                // "http://127.0.0.1:5000/race/boost?userId=" + userId
-              );
-              dispatch(boost());
-            } catch (error) {
-              console.log(error);
-            }
-          })();
-        },
+        action: handleClickReloadFuel,
       },
       "upgrade-fuel": {
         icon: (
@@ -97,17 +155,17 @@ const TaskModal = ({ selected, onClose, show }) => {
         content: "Increase your maximun fuel tank by 2!",
         subcontent: (
           <div className="text-sm text-slate-400 flex">
-            <span className="text-white">🚀 -500pts</span>
+            <span className="text-white">🚀 -{fueltankpoint}pts</span>
             <div className="px-2 pt-3">
               <DotIcon width={4} height={4} color={"#a8a29e"} />
             </div>
             <div className="flex items-center text-slate-400">
-              <span className="text-md">Lvl 0</span>
+              <span className="text-md">Lvl {fueltank}</span>
             </div>
           </div>
         ),
         button: "Boost Now",
-        action: () => {},
+        action: handleClickUpgradeFuel,
       },
       "turbo-charger": {
         icon: (
@@ -161,47 +219,51 @@ const TaskModal = ({ selected, onClose, show }) => {
         action: () => {},
       },
     };
-  }, [dispatch, freeBoost, userId]);
+  }, [
+    freeBoost,
+    fueltankpoint,
+    fueltank,
+    handleClickReloadFuel,
+    handleClickUpgradeFuel,
+  ]);
 
   return (
     show && (
-      <>
-        <Modal
-          show={show}
-          onClose={onClose}
-          title={
-            <div className="mt-8 flex flex-col">
-              {tasks[selected].icon && tasks[selected].icon}
-              <span>{tasks[selected].title}</span>
+      <Modal
+        show={show}
+        onClose={onClose}
+        title={
+          <div className="mt-8 flex flex-col">
+            {tasks[selected].icon && tasks[selected].icon}
+            <span>{tasks[selected].title}</span>
+          </div>
+        }
+        className={"items-end"}
+      >
+        <div className="flex flex-col">
+          <div className="flex justify-center">
+            <span className="mx-4 text-slate-500 text-xs text-wrap text-center">
+              {tasks[selected].content}
+            </span>
+          </div>
+          {tasks[selected].subcontent && (
+            <div className="flex justify-center my-2">
+              {tasks[selected].subcontent}
             </div>
-          }
-          className={"items-end"}
-        >
-          <div className="flex flex-col">
-            <div className="flex justify-center">
-              <span className="mx-4 text-slate-500 text-xs text-wrap text-center">
-                {tasks[selected].content}
-              </span>
-            </div>
-            {tasks[selected].subcontent && (
-              <div className="flex justify-center my-2">
-                {tasks[selected].subcontent}
-              </div>
-            )}
-            <div className="flex justify-center mt-4 mb-6"></div>
-            <div className="flex justify-center my-4">
-              <div className="mx-4 w-full bg-button-1-bg h-[50px] rounded-[25px] flex justify-between items-center relative">
-                <button
-                  className="bg-button-2 text-white text-md font-medium w-[calc(100%-2px)] h-[48px] rounded-[25px]"
-                  onClick={tasks[selected].action}
-                >
-                  {tasks[selected].button}
-                </button>
-              </div>
+          )}
+          <div className="flex justify-center mt-4 mb-6"></div>
+          <div className="flex justify-center my-4">
+            <div className="mx-4 w-full bg-button-1-bg h-[50px] rounded-[25px] flex justify-between items-center relative">
+              <button
+                className="bg-button-2 text-white text-md font-medium w-[calc(100%-2px)] h-[48px] rounded-[25px]"
+                onClick={tasks[selected].action}
+              >
+                {tasks[selected].button}
+              </button>
             </div>
           </div>
-        </Modal>
-      </>
+        </div>
+      </Modal>
     )
   );
 };

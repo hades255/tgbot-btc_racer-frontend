@@ -19,7 +19,9 @@ import FireIcon from "../assets/icons/Fire";
 const Race = () => {
   const { userId, point } = useAuth();
   const dispatch = useDispatch();
-  const { fuelcount, cooldown } = useSelector((state) => state.fuel);
+  const { fuelcount, cooldown, fuelcapacity } = useSelector(
+    (state) => state.fuel
+  );
 
   const [btc, setBtc] = useState(0);
   const [btc_, setBtc_] = useState(0);
@@ -175,15 +177,15 @@ const Race = () => {
           </div>
           <div className="flex justify-center items-center">
             🚀
-            <FuelSlider fuel={fuelcount} />
+            <FuelSlider progress={fuelcount/fuelcapacity} />
             <span className="text-white text-xs">{fuelcount} /</span>
-            <span className="text-slate-400 text-xs">10</span>
+            <span className="text-slate-400 text-xs">{fuelcapacity}</span>
           </div>
           <div className="flex justify-center my-4">
             <span className="text-white text-md font-bold">${btc}</span>
           </div>
           <div className="relative h-8 w-full">
-            {fuelcount !== 10 && (
+            {fuelcount !== fuelcapacity && (
               <div className="flex justify-center">
                 <div className="bg-fuel-gradient w-[200px] h-[36px] rounded-3xl flex justify-center">
                   <div className="bg-fuel-sub-gradient w-[196px] h-[34px] rounded-3xl flex justify-center items-center">
