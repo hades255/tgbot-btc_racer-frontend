@@ -1,16 +1,28 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { removeToast } from "../../../redux/toastSlice";
+import CheckIcon from "../../../assets/icons/toast/Check";
+import ErrorIcon from "../../../assets/icons/toast/Error";
+import WarnIcon from "../../../assets/icons/toast/Warn";
+import InfoIcon from "../../../assets/icons/toast/Info";
+
+const typeStyles = {
+  success: "border-green-500",
+  error: "border-red-500",
+  warn: "border-yellow-500",
+  info: "border-blue-500",
+};
+
+const typeIcons = {
+  success: <CheckIcon width={20} height={20} color={"green"} />,
+  error: <ErrorIcon width={20} height={20} color={"red"} />,
+  warn: <WarnIcon width={20} height={20} color={"yellow"} />,
+  info: <InfoIcon width={20} height={20} color={"lightblue"} />,
+};
 
 const Toast = ({ id, message, type, duration = 3000 }) => {
   const dispatch = useDispatch();
   const [isVisible, setIsVisible] = useState(true);
-
-  const typeStyles = {
-    success: "bg-green-500 text-white",
-    error: "bg-red-500 text-white",
-    info: "bg-blue-500 text-white",
-  };
 
   const closeToast = useCallback(
     () => dispatch(removeToast(id)),
@@ -28,12 +40,13 @@ const Toast = ({ id, message, type, duration = 3000 }) => {
 
   return (
     <div
-      className={`w-64 my-2 p-4 rounded shadow-lg transition-transform ${
+      className={`w-64 my-2 px-2 py-1 rounded bg-[#0B1423AA] text-white border shadow-lg transition-transform ${
         isVisible ? "animate-slideIn" : "animate-slideOut"
       } ${typeStyles[type]}`}
     >
-      <div className="flex justify-between items-center">
-        <span>{message}</span>
+      <div className="flex justify-between">
+        <div className="mr-1 mt-[2px]">{typeIcons[type]}</div>
+        <span className="flex items-center text-xs mr-1">{message}</span>
         <button onClick={() => setIsVisible(false)}>&times;</button>
       </div>
     </div>

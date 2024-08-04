@@ -36,27 +36,37 @@ module.exports = {
       textColor: {},
       keyframes: {
         slideIn: {
-          "0%": { transform: "translateX(100%)", opacity: 0 },
-          "100%": { transform: "translateX(0)", opacity: 1 },
+          "0%": { opacity: 0 },
+          "100%": { opacity: 1 },
         },
         slideOut: {
-          "0%": { transform: "translateX(0)", opacity: 1 },
-          "100%": { transform: "translateX(100%)", opacity: 0 },
+          "0%": { opacity: 1 },
+          "100%": { opacity: 0 },
         },
-        slideUp: {
+        slideUpIn: {
           "0%": { transform: "translateY(100%)", opacity: 0 },
           "100%": { transform: "translateY(0)", opacity: 1 },
         },
-        slideDown: {
+        slideUpOut: {
           "0%": { transform: "translateY(0)", opacity: 1 },
           "100%": { transform: "translateY(100%)", opacity: 0 },
+        },
+        slideDownIn: {
+          "0%": { transform: "translateY(0)", opacity: 0 },
+          "100%": { transform: "translateY(100%)", opacity: 1 },
+        },
+        slideDownOut: {
+          "0%": { transform: "translateY(100%)", opacity: 1 },
+          "100%": { transform: "translateY(0)", opacity: 0 },
         },
       },
       animation: {
         slideIn: "slideIn 0.5s ease-out forwards",
         slideOut: "slideOut 0.5s ease-out forwards",
-        slideUp: "slideUp 0.5s ease-out forwards",
-        slideDown: "slideDown 0.5s ease-out forwards",
+        slideUpIn: "slideUpIn 0.5s ease-out forwards",
+        slideUpOut: "slideUpOut 0.5s ease-out forwards",
+        slideDownIn: "slideDownIn 0.5s ease-out forwards",
+        slideDownOut: "slideDownOut 0.5s ease-out forwards",
       },
     },
   },

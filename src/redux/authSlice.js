@@ -8,6 +8,7 @@ const authSlice = createSlice({
     name: "",
     username: "",
     point: 0,
+    turboCharger: 0,
   },
   reducers: {
     login: (state, payload) => {
@@ -16,6 +17,7 @@ const authSlice = createSlice({
       state.point = payload.payload.point;
       state.name = payload.payload.name;
       state.username = payload.payload.username;
+      state.turboCharger = payload.payload.turboCharger;
     },
     logout: (state) => {
       state.isAuthenticated = false;
@@ -23,8 +25,12 @@ const authSlice = createSlice({
     setScore: (state, payload) => {
       state.point = payload.payload;
     },
+    upgradeTturboCharger: (state) => {
+      state.turboCharger = state.turboCharger + 1;
+    },
   },
 });
 
-export const { login, logout, setScore } = authSlice.actions;
+export const { login, logout, setScore, upgradeTturboCharger } =
+  authSlice.actions;
 export default authSlice.reducer;

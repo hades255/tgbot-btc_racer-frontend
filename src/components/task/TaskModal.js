@@ -8,7 +8,10 @@ import axios from "axios";
 import { useAuth } from "../../contexts/AuthContext";
 import Saturn1Icon from "../../assets/icons/Saturn1";
 import { addToast } from "../../redux/toastSlice";
-import { setScore } from "../../redux/authSlice";
+import { setScore, upgradeTturboCharger } from "../../redux/authSlice";
+import BtnDark from "../common/button/BtnDark";
+import { useNavigate } from "react-router-dom";
+import RedirectBtn from "../common/button/RedirectBtn";
 
 export const fuelTankPoints = (lvl) => {
   switch (lvl) {
@@ -25,11 +28,29 @@ export const fuelTankPoints = (lvl) => {
   }
 };
 
+export const turborPoints = (lvl) => {
+  switch (lvl) {
+    case 0:
+      return 1000;
+    case 1:
+      return 3000;
+    case 2:
+      return 5000;
+    case 3:
+      return 10000;
+    default:
+      return 15000;
+  }
+};
+
 const TaskModal = ({ selected, onClose, show }) => {
   const dispatch = useDispatch();
-  const { userId, point } = useAuth();
+  const navigate = useNavigate();
+
+  const { userId, point, turboCharger } = useAuth();
   const { freeBoost, fueltank } = useSelector((state) => state.fuel);
   const fueltankpoint = useMemo(() => fuelTankPoints(fueltank), [fueltank]);
+  const turborpoint = useMemo(() => turborPoints(turboCharger), [turboCharger]);
 
   const handleClickReloadFuel = useCallback(() => {
     if (freeBoost < 0) {
@@ -37,7 +58,7 @@ const TaskModal = ({ selected, onClose, show }) => {
         addToast({
           message:
             "You've reached the maximum level and cannot upgrade further.",
-          type: "info",
+          type: "warn",
         })
       );
       return;
@@ -63,7 +84,7 @@ const TaskModal = ({ selected, onClose, show }) => {
       dispatch(
         addToast({
           message: "You have insufficient points for the upgrade.",
-          type: "info",
+          type: "warn",
         })
       );
       return;
@@ -85,8 +106,62 @@ const TaskModal = ({ selected, onClose, show }) => {
     })();
   }, [dispatch, userId, point, fueltankpoint]);
 
-  const tasks = useMemo(() => {
-    return {
+  const handleClickUnlock = useCallback(
+    () => navigate("/surprise"),
+    [navigate]
+  );
+
+  const handleTurborCharger = useCallback(() => {
+    if (turborpoint > point) {
+      dispatch(
+        addToast({
+          message: "You have insufficient points for the upgrade.",
+          type: "warn",
+        })
+      );
+      return;
+    }
+    (async () => {
+      try {
+        //  todo
+        await axios.get(
+          `https://d6bf-172-86-113-74.ngrok-free.app/race/boost?userId=${userId}`
+          // "http://127.0.0.1:5000/user/upgrade-turbor?userId=" + userId
+        );
+        dispatch(addToast({ message: "success", type: "success" }));
+        dispatch(upgradeTturboCharger());
+        dispatch(setScore(point - turborpoint));
+      } catch (error) {
+        console.log(error);
+        dispatch(addToast({ message: error.message, type: "error" }));
+      }
+    })();
+  }, [dispatch, turborpoint, point, userId]);
+
+  const handleClickCompleteIdentity = useCallback(
+    () =>
+      dispatch(
+        addToast({
+          message: "You have not fulfilled the requirements of this task.",
+          type: "error",
+        })
+      ),
+    [dispatch]
+  );
+
+  const handleClickDailyReward = useCallback(
+    () =>
+      dispatch(
+        addToast({
+          message: "You've completed the task and earned points.",
+          type: "success",
+        })
+      ),
+    [dispatch]
+  );
+
+  const tasks = useMemo(
+    () => ({
       "auto-driving": {
         icon: (
           <div className="flex flex-col">
@@ -113,7 +188,7 @@ const TaskModal = ({ selected, onClose, show }) => {
           </div>
         ),
         button: "Learn More",
-        action: () => {},
+        action: handleClickUnlock,
       },
       "reload-fuel": {
         icon: (
@@ -181,65 +256,78 @@ const TaskModal = ({ selected, onClose, show }) => {
         content: "Each level up increases the base score earned by 10 points",
         subcontent: (
           <div className="text-sm text-slate-400 flex">
-            <span className="text-white">🚀 -100pts</span>
+            <span className="text-white">🚀 -{turborpoint}pts</span>
             <div className="px-2 pt-3">
               <DotIcon width={4} height={4} color={"#a8a29e"} />
             </div>
             <div className="flex items-center text-slate-400">
-              <span className="text-md">Lvl 0</span>
+              <span className="text-md">Lvl {turboCharger}</span>
             </div>
           </div>
         ),
         button: "Boost Now",
-        action: () => {},
+        action: handleTurborCharger,
       },
       "complete-identity": {
         title: "Connect Telegram and complete identity verification",
         content:
           "Link your Telegram account using the 'Connected accounts' option in the User Center on the Alphanomics website. Then, complete the KYC verification with your ID. More details on the 'Surprises' page.",
         button: "I have completed the verification",
-        action: () => {},
+        action: handleClickCompleteIdentity,
       },
       "follow-twitter": {
         title: "Follow Alphanomics official Twitter",
         content: "Follow Alphanomics official twitter for extra points!",
         button: "Go now",
         action: () => {},
+        redirect: "https://x.com/okx?s=11",
       },
       "daily-reward": {
         title: "Daily Rewards",
-        content: "Follow Alphanomics official twitter for extra points!",
-        button: "Go now",
-        action: () => {},
+        content: "Check in daily to earn rewards",
+        button: "Check in",
+        action: handleClickDailyReward,
       },
       "announcement-channel": {
         title: "Join announcement channel",
         content: "Follow Alphanomics official twitter for extra points!",
         button: "Go now",
+        redirect: "https://www.okx.com/join",
         action: () => {},
       },
-    };
-  }, [
-    freeBoost,
-    fueltankpoint,
-    fueltank,
-    handleClickReloadFuel,
-    handleClickUpgradeFuel,
-  ]);
+    }),
+    [
+      freeBoost,
+      fueltankpoint,
+      fueltank,
+      turborpoint,
+      turboCharger,
+      handleClickReloadFuel,
+      handleClickUpgradeFuel,
+      handleClickUnlock,
+      handleTurborCharger,
+      handleClickCompleteIdentity,
+      handleClickDailyReward,
+    ]
+  );
 
   return (
-    show && (
-      <Modal
-        show={show}
-        onClose={onClose}
-        title={
+    <Modal
+      show={show}
+      onClose={onClose}
+      title={
+        show ? (
           <div className="mt-8 flex flex-col">
             {tasks[selected].icon && tasks[selected].icon}
             <span>{tasks[selected].title}</span>
           </div>
-        }
-        className={"items-end"}
-      >
+        ) : (
+          ""
+        )
+      }
+      className={"items-end"}
+    >
+      {show && (
         <div className="flex flex-col">
           <div className="flex justify-center">
             <span className="mx-4 text-slate-500 text-xs text-wrap text-center">
@@ -252,19 +340,22 @@ const TaskModal = ({ selected, onClose, show }) => {
             </div>
           )}
           <div className="flex justify-center mt-4 mb-6"></div>
-          <div className="flex justify-center my-4">
-            <div className="mx-4 w-full bg-button-1-bg h-[50px] rounded-[25px] flex justify-between items-center relative">
-              <button
-                className="bg-button-2 text-white text-md font-medium w-[calc(100%-2px)] h-[48px] rounded-[25px]"
-                onClick={tasks[selected].action}
-              >
+          <div className="flex justify-center my-4 mx-4">
+            {tasks[selected].redirect ? (
+              <RedirectBtn url={tasks[selected].redirect} className="w-full">
+                <BtnDark onClick={tasks[selected].action}>
+                  {tasks[selected].button}
+                </BtnDark>
+              </RedirectBtn>
+            ) : (
+              <BtnDark onClick={tasks[selected].action}>
                 {tasks[selected].button}
-              </button>
-            </div>
+              </BtnDark>
+            )}
           </div>
         </div>
-      </Modal>
-    )
+      )}
+    </Modal>
   );
 };
 

@@ -15,17 +15,17 @@ import ToastContainer from "./components/common/toast";
 const App = () => {
   useEffect(() => {
     const setTitle = () => {
-      const title = "Alphanomics";
+      // const title = "Alphanomics";
 
       if (window.Telegram && window.Telegram.WebApp) {
         window.Telegram.WebApp.setHeaderColor("#0B1423");
-        window.Telegram.WebApp.MainButton.setText(title);
-        window.Telegram.WebApp.MainButton.setParams({
-          text_color: "#000713",
-          color: "#0B1423",
-        });
+        // window.Telegram.WebApp.MainButton.setText(title);
+        // window.Telegram.WebApp.MainButton.setParams({
+        //   text_color: "#000713",
+        //   color: "#0B1423",
+        // });
 
-        window.Telegram.WebApp.MainButton.show();
+        // window.Telegram.WebApp.MainButton.show();
       }
     };
 

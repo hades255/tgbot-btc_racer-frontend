@@ -9,16 +9,17 @@ import MoonBtnIcon from "../assets/icons/MoonBtn";
 import DoomBtnIcon from "../assets/icons/DoomBtn";
 import EthChart from "../components/race/EthChart";
 import FuelSlider from "../components/race/FuelSlider";
-import MusicIcon from "../assets/icons/Music";
 import TrendingUp from "../assets/icons/TrendingUP";
 import TrendingDown from "../assets/icons/TrendingDown";
 import EmojiIcon from "../assets/icons/Emoji";
 import { decrease } from "../redux/fuelSlice";
 import FireIcon from "../assets/icons/Fire";
+import RedirectBtn from "../components/common/button/RedirectBtn";
+import MusicBtn from "../components/race/MusicBtn";
 
 const Race = () => {
-  const { userId, point } = useAuth();
   const dispatch = useDispatch();
+  const { userId, point } = useAuth();
   const { fuelcount, cooldown, fuelcapacity } = useSelector(
     (state) => state.fuel
   );
@@ -137,7 +138,7 @@ const Race = () => {
     <div className="relative">
       <div className="flex flex-row justify-between">
         <div className="absolute p-6">
-          <MusicIcon width={16} height={16} color={"white"} />
+          <MusicBtn />
         </div>
         <div
           className="absolute top-4 right-0 p-1 px-2 rounded-s-[40px] hover:cursor-pointer"
@@ -177,7 +178,7 @@ const Race = () => {
           </div>
           <div className="flex justify-center items-center">
             🚀
-            <FuelSlider progress={fuelcount/fuelcapacity} />
+            <FuelSlider progress={fuelcount / fuelcapacity} />
             <span className="text-white text-xs">{fuelcount} /</span>
             <span className="text-slate-400 text-xs">{fuelcapacity}</span>
           </div>
@@ -252,7 +253,9 @@ const Race = () => {
           </div>
         </div>
         <div className="flex justify-center mt-9">
-          <span className="text-slate-300 text-xs">Terms and conditions</span>
+          <RedirectBtn url="https://www.okx.com/help/okx-racer-terms-and-conditions">
+            <span className="text-slate-300 text-xs">Terms and conditions</span>
+          </RedirectBtn>
         </div>
         <div className="flex justify-center mt-3">
           <span className="text-slate-300 text-xs">

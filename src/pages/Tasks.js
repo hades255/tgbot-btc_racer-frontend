@@ -2,16 +2,20 @@ import React, { useCallback, useMemo, useState } from "react";
 import DotIcon from "../assets/icons/Dot";
 import { useAuth } from "../contexts/AuthContext";
 import RightIcon from "../assets/icons/Right";
-import TaskModal, { fuelTankPoints } from "../components/task/TaskModal";
+import TaskModal, {
+  fuelTankPoints,
+  turborPoints,
+} from "../components/task/TaskModal";
 import LockIcon from "../assets/icons/Lock";
 import SaturnIcon from "../assets/icons/Saturn";
 import { useSelector } from "react-redux";
 import Saturn1Icon from "../assets/icons/Saturn1";
 
 const Tasks = () => {
-  const { point } = useAuth();
+  const { point, turboCharger } = useAuth();
   const { freeBoost, fueltank } = useSelector((state) => state.fuel);
   const fueltankpoint = useMemo(() => fuelTankPoints(fueltank), [fueltank]);
+  const turborpoint = useMemo(() => turborPoints(turboCharger), [turboCharger]);
 
   const [selectedTaskItem, setSelectedTaskItem] = useState(null);
 
@@ -134,11 +138,11 @@ const Tasks = () => {
             Each level up increases the base score earned by 10...
           </div>
           <div className="text-slate-400 absolute bottom-1 flex text-sm">
-            🚀 -1000pts
+            🚀 -{turborpoint}pts
             <div className="px-2 pt-3">
               <DotIcon width={4} height={4} color={"#a8a29e"} />
             </div>
-            Lvl 0
+            Lvl {turboCharger}
           </div>
         </div>
       </div>

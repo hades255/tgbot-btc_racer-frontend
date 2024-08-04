@@ -1,8 +1,9 @@
 import React from "react";
 import DotIcon from "../assets/icons/Dot";
 import InfoIcon from "../assets/icons/Info";
-import ArrowIcon from "../assets/icons/Arrow";
 import AstronautIcon from "../assets/icons/Astronaut";
+import EligibilityBtn from "../components/surprise/EligibilityBtn";
+import RedirectBtn from "../components/common/button/RedirectBtn";
 
 const Surprise = () => {
   return (
@@ -19,7 +20,7 @@ const Surprise = () => {
       </div>
       <div className="mx-4 mt-4 p-3 rounded-lg bg-[#0F1F39] flex">
         <div className="w-[50px] min-w-[50px] h-[50px] rounded-md bg-[#1A2B47] mr-3">
-          <AstronautIcon width={48} height={48} color={"random"}/>
+          <AstronautIcon width={48} height={48} color={"random"} />
         </div>
         <div className="flex flex-col">
           <div>
@@ -34,72 +35,76 @@ const Surprise = () => {
         </div>
       </div>
       <div className="mx-4 mt-3 px-4 py-2 rounded-xl flex flex-col border border-[#173560]">
-        <div className="flex my-2">
-          <div className="mr-1 pt-1">
-            <DotIcon width={14} height={16} color={"#04C3FF"} />
-          </div>
-          <div className="flex flex-col">
-            <div className="text-white text-md font-medium flex">
-              <span className="text-[#69d3fd] text-sm">
-                Sign up for an Alphanomics account
-              </span>
-              <div className="ml-1 flex items-center">
-              </div>
+        <RedirectBtn url="https://www.okx.com/join">
+          <div className="flex my-2">
+            <div className="mr-1 pt-[2px]">
+              <DotIcon width={14} height={16} color={"#04C3FF"} />
             </div>
-            <span className="text-slate-400 text-xs">
-              Skip this step if you already have an account.
-            </span>
-          </div>
-        </div>
-        <div className="flex my-2">
-          <div className="mr-1 pt-1">
-            <DotIcon width={14} height={16} color={"#04C3FF"} />
-          </div>
-          <div className="flex flex-col">
-            <div className="text-white text-md font-medium flex">
-              <span className="text-[#69d3fd] text-sm">
-                Install the OKX app
-              </span>
-              <div className="ml-1 flex items-center">
+            <div className="flex flex-col">
+              <div className="text-white text-md font-medium flex">
+                <span className="text-[#69d3fd] text-sm hover:cursor-pointer">
+                  Sign up for an Alphanomics account
+                </span>
+                <div className="ml-1 flex items-center"></div>
               </div>
+              <span className="text-slate-400 text-xs">
+                Skip this step if you already have an account.
+              </span>
             </div>
           </div>
-        </div>
-        <div className="flex my-2">
-          <div className="mr-1 pt-1">
-            <DotIcon width={14} height={16} color={"#04C3FF"} />
-          </div>
-          <div className="flex flex-col">
-            <div className="text-white text-md font-medium flex">
-              <span className="text-[#69d3fd] text-sm">
-                Connect to Telegram
-              </span>
-              <div className="ml-1 flex items-center">
+        </RedirectBtn>
+        <RedirectBtn url="https://www.okx.com/download?redirectAppStore=true">
+          <div className="flex my-2">
+            <div className="mr-1 pt-[2px]">
+              <DotIcon width={14} height={16} color={"#04C3FF"} />
+            </div>
+            <div className="flex flex-col">
+              <div className="text-white text-md font-medium flex">
+                <span className="text-[#69d3fd] text-sm hover:cursor-pointer">
+                  Install the OKX app
+                </span>
+                <div className="ml-1 flex items-center"></div>
               </div>
             </div>
-            <span className="text-slate-400 text-xs">
-              Go to your Profile on the Alphanomics website, select Connected
-              accounts, and link your Telegram account.
-            </span>
           </div>
-        </div>
-        <div className="flex my-2">
-          <div className="mr-1 pt-1">
-            <DotIcon width={14} height={16} color={"#04C3FF"} />
-          </div>
-          <div className="flex flex-col">
-            <div className="text-white text-md font-medium flex">
-              <span className="text-[#69d3fd] text-sm">
-                Verify your identity
-              </span>
-              <div className="ml-1 flex items-center">
-              </div>
+        </RedirectBtn>
+        <RedirectBtn url="https://www.ouxyi.link/ul/3h87sZ">
+          <div className="flex my-2">
+            <div className="mr-1 pt-[2px]">
+              <DotIcon width={14} height={16} color={"#04C3FF"} />
             </div>
-            <span className="text-slate-400 text-xs">
-              Pass identity verification on Alphanomics.
-            </span>
+            <div className="flex flex-col">
+              <div className="text-white text-md font-medium flex">
+                <span className="text-[#69d3fd] text-sm hover:cursor-pointer">
+                  Connect to Telegram
+                </span>
+                <div className="ml-1 flex items-center"></div>
+              </div>
+              <span className="text-slate-400 text-xs">
+                Go to your Profile on the Alphanomics website, select Connected
+                accounts, and link your Telegram account.
+              </span>
+            </div>
           </div>
-        </div>
+        </RedirectBtn>
+        <RedirectBtn url="https://www.ouxyi.link/ul/3W2uzP">
+          <div className="flex my-2">
+            <div className="mr-1 pt-[2px]">
+              <DotIcon width={14} height={16} color={"#04C3FF"} />
+            </div>
+            <div className="flex flex-col">
+              <div className="text-white text-md font-medium flex">
+                <span className="text-[#69d3fd] text-sm hover:cursor-pointer">
+                  Verify your identity
+                </span>
+                <div className="ml-1 flex items-center"></div>
+              </div>
+              <span className="text-slate-400 text-xs">
+                Pass identity verification on Alphanomics.
+              </span>
+            </div>
+          </div>
+        </RedirectBtn>
       </div>
       <div className="mx-4 my-4 text-[#b3b3b3] text-xs flex items-center">
         <div className="mr-1">
@@ -107,20 +112,15 @@ const Surprise = () => {
         </div>
         <span>Check your eligibility after completing the steps.</span>
       </div>
-      <div className="flex justify-center my-4">
-        <div className="mx-4 w-full bg-button-1-bg h-[50px] rounded-[25px] flex justify-between items-center relative">
-          <button className="w-[calc(100%-2px)] p-4 bg-button-1 h-[48px] rounded-[25px] flex justify-between items-center">
-            <span className="ml-2 text-white text-md font-medium">
-              Check eligibility
-            </span>
-            <ArrowIcon />
-          </button>
-        </div>
+      <div className="flex justify-center my-4 mx-4">
+        <EligibilityBtn />
       </div>
       <div className="flex justify-center my-4">
-        <span className="text-white text-xs underline">
-          Terms and conditions
-        </span>
+        <RedirectBtn url="https://www.okx.com/help/okx-racer-terms-and-conditions">
+          <span className="text-white text-xs underline">
+            Terms and conditions
+          </span>
+        </RedirectBtn>
       </div>
     </div>
   );

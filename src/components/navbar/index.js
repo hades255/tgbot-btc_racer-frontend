@@ -65,7 +65,8 @@ const Navbar = () => {
             // `http://127.0.0.1:5000/user?userId=${userId}&name=${name}&username=${username}`
           );
           const point = response.data.data.point;
-          dispatch(login({ userId, point, name, username }));
+          const user = response.data.data.user;
+          dispatch(login({ ...user, userId, point, name, username }));
           dispatch(init(response.data.data.fuel));
         } catch (error) {
           console.log(error);
