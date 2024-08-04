@@ -16,6 +16,7 @@ import { decrease } from "../redux/fuelSlice";
 import FireIcon from "../assets/icons/Fire";
 import RedirectBtn from "../components/common/button/RedirectBtn";
 import MusicBtn from "../components/race/MusicBtn";
+import { BACKEND_PATH } from "../constants/config";
 
 const Race = () => {
   const dispatch = useDispatch();
@@ -63,17 +64,12 @@ const Race = () => {
           (bet === "moon" && betAmount <= btcPrice) ||
           (bet === "doom" && betAmount > btcPrice);
         setBetResult(result);
-        //  todo
-        const res = await axios.post(
-          // "http://127.0.0.1:5000/race",
-          "https://a65b-172-86-113-74.ngrok-free.app/race",
-          {
-            guess: bet,
-            pointAmount: 10,
-            result,
-            userId: userId,
-          }
-        );
+        const res = await axios.post(`${BACKEND_PATH}/race`, {
+          guess: bet,
+          pointAmount: 10,
+          result,
+          userId: userId,
+        });
 
         dispatch(setScore(res.data.data));
       } catch (error) {

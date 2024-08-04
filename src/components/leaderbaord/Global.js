@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { useAuth } from "../../contexts/AuthContext";
 import axios from "axios";
+import { useAuth } from "../../contexts/AuthContext";
+import { BACKEND_PATH } from "../../constants/config.js";
 
 const Global = () => {
   const { userId, name, point } = useAuth();
@@ -9,10 +10,8 @@ const Global = () => {
   useEffect(() => {
     (async () => {
       try {
-        //  todo
         const response = await axios.get(
-          // `http://127.0.0.1:5000/user/all?userId=${userId}`
-          `https://a65b-172-86-113-74.ngrok-free.app/user/all?userId=${userId}`
+          `${BACKEND_PATH}/user/all?userId=${userId}`
         );
         setUsers(response.data.data);
       } catch (error) {

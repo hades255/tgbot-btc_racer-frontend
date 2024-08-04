@@ -6,6 +6,7 @@ import Modal from "../common/Modal";
 import Up from "../../assets/icons/Up";
 import Down from "../../assets/icons/Down";
 import { useAuth } from "../../contexts/AuthContext";
+import { BACKEND_PATH } from "../../constants/config";
 
 const Records = ({ show, onClose }) => {
   const { userId } = useAuth();
@@ -14,10 +15,8 @@ const Records = ({ show, onClose }) => {
   useEffect(() => {
     (async () => {
       try {
-        //  todo
         const response = await axios.get(
-          // "http://127.0.0.1:5000/race?userId=" + userId
-          "https://a65b-172-86-113-74.ngrok-free.app/race?userId=" + userId
+          `${BACKEND_PATH}/race?userId=${userId}`
         );
         setRecords(response.data.data);
       } catch (error) {

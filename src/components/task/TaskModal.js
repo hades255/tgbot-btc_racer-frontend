@@ -12,6 +12,7 @@ import { setScore, upgradeTturboCharger } from "../../redux/authSlice";
 import BtnDark from "../common/button/BtnDark";
 import { useNavigate } from "react-router-dom";
 import RedirectBtn from "../common/button/RedirectBtn";
+import { BACKEND_PATH } from "../../constants/config";
 
 export const fuelTankPoints = (lvl) => {
   switch (lvl) {
@@ -65,11 +66,7 @@ const TaskModal = ({ selected, onClose, show }) => {
     }
     (async () => {
       try {
-        //  todo
-        await axios.get(
-          `https://a65b-172-86-113-74.ngrok-free.app/race/boost?userId=${userId}`
-          // "http://127.0.0.1:5000/race/boost?userId=" + userId
-        );
+        await axios.get(`${BACKEND_PATH}/race/boost?userId=${userId}`);
         dispatch(addToast({ message: "Boost success", type: "success" }));
         dispatch(boost());
       } catch (error) {
@@ -91,10 +88,8 @@ const TaskModal = ({ selected, onClose, show }) => {
     }
     (async () => {
       try {
-        //  todo
         await axios.get(
-          `https://a65b-172-86-113-74.ngrok-free.app/race/boost?userId=${userId}`
-          // "http://127.0.0.1:5000/race/upgrade-fuel?userId=" + userId
+          `${BACKEND_PATH}/race/boost?userId=${userId}`
         );
         dispatch(addToast({ message: "success", type: "success" }));
         dispatch(upgrade());
@@ -123,10 +118,8 @@ const TaskModal = ({ selected, onClose, show }) => {
     }
     (async () => {
       try {
-        //  todo
         await axios.get(
-          `https://a65b-172-86-113-74.ngrok-free.app/race/boost?userId=${userId}`
-          // "http://127.0.0.1:5000/user/upgrade-turbor?userId=" + userId
+          `${BACKEND_PATH}/race/boost?userId=${userId}`
         );
         dispatch(addToast({ message: "success", type: "success" }));
         dispatch(upgradeTturboCharger());

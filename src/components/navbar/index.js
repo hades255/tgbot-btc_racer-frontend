@@ -11,6 +11,7 @@ import { login } from "../../redux/authSlice";
 import NavbarItem from "./NavbarItem";
 import axios from "axios";
 import { init } from "../../redux/fuelSlice";
+import { BACKEND_PATH } from "../../constants/config";
 
 const Navbar = () => {
   const location = useLocation();
@@ -59,10 +60,8 @@ const Navbar = () => {
     if (userId) {
       (async () => {
         try {
-          //  todo
           const response = await axios.get(
-            `https://a65b-172-86-113-74.ngrok-free.app/user?userId=${userId}&name=${name}&username=${username}`
-            // `http://127.0.0.1:5000/user?userId=${userId}&name=${name}&username=${username}`
+            `${BACKEND_PATH}/user?userId=${userId}&name=${name}&username=${username}`
           );
           const point = response.data.data.point;
           const user = response.data.data.user;
