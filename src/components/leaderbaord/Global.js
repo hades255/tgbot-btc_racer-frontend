@@ -12,7 +12,7 @@ const Global = () => {
         //  todo
         const response = await axios.get(
           // `http://127.0.0.1:5000/user/all?userId=${userId}`
-          `https://d6bf-172-86-113-74.ngrok-free.app/user/all?userId=${userId}`
+          `https://a65b-172-86-113-74.ngrok-free.app/user/all?userId=${userId}`
         );
         setUsers(response.data.data);
       } catch (error) {

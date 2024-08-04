@@ -66,7 +66,7 @@ const Race = () => {
         //  todo
         const res = await axios.post(
           // "http://127.0.0.1:5000/race",
-          "https://d6bf-172-86-113-74.ngrok-free.app/race",
+          "https://a65b-172-86-113-74.ngrok-free.app/race",
           {
             guess: bet,
             pointAmount: 10,

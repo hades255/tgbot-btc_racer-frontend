@@ -61,7 +61,7 @@ const Navbar = () => {
         try {
           //  todo
           const response = await axios.get(
-            `https://d6bf-172-86-113-74.ngrok-free.app/user?userId=${userId}&name=${name}&username=${username}`
+            `https://a65b-172-86-113-74.ngrok-free.app/user?userId=${userId}&name=${name}&username=${username}`
             // `http://127.0.0.1:5000/user?userId=${userId}&name=${name}&username=${username}`
           );
           const point = response.data.data.point;

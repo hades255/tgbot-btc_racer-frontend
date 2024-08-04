@@ -67,7 +67,7 @@ const TaskModal = ({ selected, onClose, show }) => {
       try {
         //  todo
         await axios.get(
-          `https://d6bf-172-86-113-74.ngrok-free.app/race/boost?userId=${userId}`
+          `https://a65b-172-86-113-74.ngrok-free.app/race/boost?userId=${userId}`
           // "http://127.0.0.1:5000/race/boost?userId=" + userId
         );
         dispatch(addToast({ message: "Boost success", type: "success" }));
@@ -93,7 +93,7 @@ const TaskModal = ({ selected, onClose, show }) => {
       try {
         //  todo
         await axios.get(
-          `https://d6bf-172-86-113-74.ngrok-free.app/race/boost?userId=${userId}`
+          `https://a65b-172-86-113-74.ngrok-free.app/race/boost?userId=${userId}`
           // "http://127.0.0.1:5000/race/upgrade-fuel?userId=" + userId
         );
         dispatch(addToast({ message: "success", type: "success" }));
@@ -125,7 +125,7 @@ const TaskModal = ({ selected, onClose, show }) => {
       try {
         //  todo
         await axios.get(
-          `https://d6bf-172-86-113-74.ngrok-free.app/race/boost?userId=${userId}`
+          `https://a65b-172-86-113-74.ngrok-free.app/race/boost?userId=${userId}`
           // "http://127.0.0.1:5000/user/upgrade-turbor?userId=" + userId
         );
         dispatch(addToast({ message: "success", type: "success" }));
