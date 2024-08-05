@@ -21,7 +21,7 @@ const CoinGeckoWidget = () => {
       prices.length >= 2
         ? prices.map((price, index) => ({
             x: index * 2,
-            y: 7 + ((price - minPrice) / diff) * 140,
+            y: 8 + ((price - minPrice) / diff) * 140,
           }))
         : [{ x: 0, y: 0 }];
     return { yaxis, data, last: curPrice };

@@ -47,7 +47,7 @@ const AreaChart = ({ data, yaxis, last }) => {
         <text
           key={index}
           x="265"
-          y={183 - item.y}
+          y={175 - item.y}
           fill="white"
           stroke="black"
           fontSize="10"
