@@ -7,7 +7,6 @@ const EmojiIcon = ({ width, height, color }) => {
       height={height}
       viewBox="0 0 128 128"
       xmlns="http://www.w3.org/2000/svg"
-      ariaHidden="true"
       role="img"
       className="iconify iconify--noto"
       preserveAspectRatio="xMidYMid meet"

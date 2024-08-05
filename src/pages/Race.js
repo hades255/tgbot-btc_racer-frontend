@@ -24,9 +24,8 @@ const Race = () => {
   const { fuelcount, cooldown, fuelcapacity } = useSelector(
     (state) => state.fuel
   );
+  const { curPrice } = useSelector((state) => state.eth);
 
-  const [btc, setBtc] = useState(0);
-  const [btc_, setBtc_] = useState(0);
   const [count, setCount] = useState(0);
 
   const [bet, setBet] = useState(null);
@@ -36,33 +35,13 @@ const Race = () => {
 
   const [showResults, setShowResults] = useState(false);
 
-  const getBTC = useCallback(() => {
-    (async () => {
-      try {
-        const response = await axios.get(
-          "https://api.coindesk.com/v1/bpi/currentprice/BTC.json"
-        );
-        const btcPrice = response.data.bpi.USD.rate;
-        setBtc(btcPrice);
-        const btcPrice_ = response.data.bpi.USD.rate_float;
-        setBtc_(btcPrice_);
-      } catch (error) {
-        console.log(error);
-      }
-    })();
-  }, []);
-
   const compareBTC = useCallback(() => {
-    (async () => {
+    (async (price) => {
       try {
-        const response = await axios.get(
-          "https://api.coindesk.com/v1/bpi/currentprice/BTC.json"
-        );
-        const btcPrice = response.data.bpi.USD.rate_float;
-        setBetCompareAmount(btcPrice);
+        setBetCompareAmount(price);
         const result =
-          (bet === "moon" && betAmount <= btcPrice) ||
-          (bet === "doom" && betAmount > btcPrice);
+          (bet === "moon" && betAmount <= price) ||
+          (bet === "doom" && betAmount > price);
         setBetResult(result);
         const res = await axios.post(`${BACKEND_PATH}/race`, {
           guess: bet,
@@ -79,24 +58,20 @@ const Race = () => {
   }, [bet, betAmount, userId, dispatch]);
 
   useEffect(() => {
-    const timer = setInterval(() => {
-      getBTC();
-    }, 1000);
-    return () => clearInterval(timer);
-  }, [getBTC]);
-
-  useEffect(() => {
     let timer;
     if (bet && count > 0) {
       timer = setInterval(() => {
         setCount((prevCount) => prevCount - 1);
       }, 1000);
     }
-    if (bet && count === 0) {
-      compareBTC();
-    }
     return () => clearInterval(timer);
-  }, [bet, count, compareBTC]);
+  }, [bet, count]);
+
+  useEffect(() => {
+    if (bet && betResult === null && count === 0) {
+      compareBTC(curPrice);
+    }
+  }, [bet, count, compareBTC, curPrice, betResult]);
 
   useEffect(() => {
     let timer;
@@ -114,18 +89,18 @@ const Race = () => {
   const handleClickMoon = useCallback(() => {
     if (bet) return;
     setBet("moon");
-    setBetAmount(btc_);
+    setBetAmount(curPrice);
     setCount(5);
     dispatch(decrease());
-  }, [bet, btc_, dispatch]);
+  }, [bet, curPrice, dispatch]);
 
   const handleClickDoom = useCallback(() => {
     if (bet) return;
     setBet("doom");
-    setBetAmount(btc_);
+    setBetAmount(curPrice);
     setCount(5);
     dispatch(decrease());
-  }, [bet, btc_, dispatch]);
+  }, [bet, curPrice, dispatch]);
 
   const handleShowRaces = useCallback(() => setShowResults(true), []);
   const hideRecordsModal = useCallback((value) => setShowResults(value), []);
@@ -167,10 +142,8 @@ const Race = () => {
           </div>
         )}
         <div className="w-full flex-col">
-          <div className="h-52 w-full flex justify-center overflow-hidden relative">
-            <div className="absolute -bottom-8">
-              <EthChart />
-            </div>
+          <div className="w-full flex justify-center">
+            <EthChart />
           </div>
           <div className="flex justify-center items-center">
             🚀
@@ -179,7 +152,7 @@ const Race = () => {
             <span className="text-slate-400 text-xs">{fuelcapacity}</span>
           </div>
           <div className="flex justify-center my-4">
-            <span className="text-white text-md font-bold">${btc}</span>
+            <span className="text-white text-md font-bold">${curPrice}</span>
           </div>
           <div className="relative h-8 w-full">
             {fuelcount !== fuelcapacity && (

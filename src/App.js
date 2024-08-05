@@ -11,6 +11,7 @@ import Surprise from "./pages/Surprise";
 import Navbar from "./components/navbar";
 import FuelCounter from "./helper/FuelCounter";
 import ToastContainer from "./components/common/toast";
+import Coinapi from "./helper/Coinapi";
 
 const App = () => {
   useEffect(() => {
@@ -36,6 +37,7 @@ const App = () => {
     <Provider store={store}>
       <AuthProvider>
         <FuelCounter />
+        <Coinapi />
         <Router>
           <Routes>
             <Route path="/" element={<Race />} />
