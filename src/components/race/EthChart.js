@@ -27,7 +27,7 @@ const CoinGeckoWidget = () => {
     return { yaxis, data, last: curPrice };
   }, [prices, curPrice]);
 
-  return <div>{prices.length >= 2 && <AreaChart {...chartdata} />}</div>;
+  return <div className="h-[200px]">{prices.length >= 2 && <AreaChart {...chartdata} />}</div>;
 };
 
 export default CoinGeckoWidget;

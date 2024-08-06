@@ -13,10 +13,10 @@ import TrendingUp from "../assets/icons/TrendingUP";
 import TrendingDown from "../assets/icons/TrendingDown";
 import EmojiIcon from "../assets/icons/Emoji";
 import { decrease } from "../redux/fuelSlice";
-import FireIcon from "../assets/icons/Fire";
-import RedirectBtn from "../components/common/button/RedirectBtn";
 import MusicBtn from "../components/race/MusicBtn";
 import { BACKEND_PATH } from "../constants/config";
+import { fix2 } from "../helper/func";
+import LoadingIcon from "../assets/icons/loading";
 
 const Race = () => {
   const dispatch = useDispatch();
@@ -35,27 +35,31 @@ const Race = () => {
 
   const [showResults, setShowResults] = useState(false);
 
-  const compareBTC = useCallback(() => {
-    (async (price) => {
-      try {
-        setBetCompareAmount(price);
-        const result =
-          (bet === "moon" && betAmount <= price) ||
-          (bet === "doom" && betAmount > price);
-        setBetResult(result);
-        const res = await axios.post(`${BACKEND_PATH}/race`, {
-          guess: bet,
-          pointAmount: 10,
-          result,
-          userId: userId,
-        });
+  const compareBTC = useCallback(
+    (price) => {
+      (async () => {
+        try {
+          console.log(price);
+          setBetCompareAmount(price);
+          const result =
+            (bet === "moon" && betAmount <= price) ||
+            (bet === "doom" && betAmount > price);
+          setBetResult(result);
+          const res = await axios.post(`${BACKEND_PATH}/race`, {
+            guess: bet,
+            pointAmount: 10,
+            result,
+            userId: userId,
+          });
 
-        dispatch(setScore(res.data.data));
-      } catch (error) {
-        console.log(error);
-      }
-    })();
-  }, [bet, betAmount, userId, dispatch]);
+          dispatch(setScore(res.data.data));
+        } catch (error) {
+          console.log(error);
+        }
+      })();
+    },
+    [bet, betAmount, userId, dispatch]
+  );
 
   useEffect(() => {
     let timer;
@@ -131,9 +135,9 @@ const Race = () => {
         ) : (
           <div className="h-14">
             <div className="flex justify-center">
-              <div className="flex">
-                <span className="text-sm px-1">🔥</span>
-                <div className="text-slate-400 text-sm">Available points</div>
+              <div className="flex items-center">
+                <span className="text-[16px] px-1">💎</span>
+                <div className="text-slate-400 text-sm">Diamonds Collected</div>
               </div>
             </div>
             <div className="flex justify-center text-4xl text-white font-bold">
@@ -174,7 +178,7 @@ const Race = () => {
         </div>
         <div className="my-4">
           <div className="flex justify-center text-sm text-slate-300">
-            Guess the BTC price in the next 5 secs
+            Guess the ETH price in the next 5 secs
           </div>
           <div className="mt-4 flex justify-center">
             <div className="relative">
@@ -192,7 +196,7 @@ const Race = () => {
                   >
                     PUMP IT
                   </span>
-                  <div className="ml-1 mt-2">
+                  <div className="ml-1 mt-1">
                     <TrendingUp width={20} height={20} color={"white"} />
                   </div>
                 </div>
@@ -213,7 +217,7 @@ const Race = () => {
                   >
                     DUMP IT
                   </span>
-                  <div className="ml-1 mt-2">
+                  <div className="ml-1 mt-1">
                     <TrendingDown width={20} height={20} color={"white"} />
                   </div>
                 </div>
@@ -221,24 +225,32 @@ const Race = () => {
             </div>
           </div>
         </div>
-        <div className="flex justify-center mt-9">
+        {/* <div className="flex justify-center mt-9">
           <RedirectBtn url="https://www.okx.com/help/okx-racer-terms-and-conditions">
             <span className="text-slate-300 text-xs">Terms and conditions</span>
           </RedirectBtn>
+        </div> */}
+        <div className="flex justify-center mt-3">
+          <span className="text-slate-300 text-sm">
+            The more 💎 you have the more ANOM
+          </span>
+        </div>
+        <div className="flex justify-center">
+          <span className="text-slate-300 text-sm">
+            reward points you will have.
+          </span>
         </div>
         <div className="flex justify-center mt-3">
-          <span className="text-slate-300 text-xs">
-            Complete Tasks for bonuses
-          </span>
+          <span className="text-slate-300 text-xs">Claim your bonus here</span>
         </div>
       </div>
       {showResults && <Records show={showResults} onClose={hideRecordsModal} />}
       {betResult !== null && (
         <div className="z-20 fixed h-full w-full flex justify-center items-center top-0 left-0 bg-[#101010a4]">
           <div className="flex flex-col">
-            <div className="flex justify-center">
+            <div className="flex justify-center text-shadow-2xl">
               {betResult ? (
-                <FireIcon width={37} height={37} />
+                <span className="text-[37px]">💎</span>
               ) : (
                 <EmojiIcon width={37} height={37} color={"random"} />
               )}
@@ -249,7 +261,7 @@ const Race = () => {
             <div className="text-white text-lg font-bold text-shadow-xl flex justify-center">
               ETH Price {betCompareAmount - betAmount > 0 && "+"}
               {betAmount
-                ? ((betCompareAmount - betAmount) / betAmount) * 100
+                ? fix2(((betCompareAmount - betAmount) / betAmount) * 100, 4)
                 : 0}
               %
             </div>
@@ -259,6 +271,13 @@ const Race = () => {
               <span className="text-slate-400 mx-1">to</span>
               <span className="text-white">${betCompareAmount}</span>
             </div>
+          </div>
+        </div>
+      )}
+      {!curPrice && (
+        <div className="fixed top-0 left-0z-30 w-full h-screen bg-[#000000] opacity-80 flex justify-center items-center">
+          <div className="animate-spin">
+            <LoadingIcon />
           </div>
         </div>
       )}

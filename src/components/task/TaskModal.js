@@ -88,9 +88,7 @@ const TaskModal = ({ selected, onClose, show }) => {
     }
     (async () => {
       try {
-        await axios.get(
-          `${BACKEND_PATH}/race/boost?userId=${userId}`
-        );
+        await axios.get(`${BACKEND_PATH}/race/boost?userId=${userId}`);
         dispatch(addToast({ message: "success", type: "success" }));
         dispatch(upgrade());
         dispatch(setScore(point - fueltankpoint));
@@ -118,9 +116,7 @@ const TaskModal = ({ selected, onClose, show }) => {
     }
     (async () => {
       try {
-        await axios.get(
-          `${BACKEND_PATH}/race/boost?userId=${userId}`
-        );
+        await axios.get(`${BACKEND_PATH}/race/boost?userId=${userId}`);
         dispatch(addToast({ message: "success", type: "success" }));
         dispatch(upgradeTturboCharger());
         dispatch(setScore(point - turborpoint));
@@ -142,16 +138,24 @@ const TaskModal = ({ selected, onClose, show }) => {
     [dispatch]
   );
 
-  const handleClickDailyReward = useCallback(
-    () =>
-      dispatch(
-        addToast({
-          message: "You've completed the task and earned points.",
-          type: "success",
-        })
-      ),
-    [dispatch]
-  );
+  const handleClickDailyReward = useCallback(() => {
+    (async () => {
+      try {
+        const response = await axios.get(
+          `${BACKEND_PATH}/user/bonus?userId=${userId}`
+        );
+        dispatch(setScore(response.data.data));
+        dispatch(
+          addToast({
+            message: "You've completed the task and earned points.",
+            type: "success",
+          })
+        );
+      } catch (error) {
+        console.log(error);
+      }
+    })();
+  }, [dispatch, userId]);
 
   const tasks = useMemo(
     () => ({
