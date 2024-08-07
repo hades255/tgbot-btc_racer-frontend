@@ -112,15 +112,17 @@ const Race = () => {
   return (
     <div className="relative">
       <div className="flex flex-row justify-between">
-        <div className="absolute p-6">
-          <MusicBtn />
+        <div className="absolute">
+          <div className="ml-6 mt-6">
+            <MusicBtn />
+          </div>
         </div>
         <div
-          className="absolute top-4 right-0 p-1 px-2 rounded-s-[40px] hover:cursor-pointer"
+          className="absolute top-4 right-0 rounded-s-2xl hover:cursor-pointer bg-button-1"
           onClick={handleShowRaces}
         >
-          <div className="flex items-center rounded-s-2xl bg-button-1 pl-4 pr-6 py-1">
-            <span className="text-white text-xs mr-1">My records</span>
+          <div className="h-7 w-28 flex items-center">
+            <span className="text-white text-xs ml-3 mr-3">My records</span>
             <RightIcon width={12} height={12} color={"white"} />
           </div>
         </div>
@@ -140,23 +142,25 @@ const Race = () => {
                 <div className="text-slate-400 text-sm">Diamonds Collected</div>
               </div>
             </div>
-            <div className="flex justify-center text-4xl text-white font-bold">
-              {point}
+            <div className="flex justify-center text-[48px] spaced-text-4 text-white font-bold">
+              {point.toLocaleString()}
             </div>
           </div>
         )}
-        <div className="w-full flex-col">
-          <div className="w-full flex justify-center">
+        <div className="mt-8 w-full flex-col">
+          <div className="w-full flex justify-center relative">
             <EthChart />
+            <div className="absolute bottom-0 flex justify-center items-center">
+              🚀
+              <FuelSlider progress={fuelcount / fuelcapacity} />
+              <span className="text-white text-xs">{fuelcount} /</span>
+              <span className="text-slate-400 text-xs">{fuelcapacity}</span>
+            </div>
           </div>
-          <div className="flex justify-center items-center">
-            🚀
-            <FuelSlider progress={fuelcount / fuelcapacity} />
-            <span className="text-white text-xs">{fuelcount} /</span>
-            <span className="text-slate-400 text-xs">{fuelcapacity}</span>
-          </div>
-          <div className="flex justify-center my-4">
-            <span className="text-white text-md font-bold">${curPrice}</span>
+          <div className="flex justify-center mt-1 mb-4">
+            <span className="text-white text-[16px] font-[700] spaced-text-2">
+              ${curPrice.toLocaleString()}
+            </span>
           </div>
           <div className="relative h-8 w-full">
             {fuelcount !== fuelcapacity && (
@@ -177,7 +181,7 @@ const Race = () => {
           </div>
         </div>
         <div className="my-4">
-          <div className="flex justify-center text-sm text-slate-300">
+          <div className="flex justify-center text-xs text-slate-300">
             Guess the ETH price in the next 5 secs
           </div>
           <div className="mt-4 flex justify-center">
@@ -231,17 +235,19 @@ const Race = () => {
           </RedirectBtn>
         </div> */}
         <div className="flex justify-center mt-3">
-          <span className="text-slate-300 text-sm">
+          <span className="text-slate-300 text-xs">
             The more 💎 you have the more ANOM
           </span>
         </div>
         <div className="flex justify-center">
-          <span className="text-slate-300 text-sm">
+          <span className="text-slate-300 text-xs">
             reward points you will have.
           </span>
         </div>
         <div className="flex justify-center mt-3">
-          <span className="text-slate-300 text-xs">Claim your bonus here</span>
+          <span className="text-slate-300 text-[10px]">
+            Claim your bonus here
+          </span>
         </div>
       </div>
       {showResults && <Records show={showResults} onClose={hideRecordsModal} />}

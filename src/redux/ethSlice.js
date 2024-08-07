@@ -1,23 +1,32 @@
 import { createSlice } from "@reduxjs/toolkit";
-
-const selectLastItems = (arr, count) => {
-  // If the array length is less than the count, return the entire array
-  if (arr.length <= count) {
-    return arr;
-  }
-  return arr.slice(-count);
-};
+import { fix2, getAverage, selectLastItems } from "../helper/func";
 
 const ehtSlice = createSlice({
   name: "eth",
-  initialState: { prices: [], curPrice: 0 },
+  initialState: { prices: [], temp: [], curPrice: 0 },
   reducers: {
     addEth: (state, payload) => {
-      state.prices = selectLastItems([...state.prices, payload.payload], 120);
-      state.curPrice = payload.payload;
+      state.temp = [...state.prices, payload.payload];
+    },
+    countOnEth: (state) => {
+      const avgtemp = getAverage(state.temp);
+      state.temp = [];
+      if (avgtemp) {
+        state.curPrice = fix2(avgtemp); //payload.payload;
+        if (state.prices.length === 0) state.prices = [avgtemp];
+        else {
+          state.prices = selectLastItems([...state.prices, avgtemp], 54);
+        }
+      } else {
+        if (state.prices.length)
+          state.prices = selectLastItems(
+            [...state.prices, state.prices[state.prices.length - 1]],
+            54
+          );
+      }
     },
   },
 });
 
-export const { addEth } = ehtSlice.actions;
+export const { addEth, countOnEth } = ehtSlice.actions;
 export default ehtSlice.reducer;

@@ -45,7 +45,7 @@ const Toast = ({ id, message, type, duration = 3000 }) => {
       } ${typeStyles[type]}`}
     >
       <div className="flex">
-        <div className="mr-1 mt-[2px]">{typeIcons[type]}</div>
+        <div className="mr-1 mt-[1px]">{typeIcons[type]}</div>
         <span className="flex items-center text-xs mr-1">{message}</span>
         {/* <button onClick={() => setIsVisible(false)}>&times;</button> */}
       </div>

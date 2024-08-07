@@ -8,7 +8,7 @@ module.exports = {
       backgroundImage: () => ({
         "race-gradient": `linear-gradient(to right, #a8a29e, #030303, #030303, #030303, #030303, #a8a29e)`,
         "fuel-gradient": `linear-gradient(to bottom, transparent, #79DEFF30)`,
-        "fuel-sub-gradient": `linear-gradient(to bottom, #0B1423, #0B1423)`,
+        "fuel-sub-gradient": `linear-gradient(to bottom, #0F1F39, #0F1F39)`,
         emphasize:
           "linear-gradient(to top, #04C3FF 0%, #79DEFE 80%, #79DEFF 100%)",
         "emphasize-sm":
@@ -32,6 +32,7 @@ module.exports = {
       },
       fontFamily: {
         digital: ["Digital7"],
+        dmsans: ["dm-sans"],
       },
       textColor: {},
       keyframes: {
@@ -78,6 +79,18 @@ module.exports = {
         },
         ".clip-doom": {
           "clip-path": "polygon(38px 0,167px 0,167px 56px,0 56px)",
+        },
+        ".spaced-text-1": {
+          "letter-spacing": "1px",
+        },
+        ".spaced-text-2": {
+          "letter-spacing": "2px",
+        },
+        ".spaced-text-3": {
+          "letter-spacing": "3px",
+        },
+        ".spaced-text-4": {
+          "letter-spacing": "4px",
         },
       };
       addUtilities(newUtilities, ["responsive", "hover"]);

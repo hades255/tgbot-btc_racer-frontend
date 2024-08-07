@@ -4,19 +4,20 @@ import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import BackgroundIcon from "./assets/icons/Background";
-import StarsIcon from "./assets/icons/Stars";
+import PlanetIcon from "./assets/icons/background/Planet";
+import Background from "./assets/icons/background/index";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <div className="absolute top-1 -z-10">
+    <div className="fixed top-0 -z-10">
+      <PlanetIcon />
+    </div>
+    <div className="fixed top-64 -left-10 -z-10">
       <BackgroundIcon />
     </div>
-    <div className="absolute top-0 -z-10">
-      <StarsIcon width={360} height={400} color={"white"} />
-    </div>
-    <div className="absolute top-60 -z-10">
-      <StarsIcon width={360} height={400} color={"white"} />
+    <div className="fixed top-0 -z-10">
+      <Background />
     </div>
     <App />
   </React.StrictMode>

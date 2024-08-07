@@ -13,7 +13,7 @@ const Global = () => {
         const response = await axios.get(
           `${BACKEND_PATH}/user/all?userId=${userId}`
         );
-        setUsers(response.data.data);
+        setUsers(response.data.data || []);
       } catch (error) {
         console.log(error);
       }

@@ -6,7 +6,7 @@ const ToastContainer = () => {
   const { toasts } = useSelector((state) => state.toast);
 
   return (
-    <div className="fixed top-8 left-9 z-50">
+    <div className="fixed top-8 w-full flex justify-center z-50">
       <div className="flex flex-col">
         {toasts.map((toast) => (
           <Toast

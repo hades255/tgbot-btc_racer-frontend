@@ -2,10 +2,10 @@ import React from "react";
 
 const FuelSlider = ({ progress }) => {
   return (
-    <div className="mx-1 w-40 h-2 rounded bg-white relative">
+    <div className="mx-1 w-[108px] h-[7px] rounded bg-white relative">
       <div
-        className={`h-2 rounded bg-gradient-to-r from-[#36F2DA] to-[#705BFF] absolute top-0 left-0`}
-        style={{ width: `${Math.round(160 * progress)}px` }}
+        className={`h-[7px] rounded bg-gradient-to-r from-[#36F2DA] to-[#705BFF] absolute top-0 left-0`}
+        style={{ width: `${Math.round(108 * progress)}px` }}
       />
     </div>
   );

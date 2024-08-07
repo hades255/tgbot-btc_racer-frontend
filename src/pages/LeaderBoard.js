@@ -9,7 +9,7 @@ const Leaderboard = () => {
   const handleActiveTab1 = useCallback(() => setActiveTab(1), []);
 
   return (
-    <div className="w-full flex flex-col mb-24 relative">
+    <div className="w-full flex flex-col">
       <div className="mx-4 mt-6">
         <span className="text-3xl font-bold text-white">Race to the</span>
         <span className="text-3xl font-bold bg-clip-text text-transparent bg-emphasize ml-2">
