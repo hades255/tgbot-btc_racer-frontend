@@ -20,7 +20,7 @@ const CoinGeckoWidget = () => {
     const data =
       prices.length >= 2
         ? prices.map((price, index) => ({
-            x: index * 5,
+            x: 5 + index * 5,
             y: 8 + ((price - minPrice) / diff) * 140,
           }))
         : [{ x: 0, y: 0 }];

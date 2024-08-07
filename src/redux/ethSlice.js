@@ -15,13 +15,13 @@ const ehtSlice = createSlice({
         state.curPrice = fix2(avgtemp); //payload.payload;
         if (state.prices.length === 0) state.prices = [avgtemp];
         else {
-          state.prices = selectLastItems([...state.prices, avgtemp], 54);
+          state.prices = selectLastItems([...state.prices, avgtemp], 53);
         }
       } else {
         if (state.prices.length)
           state.prices = selectLastItems(
             [...state.prices, state.prices[state.prices.length - 1]],
-            54
+            53
           );
       }
     },
