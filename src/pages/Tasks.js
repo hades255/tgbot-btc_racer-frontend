@@ -107,7 +107,7 @@ const Tasks = () => {
           <div className="text-slate-500 text-xs">
             Enjoy 3 free fuel tank refills every day!
           </div>
-          <div className="text-slate-400 absolute bottom-1 flex text-sm">
+          <div className="text-slate-400 absolute bottom-1 flex text-xs">
             🚀 Free
             <div className="px-2 pt-3">
               <DotIcon width={4} height={4} color={"#a8a29e"} />
@@ -130,7 +130,7 @@ const Tasks = () => {
           <div className="text-slate-500 text-xs">
             Increase your maximun fuel tank by 2!
           </div>
-          <div className="text-slate-400 absolute bottom-1 flex text-sm">
+          <div className="text-slate-400 absolute bottom-1 flex text-xs">
             🚀 -{fueltankpoint}pts
             <div className="px-2 pt-3">
               <DotIcon width={4} height={4} color={"#a8a29e"} />
@@ -153,7 +153,7 @@ const Tasks = () => {
           <div className="text-slate-500 text-xs">
             Each level up increases the base score earned by 10...
           </div>
-          <div className="text-slate-400 absolute bottom-1 flex text-sm">
+          <div className="text-slate-400 absolute bottom-1 flex text-xs">
             🚀 -{turborpoint}pts
             <div className="px-2 pt-3">
               <DotIcon width={4} height={4} color={"#a8a29e"} />
