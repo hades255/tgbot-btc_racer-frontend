@@ -28,7 +28,7 @@ const CopyBtn = () => {
       onClick={copyToClipboard}
       className="bg-white text-black text-lg font-medium h-[50px] min-w-[50px] w-[50px] rounded-[25px] flex justify-center items-center"
     >
-      <CopyIcon width={18} height={18} color={"#000"} />
+      <CopyIcon width={24} height={24} color={"#567"} />
     </button>
   );
 };

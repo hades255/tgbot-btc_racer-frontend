@@ -6,6 +6,7 @@ import { BACKEND_PATH } from "../../constants/config.js";
 const Global = () => {
   const { userId, name, point } = useAuth();
   const [users, setUsers] = useState([]);
+  const [rank, setRank] = useState(null);
 
   useEffect(() => {
     (async () => {
@@ -20,26 +21,41 @@ const Global = () => {
     })();
   }, [userId]);
 
+  useEffect(() => {
+    if (users) setRank(users.findIndex((item) => item.chatId === userId));
+  }, [users, userId]);
+
   return (
     <div className="flex flex-col">
-      <div className="flex justify-between">
-        <span className="text-slate-500 text-xs">1 racers</span>
+      <div className="flex justify-between mx-3">
+        <span className="text-slate-500 text-xs">
+          {(users.length || 0).toLocaleString()} pilots
+        </span>
         <span className="text-slate-500 text-xs">Total pts earned</span>
       </div>
-      <div className="flex flex-col">
-        <div className="my-2 flex justify-between">
-          <div className="flex">
-            <div className="w-14 text-sm backdrop-blur-lg text-white">100+</div>
-            <div className="text-sm backdrop-blur-lg text-white">{name}</div>
+      <div className="flex flex-col pt-2">
+        {rank !== null && rank > 10 && (
+          <div className="py-3 px-3 flex justify-between bg-[#263f68] rounded-md">
+            <div className="flex">
+              <div className="w-14 text-sm backdrop-blur-lg text-white">
+                10+
+              </div>
+              <div className="text-sm backdrop-blur-lg text-white">{name}</div>
+            </div>
+            <div className="flex">
+              <span className="text-sm backdrop-blur-lg text-slate-400">
+                🚀 {point.toLocaleString()} pts
+              </span>
+            </div>
           </div>
-          <div className="flex">
-            <span className="text-sm backdrop-blur-lg text-slate-400">
-              🚀 {point} pts
-            </span>
-          </div>
-        </div>
+        )}
         {users.map((item, index) => (
-          <div key={index} className="my-2 flex justify-between">
+          <div
+            key={index}
+            className={`py-3 px-3 flex justify-between ${
+              item.chatId === userId ? "bg-[#263f68] rounded-md" : ""
+            }`}
+          >
             <div className="flex">
               <div className="w-14 text-sm backdrop-blur-lg text-white">
                 {index === 0
@@ -56,13 +72,12 @@ const Global = () => {
             </div>
             <div className="flex">
               <span className="text-sm backdrop-blur-lg text-slate-400">
-                🚀 {item.point} pts
+                🚀 {item.point.toLocaleString()} pts
               </span>
             </div>
           </div>
         ))}
       </div>
-      <div className="text-slate-500 text-sm my-4">1-100 players</div>
     </div>
   );
 };

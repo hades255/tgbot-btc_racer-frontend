@@ -29,10 +29,10 @@ const Records = ({ show, onClose }) => {
     <Modal
       show={show}
       onClose={onClose}
-      title={"Racing records"}
+      title={"Your Record"}
       className={"items-end"}
     >
-      <div className="min-h-[450px] flex flex-col pt-4">
+      <div className="min-h-[400px] flex flex-col pt-4">
         {records?.map(
           (item, index) =>
             index < 5 && (
@@ -43,9 +43,8 @@ const Records = ({ show, onClose }) => {
                 <div className="flex">
                   <div className="w-[120px] flex flex-col">
                     <span className="text-xs text-zinc-500">Your Guess</span>
-                    <span className="font-bold text-white flex">
-                      {item.guess.substr(0, 1).toUpperCase() +
-                        item.guess.substr(1)}
+                    <span className="text-white flex">
+                      {item.guess === "moon" ? "Pump" : "Dump"}
                       <span className="ml-1 mt-1">
                         {item.guess === "moon" && (
                           <Up width={16} height={16} color={"green"} />
@@ -58,7 +57,7 @@ const Records = ({ show, onClose }) => {
                   </div>
                   <div className="w-[120px] flex flex-col">
                     <span className="text-xs text-zinc-500">Result</span>
-                    <span className="font-bold text-white">
+                    <span className="text-white">
                       {item.result ? "Win" : "Miss"}
                     </span>
                   </div>
@@ -72,7 +71,7 @@ const Records = ({ show, onClose }) => {
                   </div>
                 </div>
                 <div className="text-xs text-zinc-500 backdrop-blur">
-                  {moment(item.createdAt).format("MMM DD, YYYY, HH:mm:ss")}
+                  {moment(item.createdAt).format("MMM DD, YYYY, hh:mm:ss A")}
                 </div>
               </div>
             )

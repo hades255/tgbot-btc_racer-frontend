@@ -3,25 +3,31 @@ import { countOn } from "../redux/fuelSlice";
 import { useDispatch } from "react-redux";
 import { countOnEth } from "../redux/ethSlice";
 
-const FuelCounter = () => {
+const Counter = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    const timerFunc = () => {
+    const fueltimerFunc = () => {
       dispatch(countOn());
+    };
+    const ethtimerFunc = () => {
       dispatch(countOnEth());
     };
 
-    const timer = setInterval(() => {
-      timerFunc();
+    const fueltimer = setInterval(() => {
+      fueltimerFunc();
     }, 1000);
+    const ethtimer = setInterval(() => {
+      ethtimerFunc();
+    }, 100);
 
     return () => {
-      clearInterval(timer);
+      clearInterval(fueltimer);
+      clearInterval(ethtimer);
     };
   }, [dispatch]);
 
   return <></>;
 };
 
-export default FuelCounter;
+export default Counter;

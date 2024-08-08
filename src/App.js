@@ -9,7 +9,7 @@ import Tasks from "./pages/Tasks";
 import Invite from "./pages/Invite";
 import Surprise from "./pages/Surprise";
 import Navbar from "./components/navbar";
-import FuelCounter from "./helper/FuelCounter";
+import Counter from "./helper/Counter";
 import ToastContainer from "./components/common/toast";
 import Coinapi from "./helper/Coinapi";
 
@@ -36,7 +36,7 @@ const App = () => {
   return (
     <Provider store={store}>
       <AuthProvider>
-        <FuelCounter />
+        <Counter />
         <Coinapi />
         <Router>
           <Routes>

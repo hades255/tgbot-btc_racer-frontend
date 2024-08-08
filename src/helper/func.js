@@ -2,7 +2,6 @@ export const fix2 = (param, pow = 2) =>
   Math.round(param * Math.pow(10, pow)) / Math.pow(10, pow);
 
 export const selectLastItems = (arr, count) => {
-  // If the array length is less than the count, return the entire array
   if (arr.length <= count) {
     return arr;
   }

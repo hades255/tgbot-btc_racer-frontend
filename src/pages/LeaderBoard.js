@@ -10,16 +10,16 @@ const Leaderboard = () => {
 
   return (
     <div className="w-full flex flex-col">
-      <div className="mx-4 mt-6">
-        <span className="text-3xl font-bold text-white">Race to the</span>
-        <span className="text-3xl font-bold bg-clip-text text-transparent bg-emphasize ml-2">
+      <div className="mx-6 mt-6">
+        <span className="text-3xl spaced-text-2 font-bold text-white">Fly to the</span>
+        <span className="text-3xl spaced-text-2 font-bold bg-clip-text text-transparent bg-emphasize ml-2">
           top
         </span>
       </div>
-      <div className="text-sm text-slate-200 mx-4 mt-3">
-        See where you stand and challenge the top racers!
+      <div className="text-sm text-slate-200 mx-6 mt-3">
+        See where you stand and challenge the top pilots!
       </div>
-      <div className="mt-4 mx-4 border-b-[1px] border-gray-700 flex">
+      <div className="mt-4 mx-6 border-b-[1px] border-gray-700 flex">
         <span
           className={`pb-4 mr-2 hover:cursor-pointer text-sm ${
             activeTab === 0
@@ -41,7 +41,7 @@ const Leaderboard = () => {
           Global
         </span>
       </div>
-      <div className="mx-4 my-4">
+      <div className="mx-3 my-4">
         {activeTab === 0 && <Friends />}
         {activeTab === 1 && <Global />}
       </div>

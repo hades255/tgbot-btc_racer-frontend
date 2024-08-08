@@ -37,10 +37,10 @@ const AreaChart = ({ data, yaxis, last }) => {
 
       <path
         // d={fillData}
-        d={`${lineGenerator(data)} L ${data.length * 5} 183 L 0 183`}
+        d={`${lineGenerator(data)} L ${data.length * 1 + 5} 183 L 0 183`}
         fill="url(#bg-linear-gradient-bottom)"
         fillOpacity={0.5}
-        style={{ transition: "d 1s" }}
+        style={{ transition: "d 0s" }}
       />
       <path
         //  d={pathData}
@@ -48,7 +48,7 @@ const AreaChart = ({ data, yaxis, last }) => {
         fill="none"
         stroke="#10B3E8"
         strokeWidth={2}
-        style={{ transition: "d 1s" }}
+        style={{ transition: "d 0s" }}
       />
 
       {yaxis.map((item, index) => (
@@ -93,7 +93,7 @@ const AreaChart = ({ data, yaxis, last }) => {
         }) rotate(${
           15 - (1 * fix2((Math.atan(diff) / Math.PI) * 180)) / 2
         } 10 15)`}
-        style={{ transition: `all ${data.length < 53 ? "0.1" : "1"}s` }}
+        style={{ transition: `all 0.1s` }}
       >
         <path
           d="M8.69372 30.0774L7.4519 26.923C8.67183 26.4427 9.54402 25.217 9.90209 23.4716C10.2934 21.5692 10.0374 19.319 9.17772 17.1353C8.31807 14.9517 6.97139 13.1308 5.38823 12.0057C3.93639 10.9728 2.46416 10.6673 1.24188 11.1485L5.80365e-05 7.99406C1.0625 7.5758 2.21461 7.48875 3.42355 7.73225C4.55095 7.9617 5.67493 8.47212 6.76744 9.24741C8.92348 10.7795 10.7336 13.2053 11.8644 16.0776C12.9952 18.95 13.3244 21.9587 12.7915 24.5494C12.5207 25.8614 12.0454 26.9987 11.3769 27.9352C10.6594 28.9398 9.75617 29.6591 8.69372 30.0774Z"

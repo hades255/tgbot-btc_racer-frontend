@@ -31,11 +31,11 @@ const Tasks = () => {
     <div className="w-full flex flex-col mt-4 mb-24">
       <div className="mt-18 flex justify-center">
         <div className="mr-1 pt-1"></div>
-        <span className="text-sm">🔥</span>
-        <span className="text-slate-400 text-sm">Available points</span>
+        <span className="text-sm">💎</span>
+        <span className="text-slate-400 text-sm">Diamonds Collected</span>
       </div>
-      <div className="flex justify-center">
-        <span className="text-white text-3xl font-bold">{point}</span>
+      <div className="mt-1 flex justify-center">
+        <span className="text-white text-3xl spaced-text-2 font-bold">{point.toLocaleString()}</span>
       </div>
       <div className="mx-4 mt-6 mb-2 text-white text-sm">Upgrade (4)</div>
       <div className="mx-4 my-2 flex overflow-x-auto scroll">
@@ -65,7 +65,7 @@ const Tasks = () => {
               <div className="absolute top-0 left-0 bg-[#0a0a0a79] rounded-lg h-[160px] w-[180px] flex justify-center items-center">
                 <div className="flex flex-col">
                   <div className="flex justify-center">
-                    <LockIcon width={32} height={32} color={"white"} />
+                    <LockIcon width={28} height={28} color={"white"} />
                   </div>
                   <div className="flex items-center">
                     <span className="text-white text-sm mr-1">Unlock</span>
@@ -86,10 +86,10 @@ const Tasks = () => {
             <SaturnIcon width={36} height={36} color={"random"} />
           </div>
           <div className="mt-2">
-            <span className="text-white text-sm">Reload Fuel Tank</span>
+            <span className="text-white text-sm">Reload Jet Tank</span>
           </div>
           <div className="text-slate-500 text-xs">
-            Enjoy 3 free fuel tank reward everyday!
+            Enjoy 3 free fuel tank refills every day!
           </div>
           <div className="text-slate-400 absolute bottom-1 flex text-sm">
             🚀 Free
@@ -148,7 +148,7 @@ const Tasks = () => {
       </div>
       <div className="mx-4 mt-3 text-white text-sm">Tasks (4)</div>
       <div
-        className="mx-4 my-4 px-3 py-2 rounded-xl flex justify-between border border-[#173560]"
+        className="mx-4 my-2 px-3 py-2 rounded-xl flex justify-between border border-[#173560]"
         onClick={() => {
           handleClickTaskItem("complete-identity");
         }}
@@ -166,7 +166,7 @@ const Tasks = () => {
         </div>
       </div>
       <div
-        className="mx-4 my-4 px-3 py-2 rounded-xl flex justify-between border border-[#173560]"
+        className="mx-4 my-2 px-3 py-2 rounded-xl flex justify-between border border-[#173560]"
         onClick={() => {
           handleClickTaskItem("follow-twitter");
         }}
@@ -184,7 +184,7 @@ const Tasks = () => {
         </div>
       </div>
       <div
-        className="mx-4 my-4 px-3 py-2 rounded-xl flex justify-between border border-[#173560]"
+        className="mx-4 my-2 px-3 py-2 rounded-xl flex justify-between border border-[#173560]"
         onClick={() => {
           handleClickTaskItem("daily-reward");
         }}
@@ -200,7 +200,7 @@ const Tasks = () => {
         </div>
       </div>
       <div
-        className="mx-4 my-4 px-3 py-2 rounded-xl flex justify-between border border-[#173560]"
+        className="mx-4 my-2 px-3 py-2 rounded-xl flex justify-between border border-[#173560]"
         onClick={() => {
           handleClickTaskItem("announcement-channel");
         }}

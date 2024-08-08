@@ -9,11 +9,11 @@ const Friends = () => {
   return (
     <div className="flex flex-col">
       <div className="min-h-44 flex flex-col">
-        <div className="flex justify-between">
-          <span className="text-slate-500 text-xs">1 racers</span>
+        <div className="mx-3 flex justify-between">
+          <span className="text-slate-500 text-xs">{Number(1).toLocaleString()} racers</span>
           <span className="text-slate-500 text-xs">Total pts earned</span>
         </div>
-        <div className="flex flex-col">
+        <div className="pt-2 mx-3 flex flex-col">
           <div className="my-2 flex justify-between">
             <div className="flex">
               <div className="w-14">🥇</div>
@@ -21,17 +21,17 @@ const Friends = () => {
             </div>
             <div className="flex">
               <span className="text-sm backdrop-blur-lg text-slate-400">
-                🚀 {point} pts
+                🚀 {point.toLocaleString()} pts
               </span>
             </div>
           </div>
         </div>
-        <div className="text-slate-500 text-sm my-4">
+        <div className="mx-3 text-slate-500 text-sm my-4">
           You have yet to invite your friends. Invite them now to see their
           rankings here and race together!
         </div>
       </div>
-      <div className="mt-28 flex justify-start px-2">
+      <div className="mt-28 flex justify-start px-3">
         <InviteBtn />
         <div className="ml-4 ">
           <CopyBtn />
