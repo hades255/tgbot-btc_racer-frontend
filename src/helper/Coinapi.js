@@ -1,11 +1,13 @@
 import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { COINAPI_KEY, COINAPI_WS_URL } from "../constants/config";
+import { BINANCE_WS_URL } from "../constants/config";
 import { addEth } from "../redux/ethSlice";
+import { getAverage } from "./func";
 
 const Coinapi = () => {
   const dispatch = useDispatch();
 
+  /*
   useEffect(() => {
     const socket = new WebSocket(COINAPI_WS_URL);
 
@@ -46,6 +48,41 @@ const Coinapi = () => {
       socket.close();
     };
   }, [dispatch]);
+  */
+  // /*
+  useEffect(() => {
+    let eths = [];
+    const getCount = () => eths;
+    const setCount = (param) => (eths = [...eths, param]);
+    const timer = setInterval(() => {
+      dispatch(addEth(getAverage(getCount())));
+    }, 100);
+    const ws = new WebSocket(BINANCE_WS_URL);
+    ws.addEventListener("open", () => {
+      console.log("Connected to Binance WebSocket API");
+    });
+    ws.addEventListener("message", ({ data }) => {
+      try {
+        const message = JSON.parse(data);
+        if (message.p) {
+          setCount(Number(message.p));
+        }
+      } catch (error) {
+        console.error("Error parsing message:", error);
+      }
+    });
+    ws.addEventListener("error", (error) => {
+      console.error("WebSocket error:", error);
+    });
+    ws.addEventListener("close", () => {
+      console.log("WebSocket connection closed, reconnecting...");
+    });
+    return () => {
+      clearInterval(timer);
+      ws.close();
+    };
+  }, [dispatch]);
+  // */
 
   return <></>;
 };

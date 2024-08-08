@@ -17,6 +17,7 @@ import MusicBtn from "../components/race/MusicBtn";
 import { BACKEND_PATH } from "../constants/config";
 import { fix2 } from "../helper/func";
 import LoadingIcon from "../assets/icons/loading";
+import { betGame } from "../redux/ethSlice";
 
 const Race = () => {
   const dispatch = useDispatch();
@@ -44,6 +45,7 @@ const Race = () => {
             (bet === "moon" && betAmount <= price) ||
             (bet === "doom" && betAmount > price);
           setBetResult(result);
+          dispatch(betGame(0));
           const res = await axios.post(`${BACKEND_PATH}/race`, {
             guess: bet,
             pointAmount: 10 + 10 * turboCharger,
@@ -89,21 +91,27 @@ const Race = () => {
     };
   }, [betResult]);
 
-  const handleClickMoon = useCallback(() => {
-    if (bet) return;
-    setBet("moon");
-    setBetAmount(curPrice);
-    setCount(5);
-    dispatch(decrease());
-  }, [bet, curPrice, dispatch]);
+  const bettingAction = useCallback(
+    (param) => {
+      if (bet) return;
+      setBet(param);
+      setBetAmount(curPrice);
+      setCount(5);
+      dispatch(decrease());
+      dispatch(betGame(curPrice));
+    },
+    [bet, curPrice, dispatch]
+  );
 
-  const handleClickDoom = useCallback(() => {
-    if (bet) return;
-    setBet("doom");
-    setBetAmount(curPrice);
-    setCount(5);
-    dispatch(decrease());
-  }, [bet, curPrice, dispatch]);
+  const handleClickMoon = useCallback(
+    () => bettingAction("moon"),
+    [bettingAction]
+  );
+
+  const handleClickDoom = useCallback(
+    () => bettingAction("doom"),
+    [bettingAction]
+  );
 
   const handleShowRaces = useCallback(() => setShowResults(true), []);
   const hideRecordsModal = useCallback((value) => setShowResults(value), []);
@@ -249,7 +257,6 @@ const Race = () => {
           </span>
         </div>
       </div>
-      {showResults && <Records show={showResults} onClose={hideRecordsModal} />}
       {betResult !== null && (
         <div className="z-20 fixed h-full w-full flex justify-center items-center top-0 left-0 bg-[#101010a4]">
           <div className="flex flex-col">
@@ -264,10 +271,19 @@ const Race = () => {
               <span>{bet === "moon" ? "MOON" : "REKT"}</span>
             </div>
             <div className="text-white text-lg font-bold text-shadow-xl flex justify-center">
-              ETH Price {betCompareAmount - betAmount > 0 && "+"}
-              {betAmount
-                ? fix2(((betCompareAmount - betAmount) / betAmount) * 100, 4)
-                : 0}
+              ETH Price
+              <span
+                className={`${
+                  betCompareAmount - betAmount > 0
+                    ? "text-white"
+                    : "text-red-700"
+                } mx-1`}
+              >
+                {betCompareAmount - betAmount > 0 && "+"}
+                {betAmount
+                  ? fix2(((betCompareAmount - betAmount) / betAmount) * 100, 4)
+                  : 0}
+              </span>
               %
             </div>
             <div className="text-md font-bold text-shadow-xl flex justify-center">
@@ -279,6 +295,7 @@ const Race = () => {
           </div>
         </div>
       )}
+      {showResults && <Records show={showResults} onClose={hideRecordsModal} />}
       {!curPrice && (
         <div className="fixed top-0 left-0z-30 w-full h-screen bg-[#000000] opacity-80 flex justify-center items-center">
           <div className="animate-spin">

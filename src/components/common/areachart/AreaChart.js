@@ -2,7 +2,7 @@ import React, { useMemo } from "react";
 import * as d3 from "d3-shape";
 import { fix2 } from "../../../helper/func";
 
-const AreaChart = ({ data, yaxis, last }) => {
+const AreaChart = ({ data, yaxis, last, betline }) => {
   const lineGenerator = d3
     .line()
     .x((d) => d.x)
@@ -19,22 +19,6 @@ const AreaChart = ({ data, yaxis, last }) => {
       viewBox="0 0 330 200"
       xmlns="http://www.w3.org/2000/svg"
     >
-      <defs>
-        <linearGradient
-          id="bg-linear-gradient-bottom"
-          x1="0%"
-          y1="0%"
-          x2="0%"
-          y2="100%"
-        >
-          <stop offset="0%" style={{ stopColor: "#00516B", stopOpacity: 1 }} />
-          <stop
-            offset="100%"
-            style={{ stopColor: "#00516B", stopOpacity: 0 }}
-          />
-        </linearGradient>
-      </defs>
-
       <path
         // d={fillData}
         d={`${lineGenerator(data)} L ${data.length * 1 + 5} 183 L 0 183`}
@@ -50,6 +34,15 @@ const AreaChart = ({ data, yaxis, last }) => {
         strokeWidth={2}
         style={{ transition: "d 0s" }}
       />
+
+      {betline && (
+        <path
+          fill="none"
+          stroke="#52c602"
+          strokeWidth={2}
+          d={`M 0 ${183 - betline} L 265 ${183 - betline}`}
+        />
+      )}
 
       {yaxis.map((item, index) => (
         <text
@@ -101,33 +94,46 @@ const AreaChart = ({ data, yaxis, last }) => {
           d="M8.69361 30.0774L7.45179 26.923C9.87285 25.9699 12.1276 24.8081 14.1464 23.4676C16.072 22.1938 17.6983 20.8151 18.9831 19.3754C20.1923 18.0197 21.0536 16.6355 21.4766 15.3721C21.8634 14.21 21.8823 13.1682 21.5297 12.2726C21.1781 11.3794 20.4532 10.6277 19.3779 10.0411C18.2073 9.40519 16.6334 8.97956 14.8246 8.81206C12.9032 8.63456 10.7743 8.73692 8.4962 9.11523C6.10305 9.51167 3.66375 10.1978 1.24269 11.1509L-5.60854e-05 7.9941C5.244 5.92964 10.6122 5.02172 15.1104 5.44175C17.4031 5.65224 19.3699 6.2001 20.9591 7.06489C21.8192 7.53259 22.5644 8.09441 23.1712 8.73242C23.8214 9.41851 24.3195 10.1943 24.6536 11.0428C24.9876 11.8914 25.152 12.7986 25.144 13.7438C25.135 14.6242 24.9728 15.5432 24.6624 16.4718C24.0891 18.1879 23.0237 19.9294 21.4897 21.6464C18.4841 25.0178 13.9377 28.013 8.69361 30.0774Z"
           fill="url(#paint1_linear_1_2388)"
         />
-        <defs>
-          <linearGradient
-            id="paint0_linear_1_2388"
-            x1="7.6424"
-            y1="4.98546"
-            x2="15.9481"
-            y2="27.3846"
-            gradientUnits="userSpaceOnUse"
-          >
-            <stop stopColor="white" />
-            <stop offset="0.0001" stopColor="#04C1FF" />
-            <stop offset="1" stopColor="#0062FF" />
-          </linearGradient>
-          <linearGradient
-            id="paint1_linear_1_2388"
-            x1="20.6448"
-            y1="-0.133266"
-            x2="29.2328"
-            y2="22.1635"
-            gradientUnits="userSpaceOnUse"
-          >
-            <stop stopColor="white" />
-            <stop offset="0.0001" stopColor="#04C1FF" />
-            <stop offset="1" stopColor="#0062FF" />
-          </linearGradient>
-        </defs>
       </g>
+      <defs>
+        <linearGradient
+          id="bg-linear-gradient-bottom"
+          x1="0%"
+          y1="0%"
+          x2="0%"
+          y2="100%"
+        >
+          <stop offset="0%" style={{ stopColor: "#00516B", stopOpacity: 1 }} />
+          <stop
+            offset="100%"
+            style={{ stopColor: "#00516B", stopOpacity: 0 }}
+          />
+        </linearGradient>
+        <linearGradient
+          id="paint0_linear_1_2388"
+          x1="7.6424"
+          y1="4.98546"
+          x2="15.9481"
+          y2="27.3846"
+          gradientUnits="userSpaceOnUse"
+        >
+          <stop stopColor="white" />
+          <stop offset="0.0001" stopColor="#04C1FF" />
+          <stop offset="1" stopColor="#0062FF" />
+        </linearGradient>
+        <linearGradient
+          id="paint1_linear_1_2388"
+          x1="20.6448"
+          y1="-0.133266"
+          x2="29.2328"
+          y2="22.1635"
+          gradientUnits="userSpaceOnUse"
+        >
+          <stop stopColor="white" />
+          <stop offset="0.0001" stopColor="#04C1FF" />
+          <stop offset="1" stopColor="#0062FF" />
+        </linearGradient>
+      </defs>
     </svg>
   );
 };
