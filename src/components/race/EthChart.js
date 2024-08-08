@@ -6,8 +6,12 @@ const CoinGeckoWidget = () => {
   const { prices, curPrice } = useSelector((state) => state.eth);
 
   const chartdata = useMemo(() => {
-    const maxPrice = Math.max(...prices);
-    const minPrice = Math.min(...prices);
+    let maxPrice = Math.max(...prices);
+    let minPrice = Math.min(...prices);
+    if (maxPrice - minPrice < 0.02) {
+      maxPrice += 0.01;
+      minPrice -= 0.01;
+    }
     const diff = maxPrice - minPrice || 1;
     const yaxis = [
       { y: (140 * 5) / 4, text: diff / 1 + maxPrice },

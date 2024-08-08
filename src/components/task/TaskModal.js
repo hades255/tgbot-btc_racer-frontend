@@ -8,53 +8,32 @@ import axios from "axios";
 import { useAuth } from "../../contexts/AuthContext";
 import Saturn1Icon from "../../assets/icons/Saturn1";
 import { addToast } from "../../redux/toastSlice";
-import { setScore, upgradeTturboCharger } from "../../redux/authSlice";
+import {
+  setScore,
+  upgradeDailyBonus,
+  upgradeTturboCharger,
+} from "../../redux/authSlice";
 import BtnDark from "../common/button/BtnDark";
 import { useNavigate } from "react-router-dom";
 import RedirectBtn from "../common/button/RedirectBtn";
 import { BACKEND_PATH } from "../../constants/config";
-
-export const fuelTankPoints = (lvl) => {
-  switch (lvl) {
-    case 0:
-      return 500;
-    case 1:
-      return 1500;
-    case 2:
-      return 3000;
-    case 3:
-      return 6000;
-    default:
-      return 9000;
-  }
-};
-
-export const turborPoints = (lvl) => {
-  switch (lvl) {
-    case 0:
-      return 1000;
-    case 1:
-      return 3000;
-    case 2:
-      return 5000;
-    case 3:
-      return 10000;
-    default:
-      return 15000;
-  }
-};
+import { fuelTankPoints, turborPoints } from "../../helper/points";
 
 const TaskModal = ({ selected, onClose, show }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const { userId, point, turboCharger } = useAuth();
-  const { freeBoost, fueltank } = useSelector((state) => state.fuel);
+  const { freeBoost, fueltank, fuelcount, fuelcapacity } = useSelector(
+    (state) => state.fuel
+  );
   const fueltankpoint = useMemo(() => fuelTankPoints(fueltank), [fueltank]);
   const turborpoint = useMemo(() => turborPoints(turboCharger), [turboCharger]);
 
+  const handleClose = useCallback(() => onClose(false), [onClose]);
+
   const handleClickReloadFuel = useCallback(() => {
-    if (freeBoost < 0) {
+    if (freeBoost < 0 || fuelcount >= fuelcapacity) {
       dispatch(
         addToast({
           message:
@@ -62,19 +41,20 @@ const TaskModal = ({ selected, onClose, show }) => {
           type: "warn",
         })
       );
-      return;
+    } else {
+      (async () => {
+        try {
+          await axios.get(`${BACKEND_PATH}/race/boost?userId=${userId}`);
+          dispatch(addToast({ message: "Boost success", type: "success" }));
+          dispatch(boost());
+        } catch (error) {
+          console.log(error);
+          dispatch(addToast({ message: error.message, type: "error" }));
+        }
+      })();
     }
-    (async () => {
-      try {
-        await axios.get(`${BACKEND_PATH}/race/boost?userId=${userId}`);
-        dispatch(addToast({ message: "Boost success", type: "success" }));
-        dispatch(boost());
-      } catch (error) {
-        console.log(error);
-        dispatch(addToast({ message: error.message, type: "error" }));
-      }
-    })();
-  }, [freeBoost, dispatch, userId]);
+    handleClose();
+  }, [freeBoost, dispatch, userId, handleClose, fuelcount, fuelcapacity]);
 
   const handleClickUpgradeFuel = useCallback(() => {
     if (fueltankpoint > point) {
@@ -84,20 +64,21 @@ const TaskModal = ({ selected, onClose, show }) => {
           type: "warn",
         })
       );
-      return;
+    } else {
+      (async () => {
+        try {
+          await axios.get(`${BACKEND_PATH}/race/upgrade-fuel?userId=${userId}`);
+          dispatch(addToast({ message: "success", type: "success" }));
+          dispatch(upgrade());
+          dispatch(setScore(point - fueltankpoint));
+        } catch (error) {
+          console.log(error);
+          dispatch(addToast({ message: error.message, type: "error" }));
+        }
+      })();
     }
-    (async () => {
-      try {
-        await axios.get(`${BACKEND_PATH}/race/boost?userId=${userId}`);
-        dispatch(addToast({ message: "success", type: "success" }));
-        dispatch(upgrade());
-        dispatch(setScore(point - fueltankpoint));
-      } catch (error) {
-        console.log(error);
-        dispatch(addToast({ message: error.message, type: "error" }));
-      }
-    })();
-  }, [dispatch, userId, point, fueltankpoint]);
+    handleClose();
+  }, [dispatch, userId, point, fueltankpoint, handleClose]);
 
   const handleClickUnlock = useCallback(
     () => navigate("/surprise"),
@@ -112,20 +93,23 @@ const TaskModal = ({ selected, onClose, show }) => {
           type: "warn",
         })
       );
-      return;
+    } else {
+      (async () => {
+        try {
+          await axios.get(
+            `${BACKEND_PATH}/user/upgrade-turbor?userId=${userId}`
+          );
+          dispatch(addToast({ message: "success", type: "success" }));
+          dispatch(upgradeTturboCharger());
+          dispatch(setScore(point - turborpoint));
+        } catch (error) {
+          console.log(error);
+          dispatch(addToast({ message: error.message, type: "error" }));
+        }
+      })();
     }
-    (async () => {
-      try {
-        await axios.get(`${BACKEND_PATH}/race/boost?userId=${userId}`);
-        dispatch(addToast({ message: "success", type: "success" }));
-        dispatch(upgradeTturboCharger());
-        dispatch(setScore(point - turborpoint));
-      } catch (error) {
-        console.log(error);
-        dispatch(addToast({ message: error.message, type: "error" }));
-      }
-    })();
-  }, [dispatch, turborpoint, point, userId]);
+    handleClose();
+  }, [dispatch, turborpoint, point, userId, handleClose]);
 
   const handleClickCompleteIdentity = useCallback(
     () =>
@@ -145,6 +129,7 @@ const TaskModal = ({ selected, onClose, show }) => {
           `${BACKEND_PATH}/user/bonus?userId=${userId}`
         );
         dispatch(setScore(response.data.data));
+        dispatch(upgradeDailyBonus());
         dispatch(
           addToast({
             message: "You've completed the task and earned points.",
@@ -154,8 +139,9 @@ const TaskModal = ({ selected, onClose, show }) => {
       } catch (error) {
         console.log(error);
       }
+      handleClose();
     })();
-  }, [dispatch, userId]);
+  }, [dispatch, userId, handleClose]);
 
   const tasks = useMemo(
     () => ({
@@ -227,7 +213,9 @@ const TaskModal = ({ selected, onClose, show }) => {
         content: "Increase your maximun fuel tank by 2!",
         subcontent: (
           <div className="text-sm text-slate-400 flex">
-            <span className="text-white">🚀 -{fueltankpoint}pts</span>
+            <span className="text-white">
+              🚀 -{fueltankpoint.toLocaleString()}pts
+            </span>
             <div className="px-2 pt-3">
               <DotIcon width={4} height={4} color={"#a8a29e"} />
             </div>
@@ -253,7 +241,9 @@ const TaskModal = ({ selected, onClose, show }) => {
         content: "Each level up increases the base score earned by 10 points",
         subcontent: (
           <div className="text-sm text-slate-400 flex">
-            <span className="text-white">🚀 -{turborpoint}pts</span>
+            <span className="text-white">
+              🚀 -{turborpoint.toLocaleString()}pts
+            </span>
             <div className="px-2 pt-3">
               <DotIcon width={4} height={4} color={"#a8a29e"} />
             </div>

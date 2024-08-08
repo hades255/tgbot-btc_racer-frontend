@@ -2,20 +2,34 @@ import React, { useCallback, useMemo, useState } from "react";
 import DotIcon from "../assets/icons/Dot";
 import { useAuth } from "../contexts/AuthContext";
 import RightIcon from "../assets/icons/Right";
-import TaskModal, {
-  fuelTankPoints,
-  turborPoints,
-} from "../components/task/TaskModal";
 import LockIcon from "../assets/icons/Lock";
 import SaturnIcon from "../assets/icons/Saturn";
 import { useSelector } from "react-redux";
 import Saturn1Icon from "../assets/icons/Saturn1";
+import {
+  dailyBonusPoints,
+  fuelTankPoints,
+  turborPoints,
+} from "../helper/points";
+import TaskModal from "../components/task/TaskModal";
+import CheckIcon from "../assets/icons/Check";
 
 const Tasks = () => {
-  const { point, turboCharger } = useAuth();
+  const { point, turboCharger, dailyBonusLevel, dailyBonus } = useAuth();
   const { freeBoost, fueltank } = useSelector((state) => state.fuel);
-  const fueltankpoint = useMemo(() => fuelTankPoints(fueltank), [fueltank]);
-  const turborpoint = useMemo(() => turborPoints(turboCharger), [turboCharger]);
+  const fueltankpoint = useMemo(
+    () => fuelTankPoints(fueltank).toLocaleString(),
+    [fueltank]
+  );
+  const turborpoint = useMemo(
+    () => turborPoints(turboCharger).toLocaleString(),
+    [turboCharger]
+  );
+  const bonuspoints = useMemo(
+    () => dailyBonusPoints(dailyBonusLevel).toLocaleString(),
+    [dailyBonusLevel]
+  );
+  const lspoint = useMemo(() => point.toLocaleString(), [point]);
 
   const [selectedTaskItem, setSelectedTaskItem] = useState(null);
 
@@ -35,7 +49,9 @@ const Tasks = () => {
         <span className="text-slate-400 text-sm">Diamonds Collected</span>
       </div>
       <div className="mt-1 flex justify-center">
-        <span className="text-white text-3xl spaced-text-2 font-bold">{point.toLocaleString()}</span>
+        <span className="text-white text-3xl spaced-text-2 font-bold">
+          {lspoint}
+        </span>
       </div>
       <div className="mx-4 mt-6 mb-2 text-white text-sm">Upgrade (4)</div>
       <div className="mx-4 my-2 flex overflow-x-auto scroll">
@@ -186,22 +202,6 @@ const Tasks = () => {
       <div
         className="mx-4 my-2 px-3 py-2 rounded-xl flex justify-between border border-[#173560]"
         onClick={() => {
-          handleClickTaskItem("daily-reward");
-        }}
-      >
-        <div className="w-4/5 flex flex-col">
-          <span className="text-white text-sm font-medium">Daily Rewards</span>
-          <div className="mt-2 flex items-center">
-            <span className="text-slate-400 text-xs">🚀 + 2,000 pts</span>
-          </div>
-        </div>
-        <div className="text-white text-2xl font-bold flex items-center">
-          <RightIcon width={18} height={18} color={"white"} />
-        </div>
-      </div>
-      <div
-        className="mx-4 my-2 px-3 py-2 rounded-xl flex justify-between border border-[#173560]"
-        onClick={() => {
           handleClickTaskItem("announcement-channel");
         }}
       >
@@ -211,6 +211,30 @@ const Tasks = () => {
           </span>
           <div className="mt-2 flex items-center">
             <span className="text-slate-400 text-xs">🚀 + 750 pts</span>
+          </div>
+        </div>
+        <div className="text-white text-2xl font-bold flex items-center">
+          <RightIcon width={18} height={18} color={"white"} />
+        </div>
+      </div>
+      <div
+        className="mx-4 my-2 px-3 py-2 rounded-xl flex justify-between border border-[#173560]"
+        onClick={() => {
+          if (dailyBonus) return;
+          handleClickTaskItem("daily-reward");
+        }}
+      >
+        <div className="w-4/5 flex flex-col">
+          <span className="text-white text-sm font-medium">Daily Rewards</span>
+          <div className="mt-2 flex items-center text-slate-400 text-xs">
+            {dailyBonus ? (
+              <span className="border rounded border-[#000] bg-green-600 p-[1px]">
+                <CheckIcon width={14} height={14} color={"white"} />
+              </span>
+            ) : (
+              "🚀"
+            )}
+            &nbsp;+ {bonuspoints} pts
           </div>
         </div>
         <div className="text-white text-2xl font-bold flex items-center">

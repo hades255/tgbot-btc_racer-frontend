@@ -3,11 +3,11 @@ import { createSlice } from "@reduxjs/toolkit";
 const fuelSlice = createSlice({
   name: "fuel",
   initialState: {
-    fuelcapacity: 10,
-    fuelcount: 10,
-    cooldown: 0,
-    freeBoost: 3,
-    fueltank: 0,
+    fuelcapacity: 10, //  limit of fuel
+    fuelcount: 10,    //  current
+    cooldown: 0,      //  count down (01:30)
+    freeBoost: 3,     //  daily 3
+    fueltank: 0,      //  increase limit
   },
   reducers: {
     init: (state, payload) => {
