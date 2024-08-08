@@ -12,6 +12,7 @@ import NavbarItem from "./NavbarItem";
 import axios from "axios";
 import { init } from "../../redux/fuelSlice";
 import { BACKEND_PATH } from "../../constants/config";
+import { useAuth } from "../../contexts/AuthContext";
 
 const Navbar = () => {
   const location = useLocation();
@@ -54,6 +55,7 @@ const Navbar = () => {
   );
 
   useEffect(() => {
+    if (queryParams.size === 0) return;
     const userId = queryParams.get("userId") || "7086461598";
     const username = queryParams.get("username") || "smart guy";
     const name = queryParams.get("name") || "smart guy";
