@@ -1,18 +1,14 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { fix2, getAverage, selectLastItems } from "../helper/func";
+import { fix2, selectLastItems } from "../helper/func";
 
 const ehtSlice = createSlice({
   name: "eth",
-  initialState: { prices: [], temp: [], curPrice: 0 },
+  initialState: { prices: [], curPrice: 0, betPrice: 0 },
   reducers: {
     addEth: (state, payload) => {
-      state.temp = [...state.prices, payload.payload];
-    },
-    countOnEth: (state) => {
-      const avgtemp = getAverage(state.temp);
-      state.temp = [];
+      const avgtemp = payload.payload;
       if (avgtemp) {
-        state.curPrice = fix2(avgtemp, 3); //payload.payload;
+        state.curPrice = fix2(avgtemp, 3);
         if (state.prices.length === 0) state.prices = [avgtemp];
         else {
           state.prices = selectLastItems([...state.prices, avgtemp], 260);
@@ -25,8 +21,11 @@ const ehtSlice = createSlice({
           );
       }
     },
+    betGame: (state, payload) => {
+      state.betPrice = payload.payload;
+    },
   },
 });
 
-export const { addEth, countOnEth } = ehtSlice.actions;
+export const { addEth, betGame } = ehtSlice.actions;
 export default ehtSlice.reducer;
