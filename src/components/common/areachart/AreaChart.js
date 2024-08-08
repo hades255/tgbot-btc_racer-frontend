@@ -54,21 +54,21 @@ const AreaChart = ({ data, yaxis, last }) => {
       {yaxis.map((item, index) => (
         <text
           key={index}
-          x="289"
+          x="283"
           y={183 - item.y}
           fill="white"
           fontSize="10"
           strokeWidth="0.5"
           textAnchor="start"
         >
-          {fix2(item.text).toLocaleString()}
+          {fix2(item.text, 3).toLocaleString()}
         </text>
       ))}
 
       <rect
-        width={41}
+        width={47}
         height={17}
-        x={288}
+        x={282}
         y={176 - lastPoint.y}
         fill="#383D67DD"
         rx={2}
@@ -77,7 +77,7 @@ const AreaChart = ({ data, yaxis, last }) => {
         strokeWidth={1}
       />
       <text
-        x="289"
+        x="283"
         y={188 - lastPoint.y}
         fill="white"
         fontSize="10"
@@ -90,9 +90,7 @@ const AreaChart = ({ data, yaxis, last }) => {
       <g
         transform={`translate(${lastPoint.x - 10}, ${
           168 - lastPoint.y
-        }) rotate(${
-          15 - (1 * fix2((Math.atan(diff) / Math.PI) * 180)) / 2
-        } 10 15)`}
+        }) rotate(${15 - (1 * ((Math.atan(diff) / Math.PI) * 180)) / 2} 10 15)`}
         style={{ transition: `all 0.1s` }}
       >
         <path

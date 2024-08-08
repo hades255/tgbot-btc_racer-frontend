@@ -20,7 +20,7 @@ import LoadingIcon from "../assets/icons/loading";
 
 const Race = () => {
   const dispatch = useDispatch();
-  const { userId, point } = useAuth();
+  const { userId, point, turboCharger } = useAuth();
   const { fuelcount, cooldown, fuelcapacity } = useSelector(
     (state) => state.fuel
   );
@@ -35,11 +35,10 @@ const Race = () => {
 
   const [showResults, setShowResults] = useState(false);
 
-  const compareBTC = useCallback(
+  const compareETH = useCallback(
     (price) => {
       (async () => {
         try {
-          console.log(price);
           setBetCompareAmount(price);
           const result =
             (bet === "moon" && betAmount <= price) ||
@@ -47,7 +46,7 @@ const Race = () => {
           setBetResult(result);
           const res = await axios.post(`${BACKEND_PATH}/race`, {
             guess: bet,
-            pointAmount: 10,
+            pointAmount: 10 + 10 * turboCharger,
             result,
             userId: userId,
           });
@@ -58,7 +57,7 @@ const Race = () => {
         }
       })();
     },
-    [bet, betAmount, userId, dispatch]
+    [bet, betAmount, userId, turboCharger, dispatch]
   );
 
   useEffect(() => {
@@ -73,9 +72,9 @@ const Race = () => {
 
   useEffect(() => {
     if (bet && betResult === null && count === 0) {
-      compareBTC(curPrice);
+      compareETH(curPrice);
     }
-  }, [bet, count, compareBTC, curPrice, betResult]);
+  }, [bet, count, compareETH, curPrice, betResult]);
 
   useEffect(() => {
     let timer;

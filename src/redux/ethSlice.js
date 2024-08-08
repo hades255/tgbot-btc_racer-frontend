@@ -12,16 +12,16 @@ const ehtSlice = createSlice({
       const avgtemp = getAverage(state.temp);
       state.temp = [];
       if (avgtemp) {
-        state.curPrice = fix2(avgtemp); //payload.payload;
+        state.curPrice = fix2(avgtemp, 3); //payload.payload;
         if (state.prices.length === 0) state.prices = [avgtemp];
         else {
-          state.prices = selectLastItems([...state.prices, avgtemp], 265);
+          state.prices = selectLastItems([...state.prices, avgtemp], 260);
         }
       } else {
         if (state.prices.length)
           state.prices = selectLastItems(
             [...state.prices, state.prices[state.prices.length - 1]],
-            265
+            260
           );
       }
     },
