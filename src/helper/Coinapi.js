@@ -54,32 +54,39 @@ const Coinapi = () => {
     let eths = [];
     const getCount = () => eths;
     const setCount = (param) => (eths = [...eths, param]);
+    const initCount = (param) => (eths = param);
     const timer = setInterval(() => {
-      dispatch(addEth(getAverage(getCount())));
+      const avg = getAverage(getCount());
+      dispatch(addEth(avg));
+      initCount([avg]);
     }, 100);
-    const ws = new WebSocket(BINANCE_WS_URL);
-    ws.addEventListener("open", () => {
-      console.log("Connected to Binance WebSocket API");
-    });
-    ws.addEventListener("message", ({ data }) => {
-      try {
-        const message = JSON.parse(data);
-        if (message.p) {
-          setCount(Number(message.p));
+    const socketConnection = () => {
+      const ws = new WebSocket(BINANCE_WS_URL);
+      ws.addEventListener("open", () => {
+        console.log("Connected to Binance WebSocket API");
+      });
+      ws.addEventListener("message", ({ data }) => {
+        try {
+          const message = JSON.parse(data);
+          if (message.p) {
+            setCount(Number(message.p));
+          }
+        } catch (error) {
+          console.error("Error parsing message:", error);
         }
-      } catch (error) {
-        console.error("Error parsing message:", error);
-      }
-    });
-    ws.addEventListener("error", (error) => {
-      console.error("WebSocket error:", error);
-    });
-    ws.addEventListener("close", () => {
-      console.log("WebSocket connection closed, reconnecting...");
-    });
+      });
+      ws.addEventListener("error", (error) => {
+        console.error("WebSocket error:", error);
+      });
+      ws.addEventListener("close", () => {
+        console.log("WebSocket connection closed, reconnecting...");
+        socketConnection();
+      });
+    };
+    socketConnection();
     return () => {
       clearInterval(timer);
-      ws.close();
+      // ws.close();
     };
   }, [dispatch]);
   // */

@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { fix2, selectLastItems } from "../helper/func";
+import { fix2, getAverage, selectLastItems } from "../helper/func";
 
 const ehtSlice = createSlice({
   name: "eth",
@@ -14,11 +14,12 @@ const ehtSlice = createSlice({
           state.prices = selectLastItems([...state.prices, avgtemp], 260);
         }
       } else {
-        if (state.prices.length)
-          state.prices = selectLastItems(
-            [...state.prices, state.prices[state.prices.length - 1]],
-            260
-          );
+        if (state.prices.length) {
+          console.log("avg");
+          const _avgtemp = getAverage(state.prices);
+          state.curPrice = fix2(_avgtemp, 3);
+          state.prices = selectLastItems([...state.prices, _avgtemp], 260);
+        }
       }
     },
     betGame: (state, payload) => {
