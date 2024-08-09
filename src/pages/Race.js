@@ -51,7 +51,6 @@ const Race = () => {
             userId: userId,
           });
 
-          setBetAmount(0);
           dispatch(setScore(res.data.data));
         } catch (error) {
           console.log(error);
@@ -83,6 +82,7 @@ const Race = () => {
       timer = setInterval(() => {
         setBetResult(null);
         setBet(null);
+        setBetAmount(0);
       }, 3000);
     }
     return () => {
