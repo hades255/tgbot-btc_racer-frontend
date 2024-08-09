@@ -31,6 +31,8 @@ body {
 }
 
 * {
+  -webkit-overflow-scrolling: touch;
+  -webkit-scrollbar-width: none;
   scrollbar-width: none;
   font-family: "dm-sans";
 }

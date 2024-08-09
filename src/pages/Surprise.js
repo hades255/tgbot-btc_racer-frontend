@@ -7,7 +7,7 @@ import RedirectBtn from "../components/common/button/RedirectBtn";
 
 const Surprise = () => {
   return (
-    <div className="w-full flex flex-col mb-24">
+    <div className="w-full flex flex-col mb-12">
       <div className="mx-4 mt-4 flex flex-col">
         <span className="spaced-text-2 text-3xl font-bold text-white">
           Ready for more
@@ -46,17 +46,17 @@ const Surprise = () => {
             <div className="flex flex-col">
               <div className="text-white text-md font-medium flex">
                 <span className="text-[#69d3fd] text-sm hover:cursor-pointer">
-                  Sign up for an Alphanomics account
+                  Create & Connect Your Account
                 </span>
                 <div className="ml-1 flex items-center"></div>
               </div>
               <span className="text-slate-400 text-xs">
-                Skip this step if you already have an account.
+                Submit your address
               </span>
             </div>
           </div>
         </RedirectBtn>
-        <RedirectBtn url="https://www.okx.com/download?redirectAppStore=true">
+        <RedirectBtn url="https://www.okx.com/join">
           <div className="flex my-2">
             <div className="mr-1 pt-[2px]">
               <DotIcon width={14} height={16} color={"#04C3FF"} />
@@ -64,14 +64,14 @@ const Surprise = () => {
             <div className="flex flex-col">
               <div className="text-white text-md font-medium flex">
                 <span className="text-[#69d3fd] text-sm hover:cursor-pointer">
-                  Install the OKX app
+                  Finish All One Time Tasks
                 </span>
                 <div className="ml-1 flex items-center"></div>
               </div>
             </div>
           </div>
         </RedirectBtn>
-        <RedirectBtn url="https://www.ouxyi.link/ul/3h87sZ">
+        <RedirectBtn url="https://www.okx.com/join">
           <div className="flex my-2">
             <div className="mr-1 pt-[2px]">
               <DotIcon width={14} height={16} color={"#04C3FF"} />
@@ -79,32 +79,10 @@ const Surprise = () => {
             <div className="flex flex-col">
               <div className="text-white text-md font-medium flex">
                 <span className="text-[#69d3fd] text-sm hover:cursor-pointer">
-                  Connect to Telegram
+                  Achieve Alphanomics Plus Status
                 </span>
                 <div className="ml-1 flex items-center"></div>
               </div>
-              <span className="text-slate-400 text-xs">
-                Go to your Profile on the Alphanomics website, select Connected
-                accounts, and link your Telegram account.
-              </span>
-            </div>
-          </div>
-        </RedirectBtn>
-        <RedirectBtn url="https://www.ouxyi.link/ul/3W2uzP">
-          <div className="flex my-2">
-            <div className="mr-1 pt-[2px]">
-              <DotIcon width={14} height={16} color={"#04C3FF"} />
-            </div>
-            <div className="flex flex-col">
-              <div className="text-white text-md font-medium flex">
-                <span className="text-[#69d3fd] text-sm hover:cursor-pointer">
-                  Verify your identity
-                </span>
-                <div className="ml-1 flex items-center"></div>
-              </div>
-              <span className="text-slate-400 text-xs">
-                Pass identity verification on Alphanomics.
-              </span>
             </div>
           </div>
         </RedirectBtn>

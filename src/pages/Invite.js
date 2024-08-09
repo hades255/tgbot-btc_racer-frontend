@@ -5,7 +5,7 @@ import CopyBtn from "../components/leaderbaord/CopyBtn";
 
 const Invite = () => {
   return (
-    <div className="w-full flex flex-col mb-24">
+    <div className="w-full flex flex-col">
       <div className="mx-4 my-8">
         <div className="flex flex-col">
           <span className="text-3xl spaced-text-2 font-bold text-white">

@@ -17,7 +17,6 @@ import MusicBtn from "../components/race/MusicBtn";
 import { BACKEND_PATH } from "../constants/config";
 import { fix2 } from "../helper/func";
 import LoadingIcon from "../assets/icons/loading";
-import { betGame } from "../redux/ethSlice";
 
 const Race = () => {
   const dispatch = useDispatch();
@@ -45,7 +44,6 @@ const Race = () => {
             (bet === "moon" && betAmount <= price) ||
             (bet === "doom" && betAmount > price);
           setBetResult(result);
-          dispatch(betGame(0));
           const res = await axios.post(`${BACKEND_PATH}/race`, {
             guess: bet,
             pointAmount: 10 + 10 * turboCharger,
@@ -53,6 +51,7 @@ const Race = () => {
             userId: userId,
           });
 
+          setBetAmount(0);
           dispatch(setScore(res.data.data));
         } catch (error) {
           console.log(error);
@@ -98,7 +97,6 @@ const Race = () => {
       setBetAmount(curPrice);
       setCount(5);
       dispatch(decrease());
-      dispatch(betGame(curPrice));
     },
     [bet, curPrice, dispatch]
   );
@@ -154,9 +152,9 @@ const Race = () => {
             </div>
           </div>
         )}
-        <div className="mt-8 w-full flex-col">
+        <div className="mt-4 w-full flex-col">
           <div className="w-full flex justify-center relative">
-            <EthChart />
+            <EthChart bet={bet} betAmount={betAmount} />
             <div className="absolute bottom-0 flex justify-center items-center">
               🚀
               <FuelSlider progress={fuelcount / fuelcapacity} />
@@ -203,9 +201,9 @@ const Race = () => {
                   <span
                     className={`${
                       bet === null ? "text-white" : "text-slate-500"
-                    } font-medium text-lg`}
+                    } font-bold text-lg`}
                   >
-                    PUMP IT
+                    PUMP
                   </span>
                   <div className="ml-1 mt-1">
                     <TrendingUp width={20} height={20} color={"white"} />
@@ -224,9 +222,9 @@ const Race = () => {
                   <span
                     className={`${
                       bet === null ? "text-white" : "text-slate-500"
-                    } font-medium text-lg`}
+                    } font-bold text-lg`}
                   >
-                    DUMP IT
+                    DUMP
                   </span>
                   <div className="ml-1 mt-1">
                     <TrendingDown width={20} height={20} color={"white"} />
@@ -236,11 +234,6 @@ const Race = () => {
             </div>
           </div>
         </div>
-        {/* <div className="flex justify-center mt-9">
-          <RedirectBtn url="https://www.okx.com/help/okx-racer-terms-and-conditions">
-            <span className="text-slate-300 text-xs">Terms and conditions</span>
-          </RedirectBtn>
-        </div> */}
         <div className="flex justify-center mt-3">
           <span className="text-slate-300 text-xs">
             The more 💎 you have the more ANOM
@@ -268,7 +261,7 @@ const Race = () => {
               )}
             </div>
             <div className="flex text-white text-8xl font-bold text-shadow-2xl justify-center">
-              <span>{bet === "moon" ? "MOON" : "REKT"}</span>
+              <span>{betResult ? "WIN" : "LOSE"}</span>
             </div>
             <div className="text-white text-lg font-bold text-shadow-xl flex justify-center">
               ETH Price

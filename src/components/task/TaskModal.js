@@ -11,6 +11,7 @@ import { addToast } from "../../redux/toastSlice";
 import {
   setScore,
   upgradeDailyBonus,
+  upgradeDailyBonusVisit,
   upgradeTturboCharger,
 } from "../../redux/authSlice";
 import BtnDark from "../common/button/BtnDark";
@@ -130,6 +131,27 @@ const TaskModal = ({ selected, onClose, show }) => {
         );
         dispatch(setScore(response.data.data));
         dispatch(upgradeDailyBonus());
+        dispatch(
+          addToast({
+            message: "You've completed the task and earned points.",
+            type: "success",
+          })
+        );
+      } catch (error) {
+        console.log(error);
+      }
+      handleClose();
+    })();
+  }, [dispatch, userId, handleClose]);
+
+  const handleClickDailyVisit = useCallback(() => {
+    (async () => {
+      try {
+        const response = await axios.get(
+          `${BACKEND_PATH}/user/bonus-visit?userId=${userId}`
+        );
+        dispatch(setScore(response.data.data));
+        dispatch(upgradeDailyBonusVisit());
         dispatch(
           addToast({
             message: "You've completed the task and earned points.",
@@ -275,8 +297,21 @@ const TaskModal = ({ selected, onClose, show }) => {
         button: "Check in",
         action: handleClickDailyReward,
       },
+      "daily-visit": {
+        title: "Daily points visiting Alphanomics platform",
+        content: "Check in daily to earn rewards",
+        button: "Check in",
+        action: handleClickDailyVisit,
+      },
       "announcement-channel": {
         title: "Join announcement channel",
+        content: "Follow Alphanomics official twitter for extra points!",
+        button: "Go now",
+        redirect: "https://www.okx.com/join",
+        action: () => {},
+      },
+      "newsletter-channel": {
+        title: "Join Newsletter substack",
         content: "Follow Alphanomics official twitter for extra points!",
         button: "Go now",
         redirect: "https://www.okx.com/join",
@@ -295,6 +330,7 @@ const TaskModal = ({ selected, onClose, show }) => {
       handleTurborCharger,
       handleClickCompleteIdentity,
       handleClickDailyReward,
+      handleClickDailyVisit,
     ]
   );
 

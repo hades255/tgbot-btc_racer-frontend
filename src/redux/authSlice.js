@@ -10,6 +10,8 @@ const authSlice = createSlice({
     point: 0,
     dailyBonusLevel: 0,
     dailyBonus: false,
+    dailyBonusVisitLevel: 0,
+    dailyBonusVisit: false,
     turboCharger: 0, //  points level per fuel
   },
   reducers: {
@@ -22,6 +24,8 @@ const authSlice = createSlice({
       state.turboCharger = payload.payload.turboCharger;
       state.dailyBonusLevel = payload.payload.dailyBonus.level;
       state.dailyBonus = payload.payload.dailyBonus.check;
+      state.dailyBonusVisitLevel = payload.payload.dailyBonusVisit.level;
+      state.dailyBonusVisit = payload.payload.dailyBonusVisit.check;
     },
     logout: (state) => {
       state.isAuthenticated = false;
@@ -36,6 +40,10 @@ const authSlice = createSlice({
       state.dailyBonusLevel = state.dailyBonusLevel + 1;
       state.dailyBonus = true;
     },
+    upgradeDailyBonusVisit: (state) => {
+      state.dailyBonusVisitLevel = state.dailyBonusVisitLevel + 1;
+      state.dailyBonusVisit = true;
+    },
   },
 });
 
@@ -45,5 +53,6 @@ export const {
   setScore,
   upgradeTturboCharger,
   upgradeDailyBonus,
+  upgradeDailyBonusVisit,
 } = authSlice.actions;
 export default authSlice.reducer;

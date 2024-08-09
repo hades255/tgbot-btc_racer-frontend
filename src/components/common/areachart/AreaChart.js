@@ -2,7 +2,7 @@ import React, { useMemo } from "react";
 import * as d3 from "d3-shape";
 import { fix2 } from "../../../helper/func";
 
-const AreaChart = ({ data, yaxis, last, betline }) => {
+const AreaChart = ({ data, yaxis, last, betline, bet }) => {
   const lineGenerator = d3
     .line()
     .x((d) => d.x)
@@ -38,8 +38,9 @@ const AreaChart = ({ data, yaxis, last, betline }) => {
       {betline && (
         <path
           fill="none"
-          stroke="#52c602"
+          stroke={bet === "moon" ? "#52c602" : "#c60202"}
           strokeWidth={2}
+          strokeDasharray="3,4"
           d={`M 0 ${183 - betline} L 265 ${183 - betline}`}
         />
       )}

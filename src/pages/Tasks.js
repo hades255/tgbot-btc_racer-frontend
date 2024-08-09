@@ -15,7 +15,14 @@ import TaskModal from "../components/task/TaskModal";
 import CheckIcon from "../assets/icons/Check";
 
 const Tasks = () => {
-  const { point, turboCharger, dailyBonusLevel, dailyBonus } = useAuth();
+  const {
+    point,
+    turboCharger,
+    dailyBonusLevel,
+    dailyBonus,
+    dailyBonusVisitLevel,
+    dailyBonusVisit,
+  } = useAuth();
   const { freeBoost, fueltank } = useSelector((state) => state.fuel);
   const fueltankpoint = useMemo(
     () => fuelTankPoints(fueltank).toLocaleString(),
@@ -29,6 +36,10 @@ const Tasks = () => {
     () => dailyBonusPoints(dailyBonusLevel).toLocaleString(),
     [dailyBonusLevel]
   );
+  const bonusVisitpoints = useMemo(
+    () => dailyBonusPoints(dailyBonusVisitLevel).toLocaleString(),
+    [dailyBonusVisitLevel]
+  );
   const lspoint = useMemo(() => point.toLocaleString(), [point]);
 
   const [selectedTaskItem, setSelectedTaskItem] = useState(null);
@@ -40,6 +51,49 @@ const Tasks = () => {
   const handleCloseModal = useCallback(() => {
     setSelectedTaskItem(null);
   }, []);
+
+  const tasks = useMemo(
+    () =>
+      [
+        {
+          event: "complete-identity",
+          title: "Connect Telegram and complete identity verification",
+          point: 10000,
+          status: false,
+        },
+        {
+          event: "follow-twitter",
+          title: "Follow Alphanomics X",
+          point: 750,
+          status: false,
+        },
+        {
+          event: "announcement-channel",
+          title: "Join announcement channel",
+          point: 750,
+          status: false,
+        },
+        {
+          event: "newsletter-channel",
+          title: "Join Newsletter substack",
+          point: 750,
+          status: false,
+        },
+        {
+          event: "daily-reward",
+          title: "Daily Rewards",
+          point: bonuspoints,
+          status: dailyBonus,
+        },
+        {
+          event: "daily-visit",
+          title: "Daily points visiting Alphanomics platform",
+          point: bonusVisitpoints,
+          status: dailyBonusVisit,
+        },
+      ].sort((a) => (a.status ? 1 : -1)),
+    [dailyBonus, bonuspoints, bonusVisitpoints, dailyBonusVisit]
+  );
 
   return (
     <div className="w-full flex flex-col mt-4 mb-24">
@@ -61,7 +115,7 @@ const Tasks = () => {
           }}
           className="bg-blue-900 bg-opacity-10 rounded-lg h-[160px] min-w-[180px] w-[180px] px-4 py-2 flex flex-col relative"
         >
-          <div className="blur-sm">
+          <div className="blur-sm h-full">
             <div className="bg-[#1A2B47] rounded-md h-[50px] w-[50px] flex justify-center items-center">
               <Saturn1Icon width={36} height={36} color={"random"} />
             </div>
@@ -76,7 +130,7 @@ const Tasks = () => {
               🚀 Locked
             </div>
           </div>
-          {true && (
+          {false && (
             <>
               <div className="absolute top-0 left-0 bg-[#0a0a0a79] rounded-lg h-[160px] w-[180px] flex justify-center items-center">
                 <div className="flex flex-col">
@@ -162,84 +216,40 @@ const Tasks = () => {
           </div>
         </div>
       </div>
-      <div className="mx-4 mt-3 text-white text-sm">Tasks (4)</div>
-      <div
-        className="mx-4 my-2 px-3 py-2 rounded-xl flex justify-between border border-[#173560]"
-        onClick={() => {
-          handleClickTaskItem("complete-identity");
-        }}
-      >
-        <div className="w-4/5 flex flex-col">
-          <span className="text-white text-sm font-medium">
-            Connect Telegram and complete identity verification
-          </span>
-          <div className="mt-2 flex items-center">
-            <span className="text-slate-400 text-xs">🚀 + 10,000 pts</span>
-          </div>
-        </div>
-        <div className="text-white text-2xl font-bold flex items-center">
-          <RightIcon width={18} height={18} color={"white"} />
-        </div>
-      </div>
-      <div
-        className="mx-4 my-2 px-3 py-2 rounded-xl flex justify-between border border-[#173560]"
-        onClick={() => {
-          handleClickTaskItem("follow-twitter");
-        }}
-      >
-        <div className="w-4/5 flex flex-col">
-          <span className="text-white text-sm font-medium">
-            Follow Alphanomics official Twitter
-          </span>
-          <div className="mt-2 flex items-center">
-            <span className="text-slate-400 text-xs">🚀 + 750 pts</span>
-          </div>
-        </div>
-        <div className="text-white text-2xl font-bold flex items-center">
-          <RightIcon width={18} height={18} color={"white"} />
-        </div>
-      </div>
-      <div
-        className="mx-4 my-2 px-3 py-2 rounded-xl flex justify-between border border-[#173560]"
-        onClick={() => {
-          handleClickTaskItem("announcement-channel");
-        }}
-      >
-        <div className="w-4/5 flex flex-col">
-          <span className="text-white text-sm font-medium">
-            Join announcement channel
-          </span>
-          <div className="mt-2 flex items-center">
-            <span className="text-slate-400 text-xs">🚀 + 750 pts</span>
-          </div>
-        </div>
-        <div className="text-white text-2xl font-bold flex items-center">
-          <RightIcon width={18} height={18} color={"white"} />
-        </div>
-      </div>
-      <div
-        className="mx-4 my-2 px-3 py-2 rounded-xl flex justify-between border border-[#173560]"
-        onClick={() => {
-          if (dailyBonus) return;
-          handleClickTaskItem("daily-reward");
-        }}
-      >
-        <div className="w-4/5 flex flex-col">
-          <span className="text-white text-sm font-medium">Daily Rewards</span>
-          <div className="mt-2 flex items-center text-slate-400 text-xs">
-            {dailyBonus ? (
-              <span className="border rounded border-[#000] bg-green-600 p-[1px]">
-                <CheckIcon width={14} height={14} color={"white"} />
+      <div className="mx-4 mt-3 text-white text-sm">Tasks ({tasks.length})</div>
+      <div className="flex flex-col">
+        {tasks.map((item, index) => (
+          <div
+            className="mx-4 my-2 px-3 py-2 rounded-xl flex justify-between border border-[#173560]"
+            onClick={() => {
+              handleClickTaskItem(item.event);
+            }}
+            key={index}
+          >
+            <div className="w-4/5 flex flex-col">
+              <span className="text-white text-sm font-medium">
+                {item.title}
               </span>
-            ) : (
-              "🚀"
-            )}
-            &nbsp;+ {bonuspoints} pts
+              <div className="mt-2 flex items-center text-slate-400 text-xs">
+                {item.status ? (
+                  <span className="border rounded border-[#000] bg-green-600 p-[1px]">
+                    <CheckIcon width={14} height={14} color={"white"} />
+                  </span>
+                ) : (
+                  "🚀"
+                )}
+                &nbsp;+ {item.point.toLocaleString()} pts
+              </div>
+            </div>
+            <div className="text-white text-xs flex items-center">
+              {item.status ? (
+                "Done"
+              ) : (
+                <RightIcon width={18} height={18} color={"white"} />
+              )}
+            </div>
           </div>
-        </div>
-        <div className="text-white text-2xl font-bold flex items-center">
-          <RightIcon width={18} height={18} color={"white"} />
-        </div>
+        ))}
       </div>
       <TaskModal
         selected={selectedTaskItem}

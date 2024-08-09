@@ -2,8 +2,8 @@ import React, { useMemo } from "react";
 import AreaChart from "../common/areachart/AreaChart";
 import { useSelector } from "react-redux";
 
-const CoinGeckoWidget = () => {
-  const { prices, curPrice, betPrice } = useSelector((state) => state.eth);
+const CoinGeckoWidget = ({ bet, betAmount }) => {
+  const { prices, curPrice } = useSelector((state) => state.eth);
 
   const chartdata = useMemo(() => {
     let maxPrice = Math.max(...prices);
@@ -28,9 +28,9 @@ const CoinGeckoWidget = () => {
             y: 8 + ((price - minPrice) / diff) * 140,
           }))
         : [{ x: 0, y: 0 }];
-    const betline = betPrice ? 8 + ((betPrice - minPrice) / diff) * 140 : null;
-    return { yaxis, data, last: curPrice, betline };
-  }, [prices, curPrice, betPrice]);
+    const betline = betAmount ? 8 + ((betAmount - minPrice) / diff) * 140 : null;
+    return { yaxis, data, last: curPrice, betline, bet };
+  }, [prices, curPrice, betAmount, bet]);
 
   return (
     <div className="h-[200px]">
