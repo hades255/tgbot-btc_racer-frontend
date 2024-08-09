@@ -275,7 +275,7 @@ const Race = () => {
               <span
                 className={`${
                   betCompareAmount - betAmount > 0
-                    ? "text-white"
+                    ? "text-green-500"
                     : "text-red-700"
                 } mx-1`}
               >
