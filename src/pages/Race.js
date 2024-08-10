@@ -115,15 +115,13 @@ const Race = () => {
   const hideRecordsModal = useCallback((value) => setShowResults(value), []);
 
   return (
-    <div className="relative">
-      <div className="flex flex-row justify-between">
-        <div className="absolute">
-          <div className="ml-6 mt-6">
-            <MusicBtn />
-          </div>
+    <div>
+      <div className="mt-4 flex flex-row justify-between items-center">
+        <div className="ml-6">
+          <MusicBtn />
         </div>
         <div
-          className="absolute top-4 right-0 rounded-s-2xl hover:cursor-pointer bg-button-1"
+          className="rounded-s-2xl hover:cursor-pointer bg-button-1"
           onClick={handleShowRaces}
         >
           <div className="h-7 w-28 flex items-center">
@@ -132,7 +130,7 @@ const Race = () => {
           </div>
         </div>
       </div>
-      <div className="mt-16 mb-24 w-full flex-col">
+      <div className="mt-4 mb-24 w-full flex-col">
         {bet ? (
           <div className="h-14 w-full flex justify-center items-center">
             <span className="text-white text-5xl text-shadow-xl font-digital">
