@@ -4,7 +4,6 @@ const VideoBackground = ({ show }) => {
   const videoRef = useRef(null);
 
   useEffect(() => {
-    console.log(show);
     if (show && videoRef.current) {
       videoRef.current.currentTime = 2;
       videoRef.current.play();

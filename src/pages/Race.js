@@ -165,25 +165,26 @@ const Race = () => {
         </div>
       </div>
       <div className="mt-4 mb-24 w-full flex-col">
-        {bet ? (
-          <div className="h-14 w-full flex justify-center items-center">
-            <span className="text-white text-5xl text-shadow-xl font-digital">
-              00:0{count}
-            </span>
-          </div>
-        ) : (
-          <div className="h-14">
-            <div className="flex justify-center">
-              <div className="flex items-center">
-                <span className="text-[16px] px-1">💎</span>
-                <div className="text-slate-400 text-sm">Diamonds Collected</div>
-              </div>
-            </div>
-            <div className="flex justify-center text-[48px] spaced-text-4 text-white font-bold">
-              {point.toLocaleString()}
+        <div
+          className={`h-14 w-full flex justify-center items-center ${
+            bet ? "block" : "hidden"
+          }`}
+        >
+          <span className="text-white text-5xl text-shadow-xl font-digital">
+            00:0{count}
+          </span>
+        </div>
+        <div className={`h-14 ${bet ? "hidden" : "block"}`}>
+          <div className="flex justify-center">
+            <div className="flex items-center">
+              <span className="text-[16px] px-1">💎</span>
+              <div className="text-slate-400 text-sm">Diamonds Collected</div>
             </div>
           </div>
-        )}
+          <div className="flex justify-center text-[48px] spaced-text-4 text-white font-bold">
+            {point.toLocaleString()}
+          </div>
+        </div>
         <div className="mt-4 w-full flex-col">
           <div className="w-full flex justify-center relative">
             <VideoBackground show={bet} />
