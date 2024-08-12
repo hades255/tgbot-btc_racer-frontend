@@ -1,10 +1,18 @@
 import React, { useCallback } from "react";
 import { useNavigate } from "react-router-dom";
+import useSound from "use-sound";
+import buttonSfx from "../../assets/audios/button.mp3";
+import { usePlaySound } from "../../contexts/SoundContext";
 
 const NavbarItem = ({ title, icon, url, active }) => {
   const navigate = useNavigate();
+  const { sound } = usePlaySound();
+  const [playButtonSfx] = useSound(buttonSfx, { soundEnabled: sound });
 
-  const handleClick = useCallback(() => navigate(url), [navigate, url]);
+  const handleClick = useCallback(() => {
+    playButtonSfx();
+    navigate(url);
+  }, [navigate, url, playButtonSfx]);
 
   return (
     <div

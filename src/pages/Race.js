@@ -1,22 +1,30 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import useSound from "use-sound";
 import axios from "axios";
-import Records from "../components/race/Records";
-import { useAuth } from "../contexts/AuthContext";
+import { fix2 } from "../helper/func";
+import { BACKEND_PATH } from "../constants/config";
 import { setScore } from "../redux/authSlice";
+import { decrease } from "../redux/fuelSlice";
+import { useAuth } from "../contexts/AuthContext";
+import { usePlaySound } from "../contexts/SoundContext";
+import Records from "../components/race/Records";
+import MusicBtn from "../components/race/MusicBtn";
+import EthChart from "../components/race/EthChart";
+import FuelSlider from "../components/race/FuelSlider";
+import EmojiIcon from "../assets/icons/Emoji";
 import RightIcon from "../assets/icons/Right";
 import MoonBtnIcon from "../assets/icons/MoonBtn";
 import DoomBtnIcon from "../assets/icons/DoomBtn";
-import EthChart from "../components/race/EthChart";
-import FuelSlider from "../components/race/FuelSlider";
+import LoadingIcon from "../assets/icons/loading";
 import TrendingUp from "../assets/icons/TrendingUP";
 import TrendingDown from "../assets/icons/TrendingDown";
-import EmojiIcon from "../assets/icons/Emoji";
-import { decrease } from "../redux/fuelSlice";
-import MusicBtn from "../components/race/MusicBtn";
-import { BACKEND_PATH } from "../constants/config";
-import { fix2 } from "../helper/func";
-import LoadingIcon from "../assets/icons/loading";
+import countSfx from "../assets/audios/countdown.mp3";
+import betSfx from "../assets/audios/bet.mp3";
+import winSfx from "../assets/audios/win.mp3";
+import loseSfx from "../assets/audios/lose.mp3";
+import VideoBackground from "../components/race/VideoBackground";
+import { addToast } from "../redux/toastSlice";
 
 const Race = () => {
   const dispatch = useDispatch();
@@ -25,14 +33,18 @@ const Race = () => {
     (state) => state.fuel
   );
   const { curPrice } = useSelector((state) => state.eth);
+  const { sound } = usePlaySound();
+
+  const [playCountSfx] = useSound(countSfx, { soundEnabled: sound });
+  const [playBetSfx] = useSound(betSfx, { soundEnabled: sound });
+  const [playWinSfx] = useSound(winSfx, { soundEnabled: sound });
+  const [playLoseSfx] = useSound(loseSfx, { soundEnabled: sound });
 
   const [count, setCount] = useState(0);
-
   const [bet, setBet] = useState(null);
   const [betAmount, setBetAmount] = useState(0);
   const [betCompareAmount, setBetCompareAmount] = useState(0);
   const [betResult, setBetResult] = useState(null);
-
   const [showResults, setShowResults] = useState(false);
 
   const compareETH = useCallback(
@@ -43,6 +55,8 @@ const Race = () => {
           const result =
             (bet === "moon" && betAmount <= price) ||
             (bet === "doom" && betAmount > price);
+          if (result) playWinSfx();
+          else playLoseSfx();
           setBetResult(result);
           const res = await axios.post(`${BACKEND_PATH}/race`, {
             guess: bet,
@@ -50,14 +64,13 @@ const Race = () => {
             result,
             userId: userId,
           });
-
-          dispatch(setScore(res.data.data));
+          if (res.data.data) dispatch(setScore(res.data.data));
         } catch (error) {
           console.log(error);
         }
       })();
     },
-    [bet, betAmount, userId, turboCharger, dispatch]
+    [bet, betAmount, userId, turboCharger, dispatch, playWinSfx, playLoseSfx]
   );
 
   useEffect(() => {
@@ -83,7 +96,7 @@ const Race = () => {
         setBetResult(null);
         setBet(null);
         setBetAmount(0);
-      }, 3000);
+      }, 4000);
     }
     return () => {
       clearInterval(timer);
@@ -92,13 +105,34 @@ const Race = () => {
 
   const bettingAction = useCallback(
     (param) => {
-      if (bet) return;
+      if (bet) {
+        dispatch(
+          addToast({
+            message: "You could not bet while its running.",
+            type: "warn",
+          })
+        );
+        return;
+      }
+      if (fuelcount <= 0) {
+        dispatch(
+          addToast({
+            message: "Please wait refill.",
+            type: "warn",
+          })
+        );
+        return;
+      }
+      playBetSfx();
       setBet(param);
       setBetAmount(curPrice);
       setCount(5);
       dispatch(decrease());
+      setTimeout(() => {
+        playCountSfx();
+      }, 1000);
     },
-    [bet, curPrice, dispatch]
+    [bet, curPrice, playBetSfx, playCountSfx, dispatch]
   );
 
   const handleClickMoon = useCallback(
@@ -152,6 +186,7 @@ const Race = () => {
         )}
         <div className="mt-4 w-full flex-col">
           <div className="w-full flex justify-center relative">
+            {bet && <VideoBackground />}
             <EthChart bet={bet} betAmount={betAmount} />
             <div className="absolute bottom-0 flex justify-center items-center">
               🚀

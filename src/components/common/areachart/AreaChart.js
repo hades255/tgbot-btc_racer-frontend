@@ -21,7 +21,7 @@ const AreaChart = ({ data, yaxis, last, betline, bet }) => {
     >
       <path
         // d={fillData}
-        d={`${lineGenerator(data)} L ${data.length * 1 + 5} 183 L 0 183`}
+        d={`${lineGenerator(data)} L ${data.length * 1} 183 L 0 183`}
         fill="url(#bg-linear-gradient-bottom)"
         fillOpacity={0.5}
         style={{ transition: "d 0s" }}

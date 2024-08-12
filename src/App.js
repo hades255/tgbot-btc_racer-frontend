@@ -12,6 +12,7 @@ import Navbar from "./components/navbar";
 import Counter from "./helper/Counter";
 import ToastContainer from "./components/common/toast";
 import Coinapi from "./helper/Coinapi";
+import { SoundProvider } from "./contexts/SoundContext";
 
 const App = () => {
   useEffect(() => {
@@ -19,7 +20,7 @@ const App = () => {
       // const title = "Alphanomics";
 
       if (window.Telegram && window.Telegram.WebApp) {
-        window.Telegram.WebApp.setHeaderColor("#0B1423");
+        window.Telegram.WebApp.setHeaderColor("#0f1f39");
         // window.Telegram.WebApp.MainButton.setText(title);
         // window.Telegram.WebApp.MainButton.setParams({
         //   text_color: "#000713",
@@ -36,20 +37,22 @@ const App = () => {
   return (
     <Provider store={store}>
       <AuthProvider>
-        <Counter />
-        <Coinapi />
-        <Router>
-          <Routes>
-            <Route path="/" element={<Race />} />
-            <Route path="/race" element={<Race />} />
-            <Route path="/leaderboard" element={<LeaderBoard />} />
-            <Route path="/tasks" element={<Tasks />} />
-            <Route path="/invite" element={<Invite />} />
-            <Route path="/surprise" element={<Surprise />} />
-          </Routes>
-          <Navbar />
-          <ToastContainer />
-        </Router>
+        <SoundProvider>
+          <Counter />
+          <Coinapi />
+          <Router>
+            <Routes>
+              <Route path="/" element={<Race />} />
+              <Route path="/race" element={<Race />} />
+              <Route path="/leaderboard" element={<LeaderBoard />} />
+              <Route path="/tasks" element={<Tasks />} />
+              <Route path="/invite" element={<Invite />} />
+              <Route path="/surprise" element={<Surprise />} />
+            </Routes>
+            <Navbar />
+            <ToastContainer />
+          </Router>
+        </SoundProvider>
       </AuthProvider>
     </Provider>
   );

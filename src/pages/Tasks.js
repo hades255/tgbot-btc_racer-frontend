@@ -108,7 +108,7 @@ const Tasks = () => {
         </span>
       </div>
       <div className="mx-4 mt-6 mb-2 text-white text-sm">Upgrade (4)</div>
-      <div className="mx-4 my-2 flex overflow-x-auto scroll">
+      <div className="mx-4 my-2 flex overflow-x-auto overflow-y-hidden">
         <div
           onClick={() => {
             handleClickTaskItem("auto-driving");
@@ -130,7 +130,7 @@ const Tasks = () => {
               🚀 Locked
             </div>
           </div>
-          {false && (
+          {true && (
             <>
               <div className="absolute top-0 left-0 bg-[#0a0a0a79] rounded-lg h-[160px] w-[180px] flex justify-center items-center">
                 <div className="flex flex-col">

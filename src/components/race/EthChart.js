@@ -8,9 +8,9 @@ const CoinGeckoWidget = ({ bet, betAmount }) => {
   const chartdata = useMemo(() => {
     let maxPrice = Math.max(...prices);
     let minPrice = Math.min(...prices);
-    if (maxPrice - minPrice < 0.02) {
-      maxPrice += 0.01;
-      minPrice -= 0.01;
+    if (maxPrice - minPrice < 1) {
+      maxPrice += 0.5;
+      minPrice -= 0.5;
     }
     const diff = maxPrice - minPrice || 1;
     const yaxis = [
@@ -24,7 +24,7 @@ const CoinGeckoWidget = ({ bet, betAmount }) => {
     const data =
       prices.length >= 2
         ? prices.map((price, index) => ({
-            x: 5 + index * 1,
+            x: index * 1,
             y: 8 + ((price - minPrice) / diff) * 140,
           }))
         : [{ x: 0, y: 0 }];

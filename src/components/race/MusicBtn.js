@@ -1,15 +1,16 @@
-import React, { useCallback, useState } from "react";
+import React, { useCallback } from "react";
 import MusicIcon from "../../assets/icons/Music";
 import MusicOffIcon from "../../assets/icons/MusicOff";
+import { usePlaySound } from "../../contexts/SoundContext";
 
 const MusicBtn = () => {
-  const [music, setMusic] = useState(true);
+  const { sound, setSound } = usePlaySound();
 
-  const handleClick = useCallback(() => setMusic(!music), [music]);
+  const handleClick = useCallback(() => setSound(!sound), [sound, setSound]);
 
   return (
     <div onClick={handleClick} className="hover:cursor-pointer">
-      {music ? (
+      {sound ? (
         <MusicIcon width={16} height={16} color={"white"} />
       ) : (
         <MusicOffIcon width={16} height={16} color={"white"} />
