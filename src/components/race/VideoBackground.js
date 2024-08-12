@@ -5,10 +5,7 @@ const VideoBackground = ({ show }) => {
 
   useEffect(() => {
     if (show && videoRef.current) {
-      videoRef.current.currentTime = 2;
       videoRef.current.play();
-    } else {
-      videoRef.current.pause();
     }
   }, [show]);
 
