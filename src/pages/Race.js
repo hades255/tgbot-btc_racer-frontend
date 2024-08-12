@@ -132,7 +132,7 @@ const Race = () => {
         playCountSfx();
       }, 1000);
     },
-    [bet, curPrice, playBetSfx, playCountSfx, dispatch]
+    [bet, curPrice, fuelcount, playBetSfx, playCountSfx, dispatch]
   );
 
   const handleClickMoon = useCallback(
