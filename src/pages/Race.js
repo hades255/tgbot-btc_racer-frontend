@@ -186,7 +186,7 @@ const Race = () => {
         )}
         <div className="mt-4 w-full flex-col">
           <div className="w-full flex justify-center relative">
-            {bet && <VideoBackground />}
+            <VideoBackground show={bet} />
             <EthChart bet={bet} betAmount={betAmount} />
             <div className="absolute bottom-0 flex justify-center items-center">
               🚀

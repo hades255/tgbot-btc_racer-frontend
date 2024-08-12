@@ -1,25 +1,26 @@
 import React, { useEffect, useRef } from "react";
 
-const VideoBackground = () => {
+const VideoBackground = ({ show }) => {
   const videoRef = useRef(null);
 
   useEffect(() => {
-    if (videoRef.current) {
+    console.log(show);
+    if (show && videoRef.current) {
       videoRef.current.currentTime = 2;
+      videoRef.current.play();
+    } else {
+      videoRef.current.pause();
     }
-  }, []);
+  }, [show]);
 
   return (
     <div
-      className="absolute flex justify-center top-0 -z-10 w-full"
+      className={`absolute flex justify-center top-0 -z-10 w-full ${
+        show ? "block" : "hidden"
+      }`}
       style={{ mixBlendMode: "color-dodge" }}
     >
-      <video
-        ref={videoRef}
-        autoPlay
-        loop
-        muted
-      >
+      <video ref={videoRef} autoPlay muted>
         <source src="/videos/bet-animation.mp4" type="video/mp4" />
         Your browser does not support the video tag.
       </video>

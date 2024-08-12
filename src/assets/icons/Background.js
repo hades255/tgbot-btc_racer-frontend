@@ -9,8 +9,9 @@ const BackgroundIcon = () => {
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
     >
-      <g opacity="0.15">
-        <g filter="url(#filter2_i_0_346)">
+      <g opacity="0.3">
+        <rect width="390" height="606" fill="#0f1f39" />
+        <g filter="url(#filter2_i_0_346)" style={{ mixBlendMode: "color-dodge" }}>
           <circle
             cx="100.707"
             cy="114.218"
