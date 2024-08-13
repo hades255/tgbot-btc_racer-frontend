@@ -16,7 +16,7 @@ const Leaderboard = () => {
           top
         </span>
       </div>
-      <div className="text-sm text-slate-200 mx-6 mt-3">
+      <div className="text-sm text-slate-200 ml-6 mt-3">
         See where you stand and challenge the top pilots!
       </div>
       <div className="mt-4 mx-6 border-b-[1px] border-gray-700 flex">

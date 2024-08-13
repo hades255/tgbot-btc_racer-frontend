@@ -17,7 +17,7 @@ const Surprise = () => {
         </span>
       </div>
       <div className="mt-4 mx-4 text-white text-sm">
-        Complete these steps to unlock Auto-flying and be eligible for big
+        Complete these steps to unlock Auto-Pilot and be eligible for big
         bonuses.
       </div>
       <div className="mx-4 mt-4 p-3 rounded-lg bg-[#132849] flex">
@@ -26,7 +26,7 @@ const Surprise = () => {
         </div>
         <div className="flex flex-col">
           <div>
-            <span className="text-white text-sm">Auto-Fly</span>
+            <span className="text-white text-sm">Auto-Pilot</span>
             <span className="ml-1 px-2 text-xs bg-emphasize-new text-white rounded">
               New
             </span>

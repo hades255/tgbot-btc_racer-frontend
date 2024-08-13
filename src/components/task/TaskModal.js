@@ -182,7 +182,7 @@ const TaskModal = ({ selected, onClose, show }) => {
             </div>
           </div>
         ),
-        title: "Auto Cap",
+        title: "Auto Pilot",
         content:
           "Link your Telegram to your Alphanomics account and pass identity verification on Alphanomics to unlock Auto-driving. This lets you automatically play the game while you’re away, so you’re always earning points.",
         subcontent: (
@@ -205,8 +205,8 @@ const TaskModal = ({ selected, onClose, show }) => {
             </div>
           </div>
         ),
-        title: "Reload Fuel Task",
-        content: "Enjoy 3 free fuel tank refills every day!",
+        title: "Rocket Pack Refill",
+        content: "Enjoy 3 free rocket pack refills every day!",
         subcontent: (
           <div className="text-sm text-slate-400 flex">
             <span className="text-white">🚀 Free</span>
@@ -231,8 +231,8 @@ const TaskModal = ({ selected, onClose, show }) => {
             </div>
           </div>
         ),
-        title: "Fuel Tank",
-        content: "Increase your maximun fuel tank by 2!",
+        title: "Fuel Up",
+        content: "Increase fuel tank by 2!",
         subcontent: (
           <div className="text-sm text-slate-400 flex">
             <span className="text-white">
@@ -259,7 +259,7 @@ const TaskModal = ({ selected, onClose, show }) => {
             </div>
           </div>
         ),
-        title: "Turbo Charger",
+        title: "Turbo Booster",
         content: "Each level up increases the base score earned by 10 points",
         subcontent: (
           <div className="text-sm text-slate-400 flex">

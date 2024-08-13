@@ -98,9 +98,8 @@ const Tasks = () => {
   return (
     <div className="w-full flex flex-col mt-4 mb-24">
       <div className="mt-18 flex justify-center">
-        <div className="mr-1 pt-1"></div>
-        <span className="text-sm">💎</span>
-        <span className="text-slate-400 text-sm">Diamonds Collected</span>
+        <span className="text-sm mr-1">💎</span>
+        <span className="text-slate-400 text-sm mr-1">Diamonds Collected</span>
       </div>
       <div className="mt-1 flex justify-center">
         <span className="text-white text-3xl spaced-text-2 font-bold">
@@ -108,7 +107,7 @@ const Tasks = () => {
         </span>
       </div>
       <div className="mx-4 mt-6 mb-2 text-white text-sm">Upgrade (4)</div>
-      <div className="mx-4 my-2 flex overflow-x-auto overflow-y-hidden">
+      <div className="mx-4 my-2 flex overflow-x-visible overflow-y-hidden">
         <div
           onClick={() => {
             handleClickTaskItem("auto-driving");
@@ -120,7 +119,7 @@ const Tasks = () => {
               <Saturn1Icon width={36} height={36} color={"random"} />
             </div>
             <div className="mt-2">
-              <span className="text-white text-sm">Auto-driving</span>
+              <span className="text-white text-sm">Auto-Pilot</span>
               <span className="ml-1 px-1 text-xs bg-lime-400 rounded">New</span>
             </div>
             <div className="text-slate-400 text-xs">
@@ -156,10 +155,10 @@ const Tasks = () => {
             <SaturnIcon width={36} height={36} color={"random"} />
           </div>
           <div className="mt-2">
-            <span className="text-white text-sm">Reload Jet Tank</span>
+            <span className="text-white text-sm">Rocket Pack Refill</span>
           </div>
           <div className="text-slate-500 text-xs">
-            Enjoy 3 free fuel tank refills every day!
+            Enjoy 3 free rocket pack refills every day!
           </div>
           <div className="text-slate-400 absolute bottom-1 flex text-xs">
             🚀 Free
@@ -179,10 +178,10 @@ const Tasks = () => {
             <Saturn1Icon width={36} height={36} color={"random"} />
           </div>
           <div className="mt-2">
-            <span className="text-white text-sm">Fuel Tank</span>
+            <span className="text-white text-sm">Fuel Up</span>
           </div>
           <div className="text-slate-500 text-xs">
-            Increase your maximun fuel tank by 2!
+            Increase Fuel tanks by 2.
           </div>
           <div className="text-slate-400 absolute bottom-1 flex text-xs">
             🚀 -{fueltankpoint}pts
@@ -202,10 +201,10 @@ const Tasks = () => {
             <SaturnIcon width={36} height={36} color={"random"} />
           </div>
           <div className="mt-2">
-            <span className="text-white text-sm">Turbo Charger</span>
+            <span className="text-white text-sm">Turbo Boosters</span>
           </div>
           <div className="text-slate-500 text-xs">
-            Each level up increases the base score earned by 10...
+            Each level up increases the base score earned by 10 points.
           </div>
           <div className="text-slate-400 absolute bottom-1 flex text-xs">
             🚀 -{turborpoint}pts

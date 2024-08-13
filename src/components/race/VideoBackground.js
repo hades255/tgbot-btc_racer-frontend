@@ -1,15 +1,30 @@
-import React, { useEffect, useRef } from "react";
+import React from "react";
 
 const VideoBackground = ({ show }) => {
-  const videoRef = useRef(null);
+  // const videoRef = useRef(null);
 
-  useEffect(() => {
-    if (show && videoRef.current) {
-      videoRef.current.play();
-    }
-  }, [show]);
+  // useEffect(() => {
+  //   if (show && videoRef.current) {
+  //     videoRef.current.play();
+  //   }
+  // }, [show]);
 
   return (
+    <img
+      src="flyingrocket.gif"
+      alt=""
+      className={`absolute flex justify-center top-0 -z-10 w-full ${
+        show ? "block" : "hidden"
+      }`}
+      style={{ mixBlendMode: "color-dodge" }}
+    />
+  );
+};
+
+export default VideoBackground;
+
+/**
+
     <div
       className={`absolute flex justify-center top-0 -z-10 w-full ${
         show ? "block" : "hidden"
@@ -20,8 +35,7 @@ const VideoBackground = ({ show }) => {
         <source src="/videos/bet-animation.mp4" type="video/mp4" />
         Your browser does not support the video tag.
       </video>
-    </div>
-  );
-};
+    </div> 
 
-export default VideoBackground;
+
+ */

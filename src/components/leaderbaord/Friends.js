@@ -28,8 +28,8 @@ const Friends = () => {
   }, [users, userId]);
 
   return (
-    <div className="flex flex-col">
-      <div className="h-56 min-h-56 max-h-56 overflow-y-scroll flex flex-col">
+    <div className="flex flex-col mb-20">
+      <div className="min-h-52 flex flex-col">
         <div className="flex justify-between mx-3">
           <span className="text-slate-500 text-xs">
             {(users.length || 0).toLocaleString()} pilots

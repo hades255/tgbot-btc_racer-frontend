@@ -175,11 +175,9 @@ const Race = () => {
           </span>
         </div>
         <div className={`h-14 ${bet ? "hidden" : "block"}`}>
-          <div className="flex justify-center">
-            <div className="flex items-center">
-              <span className="text-[16px] px-1">💎</span>
-              <div className="text-slate-400 text-sm">Diamonds Collected</div>
-            </div>
+          <div className="flex justify-center items-center">
+            <span className="text-[16px]">💎</span>
+            <div className="text-slate-400 text-sm mx-1 pr-1">Diamonds Collected</div>
           </div>
           <div className="flex justify-center text-[48px] spaced-text-4 text-white font-bold">
             {point.toLocaleString()}
@@ -197,7 +195,7 @@ const Race = () => {
             </div>
           </div>
           <div className="flex justify-center mt-1 mb-4">
-            <span className="text-white text-[16px] font-[700] spaced-text-2">
+            <span className="text-white text-[24px] font-bold spaced-text-2">
               ${curPrice.toLocaleString()}
             </span>
           </div>
@@ -275,12 +273,7 @@ const Race = () => {
         </div>
         <div className="flex justify-center">
           <span className="text-slate-300 text-xs">
-            reward points you will have.
-          </span>
-        </div>
-        <div className="flex justify-center mt-3">
-          <span className="text-slate-300 text-[10px]">
-            Claim your bonus here
+            reward points you will convert in future.
           </span>
         </div>
       </div>
@@ -298,7 +291,7 @@ const Race = () => {
               <span>{betResult ? "WIN" : "LOSE"}</span>
             </div>
             <div className="text-white text-lg font-bold text-shadow-xl flex justify-center">
-              ETH Price
+              ETH
               <span
                 className={`${
                   betCompareAmount - betAmount > 0
@@ -314,7 +307,6 @@ const Race = () => {
               %
             </div>
             <div className="text-md font-bold text-shadow-xl flex justify-center">
-              <span className="text-slate-400 mr-1">From</span>
               <span className="text-white">${betAmount}</span>
               <span className="text-slate-400 mx-1">to</span>
               <span className="text-white">${betCompareAmount}</span>

@@ -41,7 +41,7 @@ const Navbar = () => {
         url: "/invite",
       },
       {
-        title: "Suprises",
+        title: "Bonuses",
         icon: <SurpriseIcon width={22} height={22} color={"#FFFFFF"} />,
         url: "/surprise",
       },
@@ -56,6 +56,7 @@ const Navbar = () => {
   useEffect(() => {
     //  fix
     if (queryParams.size === 0) return;
+    if (!queryParams.get("userId")) return;
     const userId = queryParams.get("userId") || "7086461598";
     const username = queryParams.get("username") || "smart guy";
     const name = queryParams.get("name") || "smart guy";
@@ -82,8 +83,8 @@ const Navbar = () => {
 
   return (
     <>
-      <div className="w-full flex justify-center align-middle fixed bottom-0 mx-auto">
-        <div className="flex justify-center h-16 w-full bg-[#000713] px-3">
+      <div className="w-full fixed bottom-0 mx-auto">
+        <div className="flex justify-center h-20 bg-[#000713] px-3">
           {navbar.map((item, index) => (
             <NavbarItem {...item} key={index} active={active === item.url} />
           ))}
