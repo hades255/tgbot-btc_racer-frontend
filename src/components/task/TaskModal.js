@@ -1,24 +1,25 @@
 import React, { useCallback, useMemo } from "react";
+import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import Modal from "../common/Modal";
-import { boost, upgrade } from "../../redux/fuelSlice";
-import DotIcon from "../../assets/icons/Dot";
-import RocketIcon from "../../assets/icons/Rocket";
 import axios from "axios";
-import { useAuth } from "../../contexts/AuthContext";
-import Saturn1Icon from "../../assets/icons/Saturn1";
-import { addToast } from "../../redux/toastSlice";
 import {
   setScore,
   upgradeDailyBonus,
   upgradeDailyBonusVisit,
   upgradeTturboCharger,
+  upgradeUser,
 } from "../../redux/authSlice";
-import BtnDark from "../common/button/BtnDark";
-import { useNavigate } from "react-router-dom";
-import RedirectBtn from "../common/button/RedirectBtn";
+import { addToast } from "../../redux/toastSlice";
+import { boost, upgrade } from "../../redux/fuelSlice";
+import { useAuth } from "../../contexts/AuthContext";
 import { BACKEND_PATH } from "../../constants/config";
 import { fuelTankPoints, turborPoints } from "../../helper/points";
+import Modal from "../common/Modal";
+import BtnDark from "../common/button/BtnDark";
+import RedirectBtn from "../common/button/RedirectBtn";
+import DotIcon from "../../assets/icons/Dot";
+import RocketIcon from "../../assets/icons/Rocket";
+import Saturn1Icon from "../../assets/icons/Saturn1";
 
 const TaskModal = ({ selected, onClose, show }) => {
   const dispatch = useDispatch();
@@ -32,6 +33,11 @@ const TaskModal = ({ selected, onClose, show }) => {
   const turborpoint = useMemo(() => turborPoints(turboCharger), [turboCharger]);
 
   const handleClose = useCallback(() => onClose(false), [onClose]);
+
+  const handleClickUnlock = useCallback(
+    () => navigate("/surprise"),
+    [navigate]
+  );
 
   const handleClickReloadFuel = useCallback(() => {
     if (freeBoost < 0 || fuelcount >= fuelcapacity) {
@@ -81,11 +87,6 @@ const TaskModal = ({ selected, onClose, show }) => {
     handleClose();
   }, [dispatch, userId, point, fueltankpoint, handleClose]);
 
-  const handleClickUnlock = useCallback(
-    () => navigate("/surprise"),
-    [navigate]
-  );
-
   const handleTurborCharger = useCallback(() => {
     if (turborpoint > point) {
       dispatch(
@@ -111,17 +112,6 @@ const TaskModal = ({ selected, onClose, show }) => {
     }
     handleClose();
   }, [dispatch, turborpoint, point, userId, handleClose]);
-
-  const handleClickCompleteIdentity = useCallback(
-    () =>
-      dispatch(
-        addToast({
-          message: "You have not fulfilled the requirements of this task.",
-          type: "error",
-        })
-      ),
-    [dispatch]
-  );
 
   const handleClickDailyReward = useCallback(() => {
     (async () => {
@@ -164,6 +154,80 @@ const TaskModal = ({ selected, onClose, show }) => {
       handleClose();
     })();
   }, [dispatch, userId, handleClose]);
+
+  const handleClickFollowX = useCallback(() => {
+    (async () => {
+      try {
+        const response = await axios.get(
+          `${BACKEND_PATH}/user/bonus-followx?userId=${userId}`
+        );
+        dispatch(setScore(response.data.data));
+        dispatch(upgradeUser({ key: "followTwitter", value: true }));
+        dispatch(
+          addToast({
+            message: "You've completed the task and earned points.",
+            type: "success",
+          })
+        );
+      } catch (error) {
+        console.log(error);
+      }
+      handleClose();
+    })();
+  }, [dispatch, userId, handleClose]);
+
+  const handleClicJoinAnnouncement = useCallback(() => {
+    (async () => {
+      try {
+        const response = await axios.get(
+          `${BACKEND_PATH}/user/bonus-joinannouncement?userId=${userId}`
+        );
+        dispatch(setScore(response.data.data));
+        dispatch(upgradeUser({ key: "joinAnnouncementChannel", value: true }));
+        dispatch(
+          addToast({
+            message: "You've completed the task and earned points.",
+            type: "success",
+          })
+        );
+      } catch (error) {
+        console.log(error);
+      }
+      handleClose();
+    })();
+  }, [dispatch, userId, handleClose]);
+
+  const handleClickjoinNewsletter = useCallback(() => {
+    (async () => {
+      try {
+        const response = await axios.get(
+          `${BACKEND_PATH}/user/bonus-joinnewsletter?userId=${userId}`
+        );
+        dispatch(setScore(response.data.data));
+        dispatch(upgradeUser({ key: "joinNewsletter", value: true }));
+        dispatch(
+          addToast({
+            message: "You've completed the task and earned points.",
+            type: "success",
+          })
+        );
+      } catch (error) {
+        console.log(error);
+      }
+      handleClose();
+    })();
+  }, [dispatch, userId, handleClose]);
+
+  const handleClickCompleteIdentity = useCallback(
+    () =>
+      dispatch(
+        addToast({
+          message: "You have not fulfilled the requirements of this task.",
+          type: "error",
+        })
+      ),
+    [dispatch]
+  );
 
   const tasks = useMemo(
     () => ({
@@ -284,13 +348,6 @@ const TaskModal = ({ selected, onClose, show }) => {
         button: "I have completed the verification",
         action: handleClickCompleteIdentity,
       },
-      "follow-twitter": {
-        title: "Follow Alphanomics official Twitter",
-        content: "Follow Alphanomics official twitter for extra points!",
-        button: "Go now",
-        action: () => {},
-        redirect: "https://x.com/okx?s=11",
-      },
       "daily-reward": {
         title: "Daily Rewards",
         content: "Check in daily to earn rewards",
@@ -303,19 +360,26 @@ const TaskModal = ({ selected, onClose, show }) => {
         button: "Check in",
         action: handleClickDailyVisit,
       },
+      "follow-twitter": {
+        title: "Follow Alphanomics official Twitter",
+        content: "Follow Alphanomics official twitter for extra points!",
+        button: "Go now",
+        action: handleClickFollowX,
+        redirect: "https://x.com/okx?s=11",
+      },
       "announcement-channel": {
         title: "Join announcement channel",
         content: "Follow Alphanomics official twitter for extra points!",
         button: "Go now",
         redirect: "https://www.okx.com/join",
-        action: () => {},
+        action: handleClicJoinAnnouncement,
       },
       "newsletter-channel": {
         title: "Join Newsletter substack",
         content: "Follow Alphanomics official twitter for extra points!",
         button: "Go now",
         redirect: "https://www.okx.com/join",
-        action: () => {},
+        action: handleClickjoinNewsletter,
       },
     }),
     [
@@ -331,6 +395,9 @@ const TaskModal = ({ selected, onClose, show }) => {
       handleClickCompleteIdentity,
       handleClickDailyReward,
       handleClickDailyVisit,
+      handleClickFollowX,
+      handleClicJoinAnnouncement,
+      handleClickjoinNewsletter,
     ]
   );
 

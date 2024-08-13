@@ -22,6 +22,9 @@ const Tasks = () => {
     dailyBonus,
     dailyBonusVisitLevel,
     dailyBonusVisit,
+    followTwitter,
+    joinNewsletter,
+    joinAnnouncementChannel,
   } = useAuth();
   const { freeBoost, fueltank } = useSelector((state) => state.fuel);
   const fueltankpoint = useMemo(
@@ -64,20 +67,20 @@ const Tasks = () => {
         {
           event: "follow-twitter",
           title: "Follow Alphanomics X",
-          point: 750,
-          status: false,
+          point: 3000,
+          status: followTwitter,
         },
         {
           event: "announcement-channel",
           title: "Join announcement channel",
-          point: 750,
-          status: false,
+          point: 3000,
+          status: joinAnnouncementChannel,
         },
         {
           event: "newsletter-channel",
           title: "Join Newsletter substack",
-          point: 750,
-          status: false,
+          point: 3000,
+          status: joinNewsletter,
         },
         {
           event: "daily-reward",
@@ -92,7 +95,15 @@ const Tasks = () => {
           status: dailyBonusVisit,
         },
       ].sort((a) => (a.status ? 1 : -1)),
-    [dailyBonus, bonuspoints, bonusVisitpoints, dailyBonusVisit]
+    [
+      dailyBonus,
+      bonuspoints,
+      bonusVisitpoints,
+      dailyBonusVisit,
+      followTwitter,
+      joinNewsletter,
+      joinAnnouncementChannel,
+    ]
   );
 
   return (
@@ -221,6 +232,7 @@ const Tasks = () => {
           <div
             className="mx-4 my-2 px-3 py-2 rounded-xl flex justify-between border border-[#173560]"
             onClick={() => {
+              if (item.status) return;
               handleClickTaskItem(item.event);
             }}
             key={index}
