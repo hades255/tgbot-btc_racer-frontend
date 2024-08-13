@@ -159,7 +159,7 @@ const Race = () => {
           onClick={handleShowRaces}
         >
           <div className="h-7 w-28 flex items-center">
-            <span className="text-white text-xs ml-3 mr-3">My records</span>
+            <span className="text-white text-sm ml-3 mr-2">My records</span>
             <RightIcon width={12} height={12} color={"white"} />
           </div>
         </div>
@@ -176,8 +176,8 @@ const Race = () => {
         </div>
         <div className={`h-14 ${bet ? "hidden" : "block"}`}>
           <div className="flex justify-center items-center">
-            <span className="text-[16px]">💎</span>
-            <div className="text-slate-400 text-sm mx-1 pr-1">Diamonds Collected</div>
+            <span className="text-[20px]">💎</span>
+            <div className="text-slate-400 text-md mx-1 pr-1">Diamonds Collected</div>
           </div>
           <div className="flex justify-center text-[48px] spaced-text-4 text-white font-bold">
             {point.toLocaleString()}
@@ -190,11 +190,11 @@ const Race = () => {
             <div className="absolute bottom-0 flex justify-center items-center">
               🚀
               <FuelSlider progress={fuelcount / fuelcapacity} />
-              <span className="text-white text-xs">{fuelcount} /</span>
-              <span className="text-slate-400 text-xs">{fuelcapacity}</span>
+              <span className="text-white text-sm">{fuelcount} /</span>
+              <span className="text-slate-400 text-sm">{fuelcapacity}</span>
             </div>
           </div>
-          <div className="flex justify-center mt-1 mb-4">
+          <div className="flex justify-center mt-1">
             <span className="text-white text-[24px] font-bold spaced-text-2">
               ${curPrice.toLocaleString()}
             </span>
@@ -204,10 +204,10 @@ const Race = () => {
               <div className="flex justify-center">
                 <div className="bg-fuel-gradient w-[200px] h-[36px] rounded-3xl flex justify-center">
                   <div className="bg-fuel-sub-gradient w-[196px] h-[34px] rounded-3xl flex justify-center items-center">
-                    <span className="text-xs text-slate-400 mr-1">
+                    <span className="text-sm text-slate-400 mr-1">
                       Next refill in
                     </span>
-                    <span className="text-xs text-white">
+                    <span className="text-sm text-white">
                       0{cooldown >= 60 ? 1 : 0}:{cooldown % 60 < 10 ? 0 : ""}
                       {cooldown % 60}
                     </span>
@@ -218,7 +218,7 @@ const Race = () => {
           </div>
         </div>
         <div className="my-4">
-          <div className="flex justify-center text-xs text-slate-300">
+          <div className="flex justify-center text-sm text-slate-300">
             Guess the ETH price in the next 5 secs
           </div>
           <div className="mt-4 flex justify-center">
@@ -233,12 +233,12 @@ const Race = () => {
                   <span
                     className={`${
                       bet === null ? "text-white" : "text-slate-500"
-                    } font-bold text-lg`}
+                    } font-bold text-[24px]`}
                   >
                     PUMP
                   </span>
                   <div className="ml-1 mt-1">
-                    <TrendingUp width={20} height={20} color={"white"} />
+                    <TrendingUp width={28} height={28} color={"white"} />
                   </div>
                 </div>
               </div>
@@ -254,12 +254,12 @@ const Race = () => {
                   <span
                     className={`${
                       bet === null ? "text-white" : "text-slate-500"
-                    } font-bold text-lg`}
+                    } font-bold text-[24px]`}
                   >
                     DUMP
                   </span>
                   <div className="ml-1 mt-1">
-                    <TrendingDown width={20} height={20} color={"white"} />
+                    <TrendingDown width={28} height={28} color={"white"} />
                   </div>
                 </div>
               </div>
@@ -267,12 +267,12 @@ const Race = () => {
           </div>
         </div>
         <div className="flex justify-center mt-3">
-          <span className="text-slate-300 text-xs">
+          <span className="text-slate-300 text-sm">
             The more 💎 you have the more ANOM
           </span>
         </div>
         <div className="flex justify-center">
-          <span className="text-slate-300 text-xs">
+          <span className="text-slate-300 text-sm">
             reward points you will convert in future.
           </span>
         </div>

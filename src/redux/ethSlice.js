@@ -11,14 +11,13 @@ const ehtSlice = createSlice({
         state.curPrice = fix2(avgtemp, 3);
         if (state.prices.length === 0) state.prices = [avgtemp];
         else {
-          state.prices = selectLastItems([...state.prices, avgtemp], 260);
+          state.prices = selectLastItems([...state.prices, avgtemp], 270);
         }
       } else {
         if (state.prices.length) {
-          console.log("avg");
           const _avgtemp = getAverage(state.prices);
           state.curPrice = fix2(_avgtemp, 3);
-          state.prices = selectLastItems([...state.prices, _avgtemp], 260);
+          state.prices = selectLastItems([...state.prices, _avgtemp], 270);
         }
       }
     },

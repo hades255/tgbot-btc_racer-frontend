@@ -28,10 +28,10 @@ const Global = () => {
   return (
     <div className="flex flex-col">
       <div className="flex justify-between mx-3">
-        <span className="text-slate-500 text-xs">
+        <span className="text-slate-500 text-sm">
           {(users.length || 0).toLocaleString()} pilots
         </span>
-        <span className="text-slate-500 text-xs">Total pts earned</span>
+        <span className="text-slate-500 text-sm">Total pts earned</span>
       </div>
       <div className="flex flex-col pt-2">
         {rank !== null && rank > 10 && (

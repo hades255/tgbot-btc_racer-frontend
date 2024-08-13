@@ -11,9 +11,9 @@ const MusicBtn = () => {
   return (
     <div onClick={handleClick} className="hover:cursor-pointer">
       {sound ? (
-        <MusicIcon width={16} height={16} color={"white"} />
+        <MusicIcon width={20} height={20} color={"white"} />
       ) : (
-        <MusicOffIcon width={16} height={16} color={"white"} />
+        <MusicOffIcon width={20} height={20} color={"white"} />
       )}
     </div>
   );

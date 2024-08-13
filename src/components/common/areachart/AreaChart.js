@@ -14,9 +14,9 @@ const AreaChart = ({ data, yaxis, last, betline, bet }) => {
 
   return (
     <svg
-      width="330"
+      width="340"
       height="200"
-      viewBox="0 0 330 200"
+      viewBox="0 0 340 200"
       xmlns="http://www.w3.org/2000/svg"
     >
       <path
@@ -48,7 +48,7 @@ const AreaChart = ({ data, yaxis, last, betline, bet }) => {
       {yaxis.map((item, index) => (
         <text
           key={index}
-          x="283"
+          x="293"
           y={183 - item.y}
           fill="white"
           fontSize="10"
@@ -62,7 +62,7 @@ const AreaChart = ({ data, yaxis, last, betline, bet }) => {
       <rect
         width={47}
         height={17}
-        x={282}
+        x={292}
         y={176 - lastPoint.y}
         fill="#383D67DD"
         rx={2}
@@ -71,7 +71,7 @@ const AreaChart = ({ data, yaxis, last, betline, bet }) => {
         strokeWidth={1}
       />
       <text
-        x="283"
+        x="293"
         y={188 - lastPoint.y}
         fill="white"
         fontSize="10"

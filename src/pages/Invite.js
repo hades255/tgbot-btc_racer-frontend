@@ -6,15 +6,13 @@ import CopyBtn from "../components/leaderbaord/CopyBtn";
 const Invite = () => {
   return (
     <div className="w-full flex flex-col">
-      <div className="mx-4 my-8">
-        <div className="flex flex-col">
-          <span className="text-3xl spaced-text-2 font-bold text-white">
-            Invite friends &
-          </span>
-          <span className="text-3xl spaced-text-2 font-bold justify-start bg-clip-text text-transparent bg-emphasize">
-            earn points
-          </span>
-        </div>
+      <div className="mx-4 my-8 flex flex-col">
+        <span className="text-3xl spaced-text-2 font-bold text-white">
+          Invite friends &
+        </span>
+        <span className="text-3xl spaced-text-2 font-bold justify-start bg-clip-text text-transparent bg-emphasize">
+          earn points
+        </span>
       </div>
       <div className="mx-4 my-4 mt-1 border-2 border-[#28426C] rounded-lg px-4 py-4">
         <div className="flex">
@@ -22,10 +20,8 @@ const Invite = () => {
             <DotIcon width={12} height={12} color={"#69d3fd"} />
           </div>
           <div className="flex flex-col">
-            <span className="text-[#69d3fd] text-sm">
-              Refer your frens
-            </span>
-            <span className="text-[#9E9E9E] text-xs">
+            <span className="text-[#69d3fd] text-md">Refer your frens</span>
+            <span className="text-[#9E9E9E] text-sm">
               Earn 5,000 points each for the first 5 frens that start racing.
             </span>
           </div>
@@ -35,21 +31,18 @@ const Invite = () => {
             <DotIcon width={12} height={12} color={"#69d3fd"} />
           </div>
           <div className="flex flex-col">
-            <span className="text-[#69d3fd] text-sm">
-              Bonus points
-            </span>
-            <span className="text-[#9E9E9E] text-xs">
+            <span className="text-[#69d3fd] text-md">Bonus points</span>
+            <span className="text-[#9E9E9E] text-sm">
               You'll get 10 % of each fren's total points, up to 10,000 bonus
               points per fren.
             </span>
           </div>
         </div>
       </div>
-      <div className="mx-4 my-2 text-[#9E9E9E] text-sm">
-        You've earned <span className="text-white">0 pts</span> from your
-        frens.
+      <div className="mx-4 my-2 text-[#9E9E9E] text-md">
+        You've earned <span className="text-white">0 pts</span> from your frens.
       </div>
-      <div className="mx-4 mt-24 flex justify-start py-2 px-2">
+      <div className="mx-4 mt-12 flex justify-start py-2 px-2">
         <InviteBtn />
         <div className="ml-4 ">
           <CopyBtn />

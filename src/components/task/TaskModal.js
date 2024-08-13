@@ -189,7 +189,7 @@ const TaskModal = ({ selected, onClose, show }) => {
           <div className="text-slate-400 flex items-center">
             <span className="mx-2 text-sm text-white">🚀 Free</span>
             <DotIcon width={4} height={4} color={"#a8a29e"} />
-            <span className="ml-2 text-xs">Lvl 0</span>
+            <span className="ml-2 text-sm">Lvl 0</span>
           </div>
         ),
         button: "Learn More",
@@ -353,7 +353,7 @@ const TaskModal = ({ selected, onClose, show }) => {
       {show && (
         <div className="flex flex-col">
           <div className="flex justify-center">
-            <span className="mx-4 text-slate-500 text-xs text-wrap text-center">
+            <span className="mx-4 text-slate-500 text-[16px] text-wrap text-center">
               {tasks[selected].content}
             </span>
           </div>
@@ -362,7 +362,6 @@ const TaskModal = ({ selected, onClose, show }) => {
               {tasks[selected].subcontent}
             </div>
           )}
-          <div className="flex justify-center mt-4 mb-6"></div>
           <div className="flex justify-center my-4 mx-4">
             {tasks[selected].redirect ? (
               <RedirectBtn url={tasks[selected].redirect} className="w-full">

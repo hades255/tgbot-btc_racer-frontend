@@ -22,7 +22,7 @@ const Modal = ({ show, onClose, title, children, className }) => {
           onClick={handleClickBody}
         >
           <div className="flex justify-center items-center bg-[#08101F] p-4 rounded-t-lg relative">
-            <div className="text-md font-medium text-white text-center">
+            <div className="text-[20px] font-medium text-white text-center">
               {title}
             </div>
             <button

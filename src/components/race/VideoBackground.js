@@ -10,14 +10,14 @@ const VideoBackground = ({ show }) => {
   // }, [show]);
 
   return (
-    <img
-      src="flyingrocket.gif"
-      alt=""
-      className={`absolute flex justify-center top-0 -z-10 w-full ${
-        show ? "block" : "hidden"
-      }`}
-      style={{ mixBlendMode: "color-dodge" }}
-    />
+    show && (
+      <img
+        src="flyingrocket.gif"
+        alt=""
+        className={`absolute flex justify-center top-0 -z-10 w-full`}
+        style={{ mixBlendMode: "color-dodge" }}
+      />
+    )
   );
 };
 
