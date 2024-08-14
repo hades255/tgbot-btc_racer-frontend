@@ -7,10 +7,10 @@ const Invite = () => {
   return (
     <div className="w-full flex flex-col">
       <div className="mx-4 my-8 flex flex-col">
-        <span className="text-[32px] spaced-text-2 font-bold text-white">
+        <span className="text-[32px] font-bold font-dmsans_bold text-white">
           Invite friends &
         </span>
-        <span className="text-[32px] spaced-text-2 font-bold justify-start bg-clip-text text-transparent bg-emphasize">
+        <span className="text-[32px] font-bold font-dmsans_bold justify-start bg-clip-text text-transparent bg-emphasize">
           earn points
         </span>
       </div>

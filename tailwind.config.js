@@ -33,6 +33,8 @@ module.exports = {
       fontFamily: {
         digital: ["Digital7"],
         dmsans: ["dm-sans"],
+        dmsans_extrabold: ["dm-sans-extrabold"],
+        dmsans_bold: ["dm-sans-bold"],
       },
       textColor: {},
       keyframes: {

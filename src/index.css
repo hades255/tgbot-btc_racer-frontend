@@ -18,11 +18,29 @@
   font-optical-sizing: auto;
 }
 
+@font-face {
+  font-family: "dm-sans-extrabold";
+  src: url("./assets/font/DM_Sans/static/DMSans-ExtraBold.ttf")
+    format("truetype");
+  font-weight: bold;
+  font-style: normal;
+  font-optical-sizing: auto;
+}
+
+@font-face {
+  font-family: "dm-sans-bold";
+  src: url("./assets/font/DM_Sans/static/DMSans-Bold.ttf")
+    format("truetype");
+  font-weight: bold;
+  font-style: normal;
+  font-optical-sizing: auto;
+}
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
     "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif, "dm-sans";
+    sans-serif, "dm-sans", "dm-sans-extrabold", "dm-sans-bold";
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background-color: #0f1f39;

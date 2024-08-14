@@ -170,7 +170,7 @@ const Race = () => {
             bet ? "block" : "hidden"
           }`}
         >
-          <span className="text-white text-5xl text-shadow-xl font-digital">
+          <span className="text-white text-5xl text-shadow-xl font-digital font-medium">
             00:0{count}
           </span>
         </div>
@@ -181,7 +181,7 @@ const Race = () => {
               Diamonds Collected
             </div>
           </div>
-          <div className="flex justify-center text-[48px] spaced-text-4 text-white font-bold">
+          <div className="flex justify-center text-[48px] spaced-text-4 text-white font-bold font-dmsans_bold">
             {point.toLocaleString()}
           </div>
         </div>
@@ -197,7 +197,7 @@ const Race = () => {
             </div>
           </div>
           <div className="flex justify-center mt-1">
-            <span className="text-white text-[24px] font-bold spaced-text-2">
+            <span className="text-white text-[24px] font-bold font-dmsans_bold spaced-text-2">
               ${curPrice.toLocaleString()}
             </span>
           </div>
@@ -235,7 +235,7 @@ const Race = () => {
                   <span
                     className={`${
                       bet === null ? "text-white" : "text-slate-500"
-                    } font-bold text-[24px]`}
+                    } font-bold font-dmsans_bold text-[24px]`}
                   >
                     PUMP
                   </span>
@@ -256,7 +256,7 @@ const Race = () => {
                   <span
                     className={`${
                       bet === null ? "text-white" : "text-slate-500"
-                    } font-bold text-[24px]`}
+                    } font-bold font-dmsans_bold text-[24px]`}
                   >
                     DUMP
                   </span>
@@ -293,10 +293,10 @@ const Race = () => {
               )}
             </div>
             <div className="flex text-white text-[100px] font-bold text-shadow-2xl justify-center">
-              <span>{betResult ? "WIN" : "LOSE"}</span>
+              <span className="font-dmsans_extrabold">{betResult ? "WIN" : "LOSE"}</span>
             </div>
-            <div className="text-white text-[20px] font-bold text-shadow-xl flex justify-center">
-              ETH
+            <div className="text-white text-[20px] font-bold font-dmsans_bold text-shadow-xl flex justify-center">
+              <span className="font-dmsans_bold font-bold">ETH</span>
               <span
                 className={`${
                   betCompareAmount - betAmount > 0
@@ -312,9 +312,9 @@ const Race = () => {
               %
             </div>
             <div className="text-[20px] font-bold text-shadow-xl flex justify-center">
-              <span className="text-white">${betAmount}</span>
-              <span className="text-slate-400 mx-1">to</span>
-              <span className="text-white">${betCompareAmount}</span>
+              <span className="font-dmsans_bold text-white">${betAmount}</span>
+              <span className="font-dmsans_bold text-slate-400 mx-1">to</span>
+              <span className="font-dmsans_bold text-white">${betCompareAmount}</span>
             </div>
           </div>
         </div>

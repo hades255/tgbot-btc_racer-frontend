@@ -14,10 +14,10 @@ const Surprise = () => {
   return (
     <div className="w-full flex flex-col mb-20">
       <div className="mx-4 mt-4 flex flex-col">
-        <span className="spaced-text-2 text-[32px] font-bold text-white">
+        <span className="text-[32px] font-bold font-dmsans_bold text-white">
           Ready for more
         </span>
-        <span className="spaced-text-2 text-[32px] font-bold bg-clip-text text-transparent bg-emphasize">
+        <span className="text-[32px] font-bold font-dmsans_bold bg-clip-text text-transparent bg-emphasize text-shadow">
           big bonuses?
         </span>
       </div>
