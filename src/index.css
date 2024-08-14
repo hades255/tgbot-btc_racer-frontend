@@ -29,8 +29,7 @@
 
 @font-face {
   font-family: "dm-sans-bold";
-  src: url("./assets/font/DM_Sans/static/DMSans-Bold.ttf")
-    format("truetype");
+  src: url("./assets/font/DM_Sans/static/DMSans-Bold.ttf") format("truetype");
   font-weight: bold;
   font-style: normal;
   font-optical-sizing: auto;
@@ -51,6 +50,7 @@ body {
 * {
   -webkit-overflow-scrolling: touch;
   -webkit-scrollbar-width: none;
+  -ms-overflow-style: none;
   scrollbar-width: none;
   font-family: "dm-sans";
 }
@@ -58,4 +58,8 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
+}
+
+::-webkit-scrollbar {
+  display: none;
 }

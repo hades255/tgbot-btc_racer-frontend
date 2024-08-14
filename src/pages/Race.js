@@ -181,7 +181,7 @@ const Race = () => {
               Diamonds Collected
             </div>
           </div>
-          <div className="flex justify-center text-[48px] spaced-text-4 text-white font-bold font-dmsans_bold">
+          <div className="flex justify-center text-[48px] text-white font-bold font-dmsans_extrabold">
             {point.toLocaleString()}
           </div>
         </div>
@@ -192,12 +192,12 @@ const Race = () => {
             <div className="absolute bottom-0 flex justify-center items-center">
               🚀
               <FuelSlider progress={fuelcount / fuelcapacity} />
-              <span className="text-white text-sm">{fuelcount} /</span>
+              <span className="text-white text-sm">{fuelcount}/</span>
               <span className="text-slate-400 text-sm">{fuelcapacity}</span>
             </div>
           </div>
           <div className="flex justify-center mt-1">
-            <span className="text-white text-[24px] font-bold font-dmsans_bold spaced-text-2">
+            <span className="text-white text-[24px] font-bold font-dmsans_bold">
               ${curPrice.toLocaleString()}
             </span>
           </div>
@@ -293,7 +293,9 @@ const Race = () => {
               )}
             </div>
             <div className="flex text-white text-[100px] font-bold text-shadow-2xl justify-center">
-              <span className="font-dmsans_extrabold">{betResult ? "WIN" : "LOSE"}</span>
+              <span className="font-dmsans_extrabold">
+                {betResult ? "WIN" : "LOSE"}
+              </span>
             </div>
             <div className="text-white text-[20px] font-bold font-dmsans_bold text-shadow-xl flex justify-center">
               <span className="font-dmsans_bold font-bold">ETH</span>
@@ -314,7 +316,9 @@ const Race = () => {
             <div className="text-[20px] font-bold text-shadow-xl flex justify-center">
               <span className="font-dmsans_bold text-white">${betAmount}</span>
               <span className="font-dmsans_bold text-slate-400 mx-1">to</span>
-              <span className="font-dmsans_bold text-white">${betCompareAmount}</span>
+              <span className="font-dmsans_bold text-white">
+                ${betCompareAmount}
+              </span>
             </div>
           </div>
         </div>
