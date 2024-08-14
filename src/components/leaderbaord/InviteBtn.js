@@ -1,5 +1,6 @@
 import React, { useMemo } from "react";
 import ArrowIcon from "../../assets/icons/Arrow";
+import { useAuth } from "../../contexts/AuthContext";
 
 const InviteBtn = () => {
   const { userId } = useAuth();
