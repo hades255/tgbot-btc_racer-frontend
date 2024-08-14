@@ -190,9 +190,10 @@ const Race = () => {
             <VideoBackground show={bet} />
             <EthChart bet={bet} betAmount={betAmount} />
             <div className="absolute bottom-0 flex justify-center items-center">
-              🚀
+              <span className="font-digital">🚀</span>
               <FuelSlider progress={fuelcount / fuelcapacity} />
-              <span className="text-white text-sm">{fuelcount}/</span>
+              <span className="text-white text-sm">{fuelcount}</span>
+              <span className="text-white text-sm mx-[1px]">/</span>
               <span className="text-slate-400 text-sm">{fuelcapacity}</span>
             </div>
           </div>
