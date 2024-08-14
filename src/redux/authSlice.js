@@ -17,6 +17,7 @@ const authSlice = createSlice({
     followTwitter: false,
     joinNewsletter: false,
     joinAnnouncementChannel: false,
+    eligibility: false,
   },
   reducers: {
     login: (state, payload) => {
@@ -33,6 +34,7 @@ const authSlice = createSlice({
       state.followTwitter = payload.payload.followTwitter;
       state.joinNewsletter = payload.payload.joinNewsletter;
       state.joinAnnouncementChannel = payload.payload.joinAnnouncementChannel;
+      state.eligibility = payload.payload.eligibility;
     },
     logout: (state) => {
       state.isAuthenticated = false;

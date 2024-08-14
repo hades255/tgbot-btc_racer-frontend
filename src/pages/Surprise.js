@@ -38,7 +38,7 @@ const Surprise = () => {
         </div>
       </div>
       <div className="mx-4 mt-3 px-4 py-2 rounded-xl flex flex-col border border-[#173560]">
-        <RedirectBtn url="https://www.okx.com/join">
+        <RedirectBtn url="https://platform.alphanomics.io/">
           <div className="flex my-2">
             <div className="mr-1 pt-[2px]">
               <DotIcon width={14} height={16} color={"#04C3FF"} />
@@ -56,7 +56,7 @@ const Surprise = () => {
             </div>
           </div>
         </RedirectBtn>
-        <RedirectBtn url="https://www.okx.com/join">
+        <RedirectBtn url="https://platform.alphanomics.io/">
           <div className="flex my-2">
             <div className="mr-1 pt-[2px]">
               <DotIcon width={14} height={16} color={"#04C3FF"} />
@@ -71,7 +71,7 @@ const Surprise = () => {
             </div>
           </div>
         </RedirectBtn>
-        <RedirectBtn url="https://www.okx.com/join">
+        <RedirectBtn url="https://platform.alphanomics.io/">
           <div className="flex my-2">
             <div className="mr-1 pt-[2px]">
               <DotIcon width={14} height={16} color={"#04C3FF"} />
@@ -97,7 +97,7 @@ const Surprise = () => {
         <EligibilityBtn />
       </div>
       <div className="flex justify-center my-4">
-        <RedirectBtn url="https://www.okx.com/help/okx-racer-terms-and-conditions">
+        <RedirectBtn url="https://platform.alphanomics.io/">
           <span className="text-white text-sm underline">
             Terms and conditions
           </span>

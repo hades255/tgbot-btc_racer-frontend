@@ -42,7 +42,7 @@ const Invite = () => {
       <div className="mx-4 my-2 text-[#9E9E9E] text-md">
         You've earned <span className="text-white">0 pts</span> from your frens.
       </div>
-      <div className="mx-4 mt-12 flex justify-start py-2 px-2">
+      <div className="mx-4 mt-12 flex justify-center py-2 px-2">
         <InviteBtn />
         <div className="ml-4 ">
           <CopyBtn />

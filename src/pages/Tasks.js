@@ -13,6 +13,7 @@ import {
 } from "../helper/points";
 import TaskModal from "../components/task/TaskModal";
 import CheckIcon from "../assets/icons/Check";
+import RocketIcon from "../assets/icons/Rocket";
 
 const Tasks = () => {
   const {
@@ -163,7 +164,7 @@ const Tasks = () => {
           className="bg-blue-900 bg-opacity-10 rounded-lg h-[160px] min-w-[180px] w-[180px] px-4 py-2 flex flex-col relative ml-4"
         >
           <div className="bg-[#1A2B47] rounded-md h-[50px] w-[50px] flex justify-center items-center">
-            <SaturnIcon width={36} height={36} color={"random"} />
+            <RocketIcon width={36} height={36} color={"random"} />
           </div>
           <div className="mt-2">
             <span className="text-white text-sm">Rocket Pack Refill</span>

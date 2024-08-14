@@ -316,7 +316,7 @@ const Race = () => {
       )}
       {showResults && <Records show={showResults} onClose={hideRecordsModal} />}
       {!curPrice && (
-        <div className="fixed top-0 left-0z-30 w-full h-screen bg-[#000000] opacity-80 flex justify-center items-center">
+        <div className="fixed top-0 left-0 z-30 w-full h-screen bg-[#000000] opacity-80 flex justify-center items-center">
           <div className="animate-spin">
             <LoadingIcon />
           </div>

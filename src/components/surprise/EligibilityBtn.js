@@ -1,29 +1,21 @@
-import React, { useCallback } from "react";
+import React, { useCallback, useState } from "react";
 import ArrowIcon from "../../assets/icons/Arrow";
-import { useDispatch } from "react-redux";
-import { addToast } from "../../redux/toastSlice";
 import BtnLight from "../common/button/BtnLight";
+import EligibilityModal from "./EligibilityModal";
 
 const EligibilityBtn = () => {
-  const dispatch = useDispatch();
+  const [show, setShow] = useState(false);
 
-  const handleClick = useCallback(() => {
-    dispatch(
-      addToast({
-        message:
-          "Unable to complete verification. Please complete all required steps and try again.",
-        type: "error",
-      })
-    );
-  }, [dispatch]);
+  const handleClick = useCallback(() => setShow(!show), [show]);
 
   return (
-    <BtnLight onClick={handleClick}>
-      <span className="ml-2">
-        Check eligibility
-      </span>
-      <ArrowIcon />
-    </BtnLight>
+    <>
+      <BtnLight onClick={handleClick}>
+        <span className="ml-2">Check eligibility</span>
+        <ArrowIcon />
+      </BtnLight>
+      <EligibilityModal show={show} onClose={handleClick} />
+    </>
   );
 };
 

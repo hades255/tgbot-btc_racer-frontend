@@ -1,10 +1,10 @@
 import React from "react";
 
-const LoadingIcon = () => {
+const LoadingIcon = ({ width = 120, height = 120 }) => {
   return (
     <svg
-      width="120"
-      height="120"
+      width={width}
+      height={height}
       viewBox="0 0 88 88"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
