@@ -423,7 +423,7 @@ const TaskModal = ({ selected, onClose, show }) => {
       {show && (
         <div className="flex flex-col">
           <div className="flex justify-center">
-            <span className="mx-4 text-slate-500 text-[16px] text-wrap text-center">
+            <span className="mx-4 text-[#9E9E9E] text-[18px] text-wrap text-center">
               {tasks[selected].content}
             </span>
           </div>

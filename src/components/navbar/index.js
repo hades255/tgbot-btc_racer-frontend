@@ -22,27 +22,27 @@ const Navbar = () => {
     return [
       {
         title: "Race",
-        icon: <HomeIcon width={22} height={22} color={"#FFFFFF"} />,
+        icon: <HomeIcon width={22} height={22} color={"#A8ADB7"} />,
         url: "/",
       },
       {
         title: "Leaderboard",
-        icon: <LeaderboardIcon width={22} height={22} color={"#FFFFFF"} />,
+        icon: <LeaderboardIcon width={22} height={22} color={"#A8ADB7"} />,
         url: "/leaderboard",
       },
       {
         title: "Tasks",
-        icon: <TaskIcon width={22} height={22} color={"#FFFFFF"} />,
+        icon: <TaskIcon width={22} height={22} color={"#A8ADB7"} />,
         url: "/tasks",
       },
       {
         title: "Invite",
-        icon: <UsersIcon width={22} height={22} color={"#FFFFFF"} />,
+        icon: <UsersIcon width={22} height={22} color={"#A8ADB7"} />,
         url: "/invite",
       },
       {
         title: "Bonuses",
-        icon: <SurpriseIcon width={22} height={22} color={"#FFFFFF"} />,
+        icon: <SurpriseIcon width={22} height={22} color={"#A8ADB7"} />,
         url: "/surprise",
       },
     ];

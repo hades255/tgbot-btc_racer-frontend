@@ -14,10 +14,10 @@ const Surprise = () => {
   return (
     <div className="w-full flex flex-col mb-20">
       <div className="mx-4 mt-4 flex flex-col">
-        <span className="spaced-text-2 text-3xl font-bold text-white">
+        <span className="spaced-text-2 text-[32px] font-bold text-white">
           Ready for more
         </span>
-        <span className="spaced-text-2 text-3xl font-bold bg-clip-text text-transparent bg-emphasize">
+        <span className="spaced-text-2 text-[32px] font-bold bg-clip-text text-transparent bg-emphasize">
           big bonuses?
         </span>
       </div>
@@ -25,7 +25,7 @@ const Surprise = () => {
         Complete these steps to unlock Auto-Pilot and be eligible for big
         bonuses.
       </div>
-      <div className="mx-4 mt-4 p-3 rounded-lg bg-[#132849] flex">
+      <div className="mx-4 mt-4 p-3 rounded-lg bg-[#435879] bg-opacity-15 flex">
         <div className="w-[64px] min-w-[64px] h-[64px] rounded-md bg-[#1A2B47] mr-3 flex justify-center items-center">
           <AstronautIcon width={60} height={60} color={"random"} />
         </div>
@@ -55,17 +55,14 @@ const Surprise = () => {
               )}
             </div>
             <div className="flex flex-col">
-              <div className="text-white text-md font-medium flex">
-                <span className="text-[#69d3fd] hover:cursor-pointer">
-                  Create & Connect Your Account
+              <div className="text-md font-medium flex">
+                <span className="text-[#79DEFE]">
+                  Create Your Alphanomics Account
                 </span>
-                <div className="ml-1 flex items-center"></div>
               </div>
-              {!eligibility && (
-                <span className="text-slate-400 text-sm">
-                  Submit your address
-                </span>
-              )}
+              <span className="text-[#9E9E9E] text-sm">
+                Head to Alphanomics and create an account here
+              </span>
             </div>
           </div>
         </RedirectBtn>
@@ -76,18 +73,21 @@ const Surprise = () => {
               <DotIcon width={14} height={14} color={"#04C3FF"} />
             </div>
             <div className="flex flex-col">
-              <div className="text-white text-md font-medium flex">
-                <span className="text-[#69d3fd] hover:cursor-pointer">
-                  Achieve Alphanomics Plus Status
+              <div className="text-md font-medium flex">
+                <span className="text-[#79DEFE]">
+                  Achieve Alphanomics Plus Level
                 </span>
-                <div className="ml-1 flex items-center"></div>
               </div>
+              <span className="text-[#9E9E9E] text-sm">
+                Go to your Alphanomics 'My Profile' page and earn 10 ANOM points
+                to unlock PLUS level
+              </span>
             </div>
           </div>
         </RedirectBtn>
       </div>
       {!eligibility && (
-        <div className="mx-4 my-4 text-[#b3b3b3] text-sm flex items-center">
+        <div className="mx-4 mt-4 text-[#b3b3b3] text-[10px] flex items-center">
           <div className="mr-1">
             <InfoIcon width={14} height={14} color={"#b3b3b3"} />
           </div>

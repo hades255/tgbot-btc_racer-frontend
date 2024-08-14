@@ -29,7 +29,7 @@ const Friends = () => {
 
   return (
     <div className="flex flex-col">
-      <div className="min-h-48 flex flex-col">
+      <div className="min-h-44 flex flex-col">
         <div className="flex justify-between mx-3">
           <span className="text-slate-500 text-sm">
             {(users.length || 0).toLocaleString()} pilots

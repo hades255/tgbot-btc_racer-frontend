@@ -10,7 +10,7 @@ const Leaderboard = () => {
 
   return (
     <div className="w-full flex flex-col mb-20">
-      <div className="mx-6 mt-6 text-3xl spaced-text-2 font-bold">
+      <div className="mx-6 mt-6 text-[32px] spaced-text-2 font-bold">
         <span className="text-white">Fly to the</span>
         <span className="bg-clip-text text-transparent bg-emphasize ml-2">
           top

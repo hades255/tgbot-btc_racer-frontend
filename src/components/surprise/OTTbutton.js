@@ -21,12 +21,12 @@ const OTTbutton = () => {
           )}
         </div>
         <div className="flex flex-col">
-          <div className="text-white text-md font-medium flex">
-            <span className="text-[#69d3fd] hover:cursor-pointer">
-              Finish All One Time Tasks
-            </span>
-            <div className="ml-1 flex items-center"></div>
+          <div className="text-md font-medium flex">
+            <span className="text-[#79DEFE]">Finish All One Time Tasks</span>
           </div>
+          <span className="text-[#9E9E9E] text-sm">
+            Finish all the one time tasks on the tasks page
+          </span>
         </div>
       </div>
     </>

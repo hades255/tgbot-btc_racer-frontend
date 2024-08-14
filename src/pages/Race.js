@@ -177,7 +177,9 @@ const Race = () => {
         <div className={`h-14 ${bet ? "hidden" : "block"}`}>
           <div className="flex justify-center items-center">
             <span className="text-[20px]">💎</span>
-            <div className="text-slate-400 text-md mx-1 pr-1">Diamonds Collected</div>
+            <div className="text-slate-400 text-md mx-1 pr-1">
+              Diamonds Collected
+            </div>
           </div>
           <div className="flex justify-center text-[48px] spaced-text-4 text-white font-bold">
             {point.toLocaleString()}
@@ -268,13 +270,16 @@ const Race = () => {
         </div>
         <div className="flex justify-center mt-3">
           <span className="text-slate-300 text-sm">
-            The more 💎 you have the more ANOM
+            The more 💎 you have, the more
           </span>
         </div>
         <div className="flex justify-center">
           <span className="text-slate-300 text-sm">
-            reward points you will convert in future.
+            ANOM reward points you will
           </span>
+        </div>
+        <div className="flex justify-center">
+          <span className="text-slate-300 text-sm">convert in future.</span>
         </div>
       </div>
       {betResult !== null && (
@@ -287,10 +292,10 @@ const Race = () => {
                 <EmojiIcon width={37} height={37} color={"random"} />
               )}
             </div>
-            <div className="flex text-white text-8xl font-bold text-shadow-2xl justify-center">
+            <div className="flex text-white text-[100px] font-bold text-shadow-2xl justify-center">
               <span>{betResult ? "WIN" : "LOSE"}</span>
             </div>
-            <div className="text-white text-lg font-bold text-shadow-xl flex justify-center">
+            <div className="text-white text-[20px] font-bold text-shadow-xl flex justify-center">
               ETH
               <span
                 className={`${
@@ -306,7 +311,7 @@ const Race = () => {
               </span>
               %
             </div>
-            <div className="text-md font-bold text-shadow-xl flex justify-center">
+            <div className="text-[20px] font-bold text-shadow-xl flex justify-center">
               <span className="text-white">${betAmount}</span>
               <span className="text-slate-400 mx-1">to</span>
               <span className="text-white">${betCompareAmount}</span>
