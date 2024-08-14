@@ -230,7 +230,7 @@ const Race = () => {
                 <MoonBtnIcon color={"#52C609"} />
                 <div
                   onClick={handleClickMoon}
-                  className="absolute top-0 flex w-full h-full justify-center items-center"
+                  className="absolute top-0 flex w-full h-full justify-center items-center pr-2"
                 >
                   <span
                     className={`${
@@ -252,7 +252,7 @@ const Race = () => {
                 className="absolute bottom-1 right-1 transform transition-transform duration-150 active:translate-y-1 hover:cursor-pointer"
               >
                 <DoomBtnIcon color={"#FF3F35"} />
-                <div className="absolute top-0 flex w-full h-full justify-center items-center">
+                <div className="absolute top-0 flex w-full h-full justify-center items-center pl-3">
                   <span
                     className={`${
                       bet === null ? "text-white" : "text-slate-500"
