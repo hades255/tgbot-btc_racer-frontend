@@ -162,7 +162,7 @@ const TaskModal = ({ selected, onClose, show }) => {
           `${BACKEND_PATH}/user/bonus-followx?userId=${userId}`
         );
         dispatch(setScore(response.data.data));
-        dispatch(upgradeUser({ key: "followTwitter", value: true }));
+        dispatch(upgradeUser([{ key: "followTwitter", value: true }]));
         dispatch(
           addToast({
             message: "You've completed the task and earned points.",
@@ -183,7 +183,9 @@ const TaskModal = ({ selected, onClose, show }) => {
           `${BACKEND_PATH}/user/bonus-joinannouncement?userId=${userId}`
         );
         dispatch(setScore(response.data.data));
-        dispatch(upgradeUser({ key: "joinAnnouncementChannel", value: true }));
+        dispatch(
+          upgradeUser([{ key: "joinAnnouncementChannel", value: true }])
+        );
         dispatch(
           addToast({
             message: "You've completed the task and earned points.",
@@ -204,7 +206,7 @@ const TaskModal = ({ selected, onClose, show }) => {
           `${BACKEND_PATH}/user/bonus-joinnewsletter?userId=${userId}`
         );
         dispatch(setScore(response.data.data));
-        dispatch(upgradeUser({ key: "joinNewsletter", value: true }));
+        dispatch(upgradeUser([{ key: "joinNewsletter", value: true }]));
         dispatch(
           addToast({
             message: "You've completed the task and earned points.",
