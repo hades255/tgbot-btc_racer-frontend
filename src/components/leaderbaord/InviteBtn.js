@@ -2,10 +2,12 @@ import React, { useMemo } from "react";
 import ArrowIcon from "../../assets/icons/Arrow";
 
 const InviteBtn = () => {
+  const { userId } = useAuth();
+
   const message = useMemo(
     () =>
-      `https://t.me/OKX_official_bot/OKX_Racer?startapp=linkCode_119285852\nLet's race! Predict Ethereum's price and rack up points`,
-    []
+      `https://t.me/mini_exp_uc_bot?startapp=linkCode_${userId}\nLet's race! Predict Ethereum's price and rack up points`,
+    [userId]
   );
   const encodedMessage = useMemo(() => encodeURIComponent(message), [message]);
 
