@@ -359,6 +359,7 @@ const TaskModal = ({ selected, onClose, show }) => {
         content: "Check in daily to earn rewards",
         button: "Check in",
         action: handleClickDailyVisit,
+        redirect: "https://platform.alphanomics.io/",
       },
       "follow-twitter": {
         title: "Follow Alphanomics official Twitter",

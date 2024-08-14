@@ -2,11 +2,11 @@ import React, { useCallback } from "react";
 
 const RedirectBtn = ({ children, url, className = "" }) => {
   const handleButtonClick = useCallback(() => {
-    const targetUrl = url;
+    if (!url) return;
     if (window.Telegram.WebApp) {
-      window.Telegram.WebApp.openLink(targetUrl);
+      window.Telegram.WebApp.openLink(url);
     } else {
-      window.location.href = targetUrl;
+      window.location.href = url;
     }
   }, [url]);
 

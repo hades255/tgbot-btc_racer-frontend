@@ -43,7 +43,12 @@ const EligibilityModal = ({ show, onClose }) => {
                 type: "success",
               })
             );
-            dispatch(upgradeUser({ key: "eligibility", value: true }));
+            dispatch(
+              upgradeUser([
+                { key: "eligibility", value: true },
+                { key: "ethaddress", value },
+              ])
+            );
             onClose();
           } else {
             dispatch(

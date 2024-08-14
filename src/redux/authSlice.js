@@ -18,6 +18,7 @@ const authSlice = createSlice({
     joinNewsletter: false,
     joinAnnouncementChannel: false,
     eligibility: false,
+    ethaddress: "",
   },
   reducers: {
     login: (state, payload) => {
@@ -35,6 +36,7 @@ const authSlice = createSlice({
       state.joinNewsletter = payload.payload.joinNewsletter;
       state.joinAnnouncementChannel = payload.payload.joinAnnouncementChannel;
       state.eligibility = payload.payload.eligibility;
+      state.ethaddress = payload.payload.ethaddress;
     },
     logout: (state) => {
       state.isAuthenticated = false;
@@ -54,7 +56,9 @@ const authSlice = createSlice({
       state.dailyBonusVisit = true;
     },
     upgradeUser: (state, payload) => {
-      state[payload.payload.key] = payload.payload.value;
+      payload.payload.forEach((item) => {
+        state[item.key] = item.value;
+      });
     },
   },
 });

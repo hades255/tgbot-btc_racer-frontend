@@ -26,8 +26,14 @@ const Tasks = () => {
     followTwitter,
     joinNewsletter,
     joinAnnouncementChannel,
+    eligibility,
   } = useAuth();
   const { freeBoost, fueltank } = useSelector((state) => state.fuel);
+  const unlockAuthPilot = useMemo(
+    () =>
+      followTwitter && joinNewsletter && joinAnnouncementChannel && eligibility,
+    [followTwitter, joinNewsletter, joinAnnouncementChannel, eligibility]
+  );
   const fueltankpoint = useMemo(
     () => fuelTankPoints(fueltank).toLocaleString(),
     [fueltank]
@@ -119,29 +125,31 @@ const Tasks = () => {
         </span>
       </div>
       <div className="mx-4 mt-6 mb-2 text-white text-md">Upgrade (4)</div>
-      <div className="mx-4 my-2 flex overflow-x-visible overflow-y-hidden">
+      <div className="my-2 flex overflow-x-visible overflow-y-hidden">
         <div
           onClick={() => {
             handleClickTaskItem("auto-driving");
           }}
-          className="bg-blue-900 bg-opacity-10 rounded-lg h-[160px] min-w-[180px] w-[180px] px-4 py-2 flex flex-col relative"
+          className="ml-4 bg-[#435879] bg-opacity-15 rounded-lg h-[160px] min-w-[180px] w-[180px] px-4 py-2 flex flex-col relative"
         >
-          <div className="blur-sm h-full">
+          <div className={`${unlockAuthPilot ? "" : "blur-sm"} h-full`}>
             <div className="bg-[#1A2B47] rounded-md h-[50px] w-[50px] flex justify-center items-center">
               <Saturn1Icon width={36} height={36} color={"random"} />
             </div>
             <div className="mt-2">
               <span className="text-white text-sm">Auto-Pilot</span>
-              <span className="ml-1 px-1 text-xs bg-lime-400 rounded">New</span>
+              <span className="ml-1 px-2 text-xs bg-emphasize-new text-white rounded">
+                New
+              </span>
             </div>
             <div className="text-slate-400 text-xs">
               Play while you're away, so you're always earning...
             </div>
             <div className="text-slate-400 absolute bottom-1 text-sm">
-              🚀 Locked
+              🚀 {unlockAuthPilot ? "Free" : "Locked"}
             </div>
           </div>
-          {true && (
+          {!unlockAuthPilot && (
             <>
               <div className="absolute top-0 left-0 bg-[#0a0a0a79] rounded-lg h-[160px] w-[180px] flex justify-center items-center">
                 <div className="flex flex-col">
@@ -161,7 +169,7 @@ const Tasks = () => {
           onClick={() => {
             handleClickTaskItem("reload-fuel");
           }}
-          className="bg-blue-900 bg-opacity-10 rounded-lg h-[160px] min-w-[180px] w-[180px] px-4 py-2 flex flex-col relative ml-4"
+          className="bg-[#435879] bg-opacity-15 rounded-lg h-[160px] min-w-[180px] w-[180px] px-4 py-2 flex flex-col relative ml-4"
         >
           <div className="bg-[#1A2B47] rounded-md h-[50px] w-[50px] flex justify-center items-center">
             <RocketIcon width={36} height={36} color={"random"} />
@@ -172,9 +180,9 @@ const Tasks = () => {
           <div className="text-slate-500 text-xs">
             Enjoy 3 free rocket pack refills every day!
           </div>
-          <div className="text-slate-400 absolute bottom-1 flex text-xs">
+          <div className="text-slate-400 absolute bottom-1 flex text-sm">
             🚀 Free
-            <div className="px-2 pt-3">
+            <div className="px-1 pt-3">
               <DotIcon width={4} height={4} color={"#a8a29e"} />
             </div>
             {freeBoost}/3
@@ -184,10 +192,10 @@ const Tasks = () => {
           onClick={() => {
             handleClickTaskItem("upgrade-fuel");
           }}
-          className="bg-blue-900 bg-opacity-10 rounded-lg h-[160px] min-w-[180px] w-[180px] px-4 py-2 flex flex-col relative ml-4"
+          className="bg-[#435879] bg-opacity-15 rounded-lg h-[160px] min-w-[180px] w-[180px] px-4 py-2 flex flex-col relative ml-4"
         >
           <div className="bg-[#1A2B47] rounded-md h-[50px] w-[50px] flex justify-center items-center">
-            <Saturn1Icon width={36} height={36} color={"random"} />
+            <SaturnIcon width={36} height={36} color={"random"} />
           </div>
           <div className="mt-2">
             <span className="text-white text-sm">Fuel Up</span>
@@ -195,9 +203,9 @@ const Tasks = () => {
           <div className="text-slate-500 text-xs">
             Increase Fuel tanks by 2.
           </div>
-          <div className="text-slate-400 absolute bottom-1 flex text-xs">
+          <div className="text-slate-400 absolute bottom-1 flex text-sm">
             🚀 -{fueltankpoint}pts
-            <div className="px-2 pt-3">
+            <div className="px-1 pt-3">
               <DotIcon width={4} height={4} color={"#a8a29e"} />
             </div>
             Lvl {fueltank}
@@ -207,20 +215,20 @@ const Tasks = () => {
           onClick={() => {
             handleClickTaskItem("turbo-charger");
           }}
-          className="bg-blue-900 bg-opacity-10 rounded-lg h-[160px] min-w-[180px] w-[180px] px-4 py-2 flex flex-col relative ml-4"
+          className="mr-4 bg-[#435879] bg-opacity-15 rounded-lg h-[160px] min-w-[180px] w-[180px] px-4 py-2 flex flex-col relative ml-4"
         >
           <div className="bg-[#1A2B47] rounded-md h-[50px] w-[50px] flex justify-center items-center">
-            <SaturnIcon width={36} height={36} color={"random"} />
+            <Saturn1Icon width={36} height={36} color={"random"} />
           </div>
           <div className="mt-2">
             <span className="text-white text-sm">Turbo Boosters</span>
           </div>
           <div className="text-slate-500 text-xs">
-            Each level up increases the base score earned by 10 points.
+            Each level up increases the base score earned...
           </div>
-          <div className="text-slate-400 absolute bottom-1 flex text-xs">
+          <div className="text-slate-400 absolute bottom-1 flex text-sm">
             🚀 -{turborpoint}pts
-            <div className="px-2 pt-3">
+            <div className="px-1 pt-3">
               <DotIcon width={4} height={4} color={"#a8a29e"} />
             </div>
             Lvl {turboCharger}
@@ -244,7 +252,7 @@ const Tasks = () => {
               </span>
               <div className="mt-2 flex items-center text-slate-400 text-sm">
                 {item.status ? (
-                  <span className="border rounded border-[#000] bg-green-600 p-[1px]">
+                  <span className="border rounded border-[#000] bg-emphasize-sm p-[1px]">
                     <CheckIcon width={14} height={14} color={"white"} />
                   </span>
                 ) : (
