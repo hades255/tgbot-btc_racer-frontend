@@ -13,7 +13,7 @@ const EligibilityBtn = () => {
   return eligibility ? (
     <>
       <div className="relative w-[300px] h-[40px] bg-button-1-bg rounded-[20px]">
-        <div className="absolute top-[2px] left-[2px] w-[298px] h-[36px] rounded-[20px] bg-button-1 text-white px-4 flex justify-center items-center">
+        <div className="absolute top-[2px] left-[2px] w-[296px] h-[36px] rounded-[20px] bg-button-1 text-white px-4 flex justify-center items-center">
           {ethaddress.substring(0, 6)}...
           {ethaddress.substring(38)}
         </div>

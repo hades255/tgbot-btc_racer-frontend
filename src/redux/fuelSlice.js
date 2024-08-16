@@ -4,10 +4,15 @@ const fuelSlice = createSlice({
   name: "fuel",
   initialState: {
     fuelcapacity: 10, //  limit of fuel
-    fuelcount: 10,    //  current
-    cooldown: 0,      //  count down (01:30)
-    freeBoost: 3,     //  daily 3
-    fueltank: 0,      //  increase limit
+    fuelcount: 10, //  current
+    cooldown: 0, //  count down (01:30)
+    freeBoost: 3, //  daily 3
+    fueltank: 0, //  increase limit
+    autopilot: {
+      enabled: false,
+      started: null,
+      earned: 0,
+    },
   },
   reducers: {
     init: (state, payload) => {
@@ -16,6 +21,7 @@ const fuelSlice = createSlice({
       state.cooldown = payload.payload.cooldown;
       state.freeBoost = payload.payload.freeBoost;
       state.fuelcapacity = payload.payload.fuelcapacity;
+      state.autopilot = { ...payload.payload.autopilot };
     },
     increase: (state) => {
       if (state.fuelcount >= state.fuelcapacity) return;
@@ -53,9 +59,19 @@ const fuelSlice = createSlice({
         }
       }
     },
+    upgradeFuel: (state, payload) => {
+      state[payload.payload.key] = payload.payload.value;
+    },
   },
 });
 
-export const { init, increase, decrease, countOn, boost, upgrade } =
-  fuelSlice.actions;
+export const {
+  init,
+  increase,
+  decrease,
+  countOn,
+  boost,
+  upgrade,
+  upgradeFuel,
+} = fuelSlice.actions;
 export default fuelSlice.reducer;

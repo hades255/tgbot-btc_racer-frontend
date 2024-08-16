@@ -13,6 +13,7 @@ import Counter from "./helper/Counter";
 import ToastContainer from "./components/common/toast";
 import Coinapi from "./helper/Coinapi";
 import { SoundProvider } from "./contexts/SoundContext";
+import Congratulations from "./components/surprise/Congratulations";
 
 const App = () => {
   useEffect(() => {
@@ -51,6 +52,7 @@ const App = () => {
             </Routes>
             <Navbar />
             <ToastContainer />
+            <Congratulations />
           </Router>
         </SoundProvider>
       </AuthProvider>

@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from "react";
+import React, { useCallback, useEffect, useMemo, useState } from "react";
 import Modal from "../common/Modal";
 import CheckIcon from "../../assets/icons/Check";
 import axios from "axios";
@@ -8,10 +8,31 @@ import LoadingIcon from "../../assets/icons/loading";
 import { useAuth } from "../../contexts/AuthContext";
 import { BACKEND_PATH } from "../../constants/config";
 import { upgradeUser } from "../../redux/authSlice";
+import { upgradeExtra } from "../../redux/extraSlice";
 
 const EligibilityModal = ({ show, onClose }) => {
   const dispatch = useDispatch();
-  const { userId } = useAuth();
+  const {
+    userId,
+    followTwitter,
+    joinNewsletter,
+    joinAnnouncementChannel,
+    eligibility,
+  } = useAuth();
+
+  const unlockAuthPilot = useMemo(
+    () =>
+      followTwitter && joinNewsletter && joinAnnouncementChannel && eligibility,
+    [followTwitter, joinNewsletter, joinAnnouncementChannel, eligibility]
+  );
+
+  useEffect(() => {
+    if (eligibility) {
+      if (unlockAuthPilot)
+        dispatch(upgradeExtra({ key: "showCongratulations", value: true }));
+      onClose();
+    }
+  }, [unlockAuthPilot, eligibility, onClose, dispatch]);
 
   const [value, setValue] = useState("");
   const [loading, setLoading] = useState(false);
@@ -49,7 +70,6 @@ const EligibilityModal = ({ show, onClose }) => {
                 { key: "ethaddress", value },
               ])
             );
-            onClose();
           } else {
             dispatch(
               addToast({
@@ -71,7 +91,7 @@ const EligibilityModal = ({ show, onClose }) => {
         }
       })();
     },
-    [value, dispatch, onClose, loading, userId]
+    [value, dispatch, loading, userId]
   );
 
   const handleInputChange = useCallback(

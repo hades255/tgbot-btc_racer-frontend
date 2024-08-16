@@ -28,7 +28,7 @@ const Tasks = () => {
     joinAnnouncementChannel,
     eligibility,
   } = useAuth();
-  const { freeBoost, fueltank } = useSelector((state) => state.fuel);
+  const { freeBoost, fueltank, autopilot } = useSelector((state) => state.fuel);
   const unlockAuthPilot = useMemo(
     () =>
       followTwitter && joinNewsletter && joinAnnouncementChannel && eligibility,
@@ -145,8 +145,25 @@ const Tasks = () => {
             <div className="text-slate-400 text-xs">
               Play while you're away, so you're always earning...
             </div>
-            <div className="text-slate-400 absolute bottom-1 text-sm">
-              🚀 {unlockAuthPilot ? "Free" : "Locked"}
+            <div className="text-slate-400 absolute bottom-1 text-sm flex">
+              {autopilot.enabled ? (
+                "Activated"
+              ) : (
+                <>
+                  🚀{" "}
+                  {unlockAuthPilot ? (
+                    <>
+                      Free
+                      <div className="px-1 pt-3">
+                        <DotIcon width={4} height={4} color={"#a8a29e"} />
+                      </div>
+                      Lvl 0
+                    </>
+                  ) : (
+                    "Locked"
+                  )}
+                </>
+              )}
             </div>
           </div>
           {!unlockAuthPilot && (

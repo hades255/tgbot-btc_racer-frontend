@@ -10,7 +10,7 @@ import {
   upgradeUser,
 } from "../../redux/authSlice";
 import { addToast } from "../../redux/toastSlice";
-import { boost, upgrade } from "../../redux/fuelSlice";
+import { boost, upgrade, upgradeFuel } from "../../redux/fuelSlice";
 import { useAuth } from "../../contexts/AuthContext";
 import { BACKEND_PATH } from "../../constants/config";
 import { fuelTankPoints, turborPoints } from "../../helper/points";
@@ -25,19 +25,55 @@ const TaskModal = ({ selected, onClose, show }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const { userId, point, turboCharger } = useAuth();
-  const { freeBoost, fueltank, fuelcount, fuelcapacity } = useSelector(
-    (state) => state.fuel
-  );
+  const {
+    userId,
+    point,
+    turboCharger,
+    followTwitter,
+    joinNewsletter,
+    joinAnnouncementChannel,
+    eligibility,
+  } = useAuth();
+  const { freeBoost, fueltank, fuelcount, fuelcapacity, autopilot } =
+    useSelector((state) => state.fuel);
   const fueltankpoint = useMemo(() => fuelTankPoints(fueltank), [fueltank]);
   const turborpoint = useMemo(() => turborPoints(turboCharger), [turboCharger]);
+  const unlockAuthPilot = useMemo(
+    () =>
+      followTwitter && joinNewsletter && joinAnnouncementChannel && eligibility,
+    [followTwitter, joinNewsletter, joinAnnouncementChannel, eligibility]
+  );
 
   const handleClose = useCallback(() => onClose(false), [onClose]);
 
-  const handleClickUnlock = useCallback(
-    () => navigate("/surprise"),
-    [navigate]
-  );
+  const handleClickUnlock = useCallback(() => {
+    if (unlockAuthPilot) {
+      if (autopilot.enabled) return;
+      (async () => {
+        try {
+          await axios.get(
+            `${BACKEND_PATH}/race/activate-autopilot?userId=${userId}`
+          );
+          dispatch(addToast({ message: "Success!", type: "success" }));
+          dispatch(
+            upgradeFuel({
+              key: "autopilot",
+              value: {
+                enabled: true,
+                started: null,
+                earned: 0,
+              },
+            })
+          );
+        } catch (error) {
+          console.log(error);
+          dispatch(addToast({ message: error.message, type: "error" }));
+        } finally {
+          handleClose();
+        }
+      })();
+    } else navigate("/surprise");
+  }, [navigate, dispatch, userId, unlockAuthPilot, autopilot, handleClose]);
 
   const handleClickReloadFuel = useCallback(() => {
     if (freeBoost < 0 || fuelcount >= fuelcapacity) {
@@ -249,8 +285,9 @@ const TaskModal = ({ selected, onClose, show }) => {
           </div>
         ),
         title: "Auto Pilot",
-        content:
-          "Link your Telegram to your Alphanomics account and pass identity verification on Alphanomics to unlock Auto-driving. This lets you automatically play the game while you’re away, so you’re always earning points.",
+        content: unlockAuthPilot
+          ? "Plays the game authmatically while you're away, so you're always earning points. Auto-pilot lasts up to 3 hours or until you launch the game again."
+          : "Link your Telegram to your Alphanomics account and pass identity verification on Alphanomics to unlock Auto-driving. This lets you automatically play the game while you’re away, so you’re always earning points.",
         subcontent: (
           <div className="text-slate-400 flex items-center">
             <span className="mx-2 text-sm text-white">🚀 Free</span>
@@ -258,7 +295,12 @@ const TaskModal = ({ selected, onClose, show }) => {
             <span className="ml-2 text-sm">Lvl 0</span>
           </div>
         ),
-        button: "Learn More",
+        button: unlockAuthPilot
+          ? autopilot.enabled
+            ? "Activated"
+            : "Boost Now"
+          : "Learn More",
+        disabled: autopilot.enabled,
         action: handleClickUnlock,
       },
       "reload-fuel": {
@@ -391,6 +433,8 @@ const TaskModal = ({ selected, onClose, show }) => {
       fueltank,
       turborpoint,
       turboCharger,
+      unlockAuthPilot,
+      autopilot,
       handleClickReloadFuel,
       handleClickUpgradeFuel,
       handleClickUnlock,
@@ -435,12 +479,18 @@ const TaskModal = ({ selected, onClose, show }) => {
           <div className="flex justify-center my-4 mx-4">
             {tasks[selected].redirect ? (
               <RedirectBtn url={tasks[selected].redirect} className="w-full">
-                <BtnDark onClick={tasks[selected].action}>
+                <BtnDark
+                  onClick={tasks[selected].action}
+                  disabled={tasks[selected].disabled}
+                >
                   {tasks[selected].button}
                 </BtnDark>
               </RedirectBtn>
             ) : (
-              <BtnDark onClick={tasks[selected].action}>
+              <BtnDark
+                onClick={tasks[selected].action}
+                disabled={tasks[selected].disabled}
+              >
                 {tasks[selected].button}
               </BtnDark>
             )}
