@@ -1,14 +1,15 @@
 import React, { useCallback, useEffect, useMemo, useState } from "react";
-import Modal from "../common/Modal";
-import CheckIcon from "../../assets/icons/Check";
-import axios from "axios";
-import { addToast } from "../../redux/toastSlice";
 import { useDispatch } from "react-redux";
-import LoadingIcon from "../../assets/icons/loading";
-import { useAuth } from "../../contexts/AuthContext";
+import axios from "axios";
 import { BACKEND_PATH } from "../../constants/config";
+import { useAuth } from "../../contexts/AuthContext";
+import { addToast } from "../../redux/toastSlice";
 import { upgradeUser } from "../../redux/authSlice";
 import { upgradeExtra } from "../../redux/extraSlice";
+import Modal from "../common/Modal";
+import RightArrowIcon from "../../assets/icons/RightArrow";
+import LoadingIcon from "../../assets/icons/loading";
+import EthIcon from "../../assets/icons/Eth";
 
 const EligibilityModal = ({ show, onClose }) => {
   const dispatch = useDispatch();
@@ -110,11 +111,14 @@ const EligibilityModal = ({ show, onClose }) => {
         {show && (
           <div className="flex flex-col mb-8 relative">
             <form action="#" method="POST" onSubmit={handleSubmit}>
-              <div className="mx-4 my-4 flex justify-center">
-                <div className="relative mx-4 w-full h-[40px] bg-button-1-bg rounded-[25px]">
+              <div className="mx-4 mb-4 flex items-center justify-center">
+                <div className="w-[261px] h-12 rounded-[40px] bg-[#F3F3F3] relative">
+                  <div className="absolute h-full w-16 flex items-center justify-center">
+                    <EthIcon width={24} height={24} color={"#A8ADB7"} />
+                  </div>
                   <input
-                    className="absolute top-[2px] left-[2px] w-[calc(100%-4px)] h-[36px] rounded-[25px] bg-button-2 text-white px-4 text-center"
-                    placeholder="Type ETH Address Here"
+                    className="w-full h-full rounded-[40px] bg-[#F3F3F3] py-1 pl-[56px] pr-3 text-sm italic"
+                    placeholder="Enter ETH Address Here"
                     value={value}
                     onChange={handleInputChange}
                     maxLength={42}
@@ -123,11 +127,8 @@ const EligibilityModal = ({ show, onClose }) => {
                     disabled={loading}
                   />
                 </div>
-                <button
-                  type="submit"
-                  className="bg-button-2 text-black text-lg font-medium h-[40px] min-w-[40px] w-[40px] rounded-[20px] flex justify-center items-center"
-                >
-                  <CheckIcon width={24} height={24} color={"white"} />
+                <button type="submit" className="ml-4">
+                  <RightArrowIcon width={24} height={24} color={"white"} />
                 </button>
               </div>
             </form>
