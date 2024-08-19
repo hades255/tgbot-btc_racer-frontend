@@ -3,7 +3,6 @@ import DotIcon from "../assets/icons/Dot";
 import { useAuth } from "../contexts/AuthContext";
 import RightIcon from "../assets/icons/Right";
 import LockIcon from "../assets/icons/Lock";
-import SaturnIcon from "../assets/icons/Saturn";
 import { useSelector } from "react-redux";
 import Saturn1Icon from "../assets/icons/Saturn1";
 import {
