@@ -57,6 +57,7 @@ const Coinapi = () => {
     const initCount = (param) => (eths = param);
     const timer = setInterval(() => {
       const avg = getAverage(getCount());
+      if (avg === 0) return;
       dispatch(addEth(avg));
       initCount([avg]);
     }, 100);
