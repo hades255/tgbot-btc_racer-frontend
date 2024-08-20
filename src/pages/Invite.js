@@ -1,9 +1,25 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import DotIcon from "../assets/icons/Dot";
 import InviteBtn from "../components/leaderbaord/InviteBtn";
 import CopyBtn from "../components/leaderbaord/CopyBtn";
 
 const Invite = () => {
+  const { userId } = useAuth();
+  const [totalBonus, setTotalBonus] = useState(0);
+
+  useEffect(() => {
+    (async () => {
+      try {
+        const response = await axios.get(
+          `${BACKEND_PATH}/referral/bonus?userId=${userId}`
+        );
+        setTotalBonus(response.data.totalBonus || 0);
+      } catch (error) {
+        console.log(error);
+      }
+    })();
+  }, []);
+
   return (
     <div className="w-full flex flex-col">
       <div className="mx-4 my-8 flex flex-col">
@@ -40,7 +56,8 @@ const Invite = () => {
         </div>
       </div>
       <div className="mx-4 my-2 text-[#9E9E9E] text-sm">
-        You've earned <span className="text-white">0 pts</span> from your frens.
+        You've earned <span className="text-white">{totalBonus} pts</span> from
+        your frens.
       </div>
       <div className="mx-4 mt-8 flex justify-center py-2 px-2">
         <InviteBtn />

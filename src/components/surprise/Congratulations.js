@@ -11,7 +11,7 @@ const Congratulations = () => {
       setTimeout(() => {
         dispatch(upgradeExtra({ key: "showCongratulations", value: false }));
         dispatch(upgradeExtra({ key: "message", value: "" }));
-      }, 3000);
+      }, 5000);
     }
   }, [showCongratulations, dispatch]);
 
