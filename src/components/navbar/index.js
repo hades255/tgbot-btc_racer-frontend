@@ -12,6 +12,7 @@ import NavbarItem from "./NavbarItem";
 import axios from "axios";
 import { init } from "../../redux/fuelSlice";
 import { BACKEND_PATH } from "../../constants/config";
+import { upgradeExtra } from "../../redux/extraSlice";
 
 const Navbar = () => {
   const location = useLocation();
@@ -60,6 +61,17 @@ const Navbar = () => {
     const userId = queryParams.get("userId") || "7086461598";
     const username = queryParams.get("username") || "smart guy";
     const name = queryParams.get("name") || "smart guy";
+    const refer = queryParams.get("refer") || "";
+    const bonus = queryParams.get("bonus") || "";
+    if (refer && bonus) {
+      dispatch(
+        upgradeExtra({
+          key: "message",
+          value: `You've earned ${bonus}+ bonus points by referral code!`,
+        })
+      );
+      dispatch(upgradeExtra({ key: "showCongratulations", value: true }));
+    }
     if (userId) {
       (async () => {
         try {

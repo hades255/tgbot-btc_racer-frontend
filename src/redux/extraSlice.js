@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const extraSlice = createSlice({
   name: "extra",
-  initialState: { showCongratulations: false },
+  initialState: { showCongratulations: false, message: "" },
   reducers: {
     upgradeExtra: (state, payload) => {
       state[payload.payload.key] = payload.payload.value;

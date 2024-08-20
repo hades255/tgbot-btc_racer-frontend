@@ -4,12 +4,13 @@ import { upgradeExtra } from "../../redux/extraSlice";
 
 const Congratulations = () => {
   const dispatch = useDispatch();
-  const { showCongratulations } = useSelector((state) => state.extra);
+  const { showCongratulations, message } = useSelector((state) => state.extra);
 
   useEffect(() => {
     if (showCongratulations) {
       setTimeout(() => {
         dispatch(upgradeExtra({ key: "showCongratulations", value: false }));
+        dispatch(upgradeExtra({ key: "message", value: "" }));
       }, 3000);
     }
   }, [showCongratulations, dispatch]);
@@ -24,8 +25,9 @@ const Congratulations = () => {
         </div>
         <div className="mt-16 flex justify-center">
           <span className="text-white text-sm max-w-[320px] text-center">
-            We've verified your account with Alphanomics. Stay turned for
-            exciting big bonuses coming your way!
+            {message ||
+              `We've verified your account with Alphanomics. Stay turned for
+            exciting big bonuses coming your way!`}
           </span>
         </div>
       </div>
