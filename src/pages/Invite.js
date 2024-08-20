@@ -1,7 +1,10 @@
 import React, { useEffect, useState } from "react";
-import DotIcon from "../assets/icons/Dot";
+import axios from "axios";
+import { useAuth } from "../contexts/AuthContext";
+import { BACKEND_PATH } from "../constants/config";
 import InviteBtn from "../components/leaderbaord/InviteBtn";
 import CopyBtn from "../components/leaderbaord/CopyBtn";
+import DotIcon from "../assets/icons/Dot";
 
 const Invite = () => {
   const { userId } = useAuth();
