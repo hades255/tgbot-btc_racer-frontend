@@ -24,7 +24,7 @@ const Invite = () => {
   }, [userId]);
 
   return (
-    <div className="w-full flex flex-col">
+    <div className="w-full flex flex-col mb-20">
       <div className="mx-4 my-8 flex flex-col">
         <span className="text-[32px] font-bold font-dmsans_bold text-white">
           Invite friends &

@@ -66,7 +66,7 @@ const Global = () => {
                   ? "🥉"
                   : `#${index + 1}`}
               </div>
-              <div className="text-sm backdrop-blur-lg text-white">
+              <div className="text-sm backdrop-blur-lg text-white w-52 max-w-52 text-wrap break-words">
                 {item.name}
               </div>
             </div>

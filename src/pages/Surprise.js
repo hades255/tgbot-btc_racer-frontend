@@ -1,7 +1,6 @@
 import React from "react";
 import DotIcon from "../assets/icons/Dot";
 import InfoIcon from "../assets/icons/Info";
-import AstronautIcon from "../assets/icons/Astronaut";
 import EligibilityBtn from "../components/surprise/EligibilityBtn";
 import RedirectBtn from "../components/common/button/RedirectBtn";
 import { useAuth } from "../contexts/AuthContext";
