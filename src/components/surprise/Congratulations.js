@@ -11,7 +11,7 @@ const Congratulations = () => {
       setTimeout(() => {
         dispatch(upgradeExtra({ key: "showCongratulations", value: false }));
         dispatch(upgradeExtra({ key: "message", value: "" }));
-      }, 5000);
+      }, 3000);
     }
   }, [showCongratulations, dispatch]);
 
@@ -24,7 +24,7 @@ const Congratulations = () => {
           </span>
         </div>
         <div className="mt-16 flex justify-center">
-          <span className="text-white text-sm max-w-[320px] text-center">
+          <span className="text-white max-w-[320px] text-center text-lg">
             {message ||
               `We've verified your account with Alphanomics. Stay turned for
             exciting big bonuses coming your way!`}

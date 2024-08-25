@@ -13,6 +13,7 @@ import axios from "axios";
 import { init } from "../../redux/fuelSlice";
 import { BACKEND_PATH } from "../../constants/config";
 import { upgradeExtra } from "../../redux/extraSlice";
+import { addToast } from "../../redux/toastSlice";
 
 const Navbar = () => {
   const location = useLocation();
@@ -22,7 +23,7 @@ const Navbar = () => {
   const navbar = useMemo(() => {
     return [
       {
-        title: "Race",
+        title: "Battle",
         icon: <HomeIcon width={22} height={22} color={"#A8ADB7"} />,
         url: "/",
       },
@@ -78,10 +79,18 @@ const Navbar = () => {
           const response = await axios.get(
             `${BACKEND_PATH}/user?userId=${userId}&name=${name}&username=${username}`
           );
-          const point = response.data.data.point;
-          const user = response.data.data.user;
+          const point = response.data.point;
+          const user = response.data.user;
           dispatch(login({ ...user, userId, point, name, username }));
-          dispatch(init(response.data.data.fuel));
+          dispatch(init(response.data.fuel));
+          if (response.data.autoearned) {
+            dispatch(
+              addToast({
+                message: "Success!",
+                type: `You've earned ${response.data.autoearned}+ bonus points by Auto Pilot!`,
+              })
+            );
+          }
         } catch (error) {
           console.log(error);
         }

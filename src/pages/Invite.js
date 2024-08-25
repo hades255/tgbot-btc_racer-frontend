@@ -21,7 +21,7 @@ const Invite = () => {
         console.log(error);
       }
     })();
-  }, []);
+  }, [userId]);
 
   return (
     <div className="w-full flex flex-col">
@@ -39,9 +39,9 @@ const Invite = () => {
             <DotIcon width={12} height={12} color={"#79DEFE"} />
           </div>
           <div className="flex flex-col">
-            <span className="text-[#79DEFE] text-md">Refer your frens</span>
+            <span className="text-[#79DEFE] text-md">Refer your friends</span>
             <span className="text-[#9E9E9E] text-sm">
-              Earn 5,000 points each for the first 5 frens that start racing.
+              Earn 5,000 points each for the first 5 friends that start racing.
             </span>
           </div>
         </div>
@@ -52,15 +52,15 @@ const Invite = () => {
           <div className="flex flex-col">
             <span className="text-[#79DEFE] text-md">Bonus points</span>
             <span className="text-[#9E9E9E] text-sm">
-              You'll get 10 % of each fren's total points, up to 10,000 bonus
-              points per fren.
+              You'll get 10 % of each friend's total points, up to 10,000 bonus
+              points per friend.
             </span>
           </div>
         </div>
       </div>
       <div className="mx-4 my-2 text-[#9E9E9E] text-sm">
         You've earned <span className="text-white">{totalBonus} pts</span> from
-        your frens.
+        your friends.
       </div>
       <div className="mx-4 mt-8 flex justify-center py-2 px-2">
         <InviteBtn />

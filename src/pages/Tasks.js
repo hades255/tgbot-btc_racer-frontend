@@ -92,13 +92,13 @@ const Tasks = () => {
         },
         {
           event: "daily-reward",
-          title: "Daily Rewards",
+          title: "Daily Rewards - Check In",
           point: bonuspoints,
           status: dailyBonus,
         },
         {
           event: "daily-visit",
-          title: "Daily points visiting Alphanomics platform",
+          title: "Daily Rewards - Visit Alphanomics Platform",
           point: bonusVisitpoints,
           status: dailyBonusVisit,
         },
@@ -121,7 +121,7 @@ const Tasks = () => {
         <span className="text-slate-400 text-md mr-1">Diamonds Collected</span>
       </div>
       <div className="mt-1 flex justify-center">
-        <span className="text-white text-3xl spaced-text-2 font-bold">
+        <span className="text-white text-3xl spaced-text-2 font-bold font-dmsans_extrabold">
           {lspoint}
         </span>
       </div>
@@ -265,12 +265,12 @@ const Tasks = () => {
             key={index}
           >
             <div className="w-4/5 flex flex-col">
-              <span className="text-white text-md font-medium">
+              <span className="text-white text-md font-medium capitalize">
                 {item.title}
               </span>
               <div className="mt-2 flex items-center text-slate-400 text-sm">
                 {item.status ? (
-                  <span className="border rounded border-[#000] bg-emphasize-sm p-[1px]">
+                  <span className="rounded p-[1px]">
                     <CheckIcon width={14} height={14} color={"white"} />
                   </span>
                 ) : (
@@ -299,3 +299,6 @@ const Tasks = () => {
 };
 
 export default Tasks;
+
+
+// border border-[#000] bg-emphasize-sm

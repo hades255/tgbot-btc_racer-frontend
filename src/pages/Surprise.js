@@ -7,6 +7,7 @@ import RedirectBtn from "../components/common/button/RedirectBtn";
 import { useAuth } from "../contexts/AuthContext";
 import CheckIcon from "../assets/icons/Check";
 import OTTbutton from "../components/surprise/OTTbutton";
+import Saturn1Icon from "../assets/icons/Saturn1";
 
 const Surprise = () => {
   const { eligibility } = useAuth();
@@ -27,7 +28,7 @@ const Surprise = () => {
       </div>
       <div className="mx-4 mt-4 p-3 rounded-lg bg-[#435879] bg-opacity-15 flex">
         <div className="w-[64px] min-w-[64px] h-[64px] rounded-md bg-[#1A2B47] mr-3 flex justify-center items-center">
-          <AstronautIcon width={60} height={60} color={"random"} />
+          <Saturn1Icon width={52} height={52} color={"random"} />
         </div>
         <div className="flex flex-col">
           <div>
@@ -75,7 +76,7 @@ const Surprise = () => {
             <div className="flex flex-col">
               <div className="text-md font-medium flex">
                 <span className="text-[#79DEFE]">
-                  Achieve Alphanomics Plus Level
+                  Unlock Alphanomics PLUS Account Level
                 </span>
               </div>
               <span className="text-[#9E9E9E] text-sm">
