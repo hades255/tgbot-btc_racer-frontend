@@ -1,16 +1,24 @@
 import React from "react";
 
-const Task3Icon = ({ width, height, color }) => {
+const Task3Icon = ({ width, height }) => {
   return (
     <>
       <svg
-        width="136"
-        height="136"
-        viewBox="0 0 136 136"
+        width={width}
+        height={height}
+        viewBox="0 0 51 51"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
       >
-        <rect width="136" height="136" fill="url(#pattern0_1_1135)" />
+        <rect width="51" height="51" rx="4" fill="#1A2B47" />
+        <rect
+          x="4"
+          y="4"
+          width="43"
+          height="43"
+          fill="url(#pattern0_1_1135)"
+          style={{ mixBlendMode: "color-dodge" }}
+        />
         <defs>
           <pattern
             id="pattern0_1_1135"

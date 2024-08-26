@@ -7,6 +7,7 @@ import { useAuth } from "../contexts/AuthContext";
 import CheckIcon from "../assets/icons/Check";
 import OTTbutton from "../components/surprise/OTTbutton";
 import Saturn1Icon from "../assets/icons/Saturn1";
+import AstronautIcon from "../assets/icons/Astronaut";
 
 const Surprise = () => {
   const { eligibility } = useAuth();
@@ -26,8 +27,8 @@ const Surprise = () => {
         bonuses.
       </div>
       <div className="mx-4 mt-4 p-3 rounded-lg bg-[#435879] bg-opacity-15 flex">
-        <div className="w-[64px] min-w-[64px] h-[64px] rounded-md bg-[#1A2B47] mr-3 flex justify-center items-center">
-          <Saturn1Icon width={52} height={52} color={"random"} />
+        <div className="flex items-center mr-2">
+          <AstronautIcon width={51} height={51} color={"random"} />
         </div>
         <div className="flex flex-col">
           <div>

@@ -20,6 +20,8 @@ import RedirectBtn from "../common/button/RedirectBtn";
 import DotIcon from "../../assets/icons/Dot";
 import RocketIcon from "../../assets/icons/Rocket";
 import Saturn1Icon from "../../assets/icons/Saturn1";
+import Task3Icon from "../../assets/icons/tasks/Task3";
+import Task4Icon from "../../assets/icons/tasks/Task4";
 
 const TaskModal = ({ selected, onClose, show }) => {
   const dispatch = useDispatch();
@@ -273,9 +275,7 @@ const TaskModal = ({ selected, onClose, show }) => {
         icon: (
           <div className="flex flex-col">
             <div className="my-2 flex justify-center">
-              <div className="w-[70px] h-[70px] flex justify-center items-center bg-[#1A2B47] rounded-xl">
-                <Saturn1Icon width={60} height={60} color={"random"} />
-              </div>
+              <Saturn1Icon width={60} height={60} color={"random"} />
             </div>
             <div className="flex justify-center my-2">
               <span className="ml-1 px-1 text-xs bg-emphasize-new rounded text-white">
@@ -307,9 +307,7 @@ const TaskModal = ({ selected, onClose, show }) => {
         icon: (
           <div className="flex flex-col">
             <div className="my-2 flex justify-center">
-              <div className="w-[70px] h-[70px] flex justify-center items-center bg-[#1A2B47] rounded-xl">
-                <RocketIcon width={60} height={60} color={"random"} />
-              </div>
+              <RocketIcon width={60} height={60} color={"random"} />
             </div>
           </div>
         ),
@@ -333,9 +331,7 @@ const TaskModal = ({ selected, onClose, show }) => {
         icon: (
           <div className="flex flex-col">
             <div className="my-2 flex justify-center">
-              <div className="w-[70px] h-[70px] flex justify-center items-center bg-[#1A2B47] rounded-xl">
-                <RocketIcon width={60} height={60} color={"random"} />
-              </div>
+              <Task3Icon width={60} height={60} color={"random"} />
             </div>
           </div>
         ),
@@ -361,9 +357,7 @@ const TaskModal = ({ selected, onClose, show }) => {
         icon: (
           <div className="flex flex-col">
             <div className="my-2 flex justify-center">
-              <div className="w-[70px] h-[70px] flex justify-center items-center bg-[#1A2B47] rounded-xl">
-                <RocketIcon width={60} height={60} color={"random"} />
-              </div>
+              <Task4Icon width={60} height={60} color={"random"} />
             </div>
           </div>
         ),

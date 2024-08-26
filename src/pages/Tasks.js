@@ -134,9 +134,7 @@ const Tasks = () => {
           className="ml-4 bg-[#435879] bg-opacity-15 rounded-lg h-[160px] min-w-[180px] w-[180px] px-4 py-2 flex flex-col relative"
         >
           <div className={`${unlockAuthPilot ? "" : "blur-sm"} h-full`}>
-            <div className="bg-[#1A2B47] rounded-md h-[50px] w-[50px] flex justify-center items-center">
-              <Saturn1Icon width={36} height={36} color={"random"} />
-            </div>
+            <Saturn1Icon width={51} height={51} color={"random"} />
             <div className="mt-2">
               <span className="text-white text-sm">Auto-Pilot</span>
               <span className="ml-1 px-2 text-xs bg-emphasize-new text-white rounded">
@@ -189,9 +187,7 @@ const Tasks = () => {
           }}
           className="bg-[#435879] bg-opacity-15 rounded-lg h-[160px] min-w-[180px] w-[180px] px-4 py-2 flex flex-col relative ml-4"
         >
-          <div className="bg-[#1A2B47] rounded-md h-[50px] w-[50px] flex justify-center items-center">
-            <RocketIcon width={36} height={36} color={"random"} />
-          </div>
+          <RocketIcon width={51} height={51} color={"random"} />
           <div className="mt-2">
             <span className="text-white text-sm">Rocket Pack Refill</span>
           </div>
@@ -212,9 +208,7 @@ const Tasks = () => {
           }}
           className="bg-[#435879] bg-opacity-15 rounded-lg h-[160px] min-w-[180px] w-[180px] px-4 py-2 flex flex-col relative ml-4"
         >
-          <div className="bg-[#1A2B47] rounded-md h-[50px] w-[50px] flex justify-center items-center">
-            <Task3Icon />
-          </div>
+          <Task3Icon width={51} height={51} />
           <div className="mt-2">
             <span className="text-white text-sm">Fuel Up</span>
           </div>
@@ -235,9 +229,7 @@ const Tasks = () => {
           }}
           className="mr-4 bg-[#435879] bg-opacity-15 rounded-lg h-[160px] min-w-[180px] w-[180px] px-4 py-2 flex flex-col relative ml-4"
         >
-          <div className="bg-[#1A2B47] rounded-md h-[50px] w-[50px] flex justify-center items-center">
-            <Task4Icon />
-          </div>
+          <Task4Icon width={51} height={51} />
           <div className="mt-2">
             <span className="text-white text-sm">Turbo Boosters</span>
           </div>
@@ -299,6 +291,5 @@ const Tasks = () => {
 };
 
 export default Tasks;
-
 
 // border border-[#000] bg-emphasize-sm
