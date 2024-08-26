@@ -4,7 +4,6 @@ import { useAuth } from "../contexts/AuthContext";
 import RightIcon from "../assets/icons/Right";
 import LockIcon from "../assets/icons/Lock";
 import { useSelector } from "react-redux";
-import Saturn1Icon from "../assets/icons/Saturn1";
 import {
   dailyBonusPoints,
   fuelTankPoints,
@@ -15,6 +14,7 @@ import CheckIcon from "../assets/icons/Check";
 import RocketIcon from "../assets/icons/Rocket";
 import Task4Icon from "../assets/icons/tasks/Task4";
 import Task3Icon from "../assets/icons/tasks/Task3";
+import AstronautIcon from "../assets/icons/Astronaut";
 
 const Tasks = () => {
   const {
@@ -134,7 +134,7 @@ const Tasks = () => {
           className="ml-4 bg-[#435879] bg-opacity-15 rounded-lg h-[160px] min-w-[180px] w-[180px] px-4 py-2 flex flex-col relative"
         >
           <div className={`${unlockAuthPilot ? "" : "blur-sm"} h-full`}>
-            <Saturn1Icon width={51} height={51} color={"random"} />
+            <AstronautIcon width={51} height={51} color={"random"} />
             <div className="mt-2">
               <span className="text-white text-sm">Auto-Pilot</span>
               <span className="ml-1 px-2 text-xs bg-emphasize-new text-white rounded">

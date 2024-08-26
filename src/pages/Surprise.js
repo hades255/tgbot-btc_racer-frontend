@@ -6,7 +6,6 @@ import RedirectBtn from "../components/common/button/RedirectBtn";
 import { useAuth } from "../contexts/AuthContext";
 import CheckIcon from "../assets/icons/Check";
 import OTTbutton from "../components/surprise/OTTbutton";
-import Saturn1Icon from "../assets/icons/Saturn1";
 import AstronautIcon from "../assets/icons/Astronaut";
 
 const Surprise = () => {
