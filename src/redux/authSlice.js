@@ -18,6 +18,7 @@ const authSlice = createSlice({
     joinNewsletter: false,
     joinAnnouncementChannel: false,
     eligibility: false,
+    pluslevel: false,
     ethaddress: "",
   },
   reducers: {
@@ -37,6 +38,7 @@ const authSlice = createSlice({
       state.joinAnnouncementChannel = payload.payload.joinAnnouncementChannel;
       state.eligibility = payload.payload.eligibility;
       state.ethaddress = payload.payload.ethaddress;
+      state.pluslevel = payload.payload.pluslevel;
     },
     logout: (state) => {
       state.isAuthenticated = false;

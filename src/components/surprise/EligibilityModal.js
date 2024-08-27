@@ -71,6 +71,8 @@ const EligibilityModal = ({ show, onClose }) => {
                 { key: "ethaddress", value },
               ])
             );
+            if (Number(response.data.point) >= 10)
+              dispatch(upgradeUser([{ key: "pluslevel", value: true }]));
           } else {
             dispatch(
               addToast({

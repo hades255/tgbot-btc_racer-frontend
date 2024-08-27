@@ -7,6 +7,7 @@ import { useAuth } from "../contexts/AuthContext";
 import CheckIcon from "../assets/icons/Check";
 import OTTbutton from "../components/surprise/OTTbutton";
 import AstronautIcon from "../assets/icons/Astronaut";
+import PlusAccountBtn from "../components/surprise/PlusAccountBtn";
 
 const Surprise = () => {
   const { eligibility } = useAuth();
@@ -67,23 +68,8 @@ const Surprise = () => {
           </div>
         </RedirectBtn>
         <OTTbutton />
-        <RedirectBtn url="https://platform.alphanomics.io/">
-          <div className="flex my-2">
-            <div className="mr-1 pt-1">
-              <DotIcon width={14} height={14} color={"#04C3FF"} />
-            </div>
-            <div className="flex flex-col">
-              <div className="text-md font-medium flex">
-                <span className="text-[#79DEFE]">
-                  Unlock Alphanomics PLUS Account Level
-                </span>
-              </div>
-              <span className="text-[#9E9E9E] text-sm">
-                Go to your Alphanomics 'My Profile' page and earn 10 ANOM points
-                to unlock PLUS level
-              </span>
-            </div>
-          </div>
+        <RedirectBtn url="https://platform.alphanomics.io/profile">
+          <PlusAccountBtn />
         </RedirectBtn>
       </div>
       {!eligibility && (
