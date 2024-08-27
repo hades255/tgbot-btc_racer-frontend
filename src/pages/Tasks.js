@@ -28,12 +28,23 @@ const Tasks = () => {
     joinNewsletter,
     joinAnnouncementChannel,
     eligibility,
+    pluslevel,
   } = useAuth();
   const { freeBoost, fueltank, autopilot } = useSelector((state) => state.fuel);
   const unlockAuthPilot = useMemo(
     () =>
-      followTwitter && joinNewsletter && joinAnnouncementChannel && eligibility,
-    [followTwitter, joinNewsletter, joinAnnouncementChannel, eligibility]
+      followTwitter &&
+      joinNewsletter &&
+      joinAnnouncementChannel &&
+      eligibility &&
+      pluslevel,
+    [
+      followTwitter,
+      joinNewsletter,
+      joinAnnouncementChannel,
+      eligibility,
+      pluslevel,
+    ]
   );
   const fueltankpoint = useMemo(
     () => fuelTankPoints(fueltank).toLocaleString(),
