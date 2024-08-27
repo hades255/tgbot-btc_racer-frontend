@@ -30,7 +30,7 @@ const PlusAccountBtn = () => {
         } else
           dispatch(
             addToast({
-              message: "Your eth address is not registered.",
+              message: `You have only ${response.data.point} ANOM points.`,
               type: "info",
             })
           );
