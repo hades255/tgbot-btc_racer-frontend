@@ -63,24 +63,26 @@ const Navbar = () => {
     const username = queryParams.get("username") || "smart guy";
     const name = queryParams.get("name") || "smart guy";
     const refer = queryParams.get("refer") || "";
-    const bonus = queryParams.get("bonus") || "";
-    if (refer && bonus) {
-      dispatch(
-        upgradeExtra({
-          key: "message",
-          value: `You've earned ${bonus}+ bonus points by referral code!`,
-        })
-      );
-      dispatch(upgradeExtra({ key: "showCongratulations", value: true }));
-    }
     if (userId) {
       (async () => {
         try {
           const response = await axios.get(
-            `${BACKEND_PATH}/user?userId=${userId}&name=${name}&username=${username}`
+            `${BACKEND_PATH}/user?userId=${userId}&name=${name}&username=${username}&refer=${refer}`
           );
           const point = response.data.point;
           const user = response.data.user;
+          const bonus = response.data.bonus;
+          if (refer && bonus) {
+            dispatch(
+              upgradeExtra([
+                {
+                  key: "message",
+                  value: `You've earned ${bonus}+ bonus points by referral code!`,
+                },
+                { key: "showCongratulations", value: true },
+              ])
+            );
+          }
           dispatch(login({ ...user, userId, point, name, username }));
           dispatch(init(response.data.fuel));
           if (response.data.autoearned) {

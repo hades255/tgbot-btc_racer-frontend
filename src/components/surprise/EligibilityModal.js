@@ -30,7 +30,12 @@ const EligibilityModal = ({ show, onClose }) => {
   useEffect(() => {
     if (eligibility) {
       if (unlockAuthPilot)
-        dispatch(upgradeExtra({ key: "showCongratulations", value: true }));
+        dispatch(
+          upgradeExtra([
+            { key: "message", value: "" },
+            { key: "showCongratulations", value: true },
+          ])
+        );
       onClose();
     }
   }, [unlockAuthPilot, eligibility, onClose, dispatch]);

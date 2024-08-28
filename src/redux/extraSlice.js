@@ -5,7 +5,9 @@ const extraSlice = createSlice({
   initialState: { showCongratulations: false, message: "" },
   reducers: {
     upgradeExtra: (state, payload) => {
-      state[payload.payload.key] = payload.payload.value;
+      payload.payload.forEach((item) => {
+        state[item.key] = item.value;
+      });
     },
   },
 });

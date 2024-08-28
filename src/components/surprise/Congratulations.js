@@ -9,8 +9,12 @@ const Congratulations = () => {
   useEffect(() => {
     if (showCongratulations) {
       setTimeout(() => {
-        dispatch(upgradeExtra({ key: "showCongratulations", value: false }));
-        dispatch(upgradeExtra({ key: "message", value: "" }));
+        dispatch(
+          upgradeExtra([
+            { key: "showCongratulations", value: false },
+            { key: "message", value: "" },
+          ])
+        );
       }, 3000);
     }
   }, [showCongratulations, dispatch]);
