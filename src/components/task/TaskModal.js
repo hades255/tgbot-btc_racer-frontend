@@ -37,8 +37,7 @@ const TaskModal = ({ selected, onClose, show }) => {
     eligibility,
     pluslevel,
   } = useAuth();
-  const { freeBoost, fueltank, fuelcount, fuelcapacity, autopilot } =
-    useSelector((state) => state.fuel);
+  const { freeBoost, fueltank, autopilot } = useSelector((state) => state.fuel);
   const fueltankpoint = useMemo(() => fuelTankPoints(fueltank), [fueltank]);
   const turborpoint = useMemo(() => turborPoints(turboCharger), [turboCharger]);
   const unlockAuthPilot = useMemo(
@@ -118,7 +117,7 @@ const TaskModal = ({ selected, onClose, show }) => {
       })();
     }
     handleClose();
-  }, [freeBoost, dispatch, userId, handleClose, fuelcount, fuelcapacity]);
+  }, [freeBoost, dispatch, userId, handleClose]);
 
   const handleClickUpgradeFuel = useCallback(() => {
     if (fueltankpoint > point) {

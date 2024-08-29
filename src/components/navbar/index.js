@@ -13,7 +13,6 @@ import axios from "axios";
 import { init } from "../../redux/fuelSlice";
 import { BACKEND_PATH } from "../../constants/config";
 import { upgradeExtra } from "../../redux/extraSlice";
-import { addToast } from "../../redux/toastSlice";
 
 const Navbar = () => {
   const location = useLocation();
