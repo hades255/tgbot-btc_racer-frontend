@@ -273,7 +273,7 @@ const Tasks = () => {
               </span>
               <div className="mt-2 flex items-center text-slate-400 text-sm">
                 {item.status ? (
-                  <span className="rounded p-[1px]">
+                  <span className="border rounded border-[#000] bg-emphasize-sm p-[1px]">
                     <CheckIcon width={14} height={14} color={"white"} />
                   </span>
                 ) : (

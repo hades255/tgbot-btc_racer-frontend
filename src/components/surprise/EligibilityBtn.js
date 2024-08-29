@@ -10,22 +10,27 @@ const EligibilityBtn = () => {
 
   const handleClick = useCallback(() => setShow(!show), [show]);
 
-  return eligibility ? (
+  return (
     <>
-      <div className="relative w-[300px] h-[40px] bg-button-1-bg rounded-[20px]">
-        <div className="absolute top-[2px] left-[2px] w-[296px] h-[36px] rounded-[20px] bg-button-1 text-white px-4 flex justify-center items-center">
-          {ethaddress.substring(0, 6)}...
-          {ethaddress.substring(38)}
+      {eligibility ? (
+        <div
+          onClick={handleClick}
+          className="relative w-[300px] h-[40px] bg-button-1-bg rounded-[20px] cursor-pointer"
+        >
+          <div className="absolute top-[2px] left-[2px] w-[296px] h-[36px] rounded-[20px] bg-button-1 text-white px-4 flex justify-center items-center">
+            {ethaddress.substring(0, 6)}...
+            {ethaddress.substring(38)}
+          </div>
         </div>
-      </div>
-    </>
-  ) : (
-    <>
-      <BtnLight onClick={handleClick}>
-        <span className="ml-2">Check eligibility</span>
-        <ArrowIcon />
-      </BtnLight>
-      <EligibilityModal show={show} onClose={handleClick} />
+      ) : (
+        <>
+          <BtnLight onClick={handleClick}>
+            <span className="ml-2">Check eligibility</span>
+            <ArrowIcon />
+          </BtnLight>
+        </>
+      )}
+      {show && <EligibilityModal show={show} onClose={handleClick} />}
     </>
   );
 };

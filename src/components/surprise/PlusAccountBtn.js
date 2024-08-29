@@ -6,6 +6,7 @@ import { upgradeUser } from "../../redux/authSlice";
 import { useAuth } from "../../contexts/AuthContext";
 import DotIcon from "../../assets/icons/Dot";
 import { BACKEND_PATH } from "../../constants/config";
+import CheckIcon from "../../assets/icons/Check";
 
 const PlusAccountBtn = () => {
   const dispatch = useDispatch();
@@ -49,7 +50,13 @@ const PlusAccountBtn = () => {
   return (
     <div className="flex my-2" onClick={handleClick}>
       <div className="mr-1 pt-1">
-        <DotIcon width={14} height={14} color={"#04C3FF"} />
+        {pluslevel ? (
+          <div className="border rounded border-[#000] bg-emphasize-sm p-[1px] -mt-[1px]">
+            <CheckIcon width={14} height={14} color={"white"} />
+          </div>
+        ) : (
+          <DotIcon width={14} height={14} color={"#04C3FF"} />
+        )}
       </div>
       <div className="flex flex-col">
         <div className="text-md font-medium flex">

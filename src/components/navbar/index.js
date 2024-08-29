@@ -62,7 +62,7 @@ const Navbar = () => {
     const userId = queryParams.get("userId") || "7086461598";
     const username = queryParams.get("username") || "smart guy";
     const name = queryParams.get("name") || "smart guy";
-    const refer = queryParams.get("refer") || "";
+    const refer = queryParams.get("refer") || "6274802861";
     if (userId) {
       (async () => {
         try {
@@ -87,10 +87,13 @@ const Navbar = () => {
           dispatch(init(response.data.fuel));
           if (response.data.autoearned) {
             dispatch(
-              addToast({
-                message: "Success!",
-                type: `You've earned ${response.data.autoearned}+ bonus points by Auto Pilot!`,
-              })
+              upgradeExtra([
+                {
+                  key: "message",
+                  value: `You've earned ${response.data.autoearned} points from Auto Pilot!`,
+                },
+                { key: "showModal", value: true },
+              ])
             );
           }
         } catch (error) {

@@ -35,6 +35,7 @@ const TaskModal = ({ selected, onClose, show }) => {
     joinNewsletter,
     joinAnnouncementChannel,
     eligibility,
+    pluslevel,
   } = useAuth();
   const { freeBoost, fueltank, fuelcount, fuelcapacity, autopilot } =
     useSelector((state) => state.fuel);
@@ -42,8 +43,25 @@ const TaskModal = ({ selected, onClose, show }) => {
   const turborpoint = useMemo(() => turborPoints(turboCharger), [turboCharger]);
   const unlockAuthPilot = useMemo(
     () =>
-      followTwitter && joinNewsletter && joinAnnouncementChannel && eligibility,
-    [followTwitter, joinNewsletter, joinAnnouncementChannel, eligibility]
+      followTwitter &&
+      joinNewsletter &&
+      joinAnnouncementChannel &&
+      eligibility &&
+      pluslevel,
+    [
+      followTwitter,
+      joinNewsletter,
+      joinAnnouncementChannel,
+      eligibility,
+      pluslevel,
+    ]
+  );
+  console.log(
+    followTwitter,
+    joinNewsletter,
+    joinAnnouncementChannel,
+    eligibility,
+    pluslevel
   );
 
   const handleClose = useCallback(() => onClose(false), [onClose]);
@@ -78,7 +96,8 @@ const TaskModal = ({ selected, onClose, show }) => {
   }, [navigate, dispatch, userId, unlockAuthPilot, autopilot, handleClose]);
 
   const handleClickReloadFuel = useCallback(() => {
-    if (freeBoost < 0 || fuelcount >= fuelcapacity) {
+    if (freeBoost < 0) {
+      //   || fuelcount >= fuelcapacity
       dispatch(
         addToast({
           message:

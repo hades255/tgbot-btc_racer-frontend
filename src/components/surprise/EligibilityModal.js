@@ -19,16 +19,32 @@ const EligibilityModal = ({ show, onClose }) => {
     joinNewsletter,
     joinAnnouncementChannel,
     eligibility,
+    ethaddress,
+    pluslevel,
   } = useAuth();
 
   const unlockAuthPilot = useMemo(
     () =>
-      followTwitter && joinNewsletter && joinAnnouncementChannel && eligibility,
-    [followTwitter, joinNewsletter, joinAnnouncementChannel, eligibility]
+      followTwitter &&
+      joinNewsletter &&
+      joinAnnouncementChannel &&
+      eligibility &&
+      pluslevel,
+    [
+      followTwitter,
+      joinNewsletter,
+      joinAnnouncementChannel,
+      eligibility,
+      pluslevel,
+    ]
   );
 
+  const [value, setValue] = useState(ethaddress);
+  const [loading, setLoading] = useState(false);
+  const [load, setLoad] = useState(false);
+
   useEffect(() => {
-    if (eligibility) {
+    if (load && eligibility) {
       if (unlockAuthPilot)
         dispatch(
           upgradeExtra([
@@ -38,10 +54,7 @@ const EligibilityModal = ({ show, onClose }) => {
         );
       onClose();
     }
-  }, [unlockAuthPilot, eligibility, onClose, dispatch]);
-
-  const [value, setValue] = useState("");
-  const [loading, setLoading] = useState(false);
+  }, [unlockAuthPilot, eligibility, onClose, dispatch, load]);
 
   const handleSubmit = useCallback(
     (e) => {
@@ -65,19 +78,22 @@ const EligibilityModal = ({ show, onClose }) => {
           const result = response.data.data || false;
           if (result) {
             dispatch(
-              addToast({
-                message: "Congratulation!",
-                type: "success",
-              })
-            );
-            dispatch(
               upgradeUser([
                 { key: "eligibility", value: true },
                 { key: "ethaddress", value },
               ])
             );
-            if (Number(response.data.point) >= 10)
+            if (Number(response.data.point) >= 10) {
               dispatch(upgradeUser([{ key: "pluslevel", value: true }]));
+              setLoad(true);
+            } else {
+              dispatch(
+                addToast({
+                  message: "Congratulation!",
+                  type: "success",
+                })
+              );
+            }
           } else {
             dispatch(
               addToast({
