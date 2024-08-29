@@ -130,10 +130,21 @@ const TaskModal = ({ selected, onClose, show }) => {
     } else {
       (async () => {
         try {
-          await axios.get(`${BACKEND_PATH}/race/upgrade-fuel?userId=${userId}`);
-          dispatch(addToast({ message: "success", type: "success" }));
-          dispatch(upgrade());
-          dispatch(setScore(point - fueltankpoint));
+          const response = await axios.get(
+            `${BACKEND_PATH}/race/upgrade-fuel?userId=${userId}`
+          );
+          if (response.data.msg === "ok") {
+            dispatch(addToast({ message: "success", type: "success" }));
+            dispatch(upgrade());
+            dispatch(setScore(response.data.point));
+          } else {
+            dispatch(
+              addToast({
+                message: "You have insufficient points for the upgrade.",
+                type: "warn",
+              })
+            );
+          }
         } catch (error) {
           console.log(error);
           dispatch(addToast({ message: error.message, type: "error" }));
@@ -154,12 +165,21 @@ const TaskModal = ({ selected, onClose, show }) => {
     } else {
       (async () => {
         try {
-          await axios.get(
+          const response = await axios.get(
             `${BACKEND_PATH}/user/upgrade-turbor?userId=${userId}`
           );
-          dispatch(addToast({ message: "success", type: "success" }));
-          dispatch(upgradeTturboCharger());
-          dispatch(setScore(point - turborpoint));
+          if (response.data.msg === "ok") {
+            dispatch(addToast({ message: "success", type: "success" }));
+            dispatch(upgradeTturboCharger());
+            dispatch(setScore(response.data.point));
+          } else {
+            dispatch(
+              addToast({
+                message: "You have insufficient points for the upgrade.",
+                type: "warn",
+              })
+            );
+          }
         } catch (error) {
           console.log(error);
           dispatch(addToast({ message: error.message, type: "error" }));
