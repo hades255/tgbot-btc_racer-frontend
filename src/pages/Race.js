@@ -55,8 +55,10 @@ const Race = () => {
           const result =
             (bet === "moon" && betAmount <= price) ||
             (bet === "doom" && betAmount > price);
-          if (result) playWinSfx();
-          else playLoseSfx();
+          setTimeout(() => {
+            if (result) playWinSfx();
+            else playLoseSfx();
+          }, 10);
           setBetResult(result);
           const res = await axios.post(`${BACKEND_PATH}/race`, {
             guess: bet,
@@ -67,6 +69,7 @@ const Race = () => {
           if (res.data.data) dispatch(setScore(res.data.data));
         } catch (error) {
           console.log(error);
+          dispatch(addToast({ message: error.message, type: "error" }));
         }
       })();
     },
