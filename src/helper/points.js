@@ -9,7 +9,7 @@ export const dailyBonusPoints = (lvl) => {
     case 3:
       return 10000;
     default:
-      return 15000 * (lvl - 4) * 4000;
+      return 15000 + (lvl - 4) * 4000;
   }
 };
 
@@ -24,7 +24,7 @@ export const fuelTankPoints = (lvl) => {
     case 3:
       return 6000;
     default:
-      return 10000 * (lvl - 4) * 6000;
+      return 10000 + (lvl - 4) * 6000;
   }
 };
 
@@ -39,6 +39,6 @@ export const turborPoints = (lvl) => {
     case 3:
       return 10000;
     default:
-      return 15000 * (lvl - 4) * 7000;
+      return 15000 + (lvl - 4) * 7000;
   }
 };
