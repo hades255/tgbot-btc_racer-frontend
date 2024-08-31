@@ -19,20 +19,6 @@ const Navbar = () => {
   const [active, setActive] = useState("/");
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    (async () => {
-      try {
-        const token = "7200211488:AAGAlNg2aAr4C9WFt-E3xcLWHtSMp_dtgwI";
-        const response = await axios(
-          `https://api.telegram.org/bot${token}/getUpdates`
-        );
-        window.alert(JSON.stringify(response.data));
-      } catch (error) {
-        console.log(error);
-      }
-    })();
-  }, []);
-
   const navbar = useMemo(() => {
     return [
       {
