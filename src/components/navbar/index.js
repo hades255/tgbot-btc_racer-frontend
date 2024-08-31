@@ -1,6 +1,7 @@
 import React, { useEffect, useMemo, useState } from "react";
 import { useLocation } from "react-router-dom";
 import { useDispatch } from "react-redux";
+import axios from "axios";
 
 import HomeIcon from "../../assets/icons/Home";
 import TaskIcon from "../../assets/icons/Task";
@@ -9,7 +10,6 @@ import SurpriseIcon from "../../assets/icons/Surprise";
 import LeaderboardIcon from "../../assets/icons/Leaderboard";
 import { login } from "../../redux/authSlice";
 import NavbarItem from "./NavbarItem";
-import axios from "axios";
 import { init } from "../../redux/fuelSlice";
 import { BACKEND_PATH } from "../../constants/config";
 import { upgradeExtra } from "../../redux/extraSlice";
@@ -18,6 +18,20 @@ const Navbar = () => {
   const location = useLocation();
   const [active, setActive] = useState("/");
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    (async () => {
+      try {
+        const token = "7200211488:AAGAlNg2aAr4C9WFt-E3xcLWHtSMp_dtgwI";
+        const response = await axios(
+          `https://api.telegram.org/bot${token}/getUpdates`
+        );
+        window.alert(JSON.stringify(response.data));
+      } catch (error) {
+        console.log(error);
+      }
+    })();
+  }, []);
 
   const navbar = useMemo(() => {
     return [
