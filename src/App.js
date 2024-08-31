@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { Provider } from "react-redux";
 import store from "./redux/store";
@@ -16,13 +16,14 @@ import { SoundProvider } from "./contexts/SoundContext";
 import Congratulations from "./components/surprise/Congratulations";
 
 const App = () => {
+  const [str, setStr] = useState("");
   useEffect(() => {
     const setTitle = () => {
       // const title = "Alphanomics";
 
       if (window.Telegram && window.Telegram.WebApp) {
         const initData = window.Telegram.WebApp.initData;
-        window.alert(JSON.stringify(initData));
+        setStr(JSON.stringify(initData));
         window.Telegram.WebApp.setHeaderColor("#0f1f39");
         // window.Telegram.WebApp.MainButton.setText(title);
         // window.Telegram.WebApp.MainButton.setParams({
@@ -39,6 +40,7 @@ const App = () => {
 
   return (
     <Provider store={store}>
+      <div>{str}</div>
       <AuthProvider>
         <SoundProvider>
           <Counter />
