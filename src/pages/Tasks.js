@@ -25,6 +25,7 @@ const Tasks = () => {
     dailyBonusVisitLevel,
     dailyBonusVisit,
     followTwitter,
+    watchvideo,
     joinNewsletter,
     joinAnnouncementChannel,
     eligibility,
@@ -33,12 +34,14 @@ const Tasks = () => {
   const { freeBoost, fueltank, autopilot } = useSelector((state) => state.fuel);
   const unlockAuthPilot = useMemo(
     () =>
+      watchvideo &&
       followTwitter &&
       joinNewsletter &&
       joinAnnouncementChannel &&
       eligibility &&
       pluslevel,
     [
+      watchvideo,
       followTwitter,
       joinNewsletter,
       joinAnnouncementChannel,
@@ -90,6 +93,12 @@ const Tasks = () => {
           status: followTwitter,
         },
         {
+          event: "watch-video",
+          title: "Watch Entire Alphanomics Demo Video",
+          point: 5000,
+          status: watchvideo,
+        },
+        {
           event: "announcement-channel",
           title: "Join announcement channel",
           point: 3000,
@@ -120,6 +129,7 @@ const Tasks = () => {
       bonusVisitpoints,
       dailyBonusVisit,
       followTwitter,
+      watchvideo,
       joinNewsletter,
       joinAnnouncementChannel,
     ]
@@ -159,20 +169,7 @@ const Tasks = () => {
               {autopilot.enabled ? (
                 "Activated"
               ) : (
-                <>
-                  🚀{" "}
-                  {unlockAuthPilot ? (
-                    <>
-                      Free
-                      <div className="px-1 pt-3">
-                        <DotIcon width={4} height={4} color={"#a8a29e"} />
-                      </div>
-                      Lvl 0
-                    </>
-                  ) : (
-                    "Locked"
-                  )}
-                </>
+                <>🚀 {unlockAuthPilot ? "Free" : "Locked"}</>
               )}
             </div>
           </div>

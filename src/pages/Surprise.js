@@ -86,7 +86,7 @@ const Surprise = () => {
         <EligibilityBtn />
       </div>
       <div className="flex justify-center my-4">
-        <RedirectBtn url="https://platform.alphanomics.io/">
+        <RedirectBtn url="https://alphanomics.io/anomgameterms">
           <span className="text-white text-sm underline">
             Terms and conditions
           </span>

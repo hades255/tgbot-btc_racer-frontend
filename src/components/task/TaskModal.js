@@ -32,6 +32,7 @@ const TaskModal = ({ selected, onClose, show }) => {
     point,
     turboCharger,
     followTwitter,
+    watchvideo,
     joinNewsletter,
     joinAnnouncementChannel,
     eligibility,
@@ -43,6 +44,7 @@ const TaskModal = ({ selected, onClose, show }) => {
   const unlockAuthPilot = useMemo(
     () =>
       followTwitter &&
+      watchvideo &&
       joinNewsletter &&
       joinAnnouncementChannel &&
       eligibility &&
@@ -50,17 +52,11 @@ const TaskModal = ({ selected, onClose, show }) => {
     [
       followTwitter,
       joinNewsletter,
+      watchvideo,
       joinAnnouncementChannel,
       eligibility,
       pluslevel,
     ]
-  );
-  console.log(
-    followTwitter,
-    joinNewsletter,
-    joinAnnouncementChannel,
-    eligibility,
-    pluslevel
   );
 
   const handleClose = useCallback(() => onClose(false), [onClose]);
@@ -442,13 +438,13 @@ const TaskModal = ({ selected, onClose, show }) => {
         content: "Follow Alphanomics official twitter for extra points!",
         button: "Go now",
         action: handleClickFollowX,
-        redirect: "x.com/alphanomics_io",
+        redirect: "https://x.com/Alphanomics_io",
       },
       "announcement-channel": {
         title: "Join announcement channel",
         content: "Follow Alphanomics official twitter for extra points!",
         button: "Go now",
-        redirect: "http://t.me/anom_invaders_official_news",
+        redirect: "https://t.me/anom_invaders_announcements",
         action: handleClicJoinAnnouncement,
       },
       "newsletter-channel": {
@@ -456,6 +452,12 @@ const TaskModal = ({ selected, onClose, show }) => {
         content: "Follow Alphanomics official twitter for extra points!",
         button: "Go now",
         redirect: "https://alphanomicsresearch.substack.com/",
+        action: handleClickjoinNewsletter,
+      },
+      "watch-video": {
+        title: "Watch Entire Alphanomics Demo Video",
+        button: "Go now",
+        redirect: "https://alphanomics.io/demovideo",
         action: handleClickjoinNewsletter,
       },
     }),

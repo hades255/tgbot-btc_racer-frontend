@@ -15,6 +15,7 @@ const authSlice = createSlice({
     turboCharger: 0, //  points level per fuel
     //  one time
     followTwitter: false,
+    watchvideo: false,
     joinNewsletter: false,
     joinAnnouncementChannel: false,
     eligibility: false,
@@ -34,6 +35,7 @@ const authSlice = createSlice({
       state.dailyBonusVisitLevel = payload.payload.dailyBonusVisit.level;
       state.dailyBonusVisit = payload.payload.dailyBonusVisit.check;
       state.followTwitter = payload.payload.followTwitter;
+      state.watchvideo = payload.payload.watchvideo;
       state.joinNewsletter = payload.payload.joinNewsletter;
       state.joinAnnouncementChannel = payload.payload.joinAnnouncementChannel;
       state.eligibility = payload.payload.eligibility;

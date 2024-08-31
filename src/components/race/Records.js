@@ -66,7 +66,7 @@ const Records = ({ show, onClose }) => {
                       Consecutive Wins
                     </span>
                     <span className="font-bold text-white">
-                      {item.consecutiveWins}
+                      {item.consecutiveWins ? 1 : 0}
                     </span>
                   </div>
                 </div>

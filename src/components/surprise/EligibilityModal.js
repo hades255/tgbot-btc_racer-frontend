@@ -16,6 +16,7 @@ const EligibilityModal = ({ show, onClose }) => {
   const {
     userId,
     followTwitter,
+    watchvideo,
     joinNewsletter,
     joinAnnouncementChannel,
     eligibility,
@@ -26,12 +27,14 @@ const EligibilityModal = ({ show, onClose }) => {
   const unlockAuthPilot = useMemo(
     () =>
       followTwitter &&
+      watchvideo &&
       joinNewsletter &&
       joinAnnouncementChannel &&
       eligibility &&
       pluslevel,
     [
       followTwitter,
+      watchvideo,
       joinNewsletter,
       joinAnnouncementChannel,
       eligibility,

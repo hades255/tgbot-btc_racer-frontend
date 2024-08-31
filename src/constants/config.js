@@ -2,7 +2,6 @@ export const BACKEND_PATH =
   //  todo
   // `http://127.0.0.1`;
   // `https://srv587993.hstgr.cloud`;
-  // `http://172.86.113.74:3000`;
   `https://360f-172-86-113-74.ngrok-free.app`;
 
 export const COINAPI_WS_URL = "wss://ws.coinapi.io/v1/";
