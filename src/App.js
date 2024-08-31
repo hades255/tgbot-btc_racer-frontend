@@ -21,7 +21,7 @@ const App = () => {
       // const title = "Alphanomics";
 
       if (window.Telegram && window.Telegram.WebApp) {
-        const initData = Telegram.WebApp.initData;
+        const initData = window.Telegram.WebApp.initData;
         window.alert(JSON.stringify(initData));
         window.Telegram.WebApp.setHeaderColor("#0f1f39");
         // window.Telegram.WebApp.MainButton.setText(title);
