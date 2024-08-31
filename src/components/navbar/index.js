@@ -14,7 +14,7 @@ import { init } from "../../redux/fuelSlice";
 import { BACKEND_PATH } from "../../constants/config";
 import { upgradeExtra } from "../../redux/extraSlice";
 
-const Navbar = () => {
+const Navbar = ({ params }) => {
   const location = useLocation();
   const [active, setActive] = useState("/");
   const dispatch = useDispatch();
@@ -55,13 +55,11 @@ const Navbar = () => {
   );
 
   useEffect(() => {
-    //  fix
-    if (queryParams.size === 0) return;
-    if (!queryParams.get("userId")) return;
-    const userId = queryParams.get("userId") || "7086461598";
-    const username = queryParams.get("username") || "smart guy";
-    const name = queryParams.get("name") || "smart guy";
-    const refer = queryParams.get("refer") || "6274802861";
+    if (!params || queryParams.size === 0) return;
+    const userId = params.get("chat_id");
+    const username = params.get("username");
+    const name = params.get("first_name") + " " + params.get("last_name");
+    const refer = queryParams.get("refer");
     if (userId) {
       (async () => {
         try {
@@ -100,7 +98,7 @@ const Navbar = () => {
         }
       })();
     }
-  }, [queryParams, dispatch]);
+  }, [queryParams, params, dispatch]);
 
   useEffect(() => {
     setActive(location.pathname);

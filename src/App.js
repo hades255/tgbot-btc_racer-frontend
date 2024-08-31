@@ -16,14 +16,15 @@ import { SoundProvider } from "./contexts/SoundContext";
 import Congratulations from "./components/surprise/Congratulations";
 
 const App = () => {
-  const [str, setStr] = useState("");
+  const [str, setStr] = useState(null);
   useEffect(() => {
     const setTitle = () => {
       // const title = "Alphanomics";
 
       if (window.Telegram && window.Telegram.WebApp) {
         const initData = window.Telegram.WebApp.initData;
-        setStr(JSON.stringify(initData));
+        const params = new URLSearchParams(atob(initData.split(" ")[1]));
+        setStr(params);
         window.Telegram.WebApp.setHeaderColor("#0f1f39");
         // window.Telegram.WebApp.MainButton.setText(title);
         // window.Telegram.WebApp.MainButton.setParams({
@@ -40,7 +41,6 @@ const App = () => {
 
   return (
     <Provider store={store}>
-      <div>{str}</div>
       <AuthProvider>
         <SoundProvider>
           <Counter />
@@ -54,7 +54,7 @@ const App = () => {
               <Route path="/invite" element={<Invite />} />
               <Route path="/surprise" element={<Surprise />} />
             </Routes>
-            <Navbar />
+            <Navbar params={str} />
             <ToastContainer />
             <Congratulations />
           </Router>
