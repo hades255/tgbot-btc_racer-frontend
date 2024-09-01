@@ -55,10 +55,10 @@ const Navbar = ({ params }) => {
   );
 
   useEffect(() => {
-    if (!params || queryParams.size === 0) return;
-    const userId = params.get("chat_id");
-    const username = params.get("username");
-    const name = params.get("first_name") + " " + params.get("last_name");
+    if (!params || !params.user || queryParams.size === 0) return;
+    const userId = params.user.id;
+    const username = params.user.username;
+    const name = params.user.first_name + " " + params.user.last_name;
     const refer = queryParams.get("refer");
     if (userId) {
       (async () => {
@@ -106,7 +106,6 @@ const Navbar = ({ params }) => {
 
   return (
     <>
-      <div>{params}</div>
       <div>{JSON.stringify(params)}</div>
       <div className="w-full fixed bottom-0 mx-auto">
         <div className="flex justify-center h-20 bg-[#000713] px-3">

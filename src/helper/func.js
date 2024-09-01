@@ -16,3 +16,18 @@ export const getAverage = (array) => {
   );
   return sum / array.length;
 };
+
+export const queryStringToObject = (queryString) => {
+  const params = new URLSearchParams(queryString);
+  const result = {};
+
+  for (const [key, value] of params.entries()) {
+    if (key === "user") {
+      result[key] = JSON.parse(decodeURIComponent(value));
+    } else {
+      result[key] = decodeURIComponent(value);
+    }
+  }
+
+  return result;
+};
