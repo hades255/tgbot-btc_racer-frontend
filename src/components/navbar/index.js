@@ -106,7 +106,6 @@ const Navbar = ({ params }) => {
 
   return (
     <>
-      <div>{JSON.stringify(params)}</div>
       <div className="w-full fixed bottom-0 mx-auto">
         <div className="flex justify-center h-20 bg-[#000713] px-3">
           {navbar.map((item, index) => (
