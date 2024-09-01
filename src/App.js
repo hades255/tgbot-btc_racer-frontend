@@ -14,6 +14,7 @@ import ToastContainer from "./components/common/toast";
 import Coinapi from "./helper/Coinapi";
 import { SoundProvider } from "./contexts/SoundContext";
 import Congratulations from "./components/surprise/Congratulations";
+import { queryStringToObject } from "./helper/func";
 
 const App = () => {
   const [str, setStr] = useState(null);
