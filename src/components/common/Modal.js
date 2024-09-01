@@ -10,7 +10,7 @@ const Modal = ({ show, onClose, title, children, className }) => {
   return (
     show && (
       <div
-        className={`fixed inset-0 flex justify-center bg-[#000000] bg-opacity-80 z-10 ${className} ${
+        className={`fixed inset-0 flex justify-center bg-[#000000] bg-opacity-80 z-40 ${className} ${
           show ? "animate-slideIn" : "animate-slideOut"
         }`}
         onClick={handleClickBlur}

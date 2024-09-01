@@ -84,7 +84,7 @@ const Friends = () => {
       </div>
       <div className="mx-3 text-slate-500 text-sm my-4">
         You have yet to invite your friends. Invite them now to see their
-        rankings here and race together!
+        rankings here and battle together!
       </div>
       <div className="flex justify-start px-3">
         <InviteBtn />

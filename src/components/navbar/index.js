@@ -55,7 +55,7 @@ const Navbar = ({ params }) => {
   );
 
   useEffect(() => {
-    if (!params || !params.user || queryParams.size === 0) return;
+    if (!params || !params.user) return;
     const userId = params.user.id;
     const username = params.user.username;
     const name = params.user.first_name + " " + params.user.last_name;
@@ -106,7 +106,7 @@ const Navbar = ({ params }) => {
 
   return (
     <>
-      <div className="w-full fixed bottom-0 mx-auto z-50">
+      <div className="w-full fixed bottom-0 mx-auto z-30">
         <div className="flex justify-center h-20 bg-[#000713] px-3">
           {navbar.map((item, index) => (
             <NavbarItem {...item} key={index} active={active === item.url} />
