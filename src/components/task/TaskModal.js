@@ -248,7 +248,7 @@ const TaskModal = ({ selected, onClose, show }) => {
     })();
   }, [dispatch, userId, handleClose]);
 
-  const handleClicJoinAnnouncement = useCallback(() => {
+  const handleClickJoinAnnouncement = useCallback(() => {
     (async () => {
       try {
         const response = await axios.get(
@@ -257,6 +257,29 @@ const TaskModal = ({ selected, onClose, show }) => {
         dispatch(setScore(response.data.data));
         dispatch(
           upgradeUser([{ key: "joinAnnouncementChannel", value: true }])
+        );
+        dispatch(
+          addToast({
+            message: "You've completed the task and earned points.",
+            type: "success",
+          })
+        );
+      } catch (error) {
+        console.log(error);
+      }
+      handleClose();
+    })();
+  }, [dispatch, userId, handleClose]);
+
+  const handleClickWatchVideo = useCallback(() => {
+    (async () => {
+      try {
+        const response = await axios.get(
+          `${BACKEND_PATH}/user/bonus-watchvideo?userId=${userId}`
+        );
+        dispatch(setScore(response.data.data));
+        dispatch(
+          upgradeUser([{ key: "watchvideo", value: true }])
         );
         dispatch(
           addToast({
@@ -445,7 +468,7 @@ const TaskModal = ({ selected, onClose, show }) => {
         content: "Follow Alphanomics official twitter for extra points!",
         button: "Go now",
         redirect: "https://t.me/anom_invaders_announcements",
-        action: handleClicJoinAnnouncement,
+        action: handleClickJoinAnnouncement,
       },
       "newsletter-channel": {
         title: "Join Newsletter substack",
@@ -458,7 +481,7 @@ const TaskModal = ({ selected, onClose, show }) => {
         title: "Watch Entire Alphanomics Demo Video",
         button: "Go now",
         redirect: "https://alphanomics.io/demovideo",
-        action: handleClickjoinNewsletter,
+        action: handleClickWatchVideo,
       },
     }),
     [
@@ -477,8 +500,9 @@ const TaskModal = ({ selected, onClose, show }) => {
       handleClickDailyReward,
       handleClickDailyVisit,
       handleClickFollowX,
-      handleClicJoinAnnouncement,
+      handleClickJoinAnnouncement,
       handleClickjoinNewsletter,
+      handleClickWatchVideo,
     ]
   );
 

@@ -22,7 +22,10 @@ const Global = () => {
   }, [userId]);
 
   useEffect(() => {
-    if (users) setRank(users.findIndex((item) => item.chatId === userId));
+    if (users)
+      setRank(
+        users.findIndex((item) => item.chatId.toString() === userId.toString())
+      );
   }, [users, userId]);
 
   return (
@@ -53,7 +56,9 @@ const Global = () => {
           <div
             key={index}
             className={`py-3 px-3 flex justify-between ${
-              item.chatId === userId ? "bg-[#263f68] rounded-md" : ""
+              item.chatId.toString() === userId.toString()
+                ? "bg-[#263f68] rounded-md"
+                : ""
             }`}
           >
             <div className="flex w-52 max-w-52">
