@@ -69,7 +69,7 @@ const Race = () => {
           if (res.data.data) dispatch(setScore(res.data.data));
         } catch (error) {
           console.log(error);
-          dispatch(addToast({ message: error.message, type: "error" }));
+          // dispatch(addToast({ message: error.message, type: "error" }));
         }
       })();
     },
