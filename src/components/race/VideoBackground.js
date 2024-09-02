@@ -10,9 +10,8 @@ const VideoBackground = ({ show }) => {
   // }, [show]);
 
   return (
-    show && (
+    true && (
       <>
-        <div className="absolute flex justify-center top-0 -z-10 bg-[#0f1f3955] w-full h-[216px]"></div>
         <img
           src="flyingrocket.gif"
           alt=""
