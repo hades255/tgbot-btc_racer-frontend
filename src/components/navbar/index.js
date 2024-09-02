@@ -85,14 +85,19 @@ const Navbar = ({ params }) => {
           dispatch(login({ ...user, userId, point, name, username }));
           dispatch(init(response.data.fuel));
           if (response.data.autoearned) {
-            dispatch(
-              upgradeExtra([
-                {
-                  key: "message",
-                  value: `You've earned ${response.data.autoearned} points from Auto Pilot!`,
-                },
-                { key: "showModal", value: true },
-              ])
+            setTimeout(
+              () => {
+                dispatch(
+                  upgradeExtra([
+                    {
+                      key: "message",
+                      value: `You've earned ${response.data.autoearned} points from Auto Pilot!`,
+                    },
+                    { key: "showModal", value: true },
+                  ])
+                );
+              },
+              refer && bonus ? 5000 : 100
             );
           }
         } catch (error) {

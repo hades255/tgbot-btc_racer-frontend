@@ -19,7 +19,7 @@ const Congratulations = () => {
             { key: "message", value: "" },
           ])
         );
-      }, 3000);
+      }, 5000);
     }
   }, [showCongratulations, dispatch]);
 
