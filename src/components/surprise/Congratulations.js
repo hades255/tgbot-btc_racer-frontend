@@ -58,7 +58,7 @@ const Congratulations = () => {
             title={""}
             className={"items-end"}
           >
-            <div className="flex flex-col mb-10 px-4">
+            <div className="flex flex-col mb-10 px-4 z-30">
               <div className="flex justify-center text-center text-wrap break-words mb-4 text-xl text-white px-4">
                 {message}
               </div>

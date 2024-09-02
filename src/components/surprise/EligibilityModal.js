@@ -160,7 +160,7 @@ const EligibilityModal = ({ show, onClose }) => {
               </div>
             </form>
             {loading && (
-              <div className="absolute top-0 left-0 z-30 w-full h-full flex justify-center items-center">
+              <div className="absolute top-0 left-0 z-40 w-full h-full flex justify-center items-center">
                 <div className="animate-spin">
                   <LoadingIcon width={40} height={40} />
                 </div>
