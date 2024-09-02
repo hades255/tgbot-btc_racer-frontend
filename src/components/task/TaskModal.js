@@ -478,7 +478,7 @@ const TaskModal = ({ selected, onClose, show }) => {
         action: handleClickjoinNewsletter,
       },
       "watch-video": {
-        title: "Watch Entire Alphanomics Demo Video",
+        title: "Watch Entire Alphanomics Guide Video",
         button: "Go now",
         redirect: "https://alphanomics.io/demovideo",
         action: handleClickWatchVideo,

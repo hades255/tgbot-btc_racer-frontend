@@ -94,7 +94,7 @@ const Tasks = () => {
         },
         {
           event: "watch-video",
-          title: "Watch Entire Alphanomics Demo Video",
+          title: "Watch Entire Alphanomics Guide Video",
           point: 5000,
           status: watchvideo,
         },
