@@ -57,10 +57,11 @@ const Navbar = ({ params }) => {
   );
 
   useEffect(() => {
-    window.alert(params);
-    if (params) window.alert(params.user);
+    window.alert(1, JSON.stringify(params));
+    if (params) window.alert(2, JSON.stringify(params.user));
     if (isAuthenticated || !params || !params.user) return;
     const userId = params.user.id;
+    window.alert(userId);
     const username = params.user.username;
     const name = params.user.first_name + " " + params.user.last_name;
     let refer = queryParams.get("refer");
