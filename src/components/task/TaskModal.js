@@ -278,9 +278,7 @@ const TaskModal = ({ selected, onClose, show }) => {
           `${BACKEND_PATH}/user/bonus-watchvideo?userId=${userId}`
         );
         dispatch(setScore(response.data.data));
-        dispatch(
-          upgradeUser([{ key: "watchvideo", value: true }])
-        );
+        dispatch(upgradeUser([{ key: "watchvideo", value: true }]));
         dispatch(
           addToast({
             message: "You've completed the task and earned points.",

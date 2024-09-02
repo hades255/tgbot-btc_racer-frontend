@@ -15,6 +15,7 @@ import RocketIcon from "../assets/icons/Rocket";
 import Task4Icon from "../assets/icons/tasks/Task4";
 import Task3Icon from "../assets/icons/tasks/Task3";
 import AstronautIcon from "../assets/icons/Astronaut";
+import EligibilityModal from "../components/surprise/EligibilityModal";
 
 const Tasks = () => {
   const {
@@ -68,6 +69,9 @@ const Tasks = () => {
   const lspoint = useMemo(() => point.toLocaleString(), [point]);
 
   const [selectedTaskItem, setSelectedTaskItem] = useState(null);
+  const [show, setShow] = useState(false);
+
+  const handleClick = useCallback(() => setShow(!show), [show]);
 
   const handleClickTaskItem = useCallback((value) => {
     setSelectedTaskItem(value);
@@ -268,16 +272,18 @@ const Tasks = () => {
               <span className="text-white text-md font-medium capitalize">
                 {item.title}
               </span>
-              <div className="mt-2 flex items-center text-slate-400 text-sm">
-                {item.status ? (
-                  <span className="border rounded border-[#000] bg-emphasize-sm p-[1px]">
-                    <CheckIcon width={14} height={14} color={"white"} />
-                  </span>
-                ) : (
-                  "🚀"
-                )}
-                &nbsp;+ {item.point.toLocaleString()} pts
-              </div>
+              {item.point && (
+                <div className="mt-2 flex items-center text-slate-400 text-sm">
+                  {item.status ? (
+                    <span className="border rounded border-[#000] bg-emphasize-sm p-[1px]">
+                      <CheckIcon width={14} height={14} color={"white"} />
+                    </span>
+                  ) : (
+                    "🚀"
+                  )}
+                  &nbsp;+ {item.point.toLocaleString()} pts
+                </div>
+              )}
             </div>
             <div className="text-white text-sm flex items-center">
               {item.status ? (
@@ -288,12 +294,30 @@ const Tasks = () => {
             </div>
           </div>
         ))}
+        <div
+          className="mx-4 my-2 px-3 py-2 rounded-xl flex justify-between border border-[#173560]"
+          onClick={handleClick}
+        >
+          <div className="w-4/5 flex flex-col">
+            <span className="text-white text-md font-medium capitalize">
+              Create & Connect wallet with Alphanomics
+            </span>
+          </div>
+          <div className="text-white text-sm flex items-center">
+            {eligibility ? (
+              "Done"
+            ) : (
+              <RightIcon width={18} height={18} color={"white"} />
+            )}
+          </div>
+        </div>
       </div>
       <TaskModal
         selected={selectedTaskItem}
         show={selectedTaskItem}
         onClose={handleCloseModal}
       />
+      {show && <EligibilityModal show={show} onClose={handleClick} />}
     </div>
   );
 };
