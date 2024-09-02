@@ -345,9 +345,9 @@ const TaskModal = ({ selected, onClose, show }) => {
           : "Link your Telegram to your Alphanomics account and pass identity verification on Alphanomics to unlock Auto-driving. This lets you automatically play the game while you’re away, so you’re always earning points.",
         subcontent: (
           <div className="text-slate-400 flex items-center">
-            <span className="mx-2 text-sm text-white">🚀 Free</span>
-            <DotIcon width={4} height={4} color={"#a8a29e"} />
-            <span className="ml-2 text-sm">Lvl 0</span>
+            <span className="mx-2 text-sm text-white">
+              {autopilot.enabled ? "Activated" : "🚀 Free"}
+            </span>
           </div>
         ),
         button: unlockAuthPilot

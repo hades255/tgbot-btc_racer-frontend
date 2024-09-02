@@ -47,17 +47,16 @@ const EligibilityModal = ({ show, onClose }) => {
   const [load, setLoad] = useState(false);
 
   useEffect(() => {
-    if (load && eligibility) {
-      if (unlockAuthPilot)
-        dispatch(
-          upgradeExtra([
-            { key: "message", value: "" },
-            { key: "showCongratulations", value: true },
-          ])
-        );
+    if (load & unlockAuthPilot) {
+      dispatch(
+        upgradeExtra([
+          { key: "message", value: "" },
+          { key: "showCongratulations", value: true },
+        ])
+      );
       onClose();
     }
-  }, [unlockAuthPilot, eligibility, onClose, dispatch, load]);
+  }, [unlockAuthPilot, onClose, dispatch, load]);
 
   const handleSubmit = useCallback(
     (e) => {

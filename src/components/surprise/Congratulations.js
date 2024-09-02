@@ -63,7 +63,7 @@ const Congratulations = () => {
                 {message}
               </div>
               <div className="flex justify-center">
-                <BtnDark onClick={handleCloseModal}>Continue pilot</BtnDark>
+                <BtnDark onClick={handleCloseModal}>Continue Battle</BtnDark>
               </div>
             </div>
           </Modal>
