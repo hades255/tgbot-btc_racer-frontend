@@ -24,8 +24,9 @@ const App = () => {
 
       if (window.Telegram && window.Telegram.WebApp) {
         const initData = window.Telegram.WebApp.initData;
-        // const params = new URLSearchParams(atob(initData.split(" ")[1]));
-        setStr(queryStringToObject(JSON.stringify(initData)));
+        setStr(
+          queryStringToObject(initData)
+        );
         window.Telegram.WebApp.setHeaderColor("#0f1f39");
         // window.Telegram.WebApp.MainButton.setText(title);
         // window.Telegram.WebApp.MainButton.setParams({
@@ -42,7 +43,6 @@ const App = () => {
 
   return (
     <Provider store={store}>
-      <div>{window.location.href}</div>
       <AuthProvider>
         <SoundProvider>
           <Counter />
