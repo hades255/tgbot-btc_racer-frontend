@@ -13,29 +13,19 @@ const Congratulations = () => {
   useEffect(() => {
     if (showCongratulations) {
       setTimeout(() => {
-        dispatch(
-          upgradeExtra([
-            { key: "showCongratulations", value: false },
-            { key: "message", value: "" },
-          ])
-        );
+        dispatch(upgradeExtra([{ key: "showCongratulations", value: false }]));
       }, 5000);
     }
   }, [showCongratulations, dispatch]);
 
   const handleCloseModal = useCallback(() => {
-    dispatch(
-      upgradeExtra([
-        { key: "showModal", value: false },
-        { key: "message", value: "" },
-      ])
-    );
+    dispatch(upgradeExtra([{ key: "showModal", value: false }]));
   }, [dispatch]);
 
   return (
     <>
       {showCongratulations && (
-        <div className="fixed top-0 left-0 z-10 w-full h-screen bg-[#000000] opacity-80 flex flex-col">
+        <div className="fixed top-0 left-0 z-30 w-full h-screen bg-[#000000] opacity-80 flex flex-col">
           <div className="mt-20 flex justify-center">
             <span className="text-white text-2xl font-semibold">
               Congratulations
@@ -58,7 +48,7 @@ const Congratulations = () => {
             title={""}
             className={"items-end"}
           >
-            <div className="flex flex-col mb-10 px-4 z-30">
+            <div className="flex flex-col mb-10 px-4">
               <div className="flex justify-center text-center text-wrap break-words mb-4 text-xl text-white px-4">
                 {message}
               </div>
