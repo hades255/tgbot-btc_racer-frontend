@@ -42,6 +42,7 @@ const App = () => {
 
   return (
     <Provider store={store}>
+      <div>{window.location.href}</div>
       <AuthProvider>
         <SoundProvider>
           <Counter />

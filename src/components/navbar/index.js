@@ -57,8 +57,8 @@ const Navbar = ({ params }) => {
   );
 
   useEffect(() => {
-    window.alert("1" + JSON.stringify(params));
-    if (params !== null) window.alert("2" + JSON.stringify(params.user));
+    // window.alert("1" + JSON.stringify(params));
+    // if (params !== null) window.alert("2" + JSON.stringify(params.user));
     if (isAuthenticated || params !== null || params.user !== null) return;
     const userId = params.user.id;
     window.alert(userId);
