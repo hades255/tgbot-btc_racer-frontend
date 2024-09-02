@@ -13,11 +13,13 @@ import NavbarItem from "./NavbarItem";
 import { init } from "../../redux/fuelSlice";
 import { BACKEND_PATH } from "../../constants/config";
 import { upgradeExtra } from "../../redux/extraSlice";
+import { useAuth } from "../../contexts/AuthContext";
 
 const Navbar = ({ params }) => {
   const location = useLocation();
-  const [active, setActive] = useState("/");
   const dispatch = useDispatch();
+  const { isAuthenticated } = useAuth();
+  const [active, setActive] = useState("/");
 
   const navbar = useMemo(() => {
     return [
@@ -55,7 +57,7 @@ const Navbar = ({ params }) => {
   );
 
   useEffect(() => {
-    if (!params || !params.user) return;
+    if (isAuthenticated || !params || !params.user) return;
     const userId = params.user.id;
     const username = params.user.username;
     const name = params.user.first_name + " " + params.user.last_name;
@@ -98,7 +100,7 @@ const Navbar = ({ params }) => {
         }
       })();
     }
-  }, [queryParams, params, dispatch]);
+  }, [queryParams, params, dispatch, isAuthenticated]);
 
   useEffect(() => {
     setActive(location.pathname);
