@@ -58,7 +58,7 @@ const Navbar = ({ params }) => {
 
   useEffect(() => {
     window.alert(params);
-    window.alert(params.user);
+    if (params) window.alert(params.user);
     if (isAuthenticated || !params || !params.user) return;
     const userId = params.user.id;
     const username = params.user.username;
