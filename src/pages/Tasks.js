@@ -304,6 +304,16 @@ const Tasks = () => {
               <span className="text-white text-md font-medium capitalize">
                 Create & Connect wallet with Alphanomics
               </span>
+              <div className="mt-2 flex items-center text-slate-400 text-sm">
+                {eligibility ? (
+                  <span className="border rounded border-[#000] bg-emphasize-sm p-[1px]">
+                    <CheckIcon width={14} height={14} color={"white"} />
+                  </span>
+                ) : (
+                  "🚀"
+                )}
+                &nbsp;+ 10,000 pts
+              </div>
             </div>
             <div className="text-white text-sm flex items-center">
               {eligibility ? (

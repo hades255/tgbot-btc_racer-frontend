@@ -4,7 +4,7 @@ import axios from "axios";
 import { BACKEND_PATH } from "../../constants/config";
 import { useAuth } from "../../contexts/AuthContext";
 import { addToast } from "../../redux/toastSlice";
-import { upgradeUser } from "../../redux/authSlice";
+import { setScore, upgradeUser } from "../../redux/authSlice";
 import { upgradeExtra } from "../../redux/extraSlice";
 import Modal from "../common/Modal";
 import RightArrowIcon from "../../assets/icons/RightArrow";
@@ -80,6 +80,8 @@ const EligibilityModal = ({ show, onClose }) => {
           );
           const result = response.data.data || false;
           if (result) {
+            if (response.data.userPoint)
+              dispatch(setScore(response.data.userPoint));
             dispatch(
               upgradeUser([
                 { key: "eligibility", value: true },
