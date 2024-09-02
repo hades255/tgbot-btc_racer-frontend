@@ -42,7 +42,6 @@ const App = () => {
 
   return (
     <Provider store={store}>
-      <div>{JSON.stringify(str)}</div>
       <AuthProvider>
         <SoundProvider>
           <Counter />

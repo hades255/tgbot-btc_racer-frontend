@@ -9,7 +9,7 @@ const CopyBtn = () => {
   const dispatch = useDispatch();
 
   const inviteLink = useMemo(
-    () => `https://t.me/anom_invaders_bot/battle?refer=${userId}`,
+    () => `https://t.me/anom_invaders_bot?startapp=linkCode_${userId}`,
     [userId]
   );
 

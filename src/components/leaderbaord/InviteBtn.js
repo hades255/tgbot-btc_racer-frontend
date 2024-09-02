@@ -7,7 +7,7 @@ const InviteBtn = () => {
 
   const message = useMemo(
     () =>
-      `https://t.me/anom_invaders_bot/battle?refer=${userId}\nLet's race! Predict Ethereum's price and rack up points`,
+      `https://t.me/anom_invaders_bot?startapp=linkCode_${userId}\nLet's race! Predict Ethereum's price and rack up points`,
     [userId]
   );
   const encodedMessage = useMemo(() => encodeURIComponent(message), [message]);

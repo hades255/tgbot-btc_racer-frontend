@@ -61,7 +61,10 @@ const Navbar = ({ params }) => {
     const userId = params.user.id;
     const username = params.user.username;
     const name = params.user.first_name + " " + params.user.last_name;
-    const refer = queryParams.get("refer");
+    let refer = queryParams.get("refer");
+    if (params.start_param) {
+      refer = params.start_param.toString().substring(9);
+    }
     if (userId) {
       (async () => {
         try {
