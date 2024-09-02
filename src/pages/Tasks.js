@@ -16,6 +16,7 @@ import Task4Icon from "../assets/icons/tasks/Task4";
 import Task3Icon from "../assets/icons/tasks/Task3";
 import AstronautIcon from "../assets/icons/Astronaut";
 import EligibilityModal from "../components/surprise/EligibilityModal";
+import RedirectBtn from "../components/common/button/RedirectBtn";
 
 const Tasks = () => {
   const {
@@ -294,23 +295,25 @@ const Tasks = () => {
             </div>
           </div>
         ))}
-        <div
-          className="mx-4 my-2 px-3 py-2 rounded-xl flex justify-between border border-[#173560]"
-          onClick={handleClick}
-        >
-          <div className="w-4/5 flex flex-col">
-            <span className="text-white text-md font-medium capitalize">
-              Create & Connect wallet with Alphanomics
-            </span>
+        <RedirectBtn url={"https://alphanomics.io/connect"} className="w-full">
+          <div
+            className="mx-4 my-2 px-3 py-2 rounded-xl flex justify-between border border-[#173560]"
+            onClick={handleClick}
+          >
+            <div className="w-4/5 flex flex-col">
+              <span className="text-white text-md font-medium capitalize">
+                Create & Connect wallet with Alphanomics
+              </span>
+            </div>
+            <div className="text-white text-sm flex items-center">
+              {eligibility ? (
+                "Done"
+              ) : (
+                <RightIcon width={18} height={18} color={"white"} />
+              )}
+            </div>
           </div>
-          <div className="text-white text-sm flex items-center">
-            {eligibility ? (
-              "Done"
-            ) : (
-              <RightIcon width={18} height={18} color={"white"} />
-            )}
-          </div>
-        </div>
+        </RedirectBtn>
       </div>
       <TaskModal
         selected={selectedTaskItem}
