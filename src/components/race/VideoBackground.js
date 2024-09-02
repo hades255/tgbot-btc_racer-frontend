@@ -10,7 +10,7 @@ const VideoBackground = ({ show }) => {
   // }, [show]);
 
   return (
-    true && (
+    show && (
       <>
         <img
           src="flyingrocket.gif"
