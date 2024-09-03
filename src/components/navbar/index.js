@@ -74,7 +74,7 @@ const Navbar = ({ params }) => {
           const point = response.data.point;
           const user = response.data.user;
           const bonus = response.data.bonus;
-          if (refer && bonus) {
+          if (bonus) {
             dispatch(
               upgradeExtra([
                 {
