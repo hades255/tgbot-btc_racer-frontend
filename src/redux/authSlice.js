@@ -26,7 +26,7 @@ const authSlice = createSlice({
     login: (state, payload) => {
       state.isAuthenticated = true;
       state.userId = payload.payload.userId;
-      state.point = payload.payload.point;
+      state.point = Math.round(payload.payload.point);
       state.name = payload.payload.name;
       state.username = payload.payload.username;
       state.turboCharger = payload.payload.turboCharger;
@@ -46,7 +46,7 @@ const authSlice = createSlice({
       state.isAuthenticated = false;
     },
     setScore: (state, payload) => {
-      state.point = payload.payload;
+      state.point = Math.round(payload.payload);
     },
     upgradeTturboCharger: (state) => {
       state.turboCharger = state.turboCharger + 1;

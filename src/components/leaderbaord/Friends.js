@@ -81,7 +81,7 @@ const Friends = () => {
                 </div>
               </div>
               <div className="text-sm backdrop-blur-lg text-slate-400">
-                🚀 {item.point.toLocaleString()} pts
+                🚀 {Math.round(item.point).toLocaleString()} pts
               </div>
             </div>
           ))}

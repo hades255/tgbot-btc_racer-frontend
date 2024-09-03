@@ -6,6 +6,7 @@ import { BACKEND_PATH } from "../../constants/config.js";
 const Global = () => {
   const { userId, name, point } = useAuth();
   const [users, setUsers] = useState([]);
+  const [usersCt, setUsersCt] = useState(0);
   const [rank, setRank] = useState(null);
 
   useEffect(() => {
@@ -15,6 +16,7 @@ const Global = () => {
           `${BACKEND_PATH}/user/all?userId=${userId}`
         );
         setUsers(response.data.data || []);
+        setUsersCt(response.data.count || 0);
       } catch (error) {
         console.log(error);
       }
@@ -32,7 +34,7 @@ const Global = () => {
     <div className="flex flex-col">
       <div className="flex justify-between mx-3">
         <span className="text-slate-500 text-sm">
-          {(users.length || 0).toLocaleString()} pilots
+          {usersCt.toLocaleString()} pilots
         </span>
         <span className="text-slate-500 text-sm">Total pts earned</span>
       </div>
@@ -47,7 +49,7 @@ const Global = () => {
             </div>
             <div className="flex">
               <span className="text-sm backdrop-blur-lg text-slate-400">
-                🚀 {point.toLocaleString()} pts
+                🚀 {Math.round(point).toLocaleString()} pts
               </span>
             </div>
           </div>
@@ -76,7 +78,7 @@ const Global = () => {
               </div>
             </div>
             <div className="text-sm backdrop-blur-lg text-slate-400">
-              🚀 {item.point.toLocaleString()} pts
+              🚀 {Math.round(item.point).toLocaleString()} pts
             </div>
           </div>
         ))}
