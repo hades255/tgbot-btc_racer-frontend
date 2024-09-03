@@ -7,7 +7,6 @@ const Global = () => {
   const { userId, name, point } = useAuth();
   const [users, setUsers] = useState([]);
   const [usersCt, setUsersCt] = useState(0);
-  const [rank, setRank] = useState(null);
 
   useEffect(() => {
     (async () => {
@@ -23,13 +22,6 @@ const Global = () => {
     })();
   }, [userId]);
 
-  useEffect(() => {
-    if (users)
-      setRank(
-        users.findIndex((item) => item.chatId.toString() === userId.toString())
-      );
-  }, [users, userId]);
-
   return (
     <div className="flex flex-col">
       <div className="flex justify-between mx-3">
@@ -39,7 +31,9 @@ const Global = () => {
         <span className="text-slate-500 text-sm">Total pts earned</span>
       </div>
       <div className="flex flex-col pt-2">
-        {rank !== null && rank > 10 && (
+        {!users.find(
+          (item) => item.chatId.toString() === userId.toString()
+        ) && (
           <div className="py-3 px-3 flex justify-between bg-[#263f68] rounded-md">
             <div className="flex">
               <div className="w-14 text-sm backdrop-blur-lg text-white">
