@@ -34,8 +34,7 @@ const Congratulations = () => {
           <div className="mt-16 flex justify-center">
             <span className="text-white max-w-[320px] text-center text-lg">
               {message ||
-                `We've verified your account with Alphanomics. Stay turned for
-            exciting big bonuses coming your way!`}
+                `We've checked and you are eligible!  Auto-Pilot is now unlocked in your account, please head to Tasks and activate it!`}
             </span>
           </div>
         </div>

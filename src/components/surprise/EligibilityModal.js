@@ -10,6 +10,7 @@ import Modal from "../common/Modal";
 import RightArrowIcon from "../../assets/icons/RightArrow";
 import LoadingIcon from "../../assets/icons/loading";
 import EthIcon from "../../assets/icons/Eth";
+import { upgradeFuel } from "../../redux/fuelSlice";
 
 const EligibilityModal = ({ show, onClose }) => {
   const dispatch = useDispatch();
@@ -54,6 +55,25 @@ const EligibilityModal = ({ show, onClose }) => {
           { key: "showCongratulations", value: true },
         ])
       );
+      (async () => {
+        try {
+          await axios.get(
+            `${BACKEND_PATH}/race/activate-autopilot?userId=${userId}`
+          );
+          dispatch(
+            upgradeFuel({
+              key: "autopilot",
+              value: {
+                enabled: true,
+                started: null,
+                earned: 0,
+              },
+            })
+          );
+        } catch (error) {
+          console.log(error);
+        }
+      })();
       onClose();
     }
   }, [unlockAuthPilot, onClose, dispatch, load]);
@@ -132,7 +152,7 @@ const EligibilityModal = ({ show, onClose }) => {
       <Modal
         show={show}
         onClose={onClose}
-        title={"Check Eligibility"}
+        title={"Check Wallet Account Eligibility"}
         className={"items-end"}
       >
         {show && (

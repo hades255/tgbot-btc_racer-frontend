@@ -104,7 +104,12 @@ const TaskModal = ({ selected, onClose, show }) => {
       (async () => {
         try {
           await axios.get(`${BACKEND_PATH}/race/boost?userId=${userId}`);
-          dispatch(addToast({ message: "Boost success", type: "success" }));
+          dispatch(
+            addToast({
+              message: "Your Upgrade has been Successfully Activated!",
+              type: "success",
+            })
+          );
           dispatch(boost());
         } catch (error) {
           console.log(error);
@@ -130,7 +135,12 @@ const TaskModal = ({ selected, onClose, show }) => {
             `${BACKEND_PATH}/race/upgrade-fuel?userId=${userId}`
           );
           if (response.data.msg === "ok") {
-            dispatch(addToast({ message: "success", type: "success" }));
+            dispatch(
+              addToast({
+                message: "Your Upgrade has been Successfully Activated!",
+                type: "success",
+              })
+            );
             dispatch(upgrade());
             dispatch(setScore(response.data.point));
           } else {
@@ -165,7 +175,12 @@ const TaskModal = ({ selected, onClose, show }) => {
             `${BACKEND_PATH}/user/upgrade-turbor?userId=${userId}`
           );
           if (response.data.msg === "ok") {
-            dispatch(addToast({ message: "success", type: "success" }));
+            dispatch(
+              addToast({
+                message: "Your Upgrade has been Successfully Activated!",
+                type: "success",
+              })
+            );
             dispatch(upgradeTturboCharger());
             dispatch(setScore(response.data.point));
           } else {
@@ -195,7 +210,8 @@ const TaskModal = ({ selected, onClose, show }) => {
         dispatch(upgradeDailyBonus());
         dispatch(
           addToast({
-            message: "You've completed the task and earned points.",
+            message:
+              "Well done! You’ve completed the task - you have earned points!",
             type: "success",
           })
         );
@@ -216,7 +232,8 @@ const TaskModal = ({ selected, onClose, show }) => {
         dispatch(upgradeDailyBonusVisit());
         dispatch(
           addToast({
-            message: "You've completed the task and earned points.",
+            message:
+              "Well done! You’ve completed the task - you have earned points!",
             type: "success",
           })
         );
@@ -237,7 +254,8 @@ const TaskModal = ({ selected, onClose, show }) => {
         dispatch(upgradeUser([{ key: "followTwitter", value: true }]));
         dispatch(
           addToast({
-            message: "You've completed the task and earned points.",
+            message:
+              "Well done! You’ve completed the task - you have earned points!",
             type: "success",
           })
         );
@@ -260,7 +278,8 @@ const TaskModal = ({ selected, onClose, show }) => {
         );
         dispatch(
           addToast({
-            message: "You've completed the task and earned points.",
+            message:
+              "Well done! You’ve completed the task - you have earned points!",
             type: "success",
           })
         );
@@ -281,7 +300,8 @@ const TaskModal = ({ selected, onClose, show }) => {
         dispatch(upgradeUser([{ key: "watchvideo", value: true }]));
         dispatch(
           addToast({
-            message: "You've completed the task and earned points.",
+            message:
+              "Well done! You’ve completed the task - you have earned points!",
             type: "success",
           })
         );
@@ -302,7 +322,8 @@ const TaskModal = ({ selected, onClose, show }) => {
         dispatch(upgradeUser([{ key: "joinNewsletter", value: true }]));
         dispatch(
           addToast({
-            message: "You've completed the task and earned points.",
+            message:
+              "Well done! You’ve completed the task - you have earned points!",
             type: "success",
           })
         );
@@ -342,7 +363,7 @@ const TaskModal = ({ selected, onClose, show }) => {
         title: "Auto Pilot",
         content: unlockAuthPilot
           ? "Plays the game authmatically while you're away, so you're always earning points. Auto-pilot lasts up to 3 hours or until you launch the game again."
-          : "Link your Telegram to your Alphanomics account and pass identity verification on Alphanomics to unlock Auto-driving. This lets you automatically play the game while you’re away, so you’re always earning points.",
+          : "Simply complete the tasks on the Bonuses page to unlock Auto-Pilot mode. This lets you automatically battle while being away so you’re always earning points!",
         subcontent: (
           <div className="text-slate-400 flex items-center">
             <span className="mx-2 text-sm text-white">

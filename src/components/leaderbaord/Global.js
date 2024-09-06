@@ -37,7 +37,7 @@ const Global = () => {
           <div className="py-3 px-3 flex justify-between bg-[#263f68] rounded-md">
             <div className="flex">
               <div className="w-14 text-sm backdrop-blur-lg text-white">
-                10+
+                100+
               </div>
               <div className="text-sm backdrop-blur-lg text-white">{name}</div>
             </div>

@@ -9,7 +9,7 @@ const CopyBtn = () => {
   const dispatch = useDispatch();
 
   const inviteLink = useMemo(
-    () => `https://t.me/anom_invaders_bot/battle?startapp=linkCode_${userId}`,
+    () => `https://t.me/anom_invaders_bot/ANOM_Invaders?startapp=linkCode_${userId}`,
     [userId]
   );
 
@@ -20,7 +20,12 @@ const CopyBtn = () => {
     tempInput.select();
     document.execCommand("copy");
     document.body.removeChild(tempInput);
-    dispatch(addToast({ message: "Invitation url copied to clipboard.", type: "success" }));
+    dispatch(
+      addToast({
+        message: "Your Invite URL is now copied to your clipboard!",
+        type: "success",
+      })
+    );
   }, [inviteLink, dispatch]);
 
   return (
