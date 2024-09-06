@@ -31,7 +31,7 @@ const Global = () => {
         <span className="text-slate-500 text-sm">Total pts earned</span>
       </div>
       <div className="flex flex-col pt-2">
-        {users.length &&
+        {users.length > 0 &&
           !users.find(
             (item) => item.chatId.toString() === userId.toString()
           ) && (
