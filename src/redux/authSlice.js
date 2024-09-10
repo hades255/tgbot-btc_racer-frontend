@@ -18,6 +18,9 @@ const authSlice = createSlice({
     watchvideo: false,
     joinNewsletter: false,
     joinAnnouncementChannel: false,
+    liketweet: false,
+    reactPost: false,
+    subscribeUtv: false,
     eligibility: false,
     pluslevel: false,
     ethaddress: "",
@@ -41,6 +44,9 @@ const authSlice = createSlice({
       state.eligibility = payload.payload.eligibility;
       state.ethaddress = payload.payload.ethaddress;
       state.pluslevel = payload.payload.pluslevel;
+      state.liketweet = payload.payload.liketweet;
+      state.reactPost = payload.payload.reactPost;
+      state.subscribeUtv = payload.payload.subscribeUtv;
     },
     logout: (state) => {
       state.isAuthenticated = false;

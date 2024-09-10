@@ -32,6 +32,9 @@ const Tasks = () => {
     joinAnnouncementChannel,
     eligibility,
     pluslevel,
+    liketweet,
+    reactPost,
+    subscribeUtv,
   } = useAuth();
   const { freeBoost, fueltank, autopilot } = useSelector((state) => state.fuel);
   const unlockAuthPilot = useMemo(
@@ -41,7 +44,10 @@ const Tasks = () => {
       joinNewsletter &&
       joinAnnouncementChannel &&
       eligibility &&
-      pluslevel,
+      pluslevel &&
+      liketweet &&
+      reactPost &&
+      subscribeUtv,
     [
       watchvideo,
       followTwitter,
@@ -49,6 +55,9 @@ const Tasks = () => {
       joinAnnouncementChannel,
       eligibility,
       pluslevel,
+      liketweet,
+      reactPost,
+      subscribeUtv,
     ]
   );
   const fueltankpoint = useMemo(
@@ -113,6 +122,24 @@ const Tasks = () => {
           event: "newsletter-channel",
           title: "Join Newsletter substack",
           point: 3000,
+          status: joinNewsletter,
+        },
+        {
+          event: "like-tweet",
+          title: "Like, RT & Comment on Tweet",
+          point: 5000,
+          status: joinNewsletter,
+        },
+        {
+          event: "react-post",
+          title: "React 🚀on this Telegram Post",
+          point: 4000,
+          status: joinNewsletter,
+        },
+        {
+          event: "subscribe-utv",
+          title: "Subscribe to our Youtube",
+          point: 5000,
           status: joinNewsletter,
         },
         {
@@ -312,7 +339,7 @@ const Tasks = () => {
                 ) : (
                   "🚀"
                 )}
-                &nbsp;+ 10,000 pts
+                &nbsp;+ 20,000 pts
               </div>
             </div>
             <div className="text-white text-sm flex items-center">

@@ -37,6 +37,9 @@ const TaskModal = ({ selected, onClose, show }) => {
     joinAnnouncementChannel,
     eligibility,
     pluslevel,
+    liketweet,
+    reactPost,
+    subscribeUtv,
   } = useAuth();
   const { freeBoost, fueltank, autopilot } = useSelector((state) => state.fuel);
   const fueltankpoint = useMemo(() => fuelTankPoints(fueltank), [fueltank]);
@@ -48,7 +51,10 @@ const TaskModal = ({ selected, onClose, show }) => {
       joinNewsletter &&
       joinAnnouncementChannel &&
       eligibility &&
-      pluslevel,
+      pluslevel &&
+      liketweet &&
+      reactPost &&
+      subscribeUtv,
     [
       followTwitter,
       joinNewsletter,
@@ -56,6 +62,9 @@ const TaskModal = ({ selected, onClose, show }) => {
       joinAnnouncementChannel,
       eligibility,
       pluslevel,
+      liketweet,
+      reactPost,
+      subscribeUtv,
     ]
   );
 
@@ -312,6 +321,72 @@ const TaskModal = ({ selected, onClose, show }) => {
     })();
   }, [dispatch, userId, handleClose]);
 
+  const handleClickLikeTweet = useCallback(() => {
+    (async () => {
+      try {
+        const response = await axios.get(
+          `${BACKEND_PATH}/user/bonus-liketweet?userId=${userId}`
+        );
+        dispatch(setScore(response.data.data));
+        dispatch(upgradeUser([{ key: "liketweet", value: true }]));
+        dispatch(
+          addToast({
+            message:
+              "Well done! You’ve completed the task - you have earned points!",
+            type: "success",
+          })
+        );
+      } catch (error) {
+        console.log(error);
+      }
+      handleClose();
+    })();
+  }, [dispatch, userId, handleClose]);
+
+  const handleClickReactPost = useCallback(() => {
+    (async () => {
+      try {
+        const response = await axios.get(
+          `${BACKEND_PATH}/user/bonus-reactPost?userId=${userId}`
+        );
+        dispatch(setScore(response.data.data));
+        dispatch(upgradeUser([{ key: "reactPost", value: true }]));
+        dispatch(
+          addToast({
+            message:
+              "Well done! You’ve completed the task - you have earned points!",
+            type: "success",
+          })
+        );
+      } catch (error) {
+        console.log(error);
+      }
+      handleClose();
+    })();
+  }, [dispatch, userId, handleClose]);
+
+  const handleClickSubscribeUtv = useCallback(() => {
+    (async () => {
+      try {
+        const response = await axios.get(
+          `${BACKEND_PATH}/user/bonus-subscribeUtv?userId=${userId}`
+        );
+        dispatch(setScore(response.data.data));
+        dispatch(upgradeUser([{ key: "subscribeUtv", value: true }]));
+        dispatch(
+          addToast({
+            message:
+              "Well done! You’ve completed the task - you have earned points!",
+            type: "success",
+          })
+        );
+      } catch (error) {
+        console.log(error);
+      }
+      handleClose();
+    })();
+  }, [dispatch, userId, handleClose]);
+
   const handleClickjoinNewsletter = useCallback(() => {
     (async () => {
       try {
@@ -502,6 +577,24 @@ const TaskModal = ({ selected, onClose, show }) => {
         redirect: "https://alphanomics.io/demovideo",
         action: handleClickWatchVideo,
       },
+      "like-tweet": {
+        title: "Like, RT & Comment on Tweet",
+        button: "Go now",
+        redirect: "http://alphanomics.io/xpost",
+        action: handleClickLikeTweet,
+      },
+      "react-post": {
+        title: "React 🚀on this Telegram Post",
+        button: "Go now",
+        redirect: "http://alphanomics.io/tgpost",
+        action: handleClickReactPost,
+      },
+      "subscribe-utv": {
+        title: "Subscribe to our Youtube",
+        button: "Go now",
+        redirect: "https://www.youtube.com/@alphanomics",
+        action: handleClickSubscribeUtv,
+      },
     }),
     [
       freeBoost,
@@ -522,6 +615,9 @@ const TaskModal = ({ selected, onClose, show }) => {
       handleClickJoinAnnouncement,
       handleClickjoinNewsletter,
       handleClickWatchVideo,
+      handleClickLikeTweet,
+      handleClickReactPost,
+      handleClickSubscribeUtv,
     ]
   );
 

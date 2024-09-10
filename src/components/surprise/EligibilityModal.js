@@ -23,6 +23,9 @@ const EligibilityModal = ({ show, onClose }) => {
     eligibility,
     ethaddress,
     pluslevel,
+    liketweet,
+    reactPost,
+    subscribeUtv,
   } = useAuth();
 
   const unlockAuthPilot = useMemo(
@@ -32,7 +35,10 @@ const EligibilityModal = ({ show, onClose }) => {
       joinNewsletter &&
       joinAnnouncementChannel &&
       eligibility &&
-      pluslevel,
+      pluslevel &&
+      liketweet &&
+      reactPost &&
+      subscribeUtv,
     [
       followTwitter,
       watchvideo,
@@ -40,6 +46,9 @@ const EligibilityModal = ({ show, onClose }) => {
       joinAnnouncementChannel,
       eligibility,
       pluslevel,
+      liketweet,
+      reactPost,
+      subscribeUtv,
     ]
   );
 
