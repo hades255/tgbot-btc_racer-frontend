@@ -6,8 +6,35 @@ import CheckIcon from "../../assets/icons/Check";
 
 const OTTbutton = () => {
   const navigate = useNavigate();
-  const { followTwitter, joinNewsletter, joinAnnouncementChannel, watchvideo } =
-    useAuth();
+  const {
+    followTwitter,
+    joinNewsletter,
+    joinAnnouncementChannel,
+    watchvideo,
+    liketweet,
+    reactPost,
+    subscribeUtv,
+  } = useAuth();
+
+  const ottFinished = useMemo(
+    () =>
+      watchvideo &&
+      followTwitter &&
+      joinNewsletter &&
+      joinAnnouncementChannel &&
+      liketweet &&
+      reactPost &&
+      subscribeUtv,
+    [
+      followTwitter,
+      joinNewsletter,
+      joinAnnouncementChannel,
+      watchvideo,
+      liketweet,
+      reactPost,
+      subscribeUtv,
+    ]
+  );
 
   const handleClick = useCallback(() => navigate("/tasks"), [navigate]);
 
@@ -15,10 +42,7 @@ const OTTbutton = () => {
     <>
       <div onClick={handleClick} className="flex my-2 hover:cursor-pointer">
         <div className="mr-1 pt-1">
-          {watchvideo &&
-          followTwitter &&
-          joinNewsletter &&
-          joinAnnouncementChannel ? (
+          {ottFinished ? (
             <div className="border rounded border-[#000] bg-emphasize-sm p-[1px] -mt-[1px]">
               <CheckIcon width={14} height={14} color={"white"} />
             </div>
