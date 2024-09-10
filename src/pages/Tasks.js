@@ -164,6 +164,9 @@ const Tasks = () => {
       watchvideo,
       joinNewsletter,
       joinAnnouncementChannel,
+      liketweet,
+      reactPost,
+      subscribeUtv,
     ]
   );
 
