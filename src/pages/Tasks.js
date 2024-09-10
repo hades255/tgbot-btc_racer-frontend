@@ -128,19 +128,19 @@ const Tasks = () => {
           event: "like-tweet",
           title: "Like, RT & Comment on Tweet",
           point: 5000,
-          status: joinNewsletter,
+          status: liketweet,
         },
         {
           event: "react-post",
           title: "React 🚀on this Telegram Post",
           point: 4000,
-          status: joinNewsletter,
+          status: reactPost,
         },
         {
           event: "subscribe-utv",
           title: "Subscribe to our Youtube",
           point: 5000,
-          status: joinNewsletter,
+          status: subscribeUtv,
         },
         {
           event: "daily-reward",
