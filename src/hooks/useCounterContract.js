@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
+import { Address } from "@ton/core";
 import Counter from "../contracts/counter";
 import { useTonClient } from "./useTonClient";
 import { useAsyncInitialize } from "./useAsyncInitialize";
 import { useTonConnect } from "./useTonConnect";
-import { Address } from "@ton/core";
 
 export function useCounterContract() {
   const client = useTonClient();
