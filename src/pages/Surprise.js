@@ -8,6 +8,7 @@ import CheckIcon from "../assets/icons/Check";
 import OTTbutton from "../components/surprise/OTTbutton";
 import AstronautIcon from "../assets/icons/Astronaut";
 import PlusAccountBtn from "../components/surprise/PlusAccountBtn";
+import TonButton from "../components/surprise/TonButton";
 
 const Surprise = () => {
   const { eligibility } = useAuth();
@@ -85,6 +86,7 @@ const Surprise = () => {
       <div className="flex justify-center my-4 mx-4">
         <EligibilityBtn />
       </div>
+      <TonButton />
       <div className="flex justify-center my-4">
         <RedirectBtn url="https://alphanomics.io/anomgameterms">
           <span className="text-white text-sm underline">

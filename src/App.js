@@ -1,32 +1,32 @@
 import React, { useEffect, useState } from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { Provider } from "react-redux";
+
 import store from "./redux/store";
 import { AuthProvider } from "./contexts/AuthContext";
+import { SoundProvider } from "./contexts/SoundContext";
+import Counter from "./helper/Counter";
+import Coinapi from "./helper/Coinapi";
+import { queryStringToObject } from "./helper/func";
 import Race from "./pages/Race";
-import LeaderBoard from "./pages/LeaderBoard";
 import Tasks from "./pages/Tasks";
 import Invite from "./pages/Invite";
 import Surprise from "./pages/Surprise";
+import LeaderBoard from "./pages/LeaderBoard";
 import Navbar from "./components/navbar";
-import Counter from "./helper/Counter";
 import ToastContainer from "./components/common/toast";
-import Coinapi from "./helper/Coinapi";
-import { SoundProvider } from "./contexts/SoundContext";
 import Congratulations from "./components/surprise/Congratulations";
-import { queryStringToObject } from "./helper/func";
 
 const App = () => {
   const [str, setStr] = useState(null);
+  
   useEffect(() => {
     const setTitle = () => {
       // const title = "Alphanomics";
 
       if (window.Telegram && window.Telegram.WebApp) {
         const initData = window.Telegram.WebApp.initData;
-        setStr(
-          queryStringToObject(initData)
-        );
+        setStr(queryStringToObject(initData));
         window.Telegram.WebApp.setHeaderColor("#0f1f39");
         // window.Telegram.WebApp.MainButton.setText(title);
         // window.Telegram.WebApp.MainButton.setParams({
