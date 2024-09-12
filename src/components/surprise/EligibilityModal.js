@@ -85,7 +85,7 @@ const EligibilityModal = ({ show, onClose }) => {
       })();
       onClose();
     }
-  }, [unlockAuthPilot, onClose, dispatch, load]);
+  }, [unlockAuthPilot, onClose, dispatch, load, userId]);
 
   const handleSubmit = useCallback(
     (e) => {

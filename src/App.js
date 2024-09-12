@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, lazy, Suspense } from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { Provider } from "react-redux";
 
@@ -8,18 +8,21 @@ import { SoundProvider } from "./contexts/SoundContext";
 import Counter from "./helper/Counter";
 import Coinapi from "./helper/Coinapi";
 import { queryStringToObject } from "./helper/func";
-import Race from "./pages/Race";
-import Tasks from "./pages/Tasks";
-import Invite from "./pages/Invite";
-import Surprise from "./pages/Surprise";
-import LeaderBoard from "./pages/LeaderBoard";
-import Navbar from "./components/navbar";
-import ToastContainer from "./components/common/toast";
-import Congratulations from "./components/surprise/Congratulations";
+import LoadingIcon from "./assets/icons/loading";
+const Race = lazy(() => import("./pages/Race"));
+const Tasks = lazy(() => import("./pages/Tasks"));
+const Invite = lazy(() => import("./pages/Invite"));
+const Surprise = lazy(() => import("./pages/Surprise"));
+const LeaderBoard = lazy(() => import("./pages/LeaderBoard"));
+const Navbar = lazy(() => import("./components/navbar"));
+const ToastContainer = lazy(() => import("./components/common/toast"));
+const Congratulations = lazy(() =>
+  import("./components/surprise/Congratulations")
+);
 
 const App = () => {
   const [str, setStr] = useState(null);
-  
+
   useEffect(() => {
     const setTitle = () => {
       // const title = "Alphanomics";
@@ -47,19 +50,29 @@ const App = () => {
         <SoundProvider>
           <Counter />
           <Coinapi />
-          <Router>
-            <Routes>
-              <Route path="/" element={<Race />} />
-              <Route path="/race" element={<Race />} />
-              <Route path="/leaderboard" element={<LeaderBoard />} />
-              <Route path="/tasks" element={<Tasks />} />
-              <Route path="/invite" element={<Invite />} />
-              <Route path="/surprise" element={<Surprise />} />
-            </Routes>
-            <Navbar params={str} />
-            <ToastContainer />
-            <Congratulations />
-          </Router>
+          <Suspense
+            fallback={
+              <div className="fixed top-0 left-0 z-20 w-full h-screen bg-[#000000] opacity-80 flex justify-center items-center">
+                <div className="animate-spin">
+                  <LoadingIcon />
+                </div>
+              </div>
+            }
+          >
+            <Router>
+              <Routes>
+                <Route path="/" element={<Race />} />
+                <Route path="/race" element={<Race />} />
+                <Route path="/leaderboard" element={<LeaderBoard />} />
+                <Route path="/tasks" element={<Tasks />} />
+                <Route path="/invite" element={<Invite />} />
+                <Route path="/surprise" element={<Surprise />} />
+              </Routes>
+              <Navbar params={str} />
+              <ToastContainer />
+              <Congratulations />
+            </Router>
+          </Suspense>
         </SoundProvider>
       </AuthProvider>
     </Provider>
