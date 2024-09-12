@@ -1,6 +1,7 @@
 import React, { useEffect, useState, lazy, Suspense } from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { Provider } from "react-redux";
+import { Buffer } from "buffer";
 
 import store from "./redux/store";
 import { AuthProvider } from "./contexts/AuthContext";
@@ -9,16 +10,16 @@ import Counter from "./helper/Counter";
 import Coinapi from "./helper/Coinapi";
 import { queryStringToObject } from "./helper/func";
 import LoadingIcon from "./assets/icons/loading";
+import Navbar from "./components/navbar";
+import ToastContainer from "./components/common/toast";
+import Congratulations from "./components/surprise/Congratulations";
 const Race = lazy(() => import("./pages/Race"));
 const Tasks = lazy(() => import("./pages/Tasks"));
 const Invite = lazy(() => import("./pages/Invite"));
 const Surprise = lazy(() => import("./pages/Surprise"));
 const LeaderBoard = lazy(() => import("./pages/LeaderBoard"));
-const Navbar = lazy(() => import("./components/navbar"));
-const ToastContainer = lazy(() => import("./components/common/toast"));
-const Congratulations = lazy(() =>
-  import("./components/surprise/Congratulations")
-);
+
+window.Buffer = Buffer; // Make Buffer available globally
 
 const App = () => {
   const [str, setStr] = useState(null);
@@ -50,16 +51,16 @@ const App = () => {
         <SoundProvider>
           <Counter />
           <Coinapi />
-          <Suspense
-            fallback={
-              <div className="fixed top-0 left-0 z-20 w-full h-screen bg-[#000000] opacity-80 flex justify-center items-center">
-                <div className="animate-spin">
-                  <LoadingIcon />
+          <Router>
+            <Suspense
+              fallback={
+                <div className="fixed top-0 left-0 z-20 w-full h-screen bg-[#000000] opacity-80 flex justify-center items-center">
+                  <div className="animate-spin">
+                    <LoadingIcon />
+                  </div>
                 </div>
-              </div>
-            }
-          >
-            <Router>
+              }
+            >
               <Routes>
                 <Route path="/" element={<Race />} />
                 <Route path="/race" element={<Race />} />
@@ -68,11 +69,11 @@ const App = () => {
                 <Route path="/invite" element={<Invite />} />
                 <Route path="/surprise" element={<Surprise />} />
               </Routes>
-              <Navbar params={str} />
-              <ToastContainer />
-              <Congratulations />
-            </Router>
-          </Suspense>
+            </Suspense>
+            <Navbar params={str} />
+            <ToastContainer />
+            <Congratulations />
+          </Router>
         </SoundProvider>
       </AuthProvider>
     </Provider>
