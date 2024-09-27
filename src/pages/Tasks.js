@@ -294,7 +294,7 @@ const Tasks = () => {
           <div
             className="mx-4 my-2 px-3 py-2 rounded-xl flex justify-between border border-[#173560]"
             onClick={() => {
-              if (item.status) return;
+              // if (item.status) return;
               handleClickTaskItem(item.event);
             }}
             key={index}
