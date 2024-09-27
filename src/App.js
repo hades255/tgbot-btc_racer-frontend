@@ -19,7 +19,7 @@ const Invite = lazy(() => import("./pages/Invite"));
 const Surprise = lazy(() => import("./pages/Surprise"));
 const LeaderBoard = lazy(() => import("./pages/LeaderBoard"));
 
-window.Buffer = Buffer; // Make Buffer available globally
+window.Buffer = Buffer; // Make Buffer available globally for contracts
 
 const App = () => {
   const [str, setStr] = useState(null);

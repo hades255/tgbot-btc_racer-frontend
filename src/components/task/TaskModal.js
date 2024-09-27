@@ -561,7 +561,7 @@ const TaskModal = ({ selected, onClose, show }) => {
         title: "Join announcement channel",
         content: "Follow Alphanomics official twitter for extra points!",
         button: "Go now",
-        redirect: "https://t.me/anom_invaders_announcements",
+        redirect: "https://t.me/alphanomics_announcements",
         action: handleClickJoinAnnouncement,
       },
       "newsletter-channel": {

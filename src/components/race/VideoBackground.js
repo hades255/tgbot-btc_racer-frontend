@@ -13,9 +13,9 @@ const VideoBackground = ({ show }) => {
     show && (
       <>
         <img
-          src="flyingrocket.gif"
+          src="flyingrocket_.gif"
           alt=""
-          className={`absolute flex justify-center top-0 -z-10 w-full`}
+          className={`absolute flex justify-center top-0 -z-10 w-full max-w-[400px]`}
           style={{ mixBlendMode: "color-dodge" }}
         />
       </>
