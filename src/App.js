@@ -13,6 +13,7 @@ import LoadingIcon from "./assets/icons/loading";
 import Navbar from "./components/navbar";
 import ToastContainer from "./components/common/toast";
 import Congratulations from "./components/surprise/Congratulations";
+import Home from "./pages/Home";
 const Race = lazy(() => import("./pages/Race"));
 const Tasks = lazy(() => import("./pages/Tasks"));
 const Invite = lazy(() => import("./pages/Invite"));
@@ -49,8 +50,8 @@ const App = () => {
     <Provider store={store}>
       <AuthProvider>
         <SoundProvider>
-          <Counter />
-          <Coinapi />
+          {/* <Counter /> */}
+          {/* <Coinapi /> */}
           <Router>
             <Suspense
               fallback={
@@ -62,7 +63,7 @@ const App = () => {
               }
             >
               <Routes>
-                <Route path="/" element={<Race />} />
+                <Route path="/" element={<Home />} />
                 <Route path="/race" element={<Race />} />
                 <Route path="/leaderboard" element={<LeaderBoard />} />
                 <Route path="/tasks" element={<Tasks />} />
@@ -70,9 +71,9 @@ const App = () => {
                 <Route path="/surprise" element={<Surprise />} />
               </Routes>
             </Suspense>
-            <Navbar params={str} />
-            <ToastContainer />
-            <Congratulations />
+            {/* <Navbar params={str} /> */}
+            {/* <ToastContainer /> */}
+            {/* <Congratulations /> */}
           </Router>
         </SoundProvider>
       </AuthProvider>
