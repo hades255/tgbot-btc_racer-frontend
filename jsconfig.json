@@ -1,0 +1,8 @@
+{
+  "compilerOptions": {
+    "paths": {
+      "@icons/*": ["./src/assets/icons/*"]
+    }
+  },
+  "include": ["src"]
+}
