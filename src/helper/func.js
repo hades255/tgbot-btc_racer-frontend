@@ -31,3 +31,10 @@ export const queryStringToObject = (queryString) => {
 
   return result;
 };
+
+export const formatNumber = (num, fixed = 0) => {
+  const units = ["", "K", "M", "G", "T", "P", "E", "Z", "Y"];
+  const unit = Math.floor((num.toFixed(0).length - 1) / 3);
+  const scaledNum = (num / Math.pow(1000, unit)).toFixed(fixed);
+  return `${scaledNum}${units[unit]}`;
+};
