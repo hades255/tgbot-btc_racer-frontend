@@ -1,8 +1,8 @@
 import React, { useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 import useSound from "use-sound";
-import buttonSfx from "../../assets/audios/button.mp3";
-import { usePlaySound } from "../../contexts/SoundContext";
+import { usePlaySound } from "@contexts/SoundContext";
+import buttonSfx from "@audios/button.mp3";
 
 const NavbarItem = ({ title, icon, url, active }) => {
   const navigate = useNavigate();

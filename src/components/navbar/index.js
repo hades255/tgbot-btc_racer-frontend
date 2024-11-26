@@ -3,17 +3,17 @@ import { useLocation } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import axios from "axios";
 
-import HomeIcon from "../../assets/icons/Home";
-import TaskIcon from "../../assets/icons/Task";
-import UsersIcon from "../../assets/icons/Users";
-import SurpriseIcon from "../../assets/icons/Surprise";
-import LeaderboardIcon from "../../assets/icons/Leaderboard";
-import { login } from "../../redux/authSlice";
+import { login } from "@redux/authSlice";
+import { init } from "@redux/fuelSlice";
+import { upgradeExtra } from "@redux/extraSlice";
+import { BACKEND_PATH } from "@constants/config";
+import { useAuth } from "@contexts/AuthContext";
+import HomeIcon from "@icons/Home";
+import TaskIcon from "@icons/Task";
+import UsersIcon from "@icons/Users";
+import SurpriseIcon from "@icons/Surprise";
+import LeaderboardIcon from "@icons/Leaderboard";
 import NavbarItem from "./NavbarItem";
-import { init } from "../../redux/fuelSlice";
-import { BACKEND_PATH } from "../../constants/config";
-import { upgradeExtra } from "../../redux/extraSlice";
-import { useAuth } from "../../contexts/AuthContext";
 
 const Navbar = ({ params }) => {
   const location = useLocation();

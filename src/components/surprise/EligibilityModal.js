@@ -1,16 +1,16 @@
 import React, { useCallback, useEffect, useMemo, useState } from "react";
 import { useDispatch } from "react-redux";
 import axios from "axios";
-import { BACKEND_PATH } from "../../constants/config";
-import { useAuth } from "../../contexts/AuthContext";
-import { addToast } from "../../redux/toastSlice";
-import { setScore, upgradeUser } from "../../redux/authSlice";
-import { upgradeExtra } from "../../redux/extraSlice";
-import Modal from "../common/Modal";
-import RightArrowIcon from "../../assets/icons/RightArrow";
-import LoadingIcon from "../../assets/icons/loading";
-import EthIcon from "../../assets/icons/Eth";
-import { upgradeFuel } from "../../redux/fuelSlice";
+import { BACKEND_PATH } from "@constants/config";
+import { useAuth } from "@contexts/AuthContext";
+import { setScore, upgradeUser } from "@redux/authSlice";
+import { upgradeFuel } from "@redux/fuelSlice";
+import { addToast } from "@redux/toastSlice";
+import { upgradeExtra } from "@redux/extraSlice";
+import Modal from "@common/Modal";
+import RightArrowIcon from "@icons/RightArrow";
+import LoadingIcon from "@icons/loading";
+import EthIcon from "@icons/Eth";
 
 const EligibilityModal = ({ show, onClose }) => {
   const dispatch = useDispatch();

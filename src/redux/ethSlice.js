@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { fix2, getAverage, selectLastItems } from "../helper/func";
+import { fix2, getAverage, selectLastItems } from "@helper/func";
 
 const ehtSlice = createSlice({
   name: "eth",

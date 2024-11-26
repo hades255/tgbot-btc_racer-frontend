@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { useAuth } from "../../contexts/AuthContext";
+import axios from "axios";
+import { BACKEND_PATH } from "@constants/config";
+import { useAuth } from "@contexts/AuthContext";
+import { formatNumber } from "@helper/func";
 import InviteBtn from "./InviteBtn";
 import CopyBtn from "./CopyBtn";
-import axios from "axios";
-import { BACKEND_PATH } from "../../constants/config";
-import { formatNumber } from "../../helper/func";
 
 const Friends = () => {
   const { userId, name, point } = useAuth();

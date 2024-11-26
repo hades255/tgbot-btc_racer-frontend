@@ -1,6 +1,6 @@
 import React, { useMemo } from "react";
-import AreaChart from "../common/areachart/AreaChart";
 import { useSelector } from "react-redux";
+import AreaChart from "@common/areachart/AreaChart";
 
 const CoinGeckoWidget = ({ bet, betAmount }) => {
   const { prices, curPrice } = useSelector((state) => state.eth);

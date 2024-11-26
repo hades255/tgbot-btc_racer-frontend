@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { BINANCE_WS_URL } from "../constants/config";
-import { addEth } from "../redux/ethSlice";
+import { BINANCE_WS_URL } from "@constants/config";
+import { addEth } from "@redux/ethSlice";
 import { getAverage } from "./func";
 
 const Coinapi = () => {

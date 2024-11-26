@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Address } from "@ton/core";
-import Counter from "../contracts/counter";
+import Counter from "@contracts/counter";
 import { useTonClient } from "./useTonClient";
 import { useAsyncInitialize } from "./useAsyncInitialize";
 import { useTonConnect } from "./useTonConnect";

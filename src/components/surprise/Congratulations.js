@@ -1,8 +1,8 @@
 import React, { useCallback, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { upgradeExtra } from "../../redux/extraSlice";
-import Modal from "../common/Modal";
-import BtnDark from "../common/button/BtnDark";
+import { upgradeExtra } from "@redux/extraSlice";
+import Modal from "@common/Modal";
+import BtnDark from "@common/button/BtnDark";
 
 const Congratulations = () => {
   const dispatch = useDispatch();

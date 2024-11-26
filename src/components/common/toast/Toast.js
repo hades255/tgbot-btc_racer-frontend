@@ -1,10 +1,10 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-import { removeToast } from "../../../redux/toastSlice";
-import CheckIcon from "../../../assets/icons/toast/Check";
-import ErrorIcon from "../../../assets/icons/toast/Error";
-import WarnIcon from "../../../assets/icons/toast/Warn";
-import InfoIcon from "../../../assets/icons/toast/Info";
+import { removeToast } from "@redux/toastSlice";
+import CheckIcon from "@icons/toast/Check";
+import ErrorIcon from "@icons/toast/Error";
+import WarnIcon from "@icons/toast/Warn";
+import InfoIcon from "@icons/toast/Info";
 
 const typeStyles = {
   success: "border-[#28426C]",

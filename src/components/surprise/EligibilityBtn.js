@@ -1,8 +1,8 @@
 import React, { useCallback, useState } from "react";
-import ArrowIcon from "../../assets/icons/Arrow";
-import BtnLight from "../common/button/BtnLight";
+import { useAuth } from "@contexts/AuthContext";
+import ArrowIcon from "@icons/Arrow";
+import BtnLight from "@common/button/BtnLight";
 import EligibilityModal from "./EligibilityModal";
-import { useAuth } from "../../contexts/AuthContext";
 
 const EligibilityBtn = () => {
   const [show, setShow] = useState(false);

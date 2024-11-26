@@ -2,11 +2,11 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import moment from "moment";
 
-import Modal from "../common/Modal";
-import Up from "../../assets/icons/Up";
-import Down from "../../assets/icons/Down";
-import { useAuth } from "../../contexts/AuthContext";
-import { BACKEND_PATH } from "../../constants/config";
+import Modal from "@common/Modal";
+import { BACKEND_PATH } from "@constants/config";
+import { useAuth } from "@contexts/AuthContext";
+import Up from "@icons/Up";
+import Down from "@icons/Down";
 
 const Records = ({ show, onClose }) => {
   const { userId } = useAuth();

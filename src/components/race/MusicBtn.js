@@ -1,7 +1,7 @@
 import React, { useCallback } from "react";
-import MusicIcon from "../../assets/icons/Music";
-import MusicOffIcon from "../../assets/icons/MusicOff";
-import { usePlaySound } from "../../contexts/SoundContext";
+import { usePlaySound } from "@contexts/SoundContext";
+import MusicIcon from "@icons/Music";
+import MusicOffIcon from "@icons/MusicOff";
 
 const MusicBtn = () => {
   const { sound, setSound } = usePlaySound();

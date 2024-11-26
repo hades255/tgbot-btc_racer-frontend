@@ -1,8 +1,8 @@
 import React, { useCallback, useMemo } from "react";
 import { useDispatch } from "react-redux";
-import CopyIcon from "../../assets/icons/Copy";
-import { useAuth } from "../../contexts/AuthContext";
-import { addToast } from "../../redux/toastSlice";
+import { useAuth } from "@contexts/AuthContext";
+import { addToast } from "@redux/toastSlice";
+import CopyIcon from "@icons/Copy";
 
 const CopyBtn = () => {
   const { userId } = useAuth();

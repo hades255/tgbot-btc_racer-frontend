@@ -2,26 +2,26 @@ import React, { useCallback, useMemo } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
+import { BACKEND_PATH } from "@constants/config";
+import { useAuth } from "@contexts/AuthContext";
 import {
   setScore,
   upgradeDailyBonus,
   upgradeDailyBonusVisit,
   upgradeTturboCharger,
   upgradeUser,
-} from "../../redux/authSlice";
-import { addToast } from "../../redux/toastSlice";
-import { boost, upgrade, upgradeFuel } from "../../redux/fuelSlice";
-import { useAuth } from "../../contexts/AuthContext";
-import { BACKEND_PATH } from "../../constants/config";
-import { fuelTankPoints, turborPoints } from "../../helper/points";
-import Modal from "../common/Modal";
-import BtnDark from "../common/button/BtnDark";
-import RedirectBtn from "../common/button/RedirectBtn";
-import DotIcon from "../../assets/icons/Dot";
-import RocketIcon from "../../assets/icons/Rocket";
-import Task3Icon from "../../assets/icons/tasks/Task3";
-import Task4Icon from "../../assets/icons/tasks/Task4";
-import AstronautIcon from "../../assets/icons/Astronaut";
+} from "@redux/authSlice";
+import { addToast } from "@redux/toastSlice";
+import { boost, upgrade, upgradeFuel } from "@redux/fuelSlice";
+import { fuelTankPoints, turborPoints } from "@helper/points";
+import Modal from "@common/Modal";
+import BtnDark from "@common/button/BtnDark";
+import RedirectBtn from "@common/button/RedirectBtn";
+import DotIcon from "@icons/Dot";
+import RocketIcon from "@icons/Rocket";
+import Task3Icon from "@icons/tasks/Task3";
+import Task4Icon from "@icons/tasks/Task4";
+import AstronautIcon from "@icons/Astronaut";
 
 const TaskModal = ({ selected, onClose, show }) => {
   const dispatch = useDispatch();

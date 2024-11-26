@@ -1,22 +1,18 @@
 import React, { useCallback, useMemo, useState } from "react";
-import DotIcon from "../assets/icons/Dot";
-import { useAuth } from "../contexts/AuthContext";
-import RightIcon from "../assets/icons/Right";
-import LockIcon from "../assets/icons/Lock";
 import { useSelector } from "react-redux";
-import {
-  dailyBonusPoints,
-  fuelTankPoints,
-  turborPoints,
-} from "../helper/points";
-import TaskModal from "../components/task/TaskModal";
-import CheckIcon from "../assets/icons/Check";
-import RocketIcon from "../assets/icons/Rocket";
-import Task4Icon from "../assets/icons/tasks/Task4";
-import Task3Icon from "../assets/icons/tasks/Task3";
-import AstronautIcon from "../assets/icons/Astronaut";
-import EligibilityModal from "../components/surprise/EligibilityModal";
-import RedirectBtn from "../components/common/button/RedirectBtn";
+import { useAuth } from "@contexts/AuthContext";
+import { dailyBonusPoints, fuelTankPoints, turborPoints } from "@helper/points";
+import DotIcon from "@icons/Dot";
+import LockIcon from "@icons/Lock";
+import RightIcon from "@icons/Right";
+import CheckIcon from "@icons/Check";
+import RocketIcon from "@icons/Rocket";
+import Task3Icon from "@icons/tasks/Task3";
+import Task4Icon from "@icons/tasks/Task4";
+import AstronautIcon from "@icons/Astronaut";
+import RedirectBtn from "@common/button/RedirectBtn";
+import EligibilityModal from "@surprise/EligibilityModal";
+import TaskModal from "@task/TaskModal";
 
 const Tasks = () => {
   const {

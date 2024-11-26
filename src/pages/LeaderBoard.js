@@ -1,6 +1,6 @@
 import React, { useCallback, useState } from "react";
-import Friends from "../components/leaderbaord/Friends";
-import Global from "../components/leaderbaord/Global";
+import Friends from "@leaderboard/Friends";
+import Global from "@leaderboard/Global";
 
 const Leaderboard = () => {
   const [activeTab, setActiveTab] = useState(0);

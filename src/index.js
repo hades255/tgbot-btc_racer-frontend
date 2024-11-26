@@ -5,9 +5,9 @@ import { TonConnectUIProvider } from "@tonconnect/ui-react";
 import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
-import BackgroundIcon from "./assets/icons/Background";
-import PlanetIcon from "./assets/icons/background/Planet";
-import Background from "./assets/icons/background/index";
+import BackgroundIcon from "@icons/Background";
+import PlanetIcon from "@icons/background/Planet";
+import Background from "@icons/background/index";
 
 const manifestUrl = "https://anomgaming.online/tonconnect-manifest.json";
 

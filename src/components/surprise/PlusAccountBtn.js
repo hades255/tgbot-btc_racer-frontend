@@ -1,12 +1,12 @@
 import React, { useCallback } from "react";
 import { useDispatch } from "react-redux";
 import axios from "axios";
-import { addToast } from "../../redux/toastSlice";
-import { upgradeUser } from "../../redux/authSlice";
-import { useAuth } from "../../contexts/AuthContext";
-import DotIcon from "../../assets/icons/Dot";
-import { BACKEND_PATH } from "../../constants/config";
-import CheckIcon from "../../assets/icons/Check";
+import { BACKEND_PATH } from "@constants/config";
+import { useAuth } from "@contexts/AuthContext";
+import { addToast } from "@redux/toastSlice";
+import { upgradeUser } from "@redux/authSlice";
+import DotIcon from "@icons/Dot";
+import CheckIcon from "@icons/Check";
 
 const PlusAccountBtn = () => {
   const dispatch = useDispatch();

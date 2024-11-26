@@ -1,8 +1,8 @@
 import React, { useCallback, useMemo } from "react";
-import DotIcon from "../../assets/icons/Dot";
 import { useNavigate } from "react-router-dom";
-import { useAuth } from "../../contexts/AuthContext";
-import CheckIcon from "../../assets/icons/Check";
+import { useAuth } from "@contexts/AuthContext";
+import CheckIcon from "@icons/Check";
+import DotIcon from "@icons/Dot";
 
 const OTTbutton = () => {
   const navigate = useNavigate();

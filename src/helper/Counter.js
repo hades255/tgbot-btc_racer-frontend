@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
-import { countOn } from "../redux/fuelSlice";
 import { useDispatch } from "react-redux";
+import { countOn } from "@redux/fuelSlice";
 
 const Counter = () => {
   const dispatch = useDispatch();

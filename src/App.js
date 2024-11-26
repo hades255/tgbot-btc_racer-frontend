@@ -2,23 +2,22 @@ import React, { useEffect, useState, lazy, Suspense } from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { Provider } from "react-redux";
 import { Buffer } from "buffer";
-
-import store from "./redux/store";
-import { AuthProvider } from "./contexts/AuthContext";
-import { SoundProvider } from "./contexts/SoundContext";
-import Counter from "./helper/Counter";
-import Coinapi from "./helper/Coinapi";
-import { queryStringToObject } from "./helper/func";
-import LoadingIcon from "./assets/icons/loading";
-import Navbar from "./components/navbar";
-import ToastContainer from "./components/common/toast";
-import Congratulations from "./components/surprise/Congratulations";
-import Home from "./pages/Home";
-const Race = lazy(() => import("./pages/Race"));
-const Tasks = lazy(() => import("./pages/Tasks"));
-const Invite = lazy(() => import("./pages/Invite"));
-const Surprise = lazy(() => import("./pages/Surprise"));
-const LeaderBoard = lazy(() => import("./pages/LeaderBoard"));
+import store from "@redux/store";
+import { AuthProvider } from "@contexts/AuthContext";
+import { SoundProvider } from "@contexts/SoundContext";
+import Counter from "@helper/Counter";
+import Coinapi from "@helper/Coinapi";
+import { queryStringToObject } from "@helper/func";
+import LoadingIcon from "@icons/loading";
+import ToastContainer from "@common/toast";
+import Congratulations from "@surprise/Congratulations";
+import Navbar from "@navbar";
+import Home from "@pages/Home";
+const Race = lazy(() => import("@pages/Race"));
+const Tasks = lazy(() => import("@pages/Tasks"));
+const Invite = lazy(() => import("@pages/Invite"));
+const Surprise = lazy(() => import("@pages/Surprise"));
+const LeaderBoard = lazy(() => import("@pages/LeaderBoard"));
 
 window.Buffer = Buffer; // Make Buffer available globally for contracts
 

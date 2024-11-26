@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { useAuth } from "../../contexts/AuthContext";
-import { BACKEND_PATH } from "../../constants/config.js";
-import { formatNumber } from "../../helper/func";
+import { BACKEND_PATH } from "@constants/config.js";
+import { useAuth } from "@contexts/AuthContext";
+import { formatNumber } from "@helper/func";
 
 const Global = () => {
   const { userId, name, point } = useAuth();

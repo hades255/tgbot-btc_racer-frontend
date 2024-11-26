@@ -1,14 +1,14 @@
 import React from "react";
-import DotIcon from "../assets/icons/Dot";
-import InfoIcon from "../assets/icons/Info";
-import EligibilityBtn from "../components/surprise/EligibilityBtn";
-import RedirectBtn from "../components/common/button/RedirectBtn";
-import { useAuth } from "../contexts/AuthContext";
-import CheckIcon from "../assets/icons/Check";
-import OTTbutton from "../components/surprise/OTTbutton";
-import AstronautIcon from "../assets/icons/Astronaut";
-import PlusAccountBtn from "../components/surprise/PlusAccountBtn";
-import TonButton from "../components/surprise/TonButton";
+import { useAuth } from "@contexts/AuthContext";
+import DotIcon from "@icons/Dot";
+import InfoIcon from "@icons/Info";
+import CheckIcon from "@icons/Check";
+import AstronautIcon from "@icons/Astronaut";
+import PlusAccountBtn from "@surprise/PlusAccountBtn";
+import EligibilityBtn from "@surprise/EligibilityBtn";
+import RedirectBtn from "@common/button/RedirectBtn";
+import TonButton from "@surprise/TonButton";
+import OTTbutton from "@surprise/OTTbutton";
 
 const Surprise = () => {
   const { eligibility } = useAuth();
