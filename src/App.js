@@ -50,8 +50,8 @@ const App = () => {
     <Provider store={store}>
       <AuthProvider>
         <SoundProvider>
-          {/* <Counter /> */}
-          {/* <Coinapi /> */}
+          <Counter />
+          <Coinapi />
           <Router>
             <Suspense
               fallback={
@@ -71,9 +71,9 @@ const App = () => {
                 <Route path="/surprise" element={<Surprise />} />
               </Routes>
             </Suspense>
-            {/* <Navbar params={str} /> */}
-            {/* <ToastContainer /> */}
-            {/* <Congratulations /> */}
+            <Navbar params={str} />
+            <ToastContainer />
+            <Congratulations />
           </Router>
         </SoundProvider>
       </AuthProvider>

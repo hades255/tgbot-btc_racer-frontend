@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const Home = () => {
   return (
@@ -20,6 +21,14 @@ const Home = () => {
           <a className="ml-2 text-[#1ffff4]" href="https://t.me/z_sm_0001">
             @z_sm_0001
           </a>
+        </div>
+        <div className="flex justify-end">
+          <Link
+            to={"/race"}
+            className="bg-button-1 rounded-full px-2 py-1 text-white"
+          >
+            Continue
+          </Link>
         </div>
       </div>
     </div>
