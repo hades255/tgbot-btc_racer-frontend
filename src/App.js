@@ -12,7 +12,7 @@ import LoadingIcon from "@icons/loading";
 import ToastContainer from "@common/toast";
 import Congratulations from "@surprise/Congratulations";
 import Navbar from "@navbar";
-import Home from "@pages/Home";
+// import Home from "@pages/Home";
 const Race = lazy(() => import("@pages/Race"));
 const Tasks = lazy(() => import("@pages/Tasks"));
 const Invite = lazy(() => import("@pages/Invite"));
@@ -62,7 +62,7 @@ const App = () => {
               }
             >
               <Routes>
-                <Route path="/" element={<Home />} />
+                <Route path="/" element={<Race />} />
                 <Route path="/race" element={<Race />} />
                 <Route path="/leaderboard" element={<LeaderBoard />} />
                 <Route path="/tasks" element={<Tasks />} />
