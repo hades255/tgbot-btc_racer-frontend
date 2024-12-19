@@ -1,4 +1,4 @@
-import React, { useCallback, useMemo, useState } from "react";
+import React, { useCallback, useMemo, useRef, useState } from "react";
 import { useSelector } from "react-redux";
 import { useAuth } from "@contexts/AuthContext";
 import { dailyBonusPoints, fuelTankPoints, turborPoints } from "@helper/points";
@@ -33,6 +33,9 @@ const Tasks = () => {
     subscribeUtv,
   } = useAuth();
   const { freeBoost, fueltank, autopilot } = useSelector((state) => state.fuel);
+
+  const tasksBar = useRef(null);
+
   const unlockAuthPilot = useMemo(
     () =>
       watchvideo &&
@@ -85,6 +88,11 @@ const Tasks = () => {
 
   const handleCloseModal = useCallback(() => {
     setSelectedTaskItem(null);
+  }, []);
+
+  const handleScrollTasks = useCallback((e) => {  //  hack  update this function to horizontal scroll
+    console.log(e.deltaY);
+    console.log(tasksBar.current);
   }, []);
 
   const tasks = useMemo(
@@ -178,7 +186,11 @@ const Tasks = () => {
         </span>
       </div>
       <div className="mx-4 mt-6 mb-2 text-white text-md">Upgrade (4)</div>
-      <div className="my-2 flex overflow-x-visible overflow-y-hidden">
+      <div
+        className="my-2 flex overflow-x-visible overflow-y-hidden"
+        onWheel={handleScrollTasks}
+        ref={tasksBar}
+      >
         <div
           onClick={() => {
             handleClickTaskItem("auto-driving");

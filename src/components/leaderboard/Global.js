@@ -47,7 +47,7 @@ const Global = () => {
               </div>
               <div className="flex">
                 <span className="text-sm text-slate-400">
-                  🚀 {Math.round(point).toLocaleString()} pts
+                  🚀 {formatNumber(point)} pts
                 </span>
               </div>
             </div>

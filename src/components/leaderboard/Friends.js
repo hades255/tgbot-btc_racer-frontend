@@ -49,7 +49,7 @@ const Friends = () => {
               </div>
               <div className="flex">
                 <span className="text-sm text-slate-400">
-                  🚀 {point.toLocaleString()} pts
+                  🚀 {formatNumber(point)} pts
                 </span>
               </div>
             </div>

@@ -627,7 +627,7 @@ const TaskModal = ({ selected, onClose, show }) => {
       onClose={onClose}
       title={
         show ? (
-          <div className="mt-8 flex flex-col">
+          <div className="mt-2 flex flex-col">
             {tasks[selected].icon && tasks[selected].icon}
             <span>{tasks[selected].title}</span>
           </div>
@@ -638,7 +638,7 @@ const TaskModal = ({ selected, onClose, show }) => {
       className={"items-end"}
     >
       {show && (
-        <div className="flex flex-col">
+        <div className="flex flex-col pb-2">
           <div className="flex justify-center">
             <span className="mx-4 text-[#9E9E9E] text-[18px] text-wrap text-center">
               {tasks[selected].content}
