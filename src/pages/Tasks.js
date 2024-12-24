@@ -13,6 +13,7 @@ import AstronautIcon from "@icons/Astronaut";
 import RedirectBtn from "@common/button/RedirectBtn";
 import EligibilityModal from "@surprise/EligibilityModal";
 import TaskModal from "@task/TaskModal";
+import AnimatedCounter from "@common/AnimatedCounter";
 
 const Tasks = () => {
   const {
@@ -75,7 +76,6 @@ const Tasks = () => {
     () => dailyBonusPoints(dailyBonusVisitLevel).toLocaleString(),
     [dailyBonusVisitLevel]
   );
-  const lspoint = useMemo(() => point.toLocaleString(), [point]);
 
   const [selectedTaskItem, setSelectedTaskItem] = useState(null);
   const [show, setShow] = useState(false);
@@ -182,7 +182,7 @@ const Tasks = () => {
       </div>
       <div className="mt-1 flex justify-center">
         <span className="text-white text-3xl spaced-text-2 font-bold font-dmsans_extrabold">
-          {lspoint}
+          <AnimatedCounter endValue={point} duration={1000} />
         </span>
       </div>
       <div className="mx-4 mt-6 mb-2 text-white text-md">Upgrade (4)</div>

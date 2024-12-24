@@ -25,6 +25,7 @@ import MusicBtn from "@race/MusicBtn";
 import EthChart from "@race/EthChart";
 import FuelSlider from "@race/FuelSlider";
 import VideoBackground from "@race/VideoBackground";
+import AnimatedCounter from "@common/AnimatedCounter";
 
 const Race = () => {
   const dispatch = useDispatch();
@@ -185,7 +186,7 @@ const Race = () => {
             </div>
           </div>
           <div className="flex justify-center text-[48px] text-white font-bold font-dmsans_extrabold">
-            {point.toLocaleString()}
+            <AnimatedCounter endValue={point} duration={1000} />
           </div>
         </div>
         <div className="mt-4 w-full flex-col">
