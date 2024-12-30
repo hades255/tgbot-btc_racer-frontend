@@ -40,6 +40,8 @@ const TaskModal = ({ selected, onClose, show }) => {
     liketweet,
     reactPost,
     subscribeUtv,
+    dailyBonus,
+    dailyBonusVisit,
   } = useAuth();
   const { freeBoost, fueltank, autopilot } = useSelector((state) => state.fuel);
   const fueltankpoint = useMemo(() => fuelTankPoints(fueltank), [fueltank]);
@@ -476,6 +478,7 @@ const TaskModal = ({ selected, onClose, show }) => {
           </div>
         ),
         button: "Boost Now",
+        disabled: freeBoost === 0,
         action: handleClickReloadFuel,
       },
       "upgrade-fuel": {
@@ -502,6 +505,7 @@ const TaskModal = ({ selected, onClose, show }) => {
           </div>
         ),
         button: "Boost Now",
+        disabled: fueltankpoint > point,
         action: handleClickUpgradeFuel,
       },
       "turbo-charger": {
@@ -528,6 +532,7 @@ const TaskModal = ({ selected, onClose, show }) => {
           </div>
         ),
         button: "Boost Now",
+        disabled: turborpoint > point,
         action: handleTurborCharger,
       },
       "complete-identity": {
@@ -541,6 +546,7 @@ const TaskModal = ({ selected, onClose, show }) => {
         title: "Daily Rewards - Check In",
         content: "Check in daily to earn rewards",
         button: "Check in",
+        disabled: dailyBonus,
         action: handleClickDailyReward,
       },
       "daily-visit": {
@@ -548,6 +554,7 @@ const TaskModal = ({ selected, onClose, show }) => {
         content: "Check in daily to earn rewards",
         button: "Check in",
         action: handleClickDailyVisit,
+        disabled: dailyBonusVisit,
         redirect: "https://platform.alphanomics.io/",
       },
       "follow-twitter": {
@@ -555,6 +562,7 @@ const TaskModal = ({ selected, onClose, show }) => {
         content: "Follow Alphanomics official twitter for extra points!",
         button: "Go now",
         action: handleClickFollowX,
+        disabled: followTwitter,
         redirect: "https://x.com/Alphanomics_io",
       },
       "announcement-channel": {
@@ -562,6 +570,7 @@ const TaskModal = ({ selected, onClose, show }) => {
         content: "Follow Alphanomics official twitter for extra points!",
         button: "Go now",
         redirect: "https://t.me/alphanomics_announcements",
+        disabled: joinAnnouncementChannel,
         action: handleClickJoinAnnouncement,
       },
       "newsletter-channel": {
@@ -569,30 +578,35 @@ const TaskModal = ({ selected, onClose, show }) => {
         content: "Follow Alphanomics official twitter for extra points!",
         button: "Go now",
         redirect: "https://alphanomicsresearch.substack.com/",
+        disabled: joinNewsletter,
         action: handleClickjoinNewsletter,
       },
       "watch-video": {
         title: "Watch Entire Alphanomics Guide Video",
         button: "Go now",
         redirect: "https://alphanomics.io/demovideo",
+        disabled: watchvideo,
         action: handleClickWatchVideo,
       },
       "like-tweet": {
         title: "Like, RT & Comment on Tweet",
         button: "Go now",
         redirect: "http://alphanomics.io/xpost",
+        disabled: liketweet,
         action: handleClickLikeTweet,
       },
       "react-post": {
         title: "React 🚀on this Telegram Post",
         button: "Go now",
         redirect: "http://alphanomics.io/tgpost",
+        disabled: reactPost,
         action: handleClickReactPost,
       },
       "subscribe-utv": {
         title: "Subscribe to our Youtube",
         button: "Go now",
         redirect: "https://www.youtube.com/@alphanomics",
+        disabled: subscribeUtv,
         action: handleClickSubscribeUtv,
       },
     }),
@@ -604,6 +618,16 @@ const TaskModal = ({ selected, onClose, show }) => {
       turboCharger,
       unlockAuthPilot,
       autopilot,
+      point,
+      followTwitter,
+      watchvideo,
+      joinNewsletter,
+      joinAnnouncementChannel,
+      liketweet,
+      reactPost,
+      subscribeUtv,
+      dailyBonus,
+      dailyBonusVisit,
       handleClickReloadFuel,
       handleClickUpgradeFuel,
       handleClickUnlock,

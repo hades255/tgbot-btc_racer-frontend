@@ -63,3 +63,11 @@ code {
 ::-webkit-scrollbar {
   display: none;
 }
+
+.scroll-container {
+  cursor: grab;
+}
+
+.scroll-container:active {
+  cursor: grabbing;
+}

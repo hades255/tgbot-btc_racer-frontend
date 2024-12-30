@@ -1,4 +1,5 @@
 import React, { useMemo } from "react";
+import { BOT_URL } from "@constants/config";
 import { useAuth } from "@contexts/AuthContext";
 import ArrowIcon from "@icons/Arrow";
 
@@ -7,7 +8,7 @@ const InviteBtn = () => {
 
   const message = useMemo(
     () =>
-      `https://t.me/anom_invaders_bot/ANOM_Invaders?startapp=linkCode_${userId}\nLet's race! Predict Ethereum's price and rack up points`,
+      `${BOT_URL}?startapp=linkCode_${userId}\nLet's race! Predict Ethereum's price and rack up points`,
     [userId]
   );
   const encodedMessage = useMemo(() => encodeURIComponent(message), [message]);

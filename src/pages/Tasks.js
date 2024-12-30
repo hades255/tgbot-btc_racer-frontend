@@ -1,4 +1,4 @@
-import React, { useCallback, useMemo, useRef, useState } from "react";
+import React, { useCallback, useMemo, useState } from "react";
 import { useSelector } from "react-redux";
 import { useAuth } from "@contexts/AuthContext";
 import { dailyBonusPoints, fuelTankPoints, turborPoints } from "@helper/points";
@@ -14,6 +14,7 @@ import RedirectBtn from "@common/button/RedirectBtn";
 import EligibilityModal from "@surprise/EligibilityModal";
 import TaskModal from "@task/TaskModal";
 import AnimatedCounter from "@common/AnimatedCounter";
+import HorizontalScroll from "@common/HorizontalScroll";
 
 const Tasks = () => {
   const {
@@ -34,8 +35,6 @@ const Tasks = () => {
     subscribeUtv,
   } = useAuth();
   const { freeBoost, fueltank, autopilot } = useSelector((state) => state.fuel);
-
-  const tasksBar = useRef(null);
 
   const unlockAuthPilot = useMemo(
     () =>
@@ -88,11 +87,6 @@ const Tasks = () => {
 
   const handleCloseModal = useCallback(() => {
     setSelectedTaskItem(null);
-  }, []);
-
-  const handleScrollTasks = useCallback((e) => {  //  hack  update this function to horizontal scroll
-    console.log(e.deltaY);
-    console.log(tasksBar.current);
   }, []);
 
   const tasks = useMemo(
@@ -186,11 +180,7 @@ const Tasks = () => {
         </span>
       </div>
       <div className="mx-4 mt-6 mb-2 text-white text-md">Upgrade (4)</div>
-      <div
-        className="my-2 flex overflow-x-visible overflow-y-hidden"
-        onWheel={handleScrollTasks}
-        ref={tasksBar}
-      >
+      <HorizontalScroll className="my-2 flex overflow-x-visible overflow-y-hidden">
         <div
           onClick={() => {
             handleClickTaskItem("auto-driving");
@@ -295,7 +285,7 @@ const Tasks = () => {
             Lvl {turboCharger}
           </div>
         </div>
-      </div>
+      </HorizontalScroll>
       <div className="mx-4 mt-3 text-white text-md">Tasks ({tasks.length})</div>
       <div className="flex flex-col">
         {tasks.map((item, index) => (

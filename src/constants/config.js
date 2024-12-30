@@ -9,3 +9,5 @@ export const COINAPI_KEY = "3419ED45-4A22-4B57-873A-46717EDA8CC9";
 // export const COINAPI_KEY = "5a77bd04-7df9-453a-a291-fe49b6dbb9fb";
 
 export const BINANCE_WS_URL = "wss://fstream.binance.com/ws/ethusdt@trade";
+
+export const BOT_URL = "https://t.me/anom_invaders_bot/anom";

@@ -1,5 +1,6 @@
 import React, { useCallback, useMemo } from "react";
 import { useDispatch } from "react-redux";
+import { BOT_URL } from "@constants/config";
 import { useAuth } from "@contexts/AuthContext";
 import { addToast } from "@redux/toastSlice";
 import CopyIcon from "@icons/Copy";
@@ -9,7 +10,7 @@ const CopyBtn = () => {
   const dispatch = useDispatch();
 
   const inviteLink = useMemo(
-    () => `https://t.me/anom_invaders_bot/ANOM_Invaders?startapp=linkCode_${userId}`,
+    () => `${BOT_URL}?startapp=linkCode_${userId}`,
     [userId]
   );
 
